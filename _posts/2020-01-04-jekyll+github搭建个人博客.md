@@ -13,7 +13,7 @@ tags: jekyll
 
 #### 2.下载jekyll模板
 
-去[JekyllThemes](http://jekyllthemes.org/)下载一个自己喜欢的模板，解压后将相关文件上传至创建好的github仓库中
+去[JekyllThemes](http://jekyllthemes.org/)下载一个自己喜欢的模板
 
 
 
