@@ -1,6 +1,8 @@
 ---
-title: feign调用时spring线程中http请求上下文丢失问题.md
-tags: feign,hystrix
+title: feign调用时spring线程中http请求上下文丢失问题
+tags: 
+- feign
+- hystrix
 ---
 
 #### 问题描述：
@@ -11,7 +13,7 @@ tags: feign,hystrix
 
 #### 问题分析：
 
-在B服务接口对应的feign客户端类中，@FeignClient注解配置如下：
+在B服务接口对应的feign客户端类中，`@FeignClient`注解配置如下：
 
 ```
 @FeignClient(
@@ -21,7 +23,7 @@ tags: feign,hystrix
 )
 ```
 
-通过FeignHeaderInterceptor类将A服务http请求中的用户信息写入B服务接口的feign调用请求中，FeignHeaderInterceptor类代码如下：
+通过`FeignHeaderInterceptor`类将A服务http请求中的用户信息写入B服务接口的feign调用请求中，`FeignHeaderInterceptor`类代码如下：
 
 ```
 public class FeignHeaderInterceptor implements RequestInterceptor {
@@ -38,7 +40,7 @@ public class FeignHeaderInterceptor implements RequestInterceptor {
 }
 ```
 
-HttpSimpleUtils用于从http请求获取各种信息，HttpSimpleUtils通过 RequestContextHolder.getRequestAttributes() 获取当前线程中的http请求上下文，经过断点调试，发现代码执行到FeignHeaderInterceptor.apply方法中时，通过RequestContextHolder.getRequestAttributes()获取http请求上下文为null，进一步调试发现请求在到达A服务controller时线程id为55，执行到FeignHeaderInterceptor.apply方法时，线程id为23，说明发生了线程切换，导致http请求上下文丢失。
+`HttpSimpleUtils`用于从http请求获取各种信息，`HttpSimpleUtils`通过 `RequestContextHolder.getRequestAttributes()` 获取当前线程中的http请求上下文，经过断点调试，发现代码执行到`FeignHeaderInterceptor.apply`方法中时，通过`RequestContextHolder.getRequestAttributes()`获取http请求上下文为null，进一步调试发现请求在到达A服务controller时线程id为55，执行到`FeignHeaderInterceptor.apply`方法时，线程id为23，说明发生了线程切换，导致http请求上下文丢失。
 
 feign框架支持hystrix熔断器，并且hystrix熔断器默认使用线程池隔离策略，而在A服务中中的feign启用了hystrix，并且使用了hystrix默认的线程池隔离策略，这就导致A服务调用B服务接口feign时的线程与feign框架处理请求的线程不是同一线程，从而使得http上下文丢失
 
