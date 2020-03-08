@@ -3,6 +3,8 @@ title: feign调用时spring线程中http请求上下文丢失问题
 tags: 
 - feign
 - hystrix
+- 微服务
+- SpringCloud
 ---
 
 #### 问题描述：
