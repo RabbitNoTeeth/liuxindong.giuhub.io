@@ -1,42 +1,72 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="./logo.ico">
-    <title>Bookish</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-  </head>
-  <body>
-    <div id="app">
-      <!--顶部-->
-      <div class="header">
-        <span class="header_title">Bookish</span>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="./logo.ico">
+  <title>Bookish</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/theme-chalk/index.min.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<div id="app">
+  <!--顶部-->
+  <div class="header">
+    <div class="header_left">
+      Bookish
+    </div>
+    <div class="header_right">
+      <el-input placeholder="请输入内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px">
+        <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
+      </el-input>
+    </div>
+  </div>
+  <!--中部-->
+  <div class="center">
+    <div class="center_main">
+      <div class="center_main_left">
+        <el-tree
+            :data="treeData"
+            highlight-current
+            :expand-on-click-node="false"
+            default-expand-all
+            @node-click="handleNodeClick"
+        >
+      <span slot-scope="{ node, data }">
+        <span>{{ node.label }}</span>
+        <span>{{ node.isLeaf && data.articles ? ('(' + data.articles.length + ')') : ''}}</span>
+      </span>
+        </el-tree>
       </div>
-      <!--中部-->
-      <div class="center">
-        <div class="center_main">
-          todo
+      <div class="center_main_right">
+        <div class="center_main_right_num">
+          <span>共&nbsp;<b>{{articles.length}}</b>&nbsp;条</span>
+        </div>
+        <div class="center_main_right_article" v-for="(article, index) in articles" :key="index">
+          <p>
+            <a class="center_main_right_article_title" :href="article.url" target="_blank">
+              {{index + 1}}.&nbsp;&nbsp;&nbsp;{{article.name}}
+            </a>
+          </p>
+          <p class="center_main_right_article_date">
+            <i class="el-icon-date"></i>
+            <span>&nbsp;{{article.date}}</span>
+          </p>
         </div>
       </div>
-      <!--底部-->
-      <div class="footer">
-        <span>冀ICP备18007028号</span>
-      </div>
     </div>
-  </body>
+  </div>
+  <!--底部-->
+  <div class="footer">
+    <span>冀ICP备18007028号</span>
+  </div>
+</div>
+</body>
 
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      data: function () {
-        return {visible: false}
-      }
-    })
-  </script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/index.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./js/index.js"></script>
 
 </html>

@@ -6,14 +6,14 @@
       {
         "id": "dataStructure",
         "label": "数据结构",
-        "articles": [
-          { "name": "基本概念", "url": "/articles/算法基本概念.html", "date": "2021-01-01 00:00:00" },
-          { "name": "基本概念", "url": "", "date": "2021-01-01 00:00:00" }
-        ]
+        "articles": []
       },
       {
         "id": "algorithm",
-        "label": "算法"
+        "label": "算法",
+        "articles": [
+          { "name": "基本概念", "url": "./post/algorithm/基本概念.html", "date": "2021-01-08 19:00:00" }
+        ]
       }
     ]
   }
