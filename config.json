@@ -7,15 +7,17 @@
         "id": "dataStructure",
         "label": "数据结构",
         "articles": [
-          { "name": "基本概念", "url": "./posts/dataStructure/基本概念.html", "date": "2021-01-05 19:00:00" },
-          { "name": "线性表", "url": "./posts/dataStructure/线性表.html", "date": "2021-01-06 19:00:00" }
+          { "name": "基本概念", "url": "./posts/dataStructure/基本概念.html" },
+          { "name": "线性表", "url": "./posts/dataStructure/线性表.html" },
+          { "name": "栈", "url": "./posts/dataStructure/栈.html" },
+          { "name": "队列", "url": "./posts/dataStructure/队列.html" }
         ]
       },
       {
         "id": "algorithm",
         "label": "算法",
         "articles": [
-          { "name": "基本概念", "url": "./posts/algorithm/基本概念.html", "date": "2021-01-08 19:00:00" }
+          { "name": "基本概念", "url": "./posts/algorithm/基本概念.html" }
         ]
       }
     ]

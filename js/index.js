@@ -39,7 +39,9 @@ new Vue({
           var articles = item.articles;
           if (articles) {
             for(var j in articles) {
-              allArticles.push(articles[j])
+              var article = articles[j];
+              article.classify = item.label;
+              allArticles.push(article)
             }
           }
         }

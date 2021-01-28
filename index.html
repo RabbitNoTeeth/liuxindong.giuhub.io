@@ -46,12 +46,12 @@
         <div class="center_main_right_article" v-for="(article, index) in articles" :key="index">
           <p>
             <a class="center_main_right_article_title" :href="article.url" target="_blank">
-              {{index + 1}}.&nbsp;&nbsp;&nbsp;{{article.name}}
+              {{index + 1}}.&nbsp;&nbsp;{{article.name}}
             </a>
           </p>
           <p class="center_main_right_article_date">
-            <i class="el-icon-date"></i>
-            <span>&nbsp;{{article.date}}</span>
+            <i class="el-icon-collection-tag"></i>
+            <span>&nbsp;{{article.classify}}</span>
           </p>
         </div>
       </div>

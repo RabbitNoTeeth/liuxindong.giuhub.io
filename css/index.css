@@ -85,7 +85,7 @@ body, html {
 
 .center_main_right_article {
     border-bottom: darkgray 1px dashed;
-    padding: 20px 10px;
+    padding: 20px 10px 5px 10px;
 }
 
 .center_main_right_article_title {
@@ -101,7 +101,9 @@ body, html {
 
 .center_main_right_article_date {
     margin-top: 10px;
+    margin-left: 20px;
     color: #000;
+    font-size: 12px;
 }
 
 .footer {
