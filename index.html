@@ -17,9 +17,7 @@
       Bookish
     </div>
     <div class="header_right">
-      <el-input placeholder="请输入内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px">
-        <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
-      </el-input>
+      <el-input placeholder="请输入搜索内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px"></el-input>
     </div>
   </div>
   <!--中部-->
@@ -51,7 +49,7 @@
           </p>
           <p class="center_main_right_article_date">
             <i class="el-icon-collection-tag"></i>
-            <span>&nbsp;{{article.classify}}</span>
+            <span>&nbsp;{{article.classifyName}}</span>
           </p>
         </div>
       </div>

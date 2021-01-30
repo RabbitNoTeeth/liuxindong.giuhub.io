@@ -3,9 +3,36 @@ new Vue({
   data: function () {
     return {
       treeData: [],
-      articles: [],
       allArticles: [],
-      searchParam: ''
+      searchParam: '',
+      currentClassify: null
+    }
+  },
+  computed: {
+    articles: function () {
+      var allArticles = this.allArticles;
+      var searchParam = (this.searchParam && this.searchParam.toString().trim() != '') ? this.searchParam.toString() : null;
+      var classify = this.currentClassify != null ? this.currentClassify.id : null;
+      var res = [];
+      for (var i in allArticles) {
+        var article = allArticles[i];
+        if (searchParam && classify) {
+          if (article.name.indexOf(searchParam) > -1 && article.classifies.indexOf(classify) > -1) {
+            res.push(article)
+          }
+        } else if (searchParam && !classify) {
+          if (article.name.indexOf(searchParam) > -1) {
+            res.push(article)
+          }
+        } else if (!searchParam && classify) {
+          if (article.classifies.indexOf(classify) > -1) {
+            res.push(article)
+          }
+        } else {
+          res.push(article)
+        }
+      }
+      return res;
     }
   },
   mounted() {
@@ -21,26 +48,33 @@ new Vue({
       $.getJSON('./config.json', function (data) {
         self.treeData = data;
         var allArticles = [];
-        self.parseClassifyArticles(data, allArticles);
-        self.articles = allArticles;
+        self.parseClassifyArticles(data, allArticles, []);
         self.allArticles = allArticles;
       })
     },
     /**
      * 解析分类下文章列表
      * @param data
+     * @param allArticles
+     * @param parentClassifies
      */
-    parseClassifyArticles(data, allArticles) {
+    parseClassifyArticles(data, allArticles, parentClassifies) {
       for(var i in data) {
         var item = data[i];
+        item.classifies = [ ...parentClassifies, item ];
         if (item.children) {
-          this.parseClassifyArticles(item.children, allArticles)
+          this.parseClassifyArticles(item.children, allArticles, item.classifies)
         } else {
           var articles = item.articles;
           if (articles) {
             for(var j in articles) {
               var article = articles[j];
-              article.classify = item.label;
+              article.classifyName = item.classifies.map(i => i.label).join(' - ');
+              var articleClassifies = [];
+              for(var x in item.classifies){
+                articleClassifies.push(item.classifies[x].id)
+              }
+              article.classifies = articleClassifies;
               allArticles.push(article)
             }
           }
@@ -53,26 +87,7 @@ new Vue({
      * @param node
      */
     handleNodeClick(data, node) {
-      if (node.isLeaf) {
-        this.articles = data.articles
-      }
-    },
-    /**
-     * 搜索按钮点击回调
-     */
-    handleSearch() {
-      var param = this.searchParam;
-      if (param && param.trim() != '') {
-        var res = [];
-        var source = this.articles;
-        for(var i in source){
-          var item = source[i];
-          if (item.name.indexOf(param) > 0) {
-            res.push(item)
-          }
-        }
-        this.articles = res;
-      }
+      this.currentClassify = data
     }
   }
 });
