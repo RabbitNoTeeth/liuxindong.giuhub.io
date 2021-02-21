@@ -10,7 +10,8 @@
           { "name": "基本概念", "url": "./posts/dataStructure/基本概念.html" },
           { "name": "线性表", "url": "./posts/dataStructure/线性表.html" },
           { "name": "栈", "url": "./posts/dataStructure/栈.html" },
-          { "name": "队列", "url": "./posts/dataStructure/队列.html" }
+          { "name": "队列", "url": "./posts/dataStructure/队列.html" },
+          { "name": "树", "url": "./posts/dataStructure/树.html" }
         ]
       },
       {
