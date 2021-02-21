@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>图</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n489"><a class="md-toc-inner" href="#1-定义">1 定义</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n236"><a class="md-toc-inner" href="#11-图">1.1 图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n237"><a class="md-toc-inner" href="#12-无向边">1.2 无向边</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n262"><a class="md-toc-inner" href="#13-有向边">1.3 有向边</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n259"><a class="md-toc-inner" href="#14-简单图">1.4 简单图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n225"><a class="md-toc-inner" href="#15-无向完全图">1.5 无向完全图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n270"><a class="md-toc-inner" href="#16-有向完全图">1.6 有向完全图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n273"><a class="md-toc-inner" href="#17-稀疏图稠密图">1.7 稀疏图、稠密图</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n221"><a class="md-toc-inner" href="#18-度">1.8 度</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n289"><a class="md-toc-inner" href="#19-环">1.9 环</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n295"><a class="md-toc-inner" href="#110-连通图">1.10 连通图</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n300"><a class="md-toc-inner" href="#2-图的存储结构">2 图的存储结构</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n302"><a class="md-toc-inner" href="#21-邻接矩阵">2.1 邻接矩阵</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n307"><a class="md-toc-inner" href="#211-无向图">2.1.1 无向图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n311"><a class="md-toc-inner" href="#212有向图">2.1.2有向图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n314"><a class="md-toc-inner" href="#213-网">2.1.3 网</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n336"><a class="md-toc-inner" href="#22-邻接表">2.2 邻接表</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n347"><a class="md-toc-inner" href="#221-无向图">2.2.1 无向图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n358"><a class="md-toc-inner" href="#222-有向图">2.2.2 有向图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n364"><a class="md-toc-inner" href="#223-网">2.2.3 网</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n363"><a class="md-toc-inner" href="#23-十字链表">2.3 十字链表</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n372"><a class="md-toc-inner" href="#24-邻接多重表">2.4 邻接多重表</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n389"><a class="md-toc-inner" href="#25-边集数组">2.5 边集数组</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n393"><a class="md-toc-inner" href="#3-图的遍历">3 图的遍历</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n395"><a class="md-toc-inner" href="#31-深度优先遍历">3.1 深度优先遍历</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n410"><a class="md-toc-inner" href="#32-广度优先遍历">3.2 广度优先遍历</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n418"><a class="md-toc-inner" href="#4-最小生成树">4 最小生成树</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n151"><a class="md-toc-inner" href="#41-普里姆prim）算法">4.1 普里姆（Prim）算法</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n435"><a class="md-toc-inner" href="#42-克鲁斯卡尔kruskal）算法">4.2 克鲁斯卡尔（Kruskal）算法</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n487"><a class="md-toc-inner" href="#5-最短路径">5. 最短路径</a></span></p></div><p>&nbsp;</p><h1><a name="1-定义" class="md-header-anchor"></a><span>1 定义</span></h1><h2><a name="11-图" class="md-header-anchor"></a><span>1.1 图</span></h2><p><span>图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中，G表示图，V表示图中顶点的集合，E表示图中边的集合。</span></p><p><img src="./resources/6.1.png" referrerpolicy="no-referrer"></p><h2><a name="12-无向边" class="md-header-anchor"></a><span>1.2 无向边</span></h2><p><span>若顶点V</span><sub><span>i</span></sub><span>到V</span><sub><span>j</span></sub><span>之间的边没有方向，则称这条边为无向边，用（V</span><sub><span>i</span></sub><span>,V</span><sub><span>j</span></sub><span>）表示。</span></p><p><img src="./resources/6.2.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="13-有向边" class="md-header-anchor"></a><span>1.3 有向边</span></h2><p><span>若顶点V</span><sub><span>i</span></sub><span>到V</span><sub><span>j</span></sub><span>之间的边有方向，则称这条边为有向边，用 &lt;V</span><sub><span>i</span></sub><span>,V</span><sub><span>j</span></sub><span>&gt; 表示。也可称为弧，V</span><sub><span>i</span></sub><span>为弧尾，V</span><sub><span>j</span></sub><span>为弧头。</span></p><p><img src="./resources/6.3.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="14-简单图" class="md-header-anchor"></a><span>1.4 简单图</span></h2><p><span>不存在顶点到其自身的边，且同一条边不重复出现，这样的图称为简单图。</span></p><p><img src="./resources/6.4.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="15-无向完全图" class="md-header-anchor"></a><span>1.5 无向完全图</span></h2><p><span>任意两个顶点之间都存在边的无向图。</span></p><p><img src="./resources/6.5.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="16-有向完全图" class="md-header-anchor"></a><span>1.6 有向完全图</span></h2><p><span>任意两个顶点之间都存在方向互为相反的两条弧的有向图。</span></p><p><img src="./resources/6.6.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="17-稀疏图稠密图" class="md-header-anchor"></a><span>1.7 稀疏图、稠密图</span></h2><p><span>有很少条边成弧的图称为稀疏图，反之称为稠密图</span></p><p>&nbsp;</p><h2><a name="18-度" class="md-header-anchor"></a><span>1.8 度</span></h2><p><span>对于无向图，顶点V的度是和V相关联的边的数目。</span>
+<span>对于有向图，以顶点V为头的弧的数目称为V的入度；以V为尾的弧的数目称为V的出度。</span></p><p>&nbsp;</p><h2><a name="19-环" class="md-header-anchor"></a><span>1.9 环</span></h2><p><span>第一个顶点到最后一个顶点相同的路径称为回路或环。序列中顶点不重复出现的路径称为简单路径。除第一个项点和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路或简单环。</span></p><p><img src="./resources/6.7.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="110-连通图" class="md-header-anchor"></a><span>1.10 连通图</span></h2><p><span>在无向图中，任意两点都是连通的，则称其为连通图。</span>
+<span>在有向图中，任意两点V</span><sub><span>i</span></sub><span>、V</span><sub><span>j</span></sub><span>，从V</span><sub><span>i</span></sub><span>到V</span><sub><span>j</span></sub><span>和从V</span><sub><span>j</span></sub><span>到V</span><sub><span>i</span></sub><span>之都存在路经，则称其为强连通图。</span></p><p>&nbsp;</p><h1><a name="2-图的存储结构" class="md-header-anchor"></a><span>2 图的存储结构</span></h1><h2><a name="21-邻接矩阵" class="md-header-anchor"></a><span>2.1 邻接矩阵</span></h2><p><span>用两个数组来表示图，一个一维数组存储图中顶点信息，一个二维数组存储图中的边或弧的信息。</span></p><h3><a name="211-无向图" class="md-header-anchor"></a><span>2.1.1 无向图</span></h3><p><img src="./resources/6.8.png" referrerpolicy="no-referrer"></p><p><span>边数组为对称矩阵（V</span><sub><span>ij</span></sub><span>=V</span><sub><span>ji</span></sub><span>）。</span>
+<span>顶点V</span><sub><span>i</span></sub><span>的度即为其所在行或列的元素之和。</span></p><p>&nbsp;</p><h3><a name="212有向图" class="md-header-anchor"></a><span>2.1.2有向图</span></h3><p><img src="./resources/6.9.png" referrerpolicy="no-referrer">
+<span>顶点V</span><sub><span>i</span></sub><span>的入度为其所在列元素之和；出度为其所在行元素之和。</span></p><p>&nbsp;</p><h3><a name="213-网" class="md-header-anchor"></a><span>2.1.3 网</span></h3><p><span>对于边上带有权的网，可以作如下处理：</span></p><p><img src="./resources/6.10.png" referrerpolicy="no-referrer"></p><p><img src="./resources/6.11.png" referrerpolicy="no-referrer"></p><p><span>对于顶点数为n，边数为e的图，构建其邻接矩阵的时间复杂度为O(n+n</span><sup><span>2</span></sup><span>+e)，即O(n</span><sup><span>2</span></sup><span>)。</span>
+<span>对于边数相对顶点数较少的图，邻接矩阵对存储空间有比较大的浪费。</span></p><p>&nbsp;</p><h2><a name="22-邻接表" class="md-header-anchor"></a><span>2.2 邻接表</span></h2><p><span>用一个一维数组存储所有顶点，每个顶点存储指向第一个邻接点的指针。</span>
+<span>每个顶点V的所有邻接点构成一个线性表，用单链表存储，无向图称为顶点V</span><sub><span>i</span></sub><span>的边表，有向图则称为顶点V</span><sub><span>i</span></sub><span>作为孤尾的出边表。</span></p><h3><a name="221-无向图" class="md-header-anchor"></a><span>2.2.1 无向图</span></h3><p><img src="./resources/6.12.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h3><a name="222-有向图" class="md-header-anchor"></a><span>2.2.2 有向图</span></h3><p><span>以顶点为孤尾来存储边表时，可以很方便得到顶点的出度，为了同样方便得到顶点的入度，可以再建立一个逆邻接表。</span></p><p><img src="./resources/6.13.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h3><a name="223-网" class="md-header-anchor"></a><span>2.2.3 网</span></h3><p><span>在边表结点定义中再增加一个weight数据域。</span>
+<img src="./resources/6.14.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="23-十字链表" class="md-header-anchor"></a><span>2.3 十字链表</span></h2><p><span>将邻接表和邻接矩阵结合起来，定义顶点表结点结构如下：</span></p><p><img src="./resources/6.15.png" referrerpolicy="no-referrer"></p><p><span>十字链表由于整合了邻接矩阵和邻接表，从而很容易得到顶点的入度和出度，只是结构稍微复杂一些，创建图的时间复杂度和邻接表是一样的。</span></p><p>&nbsp;</p><h2><a name="24-邻接多重表" class="md-header-anchor"></a><span>2.4 邻接多重表</span></h2><p><span>十字链表是对有向图的进一步优化，那么对于无向图的邻接表，如果更关注边的操作，如删除边，操作还是比较麻烦的，例如要删除下图中红色标记的边，对链表的处理是比较繁锁的。</span></p><p><img src="./resources/6.16.png" referrerpolicy="no-referrer"></p><p><span>为了解决上面的问题，便出现了邻接多重表，重新定义边表结点结构如下：</span>
+<img src="./resources/6.17.png" referrerpolicy="no-referrer"></p><p><span>从上图可以看出，邻接表和邻接多重表的差别在于，同一条边在邻接表中要用两个结点表示，而在邻接多重表中只有一个，这样操作边时便方便多了。</span></p><p>&nbsp;</p><h2><a name="25-边集数组" class="md-header-anchor"></a><span>2.5 边集数组</span></h2><p><span>由两个一维数组构成，一个存储顶点，一个存储边。</span>
+<span>定义边数组元素结构如下：</span></p><p><img src="./resources/6.18.png" referrerpolicy="no-referrer"></p><p><span>边集数组更适合对边的依序操作，而不适合对顶点相关的操作。</span></p><p>&nbsp;</p><h1><a name="3-图的遍历" class="md-header-anchor"></a><span>3 图的遍历</span></h1><p><span>从图某一顶点出发遍历图中其余顶点，且使每个顶点仅被访问一次。</span></p><h2><a name="31-深度优先遍历" class="md-header-anchor"></a><span>3.1 深度优先遍历</span></h2><p><span>也称为深度优先搜索，简称为DFS。从图中某个顶点V出发，访问此顶点，然后从V的未被访问的邻接点出发深度优先遍历图，直至图中所有和V有路径相通的顶点都被访问到。若图中尚有顶点未被访问，则另选图中一个未被</span>
+<span>访问的顶点作起点，重复上述过程，直至图中所有顶点都被访问。</span></p><p><img src="./resources/6.19.png" referrerpolicy="no-referrer"></p><p><span>对于n个顶点e条边的图来说，邻接矩阵由于是二维数组，要查找每个顶点的邻接点需要访问矩阵中的所有元素，因此需要O(n)的时间；而对与邻接表，找邻接点的时间取决于顶点和边的数量，所以是O(n+e)。对于点多边少的稀疏图，邻接表结构使算法的时间效率大大提高。</span></p><p>&nbsp;</p><h2><a name="32-广度优先遍历" class="md-header-anchor"></a><span>3.2 广度优先遍历</span></h2><p><span>也称为广度优先搜索，简称BFS。类似于树的层序遍历。</span></p><p><img src="./resources/6.20.png" referrerpolicy="no-referrer"></p><p><img src="./resources/6.21.png" referrerpolicy="no-referrer"></p><p><span>深度优先搜索和广度优先搜索在时间复杂度上是一样的。前者更适合以找到目标为主要目的的情况，后者更适合在不断扩大遍历范围时找到相对最优解的情况。</span></p><p>&nbsp;</p><h1><a name="4-最小生成树" class="md-header-anchor"></a><span>4 最小生成树</span></h1><p><span>下图中标记出任意两点间相互连通所需的成本（即边的权重）。对于由n个顶点组成的图，用n-1条边将图连通，并使其权值的和最小，这就是最小成本。将构造连通网的最小代价生成树称为最小生成树。</span></p><p><img src="./resources/6.22.png" referrerpolicy="no-referrer"></p><h2><a name="41-普里姆prim）算法" class="md-header-anchor"></a><span>4.1 普里姆（Prim）算法</span></h2><p><span>也称为贪心算法，在实现算法时，我们定义一维数组marked[]，来标记顶点是否已被纳入最小生成树，同时定义优先队列来有放边，并根据边的权值快速找出最小权值的边。</span>
+<span>算法路径如下：</span>
+<span>① 标记V</span><sub><span>0</span></sub><span>，并将V</span><sub><span>0</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>0</span></sub><span>-V</span><sub><span>1</span></sub><span>。</span></p><p><img src="./resources/6.23.png" referrerpolicy="no-referrer"></p><p><span>② 标记V</span><sub><span>1</span></sub><span>，将V</span><sub><span>1</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>0</span></sub><span>-V</span><sub><span>5</span></sub><span>。</span></p><p><img src="./resources/6.24.png" referrerpolicy="no-referrer"></p><p><span>③ 标记V</span><sub><span>5</span></sub><span>，将V</span><sub><span>5</span></sub><span>关取的边放人队列，得到最短边V</span><sub><span>1</span></sub><span>-V</span><sub><span>8</span></sub><span>。</span></p><p><img src="./resources/6.25.png" referrerpolicy="no-referrer"></p><p><span>④ 标记V</span><sub><span>8</span></sub><span>，将V</span><sub><span>8</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>8</span></sub><span>-V</span><sub><span>2</span></sub><span>。</span></p><p><img src="./resources/6.26.png" referrerpolicy="no-referrer"></p><p><span>⑤ 标记V</span><sub><span>2</span></sub><span>，将V</span><sub><span>2</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>1</span></sub><span>-V</span><sub><span>6</span></sub><span>。</span></p><p><img src="./resources/6.27.png" referrerpolicy="no-referrer"></p><p><span>⑥ 标记V</span><sub><span>6</span></sub><span>，将V</span><sub><span>6</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>6</span></sub><span>-V</span><sub><span>5</span></sub><span>，由于V</span><sub><span>5</span></sub><span>已被标记，再次取V</span><sub><span>1</span></sub><span>-V</span><sub><span>2</span></sub><span>，发现两者也都被标记，再次取V</span><sub><span>6</span></sub><span>-V</span><sub><span>7</span></sub><span>。</span></p><p><img src="./resources/6.28.png" referrerpolicy="no-referrer"></p><p><span>⑦ 标记V</span><sub><span>7</span></sub><span>，将V</span><sub><span>7</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>7</span></sub><span>-V</span><sub><span>4</span></sub><span>。</span></p><p><img src="./resources/6.29.png" referrerpolicy="no-referrer"></p><p><span>⑧ 标记V</span><sub><span>4</span></sub><span>，将V</span><sub><span>4</span></sub><span>关联的边放入队列，得到最短边V</span><sub><span>7</span></sub><span>-V</span><sub><span>3</span></sub><span>。</span></p><p><img src="./resources/6.30.png" referrerpolicy="no-referrer"></p><p><span>⑨ 标记V</span><sub><span>3</span></sub><span>，至此，发现已得到8条边，那么便得到了最小生成树。</span></p><p><img src="./resources/6.31.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2><a name="42-克鲁斯卡尔kruskal）算法" class="md-header-anchor"></a><span>4.2 克鲁斯卡尔（Kruskal）算法</span></h2><p><span>Prim算法是在标记顶点后动态查找最小权值的边，那么我们可以换种思路，在构建图时便将边按权值由小到大排好序，按照排序取出一条边，但是要住意不要形成环。</span></p><p><span>① 得到最小边V</span><sub><span>1</span></sub><span>-V</span><sub><span>4</span></sub><span>，标记V</span><sub><span>1</span></sub><span>、V</span><sub><span>4</span></sub><span>。</span></p><p><img src="./resources/6.32.png" referrerpolicy="no-referrer"></p><p><span>② 得到最小边V</span><sub><span>2</span></sub><span>-V</span><sub><span>8</span></sub><span>，标记V</span><sub><span>2</span></sub><span>、V</span><sub><span>8</span></sub><span>。</span></p><p><img src="./resources/6.33.png" referrerpolicy="no-referrer"></p><p><span>③ 得到最小边V</span><sub><span>1</span></sub><span>-V</span><sub><span>0</span></sub><span>，标记V</span><sub><span>1</span></sub><span>、V</span><sub><span>0</span></sub><span>。</span></p><p><img src="./resources/6.34.png" referrerpolicy="no-referrer"></p><p><span>④ 得到最小边V</span><sub><span>0</span></sub><span>-V</span><sub><span>5</span></sub><span>，标记V</span><sub><span>5</span></sub><span>。</span></p><p><img src="./resources/6.35.png" referrerpolicy="no-referrer"></p><p><span>⑤ 得到最小边V</span><sub><span>1</span></sub><span>-V</span><sub><span>8</span></sub><span>。</span></p><p><img src="./resources/6.36.png" referrerpolicy="no-referrer"></p><p><span>⑥ 得到最小边V</span><sub><span>7</span></sub><span>-V</span><sub><span>3</span></sub><span>、V</span><sub><span>1</span></sub><span>-V</span><sub><span>6</span></sub><span>，标记V</span><sub><span>7</span></sub><span>、V</span><sub><span>3</span></sub><span>。虽然此时所有顶点都已被标记，但是边只有7条，还差一条，所以还要继续。</span></p><p><img src="./resources/6.37.png" referrerpolicy="no-referrer"></p><p><span>⑦ 得到最小边V</span><sub><span>6</span></sub><span>-V</span><sub><span>5</span></sub><span>，选择此边将会形成环，所以放弃，继续得到V</span><sub><span>1</span></sub><span>-V</span><sub><span>2</span></sub><span>，依然会形成环，再次得到V</span><sub><span>6</span></sub><span>-V</span><sub><span>7</span></sub><span>,不会形成环，且边总数为8，结束。</span></p><p><img src="./resources/6.38.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h1><a name="5-最短路径" class="md-header-anchor"></a><span>5. 最短路径</span></h1><p><span>// 待续</span></p></div>
+</body>
+</html>
