@@ -43,7 +43,25 @@
         "label": "Effective Java",
         "articles": [
           { "name": "考虑用静态工厂方法代替构造器", "url": "./posts/java/effectiveJava/考虑用静态工厂方法代替构造器.html" },
-          { "name": "遇到多个构造器参数时考虑用构建器", "url": "./posts/java/effectiveJava/遇到多个构造器参数时考虑用构建器.html" }
+          { "name": "遇到多个构造器参数时考虑用构建器", "url": "./posts/java/effectiveJava/遇到多个构造器参数时考虑用构建器.html" },
+          { "name": "用私有构造器或者枚举类型强化Singleton属性", "url": "./posts/java/effectiveJava/用私有构造器或者枚举类型强化Singleton属性.html" },
+          { "name": "通过私有构造器强化不可实例化的能力", "url": "./posts/java/effectiveJava/通过私有构造器强化不可实例化的能力.html" },
+          { "name": "避免创建不必要的对象", "url": "./posts/java/effectiveJava/避免创建不必要的对象.html" },
+          { "name": "消除过期的对象引用", "url": "./posts/java/effectiveJava/消除过期的对象引用.html" },
+          { "name": "避免使用终结方法", "url": "./posts/java/effectiveJava/避免使用终结方法.html" },
+          { "name": "覆盖equals时请遵守通用约定", "url": "./posts/java/effectiveJava/覆盖equals时请遵守通用约定.html" },
+          { "name": "覆盖equals时总要覆盖hashCode", "url": "./posts/java/effectiveJava/覆盖equals时总要覆盖hashCode.html" },
+          { "name": "建议始终覆盖toString", "url": "./posts/java/effectiveJava/建议始终覆盖toString.html" },
+          { "name": "谨慎地覆盖clone", "url": "./posts/java/effectiveJava/谨慎地覆盖clone.html" },
+          { "name": "考虑实现Comparable接口", "url": "./posts/java/effectiveJava/考虑实现Comparable接口.html" },
+          { "name": "使类和成员的可访问性最小化", "url": "./posts/java/effectiveJava/使类和成员的可访问性最小化.html" },
+          { "name": "在公有类中使用访问方法而非公有域", "url": "./posts/java/effectiveJava/在公有类中使用访问方法而非公有域.html" },
+          { "name": "使可变性最小化", "url": "./posts/java/effectiveJava/使可变性最小化.html" },
+          { "name": "复合优先于继承", "url": "./posts/java/effectiveJava/复合优先于继承.html" },
+          { "name": "要么为继承而设计,并提供文档说明,要么就禁止继承", "url": "./posts/java/effectiveJava/要么为继承而设计,并提供文档说明,要么就禁止继承.html" },
+          { "name": "接口优于抽象类", "url": "./posts/java/effectiveJava/接口优于抽象类.html" },
+          { "name": "优先考虑静态成员类", "url": "./posts/java/effectiveJava/优先考虑静态成员类.html" },
+          { "name": "关于泛型", "url": "./posts/java/effectiveJava/关于泛型.html" }
         ]
       }
     ]
