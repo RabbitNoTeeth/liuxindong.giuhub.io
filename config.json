@@ -61,7 +61,12 @@
           { "name": "要么为继承而设计,并提供文档说明,要么就禁止继承", "url": "./posts/java/effectiveJava/要么为继承而设计,并提供文档说明,要么就禁止继承.html" },
           { "name": "接口优于抽象类", "url": "./posts/java/effectiveJava/接口优于抽象类.html" },
           { "name": "优先考虑静态成员类", "url": "./posts/java/effectiveJava/优先考虑静态成员类.html" },
-          { "name": "关于泛型", "url": "./posts/java/effectiveJava/关于泛型.html" }
+          { "name": "关于泛型", "url": "./posts/java/effectiveJava/关于泛型.html" },
+          { "name": "用enum代替int常量", "url": "./posts/java/effectiveJava/用enum代替int常量.html" },
+          { "name": "用实例域代替序数", "url": "./posts/java/effectiveJava/用实例域代替序数.html" },
+          { "name": "关于EnumSet和EnumMap", "url": "./posts/java/effectiveJava/关于EnumSet和EnumMap.html" },
+          { "name": "用接口模拟可伸缩的枚举", "url": "./posts/java/effectiveJava/用接口模拟可伸缩的枚举.html" },
+          { "name": "必要时进行保护性拷贝", "url": "./posts/java/effectiveJava/必要时进行保护性拷贝.html" }
         ]
       }
     ]
