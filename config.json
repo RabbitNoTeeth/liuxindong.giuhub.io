@@ -66,7 +66,18 @@
           { "name": "用实例域代替序数", "url": "./posts/java/effectiveJava/用实例域代替序数.html" },
           { "name": "关于EnumSet和EnumMap", "url": "./posts/java/effectiveJava/关于EnumSet和EnumMap.html" },
           { "name": "用接口模拟可伸缩的枚举", "url": "./posts/java/effectiveJava/用接口模拟可伸缩的枚举.html" },
-          { "name": "必要时进行保护性拷贝", "url": "./posts/java/effectiveJava/必要时进行保护性拷贝.html" }
+          { "name": "必要时进行保护性拷贝", "url": "./posts/java/effectiveJava/必要时进行保护性拷贝.html" },
+          { "name": "慎用重载", "url": "./posts/java/effectiveJava/慎用重载.html" },
+          { "name": "慎用可变参数", "url": "./posts/java/effectiveJava/慎用可变参数.html" },
+          { "name": "返回零长度的数组或者集合,而不是null", "url": "./posts/java/effectiveJava/返回零长度的数组或者集合,而不是null.html" },
+          { "name": "如果需要精确的答案,避免使用float和double", "url": "./posts/java/effectiveJava/如果需要精确的答案,避免使用float和double.html" },
+          { "name": "基本数据类型优先于装箱基本数据类型", "url": "./posts/java/effectiveJava/基本数据类型优先于装箱基本数据类型.html" },
+          { "name": "适当考虑字符串拼接的性能", "url": "./posts/java/effectiveJava/适当考虑字符串拼接的性能.html" },
+          { "name": "谨慎地实现Serializable接口", "url": "./posts/java/effectiveJava/谨慎地实现Serializable接口.html" },
+          { "name": "考虑使用自定义的序列化形式", "url": "./posts/java/effectiveJava/考虑使用自定义的序列化形式.html" },
+          { "name": "保护性地编写readObject方法", "url": "./posts/java/effectiveJava/保护性地编写readObject方法.html" },
+          { "name": "对于实例控制,枚举类型优先于readResolve", "url": "./posts/java/effectiveJava/对于实例控制,枚举类型优先于readResolve.html" },
+          { "name": "考虑使用序列化代理来代替序列化实例", "url": "./posts/java/effectiveJava/考虑使用序列化代理来代替序列化实例.html" }
         ]
       }
     ]
