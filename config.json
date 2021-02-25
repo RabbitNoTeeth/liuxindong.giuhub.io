@@ -33,6 +33,14 @@
         "label": "JavaSE",
         "children": [
           {
+            "id": "JavaSE_collection",
+            "label": "集合",
+            "articles": [
+              { "name": "Collection顶层接口", "url": "./posts/java/javaSE/collection/Collection顶层接口.html" },
+              { "name": "Set", "url": "./posts/java/javaSE/collection/Set.html" }
+            ]
+          },
+          {
             "id": "JavaSE_other",
             "label": "其他",
             "articles": [
