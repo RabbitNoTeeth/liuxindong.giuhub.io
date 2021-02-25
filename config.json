@@ -54,8 +54,15 @@
         ]
       },
       {
+        "id": "jvm",
+        "label": "JVM",
+        "articles": [
+          { "name": "HotSpot VM架构", "url": "./posts/java/jvm/HotSpot VM架构.html" }
+        ]
+      },
+      {
         "id": "effectiveJava",
-        "label": "Effective Java",
+        "label": "EffectiveJava",
         "articles": [
           { "name": "考虑用静态工厂方法代替构造器", "url": "./posts/java/effectiveJava/考虑用静态工厂方法代替构造器.html" },
           { "name": "遇到多个构造器参数时考虑用构建器", "url": "./posts/java/effectiveJava/遇到多个构造器参数时考虑用构建器.html" },
