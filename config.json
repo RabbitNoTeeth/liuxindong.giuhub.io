@@ -1,105 +1,264 @@
 [
   {
-    "id": "dataStructure_algorithm",
-    "label": "数据结构及算法",
+    "id": "root",
+    "label": "全部",
     "children": [
       {
-        "id": "dataStructure",
-        "label": "数据结构",
-        "articles": [
-          { "name": "基本概念", "url": "./posts/dataStructure/基本概念.html" },
-          { "name": "线性表", "url": "./posts/dataStructure/线性表.html" },
-          { "name": "栈", "url": "./posts/dataStructure/栈.html" },
-          { "name": "队列", "url": "./posts/dataStructure/队列.html" },
-          { "name": "树", "url": "./posts/dataStructure/树.html" },
-          { "name": "图", "url": "./posts/dataStructure/图.html" }
-        ]
-      },
-      {
-        "id": "algorithm",
-        "label": "算法",
-        "articles": [
-          { "name": "基本概念", "url": "./posts/algorithm/基本概念.html" }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "java",
-    "label": "Java",
-    "children": [
-      {
-        "id": "javaSE",
-        "label": "JavaSE",
+        "id": "dataStructure_algorithm",
+        "label": "数据结构及算法",
         "children": [
           {
-            "id": "JavaSE_collection",
-            "label": "集合",
+            "id": "dataStructure",
+            "label": "数据结构",
             "articles": [
-              { "name": "Collection顶层接口", "url": "./posts/java/javaSE/collection/Collection顶层接口.html" },
-              { "name": "Set", "url": "./posts/java/javaSE/collection/Set.html" },
-              { "name": "List", "url": "./posts/java/javaSE/collection/List.html" }
+              {
+                "name": "基本概念",
+                "url": "./posts/dataStructure/基本概念.html"
+              },
+              {
+                "name": "线性表",
+                "url": "./posts/dataStructure/线性表.html"
+              },
+              {
+                "name": "栈",
+                "url": "./posts/dataStructure/栈.html"
+              },
+              {
+                "name": "队列",
+                "url": "./posts/dataStructure/队列.html"
+              },
+              {
+                "name": "树",
+                "url": "./posts/dataStructure/树.html"
+              },
+              {
+                "name": "图",
+                "url": "./posts/dataStructure/图.html"
+              }
             ]
           },
           {
-            "id": "JavaSE_other",
-            "label": "其他",
+            "id": "algorithm",
+            "label": "算法",
             "articles": [
-              { "name": "static关键字", "url": "./posts/java/javaSE/other/static关键字.html" },
-              { "name": "泛型机制", "url": "./posts/java/javaSE/other/泛型机制.html" },
-              { "name": "解决hash冲突的常用方法", "url": "./posts/java/javaSE/other/解决hash冲突的常用方法.html" },
-              { "name": "三元运算符与类型转换", "url": "./posts/java/javaSE/other/三元运算符与类型转换.html" }
+              {
+                "name": "基本概念",
+                "url": "./posts/algorithm/基本概念.html"
+              }
             ]
           }
         ]
       },
       {
-        "id": "jvm",
-        "label": "JVM",
-        "articles": [
-          { "name": "HotSpot VM架构", "url": "./posts/java/jvm/HotSpot VM架构.html" }
-        ]
-      },
-      {
-        "id": "effectiveJava",
-        "label": "EffectiveJava",
-        "articles": [
-          { "name": "考虑用静态工厂方法代替构造器", "url": "./posts/java/effectiveJava/考虑用静态工厂方法代替构造器.html" },
-          { "name": "遇到多个构造器参数时考虑用构建器", "url": "./posts/java/effectiveJava/遇到多个构造器参数时考虑用构建器.html" },
-          { "name": "用私有构造器或者枚举类型强化Singleton属性", "url": "./posts/java/effectiveJava/用私有构造器或者枚举类型强化Singleton属性.html" },
-          { "name": "通过私有构造器强化不可实例化的能力", "url": "./posts/java/effectiveJava/通过私有构造器强化不可实例化的能力.html" },
-          { "name": "避免创建不必要的对象", "url": "./posts/java/effectiveJava/避免创建不必要的对象.html" },
-          { "name": "消除过期的对象引用", "url": "./posts/java/effectiveJava/消除过期的对象引用.html" },
-          { "name": "避免使用终结方法", "url": "./posts/java/effectiveJava/避免使用终结方法.html" },
-          { "name": "覆盖equals时请遵守通用约定", "url": "./posts/java/effectiveJava/覆盖equals时请遵守通用约定.html" },
-          { "name": "覆盖equals时总要覆盖hashCode", "url": "./posts/java/effectiveJava/覆盖equals时总要覆盖hashCode.html" },
-          { "name": "建议始终覆盖toString", "url": "./posts/java/effectiveJava/建议始终覆盖toString.html" },
-          { "name": "谨慎地覆盖clone", "url": "./posts/java/effectiveJava/谨慎地覆盖clone.html" },
-          { "name": "考虑实现Comparable接口", "url": "./posts/java/effectiveJava/考虑实现Comparable接口.html" },
-          { "name": "使类和成员的可访问性最小化", "url": "./posts/java/effectiveJava/使类和成员的可访问性最小化.html" },
-          { "name": "在公有类中使用访问方法而非公有域", "url": "./posts/java/effectiveJava/在公有类中使用访问方法而非公有域.html" },
-          { "name": "使可变性最小化", "url": "./posts/java/effectiveJava/使可变性最小化.html" },
-          { "name": "复合优先于继承", "url": "./posts/java/effectiveJava/复合优先于继承.html" },
-          { "name": "要么为继承而设计,并提供文档说明,要么就禁止继承", "url": "./posts/java/effectiveJava/要么为继承而设计,并提供文档说明,要么就禁止继承.html" },
-          { "name": "接口优于抽象类", "url": "./posts/java/effectiveJava/接口优于抽象类.html" },
-          { "name": "优先考虑静态成员类", "url": "./posts/java/effectiveJava/优先考虑静态成员类.html" },
-          { "name": "关于泛型", "url": "./posts/java/effectiveJava/关于泛型.html" },
-          { "name": "用enum代替int常量", "url": "./posts/java/effectiveJava/用enum代替int常量.html" },
-          { "name": "用实例域代替序数", "url": "./posts/java/effectiveJava/用实例域代替序数.html" },
-          { "name": "关于EnumSet和EnumMap", "url": "./posts/java/effectiveJava/关于EnumSet和EnumMap.html" },
-          { "name": "用接口模拟可伸缩的枚举", "url": "./posts/java/effectiveJava/用接口模拟可伸缩的枚举.html" },
-          { "name": "必要时进行保护性拷贝", "url": "./posts/java/effectiveJava/必要时进行保护性拷贝.html" },
-          { "name": "慎用重载", "url": "./posts/java/effectiveJava/慎用重载.html" },
-          { "name": "慎用可变参数", "url": "./posts/java/effectiveJava/慎用可变参数.html" },
-          { "name": "返回零长度的数组或者集合,而不是null", "url": "./posts/java/effectiveJava/返回零长度的数组或者集合,而不是null.html" },
-          { "name": "如果需要精确的答案,避免使用float和double", "url": "./posts/java/effectiveJava/如果需要精确的答案,避免使用float和double.html" },
-          { "name": "基本数据类型优先于装箱基本数据类型", "url": "./posts/java/effectiveJava/基本数据类型优先于装箱基本数据类型.html" },
-          { "name": "适当考虑字符串拼接的性能", "url": "./posts/java/effectiveJava/适当考虑字符串拼接的性能.html" },
-          { "name": "谨慎地实现Serializable接口", "url": "./posts/java/effectiveJava/谨慎地实现Serializable接口.html" },
-          { "name": "考虑使用自定义的序列化形式", "url": "./posts/java/effectiveJava/考虑使用自定义的序列化形式.html" },
-          { "name": "保护性地编写readObject方法", "url": "./posts/java/effectiveJava/保护性地编写readObject方法.html" },
-          { "name": "对于实例控制,枚举类型优先于readResolve", "url": "./posts/java/effectiveJava/对于实例控制,枚举类型优先于readResolve.html" },
-          { "name": "考虑使用序列化代理来代替序列化实例", "url": "./posts/java/effectiveJava/考虑使用序列化代理来代替序列化实例.html" }
+        "id": "java",
+        "label": "Java",
+        "children": [
+          {
+            "id": "javaSE",
+            "label": "JavaSE",
+            "children": [
+              {
+                "id": "JavaSE_collection",
+                "label": "集合",
+                "articles": [
+                  {
+                    "name": "Collection顶层接口",
+                    "url": "./posts/java/javaSE/collection/Collection顶层接口.html"
+                  },
+                  {
+                    "name": "Set",
+                    "url": "./posts/java/javaSE/collection/Set.html"
+                  },
+                  {
+                    "name": "List",
+                    "url": "./posts/java/javaSE/collection/List.html"
+                  }
+                ]
+              },
+              {
+                "id": "JavaSE_other",
+                "label": "其他",
+                "articles": [
+                  {
+                    "name": "static关键字",
+                    "url": "./posts/java/javaSE/other/static关键字.html"
+                  },
+                  {
+                    "name": "泛型机制",
+                    "url": "./posts/java/javaSE/other/泛型机制.html"
+                  },
+                  {
+                    "name": "解决hash冲突的常用方法",
+                    "url": "./posts/java/javaSE/other/解决hash冲突的常用方法.html"
+                  },
+                  {
+                    "name": "三元运算符与类型转换",
+                    "url": "./posts/java/javaSE/other/三元运算符与类型转换.html"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jvm",
+            "label": "JVM",
+            "articles": [
+              {
+                "name": "HotSpot VM架构",
+                "url": "./posts/java/jvm/HotSpot VM架构.html"
+              }
+            ]
+          },
+          {
+            "id": "effectiveJava",
+            "label": "EffectiveJava",
+            "articles": [
+              {
+                "name": "考虑用静态工厂方法代替构造器",
+                "url": "./posts/java/effectiveJava/考虑用静态工厂方法代替构造器.html"
+              },
+              {
+                "name": "遇到多个构造器参数时考虑用构建器",
+                "url": "./posts/java/effectiveJava/遇到多个构造器参数时考虑用构建器.html"
+              },
+              {
+                "name": "用私有构造器或者枚举类型强化Singleton属性",
+                "url": "./posts/java/effectiveJava/用私有构造器或者枚举类型强化Singleton属性.html"
+              },
+              {
+                "name": "通过私有构造器强化不可实例化的能力",
+                "url": "./posts/java/effectiveJava/通过私有构造器强化不可实例化的能力.html"
+              },
+              {
+                "name": "避免创建不必要的对象",
+                "url": "./posts/java/effectiveJava/避免创建不必要的对象.html"
+              },
+              {
+                "name": "消除过期的对象引用",
+                "url": "./posts/java/effectiveJava/消除过期的对象引用.html"
+              },
+              {
+                "name": "避免使用终结方法",
+                "url": "./posts/java/effectiveJava/避免使用终结方法.html"
+              },
+              {
+                "name": "覆盖equals时请遵守通用约定",
+                "url": "./posts/java/effectiveJava/覆盖equals时请遵守通用约定.html"
+              },
+              {
+                "name": "覆盖equals时总要覆盖hashCode",
+                "url": "./posts/java/effectiveJava/覆盖equals时总要覆盖hashCode.html"
+              },
+              {
+                "name": "建议始终覆盖toString",
+                "url": "./posts/java/effectiveJava/建议始终覆盖toString.html"
+              },
+              {
+                "name": "谨慎地覆盖clone",
+                "url": "./posts/java/effectiveJava/谨慎地覆盖clone.html"
+              },
+              {
+                "name": "考虑实现Comparable接口",
+                "url": "./posts/java/effectiveJava/考虑实现Comparable接口.html"
+              },
+              {
+                "name": "使类和成员的可访问性最小化",
+                "url": "./posts/java/effectiveJava/使类和成员的可访问性最小化.html"
+              },
+              {
+                "name": "在公有类中使用访问方法而非公有域",
+                "url": "./posts/java/effectiveJava/在公有类中使用访问方法而非公有域.html"
+              },
+              {
+                "name": "使可变性最小化",
+                "url": "./posts/java/effectiveJava/使可变性最小化.html"
+              },
+              {
+                "name": "复合优先于继承",
+                "url": "./posts/java/effectiveJava/复合优先于继承.html"
+              },
+              {
+                "name": "要么为继承而设计,并提供文档说明,要么就禁止继承",
+                "url": "./posts/java/effectiveJava/要么为继承而设计,并提供文档说明,要么就禁止继承.html"
+              },
+              {
+                "name": "接口优于抽象类",
+                "url": "./posts/java/effectiveJava/接口优于抽象类.html"
+              },
+              {
+                "name": "优先考虑静态成员类",
+                "url": "./posts/java/effectiveJava/优先考虑静态成员类.html"
+              },
+              {
+                "name": "关于泛型",
+                "url": "./posts/java/effectiveJava/关于泛型.html"
+              },
+              {
+                "name": "用enum代替int常量",
+                "url": "./posts/java/effectiveJava/用enum代替int常量.html"
+              },
+              {
+                "name": "用实例域代替序数",
+                "url": "./posts/java/effectiveJava/用实例域代替序数.html"
+              },
+              {
+                "name": "关于EnumSet和EnumMap",
+                "url": "./posts/java/effectiveJava/关于EnumSet和EnumMap.html"
+              },
+              {
+                "name": "用接口模拟可伸缩的枚举",
+                "url": "./posts/java/effectiveJava/用接口模拟可伸缩的枚举.html"
+              },
+              {
+                "name": "必要时进行保护性拷贝",
+                "url": "./posts/java/effectiveJava/必要时进行保护性拷贝.html"
+              },
+              {
+                "name": "慎用重载",
+                "url": "./posts/java/effectiveJava/慎用重载.html"
+              },
+              {
+                "name": "慎用可变参数",
+                "url": "./posts/java/effectiveJava/慎用可变参数.html"
+              },
+              {
+                "name": "返回零长度的数组或者集合,而不是null",
+                "url": "./posts/java/effectiveJava/返回零长度的数组或者集合,而不是null.html"
+              },
+              {
+                "name": "如果需要精确的答案,避免使用float和double",
+                "url": "./posts/java/effectiveJava/如果需要精确的答案,避免使用float和double.html"
+              },
+              {
+                "name": "基本数据类型优先于装箱基本数据类型",
+                "url": "./posts/java/effectiveJava/基本数据类型优先于装箱基本数据类型.html"
+              },
+              {
+                "name": "适当考虑字符串拼接的性能",
+                "url": "./posts/java/effectiveJava/适当考虑字符串拼接的性能.html"
+              },
+              {
+                "name": "谨慎地实现Serializable接口",
+                "url": "./posts/java/effectiveJava/谨慎地实现Serializable接口.html"
+              },
+              {
+                "name": "考虑使用自定义的序列化形式",
+                "url": "./posts/java/effectiveJava/考虑使用自定义的序列化形式.html"
+              },
+              {
+                "name": "保护性地编写readObject方法",
+                "url": "./posts/java/effectiveJava/保护性地编写readObject方法.html"
+              },
+              {
+                "name": "对于实例控制,枚举类型优先于readResolve",
+                "url": "./posts/java/effectiveJava/对于实例控制,枚举类型优先于readResolve.html"
+              },
+              {
+                "name": "考虑使用序列化代理来代替序列化实例",
+                "url": "./posts/java/effectiveJava/考虑使用序列化代理来代替序列化实例.html"
+              }
+            ]
+          }
         ]
       }
     ]
