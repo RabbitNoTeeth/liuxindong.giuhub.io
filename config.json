@@ -29,13 +29,19 @@
     "label": "Java",
     "children": [
       {
-        "id": "javaBase",
-        "label": "Java基础强化",
-        "articles": [
-          { "name": "static关键字", "url": "./posts/java/javaBase/static关键字.html" },
-          { "name": "泛型机制", "url": "./posts/java/javaBase/泛型机制.html" },
-          { "name": "解决hash冲突的常用方法", "url": "./posts/java/javaBase/解决hash冲突的常用方法.html" },
-          { "name": "三元运算符与类型转换", "url": "./posts/java/javaBase/三元运算符与类型转换.html" }
+        "id": "javaSE",
+        "label": "JavaSE",
+        "children": [
+          {
+            "id": "JavaSE_other",
+            "label": "其他",
+            "articles": [
+              { "name": "static关键字", "url": "./posts/java/javaSE/other/static关键字.html" },
+              { "name": "泛型机制", "url": "./posts/java/javaSE/other/泛型机制.html" },
+              { "name": "解决hash冲突的常用方法", "url": "./posts/java/javaSE/other/解决hash冲突的常用方法.html" },
+              { "name": "三元运算符与类型转换", "url": "./posts/java/javaSE/other/三元运算符与类型转换.html" }
+            ]
+          }
         ]
       },
       {
