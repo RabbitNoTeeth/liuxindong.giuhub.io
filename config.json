@@ -37,7 +37,8 @@
             "label": "集合",
             "articles": [
               { "name": "Collection顶层接口", "url": "./posts/java/javaSE/collection/Collection顶层接口.html" },
-              { "name": "Set", "url": "./posts/java/javaSE/collection/Set.html" }
+              { "name": "Set", "url": "./posts/java/javaSE/collection/Set.html" },
+              { "name": "List", "url": "./posts/java/javaSE/collection/List.html" }
             ]
           },
           {
