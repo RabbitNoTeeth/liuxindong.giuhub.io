@@ -1,0 +1,626 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>JVM性能监控</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n777"><a class="md-toc-inner" href="#1-理解gc日志">1 理解GC日志</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n331"><a class="md-toc-inner" href="#11-重要的垃圾收集数据">1.1 重要的垃圾收集数据</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n336"><a class="md-toc-inner" href="#12-开启gc日志输出">1.2 开启GC日志输出</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n339"><a class="md-toc-inner" href="#13-minorgc日志">1.3 MinorGC日志</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n349"><a class="md-toc-inner" href="#14-fullgc日志">1.4 FullGC日志</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n363"><a class="md-toc-inner" href="#15-cms老年代gc日志">1.5 CMS老年代GC日志</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n376"><a class="md-toc-inner" href="#16-补充">1.6 补充</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n612"><a class="md-toc-inner" href="#2-jconsole">2 JConsole</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n632"><a class="md-toc-inner" href="#21-启动">2.1 启动</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n636"><a class="md-toc-inner" href="#22-连接jvm应用">2.2 连接jvm应用</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n639"><a class="md-toc-inner" href="#23-连接成功">2.3 连接成功</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n642"><a class="md-toc-inner" href="#24-内存监控">2.4 内存监控</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n645"><a class="md-toc-inner" href="#25-线程监控">2.5 线程监控 </a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n649"><a class="md-toc-inner" href="#26-类加载监控">2.6 类加载监控</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n653"><a class="md-toc-inner" href="#27-vm概要">2.7 VM概要</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n659"><a class="md-toc-inner" href="#28-mbean监控">2.8 MBean监控</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n682"><a class="md-toc-inner" href="#3-visualvm">3 VisualVM</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n716"><a class="md-toc-inner" href="#31-启动">3.1 启动</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n697"><a class="md-toc-inner" href="#32-概述">3.2 概述</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n700"><a class="md-toc-inner" href="#33-监控">3.3 监控</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n703"><a class="md-toc-inner" href="#34-线程详情监测">3.4 线程详情监测</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n706"><a class="md-toc-inner" href="#35-抽样器">3.5 抽样器</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n709"><a class="md-toc-inner" href="#36-性能分析">3.6 性能分析</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n727"><a class="md-toc-inner" href="#4-jatack">4 jatack</a></span></p></div><p>&nbsp;</p><h1><a name="1-理解gc日志" class="md-header-anchor"></a><span>1 理解GC日志</span></h1><p><span>HotSpot VM可以将每次GC的数据直接输出成日志，可以以文本方式查看GC统计数据，或者用GUI监控工具查看。</span></p><p>&nbsp;</p><h2><a name="11-重要的垃圾收集数据" class="md-header-anchor"></a><span>1.1 重要的垃圾收集数据</span></h2><ol><li><span>当前使用的垃圾收集器。</span></li><li><span>Java堆的大小。</span></li><li><span>新生代和老年代的大小。</span></li><li><span>永久代的大小。</span></li><li><span>MinorGC的持续时间。</span></li><li><span>MinorGC的频率。</span></li><li><span>MinorGC的空间回收量。</span></li><li><span>FullGC的持续时间。</span></li><li><span>FullGC的频率。</span></li><li><span>每个并发垃圾收集周期内的空间回收量。</span></li><li><span>垃圾收集前后java堆的占用量。</span></li><li><span>垃圾收集前后新生代和老年代的占用量。</span></li><li><span>垃圾收集前后永久代的占用量。</span></li><li><span>是否老年代或者永久代的占用触发了FullGC。</span></li><li><span>应用是否显式调用了System.gc()。</span></li></ol><p>&nbsp;</p><h2><a name="12-开启gc日志输出" class="md-header-anchor"></a><span>1.2 开启GC日志输出</span></h2><p><span>开启 </span><code>–XX:+PrintGCDetails</code><span> 可以打印出GC日志，默认是打印在console控制台。</span>
+<span>使用 </span><code>–Xloggc:filename</code><span> 可以将GC日志直接输出到文件，filename为目标文件名称。</span>
+<span>使用 </span><code>–XX:+PrintGCTimeStamps</code><span> 可以在GC日志中输出自jvm启动依赖到垃圾收集之间流逝的秒数，可以通过这个时间戳来统计GC频率。</span>
+<span>使用 </span><code>–XX:+PrintGCDateStamps</code><span> 可以在GC日志中输出标准格式的年月日时分秒形式的时间戳，也可以根据此时间戳来统计GC频率。</span></p><p>&nbsp;</p><h2><a name="13-minorgc日志" class="md-header-anchor"></a><span>1.3 MinorGC日志</span></h2><p><span>为了便于注释说明，将日志作了分行处理 。</span></p><p><strong><span>原始日志</span></strong></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1:<span class="cm-tab" role="presentation" cm-text="	">  </span>76.282: </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2: <span class="cm-tab" role="presentation" cm-text="	"> </span>[GC (Allocation Failure) </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[PSYoungGen: 554568K-&gt;35404K(573440K)] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span>610676K-&gt;93743K(641024K), 0.0260886 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[Times: user=0.06 sys=0.01, real=0.03 secs]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><p>&nbsp;</p><p><strong><span>日志说明</span></strong></p><ul><li><p><span>第1行</span></p><p><span>开启了–XX:+PrintGCTimeStamps后的时间戳。</span></p></li></ul><ul><li><p><span>第2行</span></p><p><code>GC</code><span>表示是MinorGC。</span></p></li><li><p><span>第3行</span></p><p><code>PSYoungGen</code><span>表示新生代使用的是Parallel Scavenge收集器。(如果是</span><code>ParNew</code><span>，表示使用的是Parallel收集器； 如果是</span><code>DefNew</code><span>，表示使用的是Serial收集器)</span>
+<span>“-&gt;”左侧</span><code>554568K</code><span>是垃圾收集前新生代的占用量，右侧</span><code>35404K</code><span>是垃圾收集后新生代的占用量，因为MinorGC后Eden为空，所以</span><code>35404K</code><span>也代表GC后被占用的那一块Survivor的占用量。</span>
+<span>括号中的</span><code>573440K</code><span>是Eden和一块被占用的Survivor的和。</span></p></li><li><p><span>第4行</span></p><p><span>“-&gt;”左侧</span><code>610676K</code><span>是垃圾收集前java堆的占用量，右侧</span><code>93743K</code><span>是垃圾收集后java堆的占用量。</span>
+<span>括号中的</span><code>641024K</code><span>是java堆的总量。</span>
+<code>0.0260886 secs</code><span>是执行垃圾回收花费的时间。</span></p></li><li><p><span>第5行</span></p><p><code>user</code><span>是垃圾收集执行非操作系统调用指令所耗费的cpu时间。</span>
+<code>sys</code><span>是垃圾收集执行操作系统调用指令所耗费的cpu时间。</span>
+<code>real</code><span>是垃圾收集的实际时间。</span></p></li></ul><p>&nbsp;</p><h2><a name="14-fullgc日志" class="md-header-anchor"></a><span>1.4 FullGC日志</span></h2><p><span>为了便于注释说明，将日志作了分行处理。</span></p><p><strong><span>原始日志:</span></strong><span> </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1:<span class="cm-tab" role="presentation" cm-text="	">  </span>2784.826: </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[Full GC (System.gc()) </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[PSYoungGen: 672K-&gt;0K(558080K)] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[ParOldGen: 44257K-&gt;38446K(90112K)] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>44929K-&gt;38446K(648192K), </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">6:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[Metaspace: 61626K-&gt;61360K(1103872K)], 0.2257245 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">7:<span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>[Times: user=0.84 sys=0.00, real=0.23 secs]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 161px;"></div><div class="CodeMirror-gutters" style="display: none; height: 161px;"></div></div></div></pre><p>&nbsp;</p><p><strong><span>日志说明</span></strong></p><ul><li><p><span>第1行</span></p><p><span>开启了–XX:+PrintGCTimeStamps后的时间戳。</span></p></li><li><p><span>第2行</span></p><p><code>Full GC</code><span>,直接标明了GC类型</span><code>(System.gc())</code><span> 表示是通过程序中显式调用System.gc()触发的FullGC，如果是由jvm自动触发，则没有此参数。</span></p></li><li><p><span>第3行</span></p><p><span>和上面MinorGC中的含义相同，不再赘述。</span></p></li><li><p><span>第4行</span></p><p><code>ParOldGen</code><span>说明老年代使用了Parallel Old收集器。</span>
+<span>“-&gt;”左侧</span><code>44257K</code><span>是垃圾回收前老年代的使用量，右侧38446K是垃圾收集后老年代的使用量。</span>
+<span>括号中的</span><code>90112K</code><span>是老年代的大小。</span></p></li><li><p><span>第5行</span></p><p><code>44929K-&gt;38446K(648192K)</code><span>是java堆的使用情况，同MinorGC中含义相同，不在赘述。</span></p></li><li><p><span>第6行</span></p></li><li><p><code>Metaspace</code><span>表示元数据区，此日志是java8的jvm生成，因为java8中HotSpot删除了永久代，取而代之的是元数据区。</span>
+<span>“-&gt;”左侧的</span><code>61626K</code><span>是垃圾收集前元数据区的使用量，右侧的</span><code>61360K</code><span>是垃圾收集后元数据区的使用量。</span>
+<span>括号中的</span><code>1103872K</code><span>是元数据区大小。</span>
+<code>0.2257245 secs</code><span>是此次FullGC花费的时间。</span></p></li><li><p><span>第7行</span></p><p><span>含义和MinorGC中相同，不再赘述。</span></p></li></ul><p>&nbsp;</p><p><span>FullGC中值得关注的是垃圾收集之前老年代和元数据区的占用量，因为当两者的占用接近其容量时，都会触发FullFC。</span></p><p>&nbsp;</p><h2><a name="15-cms老年代gc日志" class="md-header-anchor"></a><span>1.5 CMS老年代GC日志</span></h2><p><span>当 </span><code>–XX:+UseConcMarkSweepGC</code><span> 使用CMS收集器时，会自动开启 </span><code>–XX:+UserParNewGC</code><span>。CMS在老年代的GC日志与上面的FullGC日志有很大的不同.</span></p><p>&nbsp;</p><p><strong><span>原始日志:</span></strong><span> </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.879: [GC (CMS Initial Mark) [1 CMS-initial-mark: 37262K(87424K)] 42307K(126720K), 0.0009025 secs] </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [Times: user=0.00 sys=0.00, real=0.00 secs] </span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.880: [CMS-concurrent-mark-start]</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.905: [CMS-concurrent-mark: 0.023/0.025 secs] [Times: user=0.06 sys=0.00, real=0.02 secs] </span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.905: [CMS-concurrent-preclean-start]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.905: [CMS-concurrent-preclean: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">6:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.905: [CMS-concurrent-abortable-preclean-start]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">7:<span class="cm-tab" role="presentation" cm-text="	">  </span>7.986: [GC (Allocation Failure) 7.986: [ParNew: 38926K-&gt;4352K(39296K), 0.0067288 secs] 76189K-&gt;43991K(126720K), 0.0067888 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [Times: user=0.00 sys=0.00, real=0.01 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8:<span class="cm-tab" role="presentation" cm-text="	">  </span>8.102: [GC (Allocation Failure) 8.102: [ParNew8.120: [CMS-concurrent-abortable-preclean: 0.034/0.214 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [Times: user=0.33 sys=0.02, real=0.22 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>: 39296K-&gt;876K(39296K), 0.0335647 secs] 78935K-&gt;40751K(126720K), 0.0336238 secs] [Times: user=0.13 sys=0.00, real=0.03 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">9:<span class="cm-tab" role="presentation" cm-text="	">  </span>8.136: [GC (CMS Final Remark) [YG occupancy: 1569 K (39296 K)]8.136: [Rescan (parallel) , 0.0026637 secs]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  8.139: [weak refs processing, 0.0004099 secs]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  8.139: [class unloading, 0.0049642 secs]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  8.144: [scrub symbol table, 0.0053784 secs]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  8.149: [scrub string table, 0.0006631 secs][1 CMS-remark: 39874K(87424K)] 41443K(126720K), 0.0144267 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [Times: user=0.02 sys=0.00, real=0.01 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">10:<span class="cm-tab" role="presentation" cm-text="	"> </span>8.150: [CMS-concurrent-sweep-start]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">11:<span class="cm-tab" role="presentation" cm-text="	"> </span>8.161: [CMS-concurrent-sweep: 0.010/0.011 secs] [Times: user=0.03 sys=0.02, real=0.01 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">12:<span class="cm-tab" role="presentation" cm-text="	"> </span>8.161: [CMS-concurrent-reset-start]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">13:<span class="cm-tab" role="presentation" cm-text="	"> </span>8.162: [CMS-concurrent-reset: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 736px;"></div><div class="CodeMirror-gutters" style="display: none; height: 736px;"></div></div></div></pre><p>&nbsp;</p><p><strong><span>日志说明:</span></strong></p><ul><li><span>第1行</span>
+<code>CMS Initial Mark</code><span>说明开始初始标记，此时会停顿所有java线程， </span><code>37262K</code><span>是当前java堆的使用量， </span><code>87424K</code><span>是java堆的总量，因为这段gc日志是在我的程序启动过程中的，所以看到后面还有</span><code>42307K(126720K)</code><span>，说明在启动过程中，java堆内存在扩大。</span></li><li><span>第2行</span>
+<span>开始并发标记，此时是和java线程并发执行。</span></li><li><span>第3行</span>
+<span>显式了并发标记的时间。</span></li><li><span>第4行</span>
+<span>开始并发预清除，也就是对并发标记阶段发生引用变化的对象进行重新标记。</span></li><li><span>第5行</span>
+<span>显式了并发预清除的执行时间。</span></li><li><span>第6行</span>
+<span>开始终止并发预清除。</span></li><li><span>第7行</span>
+<span>这是一次MinorGC日志，这也说明了在CMS并发阶段，也可能会进行MinorGC，此处的</span><code>76189K-&gt;43991K(126720K)</code><span>可以看出在CMS并发清除前，这次MonorGC后，java堆的使用量为43991K。</span></li><li><span>第8行</span>
+<span>终止并发预清除，此时依然穿插了一次MinorGC。</span></li><li><span>第9行</span>
+<span>进行最后标记， </span><code>CMS-remark: 39874K(87424K)] 41443K(126720K)</code><span>中可以看出当前java堆总量为126720K，使用量为41443K。</span></li><li><span>第10行</span>
+<span>开始并发清除。</span></li><li><span>第11行</span>
+<span>显式并发清除执行时间。</span></li><li><span>第12行</span>
+<span>重置并发，表示一个CMS清除周期完毕。</span></li></ul><p>&nbsp;</p><p><span>注意CMS并发清除开始和结束时的MinorGC，如果java堆的占用几乎没有怎么降低，很少有对象被回收，说明该轮CMS垃圾收集周期几乎没有找到垃圾对象而只是在浪费cpu，或者对象以不小于CMS并行清除垃圾对象的速度被提升到老年代。这两种情况都说明jvm需要调优，具体的调优请看后面专门的章节，此章节主要讲解如何理解GC日志。</span></p><p>&nbsp;</p><p><span>如果对象提升到老年代的速度太快，而CMS收集器不能保持足够多的可用空间时，就会导致老年代的运行空间不足，这成为并发模式失败。当老年代碎片化达到某种程度，使得没有足够空间容纳新提升的对象时，也会引发并发模式失败。</span>
+<span>当出现并发模式失败时，CMS的GC日志会有”</span><strong><span>concurrent mode failure</span></strong><span>”。发生并发模式失败时，老年代将以STW的方式进行垃圾收集，并且整理压缩碎片。</span></p><p>&nbsp;</p><p><strong><span>作为一般性准则，并发垃圾收集的开销应该小于10%，也有可能达到1-3%。</span></strong></p><p>&nbsp;</p><h2><a name="16-补充" class="md-header-anchor"></a><span>1.6 补充</span></h2><p><span>使用 </span><code>–XX:+PrintGCApplicationConcurrentTime</code><span> 和 </span><code>–XX:+PrintGCApplicationStoppedTime</code><span>，jvm可以报告应用在安全点操作之间的运行时间，以及阻塞java线程的时间。</span>
+<span>利用这俩个选项观察安全点操作有助于理解和量化延迟对jvm的影响，也可以用来辨别jvm安全点操作还是应用程序引入的延迟。</span></p><p><span>一段日志示例: </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.752: Application time: 0.1273273 seconds &nbsp;  //此处延迟由MinorGC造成</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.752: [GC (Allocation Failure) 8.752: [ParNew: 38435K-&gt;433K(39296K), 0.0020703 secs] 73597K-&gt;35763K(126720K), 0.0021173 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  [Times: user=0.00 sys=0.00, real=0.00 secs] </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.754: Total time for which application threads were stopped: 0.0022436 seconds, Stopping threads took: 0.0000156 seconds &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.754: Application time: 0.0001583 seconds &nbsp;  //此处延迟由应用本身引入</span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.754: Total time for which application threads were stopped: 0.0001487 seconds, Stopping threads took: 0.0000837 seconds</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 207px;"></div><div class="CodeMirror-gutters" style="display: none; height: 207px;"></div></div></div></pre><p><span>通过命令行选项 </span><code>-XX:+DisableExplicitGC</code><span> 可以禁用System.gc()。</span></p><p>&nbsp;</p><h1><a name="2-jconsole" class="md-header-anchor"></a><span>2 JConsole</span></h1><p><span>JConsole是一款随jdk发布的图形化jvm监控工具。</span></p><p>&nbsp;</p><h2><a name="21-启动" class="md-header-anchor"></a><span>2.1 启动</span></h2><p><span>在jdk安装目录的bin目录中可以找到jconsole，如下图：</span></p><p><img src="./resources/2.1.png" referrerpolicy="no-referrer" alt="img"></p><p><span>在windows操作系统中，可以直接双击打开，也可以通过命令行打开。</span></p><p>&nbsp;</p><p><img src="./resources/2.2.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="22-连接jvm应用" class="md-header-anchor"></a><span>2.2 连接jvm应用</span></h2><p><span>我们选择上图中pid为7420的应用，点击连接。</span></p><p><img src="./resources/2.3.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="23-连接成功" class="md-header-anchor"></a><span>2.3 连接成功</span></h2><p><img src="./resources/2.4.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="24-内存监控" class="md-header-anchor"></a><span>2.4 内存监控</span></h2><p><img src="./resources/2.5.png" referrerpolicy="no-referrer" alt="img"></p><p><span>补充：监控时可以留意一下Survivor是否长时间处于满状态，如果是，说明Survivor已经溢出，对象在老化之前就被提升到老年代，对新生代调优可以解决该问题。</span></p><p>&nbsp;</p><h2><a name="25-线程监控" class="md-header-anchor"></a><span>2.5 线程监控 </span></h2><p><img src="./resources/2.6.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="26-类加载监控" class="md-header-anchor"></a><span>2.6 类加载监控</span></h2><p><img src="./resources/2.7.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="27-vm概要" class="md-header-anchor"></a><span>2.7 VM概要</span></h2><p><img src="./resources/2.8.png" referrerpolicy="no-referrer" alt="img"></p><p><span>以文本形式显式当前时间jvm中各项监控指标的数据 </span></p><p>&nbsp;</p><h2><a name="28-mbean监控" class="md-header-anchor"></a><span>2.8 MBean监控</span></h2><p><span>此界面列出了所有MBean，可以点击相应的MBean查看属性状态 。</span></p><p><img src="./resources/2.9.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h1><a name="3-visualvm" class="md-header-anchor"></a><span>3 VisualVM</span></h1><p><span>VisualVM也是一款随jdk发布的图形化监测工具。</span></p><p>&nbsp;</p><h2><a name="31-启动" class="md-header-anchor"></a><span>3.1 启动</span></h2><p><span>在jdk安装目录的bin目录中,可以找到jvisualvm,如下图:</span>
+<img src="./resources/3.1.png" referrerpolicy="no-referrer" alt="img">
+<span>在windows操作系统中,可以直接双击运行,也可以通过命令行运行</span></p><p>&nbsp;</p><p><img src="./resources/3.2.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="32-概述" class="md-header-anchor"></a><span>3.2 概述</span></h2><p><span>应用打开后，自动进入概述页面，此页面以文本形式列出了当前应用的一些基础信息。</span>
+<img src="./resources/3.3.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="33-监控" class="md-header-anchor"></a><span>3.3 监控</span></h2><p><img src="./resources/3.4.png" referrerpolicy="no-referrer" alt="img">
+<span>VisualVM默认将四个jvm监控指标放在了一起，每个指标的监控图与JConsole相比，没有JConsole数据详细，但是图形化要比JConsole更加直观。</span></p><p>&nbsp;</p><h2><a name="34-线程详情监测" class="md-header-anchor"></a><span>3.4 线程详情监测</span></h2><p><img src="./resources/3.5.png" referrerpolicy="no-referrer" alt="img">
+<span>VisualVM通过不同的颜色标记线程状态，相比JConsole，更加直观，但是却没有了JConsole中的堆栈追踪信息，在分析线程等待原因及死锁上不如JConsole。</span></p><p>&nbsp;</p><h2><a name="35-抽样器" class="md-header-anchor"></a><span>3.5 抽样器</span></h2><p><span>可以随时对cpu和内存进行抽样，后期出现问题时可以通过对不同时间点的抽样数据来查找原因。</span>
+<img src="./resources/3.6.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h2><a name="36-性能分析" class="md-header-anchor"></a><span>3.6 性能分析</span></h2><p><span>可以对当前cpu和内存的状态进行性能分析。</span>
+<img src="./resources/3.7.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h1><a name="4-jatack" class="md-header-anchor"></a><span>4 jatack</span></h1><p><span>快速定位java应用中的锁竞争，常用的技巧是用jdk的jatack抓取线程转储信息，监控锁竞争。</span></p><p>&nbsp;</p><p><strong><span>jatack命令格式</span></strong></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">jstack [ option ] pid </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">jstack [ option ] executable core </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">jstack [ option ] [server-id@]remote-hostname-or-IP</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><p><strong><span>常用参数说明</span></strong><span> </span></p><ul><li><span>options</span>
+<code>executable</code><span> Java executable from which the core dump was produced.(可能是产生core dump的java可执行程序)</span>
+<code>core</code><span> 将被打印信息的core dump文件</span>
+<code>remote-hostname-or-IP</code><span> 远程debug服务的主机名或ip</span>
+<code>server-id</code><span> 唯一id,假如一台主机上多个远程debug服务</span></li></ul><ul><li><span>基本参数</span>
+<code>-F</code><span> 当’jstack [-l] pid’没有相应的时候强制打印栈信息。</span>
+<code>-l</code><span> 长列表。打印关于锁的附加信息，例如属于java.util.concurrent的ownable synchronizers列表。</span>
+<code>-m</code><span> 打印java和native c/c++框架的所有栈信息，可以打印JVM的堆栈。</span>
+<code>-h | -help</code><span> 打印帮助信息。</span>
+<code>pid</code><span> 需要被打印配置信息的java进程id，可以用jps查询。</span></li></ul><p>&nbsp;</p><p><strong><span>抓取日志示例</span></strong><span> </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"http-nio-8080-ClientPoller-0" #52 daemon prio=5 os_prio=0 tid=0x000000005f164000 nid=0x13a0 runnable [0x0000000061cee000]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; java.lang.Thread.State: RUNNABLE</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(WindowsSelectorImpl.java:296)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(WindowsSelectorImpl.java:278)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.WindowsSelectorImpl.doSelect(WindowsSelectorImpl.java:159)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:86)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - locked &lt;0x00000000ad3b1d38&gt; (a sun.nio.ch.Util$2)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - locked &lt;0x00000000ad3d56d8&gt; (a java.util.Collections$UnmodifiableSet)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - locked &lt;0x00000000ad3ba000&gt; (a sun.nio.ch.WindowsSelectorImpl)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.nio.ch.SelectorImpl.select(SelectorImpl.java:97)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:787)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.lang.Thread.run(Thread.java:745)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; Locked ownable synchronizers:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - None</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"http-nio-8080-exec-10" #51 daemon prio=5 os_prio=0 tid=0x000000005f163000 nid=0x1de8 waiting on condition [0x0000000061ace000]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; java.lang.Thread.State: WAITING (parking)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.misc.Unsafe.park(Native Method)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.lang.Thread.run(Thread.java:745)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; Locked ownable synchronizers:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - None</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"http-nio-8080-exec-9" #50 daemon prio=5 os_prio=0 tid=0x000000005f162800 nid=0x219c waiting on condition [0x000000006191e000]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; java.lang.Thread.State: WAITING (parking)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.misc.Unsafe.park(Native Method)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.lang.Thread.run(Thread.java:745)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; Locked ownable synchronizers:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - None</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"http-nio-8080-exec-8" #49 daemon prio=5 os_prio=0 tid=0x000000005f161800 nid=0x202c waiting on condition [0x0000000060e0e000]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; java.lang.Thread.State: WAITING (parking)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at sun.misc.Unsafe.park(Native Method)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at java.lang.Thread.run(Thread.java:745)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; Locked ownable synchronizers:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  - None</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 2139px;"></div><div class="CodeMirror-gutters" style="display: none; height: 2139px;"></div></div></div></pre><p><span>上面是一段jstack日志，可以看到很多这种格式</span><code>waiting on condition [0x0000000060e0e000]</code><span>的文本，说明线程正在等待获取某个锁，中括号中的一串标识就是锁地址。每个锁在jatack日志中的标识都是唯一的，如果多个线程在等待同一个标识，那么说明在竞争同一个锁。jstack对追踪锁竞争和查看锁竞争激烈程度十分有用，对分析死锁也很有用。</span></p></div>
+</body>
+</html>

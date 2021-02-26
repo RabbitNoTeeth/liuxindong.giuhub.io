@@ -106,6 +106,10 @@
               {
                 "name": "HotSpot VM架构",
                 "url": "./posts/java/jvm/HotSpot VM架构.html"
+              },
+              {
+                "name": "JVM性能监控",
+                "url": "./posts/java/jvm/JVM性能监控.html"
               }
             ]
           },
