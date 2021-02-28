@@ -110,6 +110,34 @@
               {
                 "name": "JVM性能监控",
                 "url": "./posts/java/jvm/JVM性能监控.html"
+              },
+              {
+                "name": "JVM性能调优",
+                "url": "./posts/java/jvm/JVM性能调优.html"
+              },
+              {
+                "name": "JVM运行时数据区域",
+                "url": "./posts/java/jvm/JVM运行时数据区域.html"
+              },
+              {
+                "name": "Java对象",
+                "url": "./posts/java/jvm/Java对象.html"
+              },
+              {
+                "name": "类加载",
+                "url": "./posts/java/jvm/类加载.html"
+              },
+              {
+                "name": "Java内存模型",
+                "url": "./posts/java/jvm/Java内存模型.html"
+              },
+              {
+                "name": "Volatile内存语义",
+                "url": "./posts/java/jvm/Volatile内存语义.html"
+              },
+              {
+                "name": "JVM常用命令",
+                "url": "./posts/java/jvm/JVM常用命令.html"
               }
             ]
           },
