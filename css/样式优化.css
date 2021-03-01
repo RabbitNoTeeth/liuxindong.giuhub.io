@@ -1,0 +1,18 @@
+/* 1. 全局搜索 */
+.md-toc {
+    margin-top:20px;
+    padding-bottom:20px;
+}
+/* 替换为 */
+.md-toc {
+    left: 20px;
+    top: 10px;
+    bottom: 10px;
+    max-width: 300px;
+    overflow-y: auto;
+}
+
+/* 2. 全局搜索 */
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+/* 替换为 */
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
