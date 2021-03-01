@@ -1229,3 +1229,586 @@ public V get(Object key) {
       }
   }
 ```
+
+
+
+# 3 WeakHashMap
+
+文章内容引自: http://www.importnew.com/27358.html 和 http://ifeve.com/weakhashmap/
+
+
+
+WeakHashMap的定义如下：
+
+```
+public class WeakHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>
+```
+
+简单来说，WeakHashMap实现了Map接口，基于hash-table实现，在这种Map中，key的类型是WeakReference。如果对应的key被回收，则这个key指向的对象会被从Map容器中移除。
+
+WeakHashMap跟普通的HashMap不同，**WeakHashMap的行为一定程度上基于垃圾收集器的行为**，因此一些Map数据结构对应的常识在WeakHashMap上会失效：size()方法的返回值会随着程序的运行变小，isEmpty()方法的返回值会从false变成true等等。
+
+WeakHashMap与HashMap的异同点：
+
+- 同：支持null值和null键、不允许重复键值、非同步。
+
+- 异：java8的HashMap在链表元素大于8时，自动将链表转化为红黑树。而WeakHashMap则一直使用链表， **WeakHashMap的键值能在gc中自动回收**。
+
+
+
+## 3.1 引用
+
+“引用”，在Java中指的是一个对象对另一对象的使用（指向）。WeakHashMap中的键的类型是WeakReference，在Java中还有另外两种引用：强引用（Strong Reference）、软引用（Soft Reference）。
+
+
+
+### 3.1.1 强引用
+
+被强引用指向的对象，绝对不会被垃圾收集器回收。
+
+`Integer prime = 1;`，这个语句中prime对象就有一个强引用。
+
+
+
+### 3.1.2 软引用
+
+被[SoftReference](http://duqicauc.gitee.io/2017/11/10/weakhashmap-in-java/)指向的对象**可能**会被垃圾收集器回收，但是只有在JVM内存不够的情况下才会回收。
+
+如下代码可以创建一个软引用： 
+
+```
+Integer prime = 1;  
+SoftReference<Integer> soft = new SoftReference<Integer>(prime);
+prime = null;
+```
+
+
+
+### 3.1.3 弱引用
+
+当一个对象仅仅被WeakReference引用时，在**下个垃圾收集周期**时候该对象就会被回收。
+
+我们通过下面代码创建一个WeakReference：
+
+```
+Integer prime = 1;  
+WeakReference<Integer> soft = new WeakReference<Integer>(prime);
+prime = null;
+```
+
+当把prime赋值为null的时候，原prime对象会在下一个垃圾收集周期中被回收，因为已经没有强引用指向它。
+
+
+
+## 3.2 关于Entry<K,V>
+
+和HashMap一样，WeakHashMap也是用一个Entry实体来构造里面所有的元素的，但是这个Entry却和HashMap的不同，它是弱引用。
+
+```
+private static class Entry<K,V> extends WeakReference<Object> implements Map.Entry<K,V>
+```
+
+如上，Entry还继承了WeakReference，所以Entry是个弱引用。何为弱引用呢？
+
+就是就是每当进行一次gc，这个对象就会被清除，当然如果这个对象还存在着软引用或者强引用，就可能不会被清除。
+
+
+
+## 3.3 ReferenceQueue
+
+queue是用来存放那些被jvm清除的entry的引用，因为WeakHashMap使用的是弱引用，所以一旦gc，就会有key键被清除，所以会把entry加入到queue中。在WeakHashMap中加入queue的目的，就是为expungeStaleEntries所用。
+
+```
+Entry(Object key, V value,
+              ReferenceQueue<Object> queue,
+              int hash, Entry<K,V> next) {
+            super(key, queue);
+            this.value = value;
+            this.hash  = hash;
+            this.next  = next;
+        }
+```
+
+在构造每一个Entry时，都将它与queue绑定，从而一旦被jvm回收，那么这个Entry就会被加入到queue中。
+
+
+
+## 3.4 expungeStaleEntries方法
+
+在WeakHashMap中，由jvm回收的，仅仅是Entry的key部分，所以一旦jvm强制回收，那么这些key都会为null，再通过私有的`expungeStaleEntries` 方法，把value也置为null，并且把`size--` 。
+
+```
+/**
+     * 从ReferenceQueue中取出过期的entry，从WeakHashMap找到对应的entry，逐一删除
+     * 注意，只会把value置为null。
+     */
+    private void expungeStaleEntries() {
+        for (Object x; (x = queue.poll()) != null; ) {
+            //遍历queue
+            synchronized (queue) {
+                @SuppressWarnings("unchecked")
+                    Entry<K,V> e = (Entry<K,V>) x;
+                int i = indexFor(e.hash, table.length);
+                Entry<K,V> prev = table[i];
+                Entry<K,V> p = prev;
+                while (p != null) {
+                    //遍历table[i]所在链表
+                    Entry<K,V> next = p.next;
+                    if (p == e) {
+                        //queue里面有e，那就删了。
+                        if (prev == e)
+                            //e就是当前的p.next
+                            table[i] = next;
+                        else
+                            prev.next = next;
+                        // Must not null out e.next;
+                        // stale entries may be in use by a HashIterator
+                        //置为null，帮助gc。只制null了value。
+                        e.value = null; // Help GC
+                        //设置e的value，但是没看到设置e的key。
+                        size--;
+                        break;
+                    }
+                    prev = p;
+                    p = next;
+                }
+            }
+        }
+    }
+```
+
+上面代码逻辑为：当在table中找到queue中存在元素时，就把value置空，然后size--。所以在WeakHashMap中，就只有key被回收。
+
+
+
+# 4 EnumMap
+
+EnumMap是以枚举类型作为key的map实现，专门用来存储以枚举类型作为key的键值对，性能优越。非同步、允许value为null、但是key值不可为null。
+
+EnumMap对于key键的处理，不同于典型的HashMap通过key的hash值来获取数组角标，因为在EnumMap中，key必须是枚举类型，而每个枚举常量都有一个唯一的oridinal序数，EnumMap直接使用这个ordinal序数作为数组角标，从而实现快速的查找。
+
+
+
+## 4.1 内部实现
+
+```
+public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
+        implements java.io.Serializable, Cloneable
+// 键值key的枚举类型,在上面EnumMap的class声明中可以看到,参数类型K必须是枚举类型
+private final Class<K> keyType;
+// 存放key的数组容器
+private transient K[] keyUniverse;
+// 存放value值的数组容器
+private transient Object[] vals;
+// 记录数组容器内的value值的个数
+private transient int size = 0;
+```
+
+
+
+## 4.2 构造函数
+
+```
+// 通过指定key键的类型创建
+public EnumMap(Class<K> keyType) {
+    this.keyType = keyType;
+    keyUniverse = getKeyUniverse(keyType);  //获取作为参数的枚举类型的常量数组,更新key数组容器
+    vals = new Object[keyUniverse.length];  //创建指定大小的value值数组容器
+}
+
+// 通过传入一个EnumMap创建
+public EnumMap(EnumMap<K, ? extends V> m) {
+    ...
+}
+
+// 通过传入一个key键类型为枚举类型的map创建
+public EnumMap(Map<K, ? extends V> m) {
+    ...
+}
+```
+
+
+
+## 4.3 put()
+
+```
+public V put(K key, V value) {
+    typeCheck(key);     //检查参数类型K
+    int index = key.ordinal();  //获取作为key的枚举类型的序数,作为数组index,这也是EnumMap高效的原因,不需要复杂的计算就可获取key对应的数组角标
+    Object oldValue = vals[index];  //查询index位置的value值
+    vals[index] = maskNull(value);  //更新index位置的value值
+    if (oldValue == null)           //如果index位置在更新之前有值,那么将size加1
+        size++;
+    return unmaskNull(oldValue);    //返回index位置更新前的值
+}
+```
+
+
+
+## 4.4 remove()
+
+```
+public V remove(Object key) {
+    if (!isValidKey(key))       //检查key键类型
+        return null;
+    int index = ((Enum<?>)key).ordinal();   //获取key的序数
+    Object oldValue = vals[index];      //获取key对应的值
+    vals[index] = null;                 //置空引用
+    if (oldValue != null)
+        size--;
+    return unmaskNull(oldValue);        //返回被删除的value值
+}
+```
+
+
+
+# 5 IdentityHashMap
+
+IdentityHashMap是一个基于hash，**key值可重复**的map实现。允许存入null、非同步。其内部实现原理与HashMap完全不同，而对于key值的可重复的定义在于只有key完全相同(同一个引用的对象)时，才会覆盖，在文章后面会附上一个测试示例。
+
+
+
+## 5.1 内部实现
+
+```
+//数组容器默认大小
+private static final int DEFAULT_CAPACITY = 32;
+//数组容器最小容量
+private static final int MINIMUM_CAPACITY = 4;
+//数组容器最大容量
+private static final int MAXIMUM_CAPACITY = 1 << 29;
+//数组容器,注意此处,IdentityHashMap只维护了一个数组,所有的key和value都放在同一个数组中,没有链表或者红黑树结构
+//而HashMap是通过散列桶数组,链表以及红黑树实现的
+transient Object[] table; // non-private to simplify nested class access
+//键值对个数
+int size;
+//容器修改次数
+transient int modCount;
+```
+
+
+
+## 5.2 构造参数
+
+```
+public IdentityHashMap() {
+    init(DEFAULT_CAPACITY); //无参构造函数,初始化数组容器
+}
+private void init(int initCapacity) {
+    //注意,初始化数组容器时,大小一定要x2,因为key和value都保存在了同一个数组中
+    table = new Object[2 * initCapacity];   
+}
+```
+
+
+
+## 5.3 put()
+
+```
+public V put(K key, V value) {
+    final Object k = maskNull(key);
+
+    retryAfterResize: for (;;) {
+        final Object[] tab = table;
+        final int len = tab.length;
+        int i = hash(k, len);   //获取key的hash值
+
+        /*遍历数组容器查找key值,遍历的过程中,数组容器被视作一个首位相连的环形数组,有些朋友可能担心此时引起死循环问题,由于IdentityHashMap的扩容机制,可以保证数组容器永远达不到100%的利用率,所以不会引发死循环问题*/
+        for (Object item; (item = tab[i]) != null;
+             i = nextKeyIndex(i, len)) {
+            //查找到key之后更新其对应的value,返回oldValue
+            /*注意此处对key的查找判断,使用的是"=="操作符,而不是equals比较,这也是为什么IdentityHashMap能存储某种程度上"相同"的key,而不能存储同一引用的key*/
+            if (item == k) {
+                @SuppressWarnings("unchecked")
+                V oldValue = (V) tab[i + 1];
+                //在IdentityHashMap的数组容器中,key与其对应的value的位置是相连的.并且value在后
+                tab[i + 1] = value;
+                return oldValue;
+            }
+        }
+        //未找到key,准备添加操作,现将size记录加1
+        final int s = size + 1;
+        //如果当前数组长度小于3倍的size,则进行扩容,扩容策略为2倍容量扩容
+        if (s + (s << 1) > len && resize(len))
+            continue retryAfterResize;
+        //添加键值对
+        modCount++;
+        tab[i] = k;
+        tab[i + 1] = value;
+        size = s;
+        return null;
+    }
+}
+```
+
+
+
+## 5.4 remove()
+
+```
+public V remove(Object key) {
+    Object k = maskNull(key);
+    Object[] tab = table;
+    int len = tab.length;
+    int i = hash(k, len);   //获取key的hash值
+
+    //遍历数组,依旧将数组视作首尾相连的环形
+    while (true) {
+        Object item = tab[i];
+        //查找到key后进行删除
+        if (item == k) {
+            modCount++;
+            size--;
+            @SuppressWarnings("unchecked")
+            V oldValue = (V) tab[i + 1];
+            tab[i + 1] = null;
+            tab[i] = null;
+            //删除后重新计算i位置之后的key的hash,重新排列键值对
+            closeDeletion(i);
+            return oldValue;
+        }
+        //如果位置i为null,说明不存在key值,直接返回
+        if (item == null)
+            return null;
+        //未查找到key,或许下一个key的角标,继续遍历
+        i = nextKeyIndex(i, len);
+    }
+}
+```
+
+
+
+## 5.5 示例
+
+简单看下IdentityHashMap和HashMap在使用时的不同之处：
+
+```
+public static void main(String[] args) throws InterruptedException {
+
+    HashMap<Integer,String> hashMap = new HashMap<>();
+    IdentityHashMap<Integer,String> identityHashMap1 = new IdentityHashMap<>();
+    IdentityHashMap<Integer,String> identityHashMap2 = new IdentityHashMap<>();
+
+    hashMap.put(new Integer(10),"aaa");
+    hashMap.put(new Integer(10),"bbb");
+
+    identityHashMap1.put(new Integer(10),"aaa");
+    identityHashMap1.put(new Integer(10),"bbb");
+
+    Integer integer = new Integer(10);
+    identityHashMap2.put(integer,"aaa");
+    identityHashMap2.put(integer,"bbb");
+
+    System.out.println("hashMap : " + hashMap);
+    System.out.println("identityHashMap1 : " + identityHashMap1);
+    System.out.println("identityHashMap2 : " + identityHashMap2);
+
+}
+
+输出结果:
+hashMap : {10=bbb}
+identityHashMap1 : {10=bbb, 10=aaa}
+identityHashMap2 : {10=bbb}
+```
+
+
+
+# 6 TreeMap
+
+TreeMap 是一个有序的key-value集合，它是通过红黑树实现的。本章节将主要讲解TreeMap
+中方法fixAfterInsertion是如何在每次添加节点之后修复二叉树到平衡状态的。
+
+
+
+## 6.1 红黑树节点的数据类型
+
+```
+//红黑树根节点
+private transient Entry<K,V> root;
+
+//红黑树节点
+static final class Entry<K,V> implements Map.Entry<K,V> {
+    K key;                  //键
+    V value;                //值
+    Entry<K,V> left;        //左子节点
+    Entry<K,V> right;       //右子节点
+    Entry<K,V> parent;      //父节点
+    boolean color = BLACK;  //节点颜色
+	...
+}
+```
+
+
+
+## 6.2 红黑树的特性约束
+
+通过这些特性来对红黑树进行平衡调整，实现了完美平衡的二叉树：
+
+- 根节点与叶节点都是黑色节点，其中叶节点为Null节点。
+- 每个红色节点的两个子节点都是黑色节点，换句话说就是不能有连续两个红色节点。
+- 从根节点到所有叶子节点上的黑色节点数量是相同的。
+
+
+
+## 6.3 put()
+
+```
+public V put(K key, V value) {
+    Entry<K,V> t = root;
+    if (t == null) {
+        compare(key, key); 
+        //如果根节点为空,那么创建一个根节点,其颜色为黑色(根节点的颜色必须是黑色)
+        root = new Entry<>(key, value, null);
+        size = 1;
+        modCount++;
+        return null;
+    }
+    int cmp;
+    Entry<K,V> parent;
+    Comparator<? super K> cpr = comparator;
+    //根节点不为空,判断是否使用默认的比较器进行比较
+    if (cpr != null) {
+        do {
+            parent = t;
+            cmp = cpr.compare(key, t.key);
+            //key小于当前节点,则将当前节点更新为其左子节点,继续比较,直到t引用为空
+            if (cmp < 0)
+                t = t.left;
+                //key大于当前节点,则将当前节点更新为其右子节点,继续比较,直到t引用为空
+            else if (cmp > 0)
+                t = t.right;
+            else
+                //如果相等,直接更新当前节点的value值
+                return t.setValue(value);
+        } while (t != null);
+    }
+    else {
+        if (key == null)
+            throw new NullPointerException();
+        @SuppressWarnings("unchecked")
+        Comparable<? super K> k = (Comparable<? super K>) key;
+        //比较器不同,但是比较逻辑同上
+        do {
+            parent = t;
+            cmp = k.compareTo(t.key);
+            if (cmp < 0)
+                t = t.left;
+            else if (cmp > 0)
+                t = t.right;
+            else
+                return t.setValue(value);
+        } while (t != null);
+    }
+    //如果最后没有找到key,那么就需要添加新节点,创建新节点
+    Entry<K,V> e = new Entry<>(key, value, parent);
+    //根据比较结果选择是左子节点还是右子节点
+    if (cmp < 0)
+        parent.left = e;
+    else
+        parent.right = e;
+    //对二叉树进行平衡操作,这里才是红黑树的精髓重点!!!
+    fixAfterInsertion(e);
+    size++;
+    modCount++;
+    return null;
+}
+```
+
+put方法的逻辑与普通二叉树的添加思路基本相同，唯一的不同就是在最后的fixAfterInsertion(e)方法，对二叉树进行平衡，下面将通过示例和源码的解读来展示其实现原理。
+
+
+
+## 6.4 fixAfterInsertion()
+
+在其while循环中，包含了六种二叉树状态，每种状态在下面都有图例说明
+
+```
+private void fixAfterInsertion(Entry<K,V> x) {
+    x.color = RED;
+
+    while (x != null && x != root && x.parent.color == RED) {   //只要当前节点父节点是红节点就,就继续循环
+        if (parentOf(x) == leftOf(parentOf(parentOf(x)))) {
+            Entry<K,V> y = rightOf(parentOf(parentOf(x)));
+            if (colorOf(y) == RED) {                //情况一: 见图例
+                setColor(parentOf(x), BLACK);
+                setColor(y, BLACK);
+                setColor(parentOf(parentOf(x)), RED);
+                x = parentOf(parentOf(x));
+            } else {
+                if (x == rightOf(parentOf(x))) {    //情况二: 见图例
+                    x = parentOf(x);
+                    rotateLeft(x);
+                }
+                                                        //此处省略的else对应情况三: 见图例
+                setColor(parentOf(x), BLACK);
+                setColor(parentOf(parentOf(x)), RED);
+                rotateRight(parentOf(parentOf(x)));
+            }
+        } else {
+            Entry<K,V> y = leftOf(parentOf(parentOf(x)));
+            if (colorOf(y) == RED) {                        //情况四: 见图例
+                setColor(parentOf(x), BLACK);
+                setColor(y, BLACK);
+                setColor(parentOf(parentOf(x)), RED);
+                x = parentOf(parentOf(x));
+            } else {
+                if (x == leftOf(parentOf(x))) {         //情况五: 见图例
+                    x = parentOf(x);
+                    rotateRight(x);
+                }
+                                                            //此处省略的else对应情况六: 见图例
+                setColor(parentOf(x), BLACK);
+                setColor(parentOf(parentOf(x)), RED);
+                rotateLeft(parentOf(parentOf(x)));
+            }
+        }
+    }
+    root.color = BLACK;
+}
+```
+
+
+
+### 6.4.1 情况一
+
+![img](./resources/4.1.png)
+
+### 6.4.2 情况二
+
+![img](./resources/4.2.png)
+
+### 6.4.3 情况三
+
+![img](./resources/4.3.png)
+
+### 6.4.4 情况四
+
+![img](./resources/4.4.png)
+
+### 6.4.5 情况五
+
+![img](./resources/4.5.png)
+
+### 6.4.6 情况六
+
+![img](./resources/4.6.png)
+
+
+
+## 6.5 左旋转与右旋转
+
+此处先不放源码，通过两张动态图可以很直观地理解这两种操作
+
+
+
+**左旋转**
+
+![img](./resources/4.7.gif)
+
+**右旋转**
+
+![img](./resources/4.8.gif)
+
+### 6.6 put示例
+
+![img](./resources/4.9.png)
