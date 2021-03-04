@@ -72,6 +72,14 @@
                   {
                     "name": "List",
                     "url": "./posts/java/javaSE/collection/List.html"
+                  },
+                  {
+                    "name": "Map",
+                    "url": "./posts/java/javaSE/collection/Map.html"
+                  },
+                  {
+                    "name": "Queue",
+                    "url": "./posts/java/javaSE/collection/Queue.html"
                   }
                 ]
               },

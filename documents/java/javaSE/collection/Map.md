@@ -1,3 +1,5 @@
+[TOC]
+
 
 
 # 1 总览
@@ -1652,6 +1654,8 @@ static final class Entry<K,V> implements Map.Entry<K,V> {
 
 ## 6.3 put()
 
+### 6.3.1 put()
+
 ```
 public V put(K key, V value) {
     Entry<K,V> t = root;
@@ -1718,7 +1722,7 @@ put方法的逻辑与普通二叉树的添加思路基本相同，唯一的不�
 
 
 
-## 6.4 fixAfterInsertion()
+### 6.3.2 fixAfterInsertion()
 
 在其while循环中，包含了六种二叉树状态，每种状态在下面都有图例说明
 
@@ -1769,33 +1773,33 @@ private void fixAfterInsertion(Entry<K,V> x) {
 
 
 
-### 6.4.1 情况一
+1. 情况一
 
 ![img](./resources/4.1.png)
 
-### 6.4.2 情况二
+2.  情况二
 
 ![img](./resources/4.2.png)
 
-### 6.4.3 情况三
+3. 情况三
 
 ![img](./resources/4.3.png)
 
-### 6.4.4 情况四
+4. 情况四
 
 ![img](./resources/4.4.png)
 
-### 6.4.5 情况五
+5. 情况五
 
 ![img](./resources/4.5.png)
 
-### 6.4.6 情况六
+6. 情况六
 
 ![img](./resources/4.6.png)
 
 
 
-## 6.5 左旋转与右旋转
+### 6.3.3 左旋转与右旋转
 
 此处先不放源码，通过两张动态图可以很直观地理解这两种操作
 
@@ -1809,6 +1813,832 @@ private void fixAfterInsertion(Entry<K,V> x) {
 
 ![img](./resources/4.8.gif)
 
-### 6.6 put示例
+### 6.3.4 示例
 
 ![img](./resources/4.9.png)
+
+
+
+## 6.4 remove()
+
+### 6.4.1 寻找节点后继
+
+对于一棵二叉查找树，给定节点t，其后继（树种比大于t的最小的那个元素）可以通过如下方式找到：
+
+1. t的右子树不空，则t的后继是其右子树中最小的那个元素。
+2. t的右孩子为空，则t的后继是其第一个向左走的祖先。
+
+
+
+**源代码:**
+
+```
+// 寻找节点后继函数successor()
+static <K,V> TreeMap.Entry<K,V> successor(Entry<K,V> t) {
+    if (t == null)
+        return null;
+    else if (t.right != null) {// 1. t的右子树不空，则t的后继是其右子树中最小的那个元素
+        Entry<K,V> p = t.right;
+        while (p.left != null)
+            p = p.left;
+        return p;
+    } else {// 2. t的右孩子为空，则t的后继是其第一个向左走的祖先
+        Entry<K,V> p = t.parent;
+        Entry<K,V> ch = t;
+        while (p != null && ch == p.right) {
+            ch = p;
+            p = p.parent;
+        }
+        return p;
+    }
+}
+```
+
+
+**图示:**
+
+![img](./resources/4.10.png)
+
+
+
+
+
+### 6.4.2 remove()
+
+remove(Object key)的作用是删除key值对应的entry，该方法首先通过上文中提到的getEntry(Object key)方法找到key值对应的entry，然后调用deleteEntry(Entry<K,V> entry)删除对应的entry。由于删除操作会改变红黑树的结构，有可能破坏红黑树的约束条件，因此有可能要进行调整。
+由于红黑树是一棵增强版的二叉查找树，红黑树的删除操作跟普通二叉查找树的删除操作也就非常相似，唯一的区别是红黑树在节点删除之后可能需要进行调整。
+
+现在考虑一棵普通二叉查找树的删除过程，可以简单分为两种情况：
+
+1. 删除点p的左右子树都为空，或者只有一棵子树非空。
+2. 删除点p的左右子树都非空。
+
+对于上述情况1，处理起来比较简单，直接将p删除（左右子树都为空时），或者用非空子树替代p（只有一棵子树非空时）；对于情况2，可以用p的后继s（树中大于x的最小的那个元素）代替p，然后使用情况1删除s（此时s一定满足情况1，可以画画看）。
+
+基于以上逻辑，红黑树的节点删除函数deleteEntry()代码如下：
+
+```
+// 红黑树entry删除函数deleteEntry()
+private void deleteEntry(Entry<K,V> p) {
+    modCount++;
+    size--;
+    if (p.left != null && p.right != null) {// 2. 删除点p的左右子树都非空。
+        Entry<K,V> s = successor(p);// 后继
+        p.key = s.key;
+        p.value = s.value;
+        p = s;
+    }
+    Entry<K,V> replacement = (p.left != null ? p.left : p.right);
+    if (replacement != null) {// 1. 删除点p只有一棵子树非空。
+        replacement.parent = p.parent;
+        if (p.parent == null)
+            root = replacement;
+        else if (p == p.parent.left)
+            p.parent.left  = replacement;
+        else
+            p.parent.right = replacement;
+        p.left = p.right = p.parent = null;
+        if (p.color == BLACK)
+            fixAfterDeletion(replacement);// 调整
+    } else if (p.parent == null) {
+        root = null;
+    } else { // 1. 删除点p的左右子树都为空
+        if (p.color == BLACK)
+            fixAfterDeletion(p);// 调整
+        if (p.parent != null) {
+            if (p == p.parent.left)
+                p.parent.left = null;
+            else if (p == p.parent.right)
+                p.parent.right = null;
+            p.parent = null;
+        }
+    }
+}
+```
+
+上述代码中占据大量代码行的，是用来修改父子节点间引用关系的代码，其逻辑并不难理解。下面着重讲解删除后调整函数fixAfterDeletion()。
+
+首先请思考一下，删除了哪些点才会导致调整？只有删除点是BLACK的时候，才会触发调整函数，因为删除RED节点不会破坏红黑树的任何约束，而删除BLACK节点会破坏规则4。
+
+跟上文中讲过的fixAfterInsertion()函数一样，这里也要分成若干种情况。记住，无论有多少情况，具体的调整操作只有两种：
+
+1. 改变某些节点的颜色
+2. 对某些节点进行旋转
+
+
+
+**源码:**
+
+```
+private void fixAfterDeletion(Entry<K,V> x) {
+    while (x != root && colorOf(x) == BLACK) {
+        if (x == leftOf(parentOf(x))) {
+            Entry<K,V> sib = rightOf(parentOf(x));
+            if (colorOf(sib) == RED) {
+                setColor(sib, BLACK);                   // 情况1
+                setColor(parentOf(x), RED);             // 情况1
+                rotateLeft(parentOf(x));                // 情况1
+                sib = rightOf(parentOf(x));             // 情况1
+            }
+            if (colorOf(leftOf(sib))  == BLACK &&
+                colorOf(rightOf(sib)) == BLACK) {
+                setColor(sib, RED);                     // 情况2
+                x = parentOf(x);                        // 情况2
+            } else {
+                if (colorOf(rightOf(sib)) == BLACK) {
+                    setColor(leftOf(sib), BLACK);       // 情况3
+                    setColor(sib, RED);                 // 情况3
+                    rotateRight(sib);                   // 情况3
+                    sib = rightOf(parentOf(x));         // 情况3
+                }
+                setColor(sib, colorOf(parentOf(x)));    // 情况4
+                setColor(parentOf(x), BLACK);           // 情况4
+                setColor(rightOf(sib), BLACK);          // 情况4
+                rotateLeft(parentOf(x));                // 情况4
+                x = root;                               // 情况4
+            }
+        } else { // 跟前四种情况对称
+            Entry<K,V> sib = leftOf(parentOf(x));
+            if (colorOf(sib) == RED) {
+                setColor(sib, BLACK);                   // 情况5
+                setColor(parentOf(x), RED);             // 情况5
+                rotateRight(parentOf(x));               // 情况5
+                sib = leftOf(parentOf(x));              // 情况5
+            }
+            if (colorOf(rightOf(sib)) == BLACK &&
+                colorOf(leftOf(sib)) == BLACK) {
+                setColor(sib, RED);                     // 情况6
+                x = parentOf(x);                        // 情况6
+            } else {
+                if (colorOf(leftOf(sib)) == BLACK) {
+                    setColor(rightOf(sib), BLACK);      // 情况7
+                    setColor(sib, RED);                 // 情况7
+                    rotateLeft(sib);                    // 情况7
+                    sib = leftOf(parentOf(x));          // 情况7
+                }
+                setColor(sib, colorOf(parentOf(x)));    // 情况8
+                setColor(parentOf(x), BLACK);           // 情况8
+                setColor(leftOf(sib), BLACK);           // 情况8
+                rotateRight(parentOf(x));               // 情况8
+                x = root;                               // 情况8
+            }
+        }
+    }
+    setColor(x, BLACK);
+}
+```
+
+
+
+**图示:**
+
+![img](./resources/4.11.png)
+
+上述图解的总体思想是：将情况1首先转换成情况2，或者转换成情况3和情况4。当然，该图解并不意味着调整过程一定是从情况1开始。通过后续代码我们还会发现几个有趣的规则：
+
+1. 如果是由情况1之后紧接着进入的情况2，那么情况2之后一定会退出循环（因为x为红色）；
+2. 一旦进入情况3和情况4，一定会退出循环（因为x为root）
+
+
+
+# 7 ConcurrentSkipListMap
+
+ConcurrentSkipListMap提供了一种线程安全(基于CAS实现)的并发访问的排序映射表。内部是SkipList（跳表）结构实现，在理论上能够O(log(n))时间内完成查找、插入、删除操作。
+
+
+
+## 7.1 跳表
+
+### 7.1.1 为什么选择跳表
+
+目前经常使用的平衡数据结构有：B树，红黑树，AVL树，Splay Tree, Treep等。
+
+想象一下，给你一张草稿纸，一只笔，一个编辑器，你能立即实现一颗红黑树，或者AVL树出来吗？ 很难吧，这需要时间，要考虑很多细节，要参考一堆算法与数据结构之类的树， 还要参考网上的代码，相当麻烦。
+
+用跳表吧，跳表是一种随机化的数据结构，目前开源软件 Redis 和 LevelDB 都有用到它， 它的效率和红黑树以及 AVL 树不相上下，但跳表的原理相当简单，只要你能熟练操作链表， 就能轻松实现一个 SkipList。
+
+
+
+### 7.1.2 有序表的搜索
+
+考虑一个有序表：
+
+![img](./resources/4.12.jpg)
+
+
+
+从该有序表中搜索元素 < 23, 43, 59 > ，需要比较的次数分别为 < 2, 4, 6 >，总共比较的次数
+为 2 + 4 + 6 = 12 次。有没有优化的算法吗?  链表是有序的，但不能使用二分查找。类似二叉
+搜索树，我们把一些节点提取出来，作为索引。得到如下结构：
+
+![img](./resources/4.13.jpg)
+
+
+
+这里我们把 < 14, 34, 50, 72 > 提取出来作为一级索引，这样搜索的时候就可以减少比较次数了。
+ 我们还可以再从一级索引提取一些元素出来，作为二级索引，变成如下结构：
+
+![img](./resources/4.14.jpg)
+
+
+
+这里元素不多，体现不出优势，如果元素足够多，这种索引结构就能体现出优势来了。
+
+
+### 7.1.3 跳表的结构
+
+下面的结构是就是跳表： 
+
+ 其中 -1 表示 INT_MIN， 链表的最小值，1 表示 INT_MAX，链表的最大值。
+
+![img](./resources/4.15.jpg)
+
+
+
+跳表具有如下性质：
+
+- 由很多层结构组成。
+- 每一层都是一个有序的链表。
+- 最底层(Level 1)的链表包含所有元素。
+- 如果一个元素出现在 Level i 的链表中，则它在 Level i 之下的链表也都会出现。
+- 每个节点包含两个指针，一个指向同一链表中的下一个元素，一个指向下面一层的元素。 
+  
+
+### 7.1.4 跳表的搜索
+
+![img](./resources/4.16.jpg)
+
+例如：查找元素 117
+
+1. 比较 21， 比 21 大，往后面找
+2. 比较 37,  比 37大，比链表最大值小，从 37 的下面一层开始找
+3. 比较 71,  比 71 大，比链表最大值小，从 71 的下面一层开始找
+4. 比较 85， 比 85 大，从后面找
+5. 比较 117， 等于 117， 找到了节点。
+
+
+
+具体的搜索算法如下：
+
+```
+/* 如果存在 x, 返回 x 所在的节点， 
+ * 否则返回 x 的后继节点 */  
+find(x)   
+{  
+    p = top;  
+    while (1) {  
+        while (p->next->key < x)  
+            p = p->next;  
+        if (p->down == NULL)   
+            return p->next;  
+        p = p->down;  
+    }  
+}
+```
+
+
+
+### 7.1.5 跳表的插入
+
+先确定该元素要占据的层数 K（采用丢硬币的方式，这完全是随机的）
+然后在 Level 1 ... Level K 各个层的链表都插入元素。
+
+例如：插入 119， K = 2
+
+![img](./resources/4.17.jpg)
+
+
+
+如果 K 大于链表的层数，则要添加新的层。
+例子：插入 119， K = 4
+
+![img](./resources/4.18.jpg)
+
+
+
+### 7.1.6 丢硬币决定 K
+
+插入元素的时候，元素所占有的层数完全是随机的，通过一下随机算法产生：
+
+```
+int random_level()  
+{  
+    K = 1;    
+    while (random(0,1))  
+        K++;  
+    return K;  
+}
+```
+
+相当与做一次丢硬币的实验，如果遇到正面，继续丢，遇到反面，则停止，用实验中丢硬币的次数 K 作为元素占有的层数。
+
+显然随机变量 K 满足参数为 p = 1/2 的几何分布，K 的期望值 E[K] = 1/p = 2. 就是说，各个元素的层数，期望值是 2 层。
+
+
+### 7.1.7 跳表的高度 
+
+n 个元素的跳表，每个元素插入的时候都要做一次实验，用来决定元素占据的层数 K，跳表的高度等于这 n 次实验中产生的最大 K。
+
+
+
+### 7.1.8 跳表的空间复杂度分析
+
+根据上面的分析，每个元素的期望高度为 2， 一个大小为 n 的跳表，其节点数目的期望值是 2n。
+
+
+
+### 7.1.9 跳表的删除
+
+在各个层中找到包含 x 的节点，使用标准的 delete from list 方法删除该节点。
+例子：删除 71
+
+![img](./resources/4.19.jpg)
+
+
+
+### 7.1.10 SkipSet实现示例
+
+```
+/** 
+ *  跳表节点数据存储结构 
+ */  
+class SkipNode<E extends Comparable<? super E>> {  
+    public final E value; //节点存储的数据  
+    public final SkipNode<E>[] forward; //节点的指针数组  
+      
+    /** 
+     * 根据节点的层级构造一个节点 
+     * @param level 节点层级 
+     * @param value 节点存储值 
+     */  
+    @SuppressWarnings("unchecked")  
+    public SkipNode(int level, E value) {  
+        forward = new SkipNode[level + 1];//level层的元素后面带着level+1的指针数组  
+        this.value = value;  
+    }  
+  
+}  
+  
+public class SkipSet<E extends Comparable<? super E>> {  
+      
+    /** 
+     * 概率因子，实验证明p=1/e比p=0.5要好，e是个神奇的数字！ 
+     */  
+//  public static final double P = 0.5;  
+    public static final double P = 1/Math.E;  
+    /** 
+     *  最大层级 
+     */  
+    public static final int MAX_LEVEL = 6;  
+      
+    /** 
+     * 开始节点，不存值，贯穿所有层 
+     */  
+    public final SkipNode<E> header = new SkipNode<E>(MAX_LEVEL, null);  
+    /** 
+     * 当前跳表的最高层级 
+     */  
+    public int level = 0;  
+      
+    /** 
+     * 插入一个元素 
+     * @param value 待插入值 
+     */  
+    @SuppressWarnings("unchecked")  
+    public void insert(E value) {  
+        SkipNode<E> x = header;  
+        SkipNode<E>[] update = new SkipNode[MAX_LEVEL + 1];  
+        //查找元素的位置，这里其实做了一次contain操作，注释见contain  
+        for (int i = level; i >= 0; i--) {  
+            while (x.forward[i] != null  
+                    && x.forward[i].value.compareTo(value) < 0) {  
+                x = x.forward[i];  
+            }  
+            //update[i]是比value小的数里面最大的，是value的前置节点  
+            update[i] = x;  
+        }  
+        x = x.forward[0];  
+  
+        //此处不允许插入相同元素，为一个set  
+        if (x == null || !x.value.equals(value)) {//跳表中不包含所要插的元素  
+            //随机产生插入的层级  
+            int lvl = randomLevel();  
+            //产生的随机层级比当前跳表的最高层级大，需要添加相应的层级，并更新最高层级  
+            if (lvl > level) {  
+                for (int i = level + 1; i <= lvl; i++) {  
+                    update[i] = header;  
+                }  
+                level = lvl;  
+            }  
+              
+            //生成新节点  
+            x = new SkipNode<E>(lvl, value);  
+            //调整节点的指针，和指向它的指针  
+            for (int i = 0; i <= lvl; i++) {  
+                x.forward[i] = update[i].forward[i];  
+                update[i].forward[i] = x;  
+            }  
+  
+        }  
+    }  
+    /** 
+     * 删除一个元素 
+     * @param value 待删除值 
+     */  
+    @SuppressWarnings("unchecked")  
+    public void delete(E value) {  
+        SkipNode<E> x = header;  
+        SkipNode<E>[] update = new SkipNode[MAX_LEVEL + 1];  
+        //查找元素的位置，这里其实做了一次contain操作，注释见contain  
+        for (int i = level; i >= 0; i--) {  
+            while (x.forward[i] != null  
+                    && x.forward[i].value.compareTo(value) < 0) {  
+                x = x.forward[i];  
+            }  
+            update[i] = x;  
+        }  
+        x = x.forward[0];  
+        //删除元素，调整指针  
+        if (x.value.equals(value)) {  
+            for (int i = 0; i <= level; i++) {  
+                if (update[i].forward[i] != x)  
+                    break;  
+                update[i].forward[i] = x.forward[i];  
+            }  
+            //如果元素为本层最后一个元素，则删除同时降低当前层级  
+            while (level > 0 && header.forward[level] == null) {  
+                level--;  
+            }  
+  
+        }  
+    }  
+    /** 
+     * 查找是否包含此元素 
+     * @param searchValue 带查找值 
+     * @return true：包含；false:不包含 
+     */  
+    public boolean contains(E searchValue) {  
+        SkipNode<E> x = header;  
+        //从开始节点的最高层级开始查找  
+        for (int i = level; i >= 0; i--) {  
+            //当到达本层级的NULL节点或者遇到比查找值大的节点时，转到下一层级查找  
+            while (x.forward[i] != null  
+                    && x.forward[i].value.compareTo(searchValue) < 0) {  
+                x = x.forward[i];  
+            }  
+        }  
+        x = x.forward[0];  
+        //此时x有三种可能，1.x=null,2.x.value=searchValue,3.x.value>searchValue  
+        return x != null && x.value.equals(searchValue);  
+    }  
+    /** 
+     * 这里是跳表的精髓所在，通过随机概率来判断节点的层级 
+     * @return 节点的层级 
+     */  
+    public static int randomLevel() {  
+        int lvl = (int) (Math.log(1. - Math.random()) / Math.log(1. - P));  
+        return Math.min(lvl, MAX_LEVEL);  
+    }  
+  
+    /** 
+     * 输出跳表的所有元素 
+     * 遍历最底层的元素即可 
+     */  
+    public String toString() {  
+        StringBuilder sb = new StringBuilder();  
+        sb.append("{");  
+        SkipNode<E> x = header.forward[0];  
+        while (x != null) {  
+            sb.append(x.value);  
+            x = x.forward[0];  
+            if (x != null)  
+                sb.append(",");  
+        }  
+        sb.append("}");  
+        return sb.toString();  
+    }  
+}
+```
+
+
+
+## 7.2 ConcurrentSkipListMap源码
+
+### 7.2.1 数据结构
+
+ConcurrentSkipListMap主要用到了Node和Index两种节点的存储方式，通过volatile关键字实现了并发的操作
+
+```
+static final class Node<K,V> {  
+        final K key;  
+        volatile Object value;//value值  
+        volatile Node<K,V> next;//next引用  
+        ……  
+}  
+static class Index<K,V> {  
+        final Node<K,V> node;  
+        final Index<K,V> down;//downy引用  
+       volatile Index<K,V> right;//右边引用  
+       ……  
+}
+```
+
+
+
+### 7.2.2 查找
+
+通过SkipList的方式进行查找操作：（下图以“查找91”进行说明：）
+
+![img](./resources/4.20.jpg)
+
+红色虚线，表示查找的路径，蓝色向右箭头表示right引用；黑色向下箭头表示down引用；
+
+
+
+```
+/get方法，通过doGet操作实现
+public V get(Object key) {  
+      return doGet(key);  
+ }  
+ //doGet的实现  
+private V doGet(Object okey) {  
+        Comparable<? super K> key = comparable(okey);  
+        Node<K,V> bound = null;  
+        Index<K,V> q = head;//把头结点作为当前节点的前驱节点  
+        Index<K,V> r = q.right;//前驱节点的右节点作为当前节点  
+        Node<K,V> n;  
+        K k;  
+        int c;  
+        for (;;) {//遍历  
+            Index<K,V> d;  
+            // 依次遍历right节点  
+            if (r != null && (n = r.node) != bound && (k = n.key) != null) {  
+                if ((c = key.compareTo(k)) > 0) {//由于key都是升序排列的，所有当前关键字大于所要查找的key时继续向右遍历  
+                    q = r;  
+                    r = r.right;  
+                    continue;  
+                } else if (c == 0) {  
+                    //如果找到了相等的key节点，则返回该Node的value如果value为空可能是其他并发delete导致的，于是通过另一种  
+                    //遍历findNode的方式再查找  
+                    Object v = n.value;  
+                    return (v != null)? (V)v : getUsingFindNode(key);  
+                } else  
+                    bound = n;  
+            }  
+            //如果一个链表中right没能找到key对应的value，则调整到其down的引用处继续查找  
+            if ((d = q.down) != null) {  
+                q = d;  
+                r = d.right;  
+            } else  
+                break;  
+        }  
+        // 如果通过上面的遍历方式，还没能找到key对应的value，再通过Node.next的方式进行查找  
+        for (n = q.node.next;  n != null; n = n.next) {  
+            if ((k = n.key) != null) {  
+                if ((c = key.compareTo(k)) == 0) {  
+                    Object v = n.value;  
+                    return (v != null)? (V)v : getUsingFindNode(key);  
+                } else if (c < 0)  
+                    break;  
+            }  
+        }  
+        return null;  
+}
+```
+
+
+
+### 7.2.2 删除
+
+通过SkipList的方式进行删除操作：（下图以“删除23”进行说明：）
+
+![img](./resources/4.21.jpg)
+
+红色虚线，表示查找的路径，蓝色向右箭头表示right引用；黑色向下箭头表示down引用；
+
+
+
+```
+//remove操作，通过doRemove实现，把所有level中出现关键字key的地方都delete掉  
+public V remove(Object key) {  
+        return doRemove(key, null);  
+ }  
+ final V doRemove(Object okey, Object value) {  
+        Comparable<? super K> key = comparable(okey);  
+        for (;;) {  
+            Node<K,V> b = findPredecessor(key);//得到key的前驱（就是比key小的最大节点）  
+            Node<K,V> n = b.next;//前驱节点的next引用  
+            for (;;) {//遍历  
+                if (n == null)//如果next引用为空，直接返回  
+                    return null;  
+                Node<K,V> f = n.next;  
+                if (n != b.next)                    // 如果两次获得的b.next不是相同的Node，就跳转到第一层循环重新获得b和n  
+                    break;  
+                Object v = n.value;  
+                if (v == null) {                    // 当n被其他线程delete的时候，其value==null，此时做辅助处理，并重新获取b和n  
+                    n.helpDelete(b, f);  
+                    break;  
+                }  
+                if (v == n || b.value == null)      // 当其前驱被delet的时候直接跳出，重新获取b和n  
+                    break;  
+                int c = key.compareTo(n.key);  
+                if (c < 0)  
+                    return null;  
+                if (c > 0) {//当key较大时就继续遍历  
+                    b = n;  
+                    n = f;  
+                    continue;  
+                }  
+                if (value != null && !value.equals(v))  
+                    return null;  
+                if (!n.casValue(v, null))  
+                    break;  
+                if (!n.appendMarker(f) || !b.casNext(n, f))//casNext方法就是通过比较和设置b（前驱）的next节点的方式来实现删除操作  
+                    findNode(key);                  // 通过尝试findNode的方式继续find  
+                else {  
+                    findPredecessor(key);           // Clean index  
+                    if (head.right == null)   //如果head的right引用为空，则表示不存在该level  
+                        tryReduceLevel();  
+                }  
+                return (V)v;  
+            }  
+        }  
+}
+```
+
+
+
+### 7.2.3 插入
+
+通过SkipList的方式进行插入操作：（下图以“添加55”的两种情况，进行说明：）
+
+
+
+![img](./resources/4.22.jpg)
+
+在level=2（该level存在）的情况下添加55的图示：只需在level<=2的合适位置插入55即可。
+
+
+
+![img](./resources/4.23.jpg)
+
+在level=4（该level不存在，图示level4是新建的)的情况下添加55的情况：首先新建level4,然后在level<=4的合适位置插入55）。
+
+
+
+```
+     //put操作，通过doPut实现  
+     public V put(K key, V value) {  
+            if (value == null)  
+            throw new NullPointerException();  
+        return doPut(key, value, false);  
+     }  
+    private V doPut(K kkey, V value, boolean onlyIfAbsent) {  
+        Comparable<? super K> key = comparable(kkey);  
+        for (;;) {  
+            Node<K,V> b = findPredecessor(key);//前驱  
+            Node<K,V> n = b.next;  
+           //定位的过程就是和get操作相似  
+            for (;;) {  
+                if (n != null) {  
+                    Node<K,V> f = n.next;  
+                    if (n != b.next)               // 前后值不一致的情况下，跳转到第一层循环重新获得b和n  
+                        break;;  
+                    Object v = n.value;  
+                    if (v == null) {               // n被delete的情况下  
+                        n.helpDelete(b, f);  
+                        break;  
+                    }  
+                    if (v == n || b.value == null) // b 被delete的情况，重新获取b和n  
+                        break;  
+                    int c = key.compareTo(n.key);  
+                    if (c > 0) {  
+                        b = n;  
+                        n = f;  
+                        continue;  
+                    }  
+                    if (c == 0) {  
+                        if (onlyIfAbsent || n.casValue(v, value))  
+                            return (V)v;  
+                        else  
+                            break; // restart if lost race to replace value  
+                    }  
+                    // else c < 0; fall through  
+                }  
+                Node<K,V> z = new Node<K,V>(kkey, value, n);  
+                if (!b.casNext(n, z))  
+                    break;         // restart if lost race to append to b  
+                int level = randomLevel();//得到一个随机的level作为该key-value插入的最高level  
+                if (level > 0)  
+                    insertIndex(z, level);//进行插入操作  
+                return null;  
+            }  
+        }  
+    }  
+
+     /** 
+     * 获得一个随机的level值 
+     */  
+    private int randomLevel() {  
+        int x = randomSeed;  
+        x ^= x << 13;  
+        x ^= x >>> 17;  
+        randomSeed = x ^= x << 5;  
+        if ((x & 0x8001) != 0) // test highest and lowest bits  
+            return 0;  
+        int level = 1;  
+        while (((x >>>= 1) & 1) != 0) ++level;  
+        return level;  
+    }  
+    //执行插入操作：如上图所示，有两种可能的情况：  
+    //1.当level存在时，对level<=n都执行insert操作  
+    //2.当level不存在（大于目前的最大level）时，首先添加新的level，然后在执行操作1   
+    private void insertIndex(Node<K,V> z, int level) {  
+        HeadIndex<K,V> h = head;  
+        int max = h.level;  
+        if (level <= max) {//情况1  
+            Index<K,V> idx = null;  
+            for (int i = 1; i <= level; ++i)//首先得到一个包含1~level个级别的down关系的链表，最后的inx为最高level  
+                idx = new Index<K,V>(z, idx, null);  
+            addIndex(idx, h, level);//把最高level的idx传给addIndex方法  
+        } else { // 情况2 增加一个新的级别  
+            level = max + 1;  
+            Index<K,V>[] idxs = (Index<K,V>[])new Index[level+1];  
+            Index<K,V> idx = null;  
+            for (int i = 1; i <= level; ++i)//该步骤和情况1类似  
+                idxs[i] = idx = new Index<K,V>(z, idx, null);  
+            HeadIndex<K,V> oldh;  
+            int k;  
+            for (;;) {  
+                oldh = head;  
+                int oldLevel = oldh.level;  
+                if (level <= oldLevel) { // lost race to add level  
+                    k = level;  
+                    break;  
+                }  
+                HeadIndex<K,V> newh = oldh;  
+                Node<K,V> oldbase = oldh.node;  
+                for (int j = oldLevel+1; j <= level; ++j)  
+                    newh = new HeadIndex<K,V>(oldbase, newh, idxs[j], j);//创建新的  
+                if (casHead(oldh, newh)) {  
+                    k = oldLevel;  
+                    break;  
+                }  
+            }  
+            addIndex(idxs[k], oldh, k);  
+        }  
+    }  
+    /** 
+     *在1~indexlevel层中插入数据  
+     */  
+    private void addIndex(Index<K,V> idx, HeadIndex<K,V> h, int indexLevel) {  
+        //  insertionLevel 代表要插入的level，该值会在indexLevel~1间遍历一遍  
+        int insertionLevel = indexLevel;  
+        Comparable<? super K> key = comparable(idx.node.key);  
+        if (key == null) throw new NullPointerException();  
+        // 和get操作类似，不同的就是查找的同时在各个level上加入了对应的key  
+        for (;;) {  
+            int j = h.level;  
+            Index<K,V> q = h;  
+            Index<K,V> r = q.right;  
+            Index<K,V> t = idx;  
+            for (;;) {  
+                if (r != null) {  
+                    Node<K,V> n = r.node;  
+                    // compare before deletion check avoids needing recheck  
+                    int c = key.compareTo(n.key);  
+                    if (n.value == null) {  
+                        if (!q.unlink(r))  
+                            break;  
+                        r = q.right;  
+                        continue;  
+                    }  
+                    if (c > 0) {  
+                        q = r;  
+                        r = r.right;  
+                        continue;  
+                    }  
+                }  
+                if (j == insertionLevel) {//在该层level中执行插入操作  
+                    // Don't insert index if node already deleted  
+                    if (t.indexesDeletedNode()) {  
+                        findNode(key); // cleans up  
+                        return;  
+                    }  
+                    if (!q.link(r, t))//执行link操作，其实就是inset的实现部分  
+                        break; // restart  
+                    if (--insertionLevel == 0) {  
+                        // need final deletion check before return  
+                        if (t.indexesDeletedNode())  
+                            findNode(key);  
+                        return;  
+                    }  
+                }  
+                if (--j >= insertionLevel && j < indexLevel)//key移动到下一层level  
+                    t = t.down;  
+                q = q.down;  
+                r = q.right;  
+            }  
+        }  
+    }
+```
