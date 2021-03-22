@@ -84,6 +84,16 @@
                 ]
               },
               {
+                "id": "JavaSE_concurrent",
+                "label": "并发",
+                "articles": [
+                  {
+                    "name": "设计线程安全的类",
+                    "url": "./posts/java/javaSE/concurrent/设计线程安全的类.html"
+                  }
+                ]
+              },
+              {
                 "id": "JavaSE_other",
                 "label": "其他",
                 "articles": [
