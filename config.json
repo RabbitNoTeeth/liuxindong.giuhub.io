@@ -118,6 +118,10 @@
                   {
                     "name": "显式锁",
                     "url": "./posts/java/javaSE/concurrent/显式锁.html"
+                  },
+                  {
+                    "name": "构建自定义的同步工具",
+                    "url": "./posts/java/javaSE/concurrent/构建自定义的同步工具.html"
                   }
                 ]
               },
