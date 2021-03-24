@@ -114,6 +114,10 @@
                   {
                     "name": "性能与可伸缩性",
                     "url": "./posts/java/javaSE/concurrent/性能与可伸缩性.html"
+                  },
+                  {
+                    "name": "显式锁",
+                    "url": "./posts/java/javaSE/concurrent/显式锁.html"
                   }
                 ]
               },
