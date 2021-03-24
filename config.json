@@ -94,6 +94,14 @@
                   {
                     "name": "基础构建模块",
                     "url": "./posts/java/javaSE/concurrent/基础构建模块.html"
+                  },
+                  {
+                    "name": "任务执行",
+                    "url": "./posts/java/javaSE/concurrent/任务执行.html"
+                  },
+                  {
+                    "name": "取消与关闭",
+                    "url": "./posts/java/javaSE/concurrent/取消与关闭.html"
                   }
                 ]
               },
