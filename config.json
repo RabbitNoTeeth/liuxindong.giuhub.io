@@ -90,6 +90,10 @@
                   {
                     "name": "设计线程安全的类",
                     "url": "./posts/java/javaSE/concurrent/设计线程安全的类.html"
+                  },
+                  {
+                    "name": "基础构建模块",
+                    "url": "./posts/java/javaSE/concurrent/基础构建模块.html"
                   }
                 ]
               },
