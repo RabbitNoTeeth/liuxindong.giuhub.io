@@ -106,6 +106,10 @@
                   {
                     "name": "线程池的使用",
                     "url": "./posts/java/javaSE/concurrent/线程池的使用.html"
+                  },
+                  {
+                    "name": "死锁",
+                    "url": "./posts/java/javaSE/concurrent/死锁.html"
                   }
                 ]
               },
