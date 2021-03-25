@@ -122,6 +122,10 @@
                   {
                     "name": "构建自定义的同步工具",
                     "url": "./posts/java/javaSE/concurrent/构建自定义的同步工具.html"
+                  },
+                  {
+                    "name": "原子变量与非阻塞同步机制",
+                    "url": "./posts/java/javaSE/concurrent/原子变量与非阻塞同步机制.html"
                   }
                 ]
               },
