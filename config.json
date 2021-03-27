@@ -96,6 +96,10 @@
                     "url": "./posts/java/javaSE/concurrent/基础构建模块.html"
                   },
                   {
+                    "name": "基础构建模块扩展",
+                    "url": "./posts/java/javaSE/concurrent/基础构建模块扩展.html"
+                  },
+                  {
                     "name": "任务执行",
                     "url": "./posts/java/javaSE/concurrent/任务执行.html"
                   },
@@ -126,6 +130,10 @@
                   {
                     "name": "原子变量与非阻塞同步机制",
                     "url": "./posts/java/javaSE/concurrent/原子变量与非阻塞同步机制.html"
+                  },
+                  {
+                    "name": "Executor框架",
+                    "url": "./posts/java/javaSE/concurrent/Executor框架.html"
                   }
                 ]
               },
