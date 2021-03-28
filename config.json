@@ -382,6 +382,16 @@
                 "url": "./posts/java/effectiveJava/考虑使用序列化代理来代替序列化实例.html"
               }
             ]
+          },
+          {
+            "id": "nio",
+            "label": "NIO",
+            "articles": [
+              {
+                "name": "NIO概述",
+                "url": "./posts/java/nio/NIO概述.html"
+              }
+            ]
           }
         ]
       }
