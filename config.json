@@ -152,6 +152,18 @@
                   {
                     "name": "Stream流",
                     "url": "./posts/java/javaSE/java8/Stream流.html"
+                  },
+                  {
+                    "name": "default默认方法",
+                    "url": "./posts/java/javaSE/java8/default默认方法.html"
+                  },
+                  {
+                    "name": "用Optional代替null",
+                    "url": "./posts/java/javaSE/java8/用Optional代替null.html"
+                  },
+                  {
+                    "name": "CompletableFuture组合式异步编程",
+                    "url": "./posts/java/javaSE/java8/CompletableFuture组合式异步编程.html"
                   }
                 ]
               },
