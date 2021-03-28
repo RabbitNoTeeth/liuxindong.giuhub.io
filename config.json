@@ -142,6 +142,20 @@
                 ]
               },
               {
+                "id": "JavaSE_java8",
+                "label": "java8",
+                "articles": [
+                  {
+                    "name": "Lambda表达式",
+                    "url": "./posts/java/javaSE/java8/Lambda表达式.html"
+                  },
+                  {
+                    "name": "Stream流",
+                    "url": "./posts/java/javaSE/java8/Stream流.html"
+                  }
+                ]
+              },
+              {
                 "id": "JavaSE_other",
                 "label": "其他",
                 "articles": [
