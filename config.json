@@ -134,6 +134,10 @@
                   {
                     "name": "Executor框架",
                     "url": "./posts/java/javaSE/concurrent/Executor框架.html"
+                  },
+                  {
+                    "name": "Future框架",
+                    "url": "./posts/java/javaSE/concurrent/Future框架.html"
                   }
                 ]
               },

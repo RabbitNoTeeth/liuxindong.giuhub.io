@@ -1789,3 +1789,158 @@ private void siftDown(int k, RunnableScheduledFuture<?> key) {
 上浮意味着将新节点作为最后一个节点，然后与父节点比较，如果小于父节点，那么与父节点互换位置，也就是“浮上去”；下沉意味着，从堆中取出最小的根节点后，将最后节点置为新节点，然后向下与子节点进行比较，如果大于子节点，那么与子节点互换位置，也就是“沉下去”。
 
 DelayedWorkQueue中的任务出列就相当于二叉堆的删除操作，所以不再赘述remove方法。
+
+
+
+# 8 Executors
+
+为了简化线程池的创建，Executor框架中提供了Executors工具类，专门用于创建不同策略的线程池。
+
+Executors提供了四类创建线程池的方法，分别对应不同策略的线程池，这四类方法分别是：`newCachedThreadPool`、`newFixedThreadPool`、`newScheduledThreadPool`和`newSingleThreadExecutor`。
+
+下面的源码解读中将会通过注释的方式详细解释每种线程池。
+
+
+
+## 8.1 newCachedThreadPool 
+
+创建无界线程池 
+
+```
+/**
+ * 创建一个无界线程池，这种线程池适合执行运行时间短的异步任务。
+ * 调用execute方法执行任务时，将会重复使用已经创建的并且当前可用的线程，如果不
+ * 存在可用的线程，那么就创建新的线程。如果线程空闲时间超过60s，那么将自动销毁
+ */
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+            60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>());
+}
+
+/**
+ * 与newCachedThreadPool()方法创建同样策略的线程池，不同的是，该方法创建的线程池
+ * 在创建新的线程时，会通过给定线程工厂threadFactory的newThread()方法创建
+ */
+public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+            60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>(),
+            threadFactory);
+}
+```
+
+
+
+## 8.2 newFixedThreadPool 
+
+创建有界线程池
+
+```
+/**
+ * 创建一个有界线程池，池中最多存在nThreads个线程。除非线程池关闭或者线程
+ * 本身被终结，否则所有的线程将会一直存活。
+ *
+ * 提交的任务将会进入任务队列，等待有可用的线程来执行。如果线程在执行任务
+ * 期间被终结，那么将会创建新的线程来代替它。
+ */
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>());
+}
+
+/**
+ * 与newFixedThreadPool(int nThreads)方法创建同样策略的线程池，不同的是，该方法创建的线程池
+ * 在创建新的线程时，会通过给定线程工厂threadFactory的newThread()方法创建
+ */
+public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>(),
+            threadFactory);
+}
+```
+
+
+
+## 8.3 newScheduledThreadPool 
+
+创建有界的用于执行定时任务和周期任务的线程池
+
+```
+/**
+ * 创建指定大小的线程池，用于执行定时任务或者周期性任务。
+ * ScheduledThreadPoolExecutor(corePoolSize)构造方法创建的线程池中，线程
+ * 在线程池关闭之前是永久存活的。
+ */
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+    return new ScheduledThreadPoolExecutor(corePoolSize);
+}
+
+/**
+ * 与newScheduledThreadPool(int corePoolSize)方法创建同样策略的线程池，不同的是，该方法创建的线程池
+ * 在创建新的线程时，会通过给定线程工厂threadFactory的newThread()方法创建
+ */
+public static ScheduledExecutorService newScheduledThreadPool(
+        int corePoolSize, ThreadFactory threadFactory) {
+    return new ScheduledThreadPoolExecutor(corePoolSize, threadFactory);
+}
+```
+
+
+
+## 8.4 newSingleThreadExecutor 
+
+创建单线程的线程池
+
+```
+/**
+ * 与newSingleThreadExecutor()方法创建同样策略的线程池，不同的是，该方法创建的线程池
+ * 在创建新的线程时，会通过给定线程工厂threadFactory的newThread()方法创建
+ */
+public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory) {
+    return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1,
+                    0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>(),
+                    threadFactory));
+}
+
+/**
+ * 创建一个无界线程池，这种线程池适合执行运行时间短的异步任务。
+ * 调用execute方法执行任务时，将会重复使用已经创建的并且当前可用的线程，如果不
+ * 存在可用的线程，那么就创建新的线程。如果线程空闲时间超过60s，那么将自动销毁
+ */
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+            60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>());
+}
+```
+
+
+
+## 8.5 newSingleThreadScheduledExecutor 
+
+创建单线程的线程池，用于执行定时任务和周期任务
+
+```
+/**
+ * 创建只有一条线程的线程池，用于执行定时任务和周期任务。
+ * 如果线程在执行任务期间被终结，那么创建新的线程来代替它。
+ */
+public static ScheduledExecutorService newSingleThreadScheduledExecutor() {
+    return new DelegatedScheduledExecutorService
+            (new ScheduledThreadPoolExecutor(1));
+}
+
+/**
+ * 与newSingleThreadScheduledExecutor()方法创建同样策略的线程池，不同的是，该方法创建的线程池
+ * 在创建新的线程时，会通过给定线程工厂threadFactory的newThread()方法创建
+ */
+public static ScheduledExecutorService newSingleThreadScheduledExecutor(ThreadFactory threadFactory) {
+    return new DelegatedScheduledExecutorService
+            (new ScheduledThreadPoolExecutor(1, threadFactory));
+}
+```
