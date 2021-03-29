@@ -404,6 +404,14 @@
             "label": "MySQL",
             "articles": [
               {
+                "name": "DDL常用语句",
+                "url": "./posts/database/mysql/DDL常用语句.html"
+              },
+              {
+                "name": "DML常用语句",
+                "url": "./posts/database/mysql/DML常用语句.html"
+              },
+              {
                 "name": "SQL查询优化参考",
                 "url": "./posts/database/mysql/SQL查询优化参考.html"
               }
