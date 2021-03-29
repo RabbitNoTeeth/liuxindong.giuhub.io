@@ -394,6 +394,22 @@
             ]
           }
         ]
+      },
+      {
+        "id": "database",
+        "label": "数据库",
+        "children": [
+          {
+            "id": "database_mysql",
+            "label": "MySQL",
+            "articles": [
+              {
+                "name": "SQL查询优化参考",
+                "url": "./posts/database/mysql/SQL查询优化参考.html"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
