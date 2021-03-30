@@ -412,6 +412,34 @@
                 "url": "./posts/database/mysql/DML常用语句.html"
               },
               {
+                "name": "数据类型",
+                "url": "./posts/database/mysql/数据类型.html"
+              },
+              {
+                "name": "运算符",
+                "url": "./posts/database/mysql/运算符.html"
+              },
+              {
+                "name": "常用函数",
+                "url": "./posts/database/mysql/常用函数.html"
+              },
+              {
+                "name": "存储引擎",
+                "url": "./posts/database/mysql/存储引擎.html"
+              },
+              {
+                "name": "字符集选择",
+                "url": "./posts/database/mysql/字符集选择.html"
+              },
+              {
+                "name": "索引",
+                "url": "./posts/database/mysql/索引.html"
+              },
+              {
+                "name": "视图",
+                "url": "./posts/database/mysql/视图.html"
+              },
+              {
                 "name": "SQL查询优化参考",
                 "url": "./posts/database/mysql/SQL查询优化参考.html"
               }
