@@ -446,6 +446,26 @@
             ]
           }
         ]
+      },
+      {
+        "id": "rdManagement",
+        "label": "研发管理",
+        "children": [
+          {
+            "id": "rdManagement_code",
+            "label": "代码管理",
+            "articles": [
+              {
+                "name": "GitLab环境搭建",
+                "url": "./posts/rdManagement/code/GitLab环境搭建.html"
+              },
+              {
+                "name": "Git版本控制规范",
+                "url": "./posts/rdManagement/code/Git版本控制规范.html"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
