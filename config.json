@@ -440,6 +440,18 @@
                 "url": "./posts/database/mysql/视图.html"
               },
               {
+                "name": "存储过程和函数",
+                "url": "./posts/database/mysql/存储过程和函数.html"
+              },
+              {
+                "name": "触发器",
+                "url": "./posts/database/mysql/触发器.html"
+              },
+              {
+                "name": "锁表语句",
+                "url": "./posts/database/mysql/锁表语句.html"
+              },
+              {
                 "name": "SQL查询优化参考",
                 "url": "./posts/database/mysql/SQL查询优化参考.html"
               }
