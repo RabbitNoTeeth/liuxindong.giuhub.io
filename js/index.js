@@ -11,17 +11,17 @@ new Vue({
   computed: {
     articles: function () {
       var allArticles = this.allArticles;
-      var searchParam = (this.searchParam && this.searchParam.toString().trim() != '') ? this.searchParam.toString() : null;
+      var searchParam = (this.searchParam && this.searchParam.toString().trim() != '') ? this.searchParam.toString().toLowerCase() : null;
       var classify = this.currentClassify != null ? this.currentClassify.id : null;
       var res = [];
       for (var i in allArticles) {
         var article = allArticles[i];
         if (searchParam && classify) {
-          if (article.name.indexOf(searchParam) > -1 && article.classifies.indexOf(classify) > -1) {
+          if ((article.name.toLowerCase().indexOf(searchParam) > -1 || article.classifyName.toLowerCase().indexOf(searchParam) > -1) && article.classifies.indexOf(classify) > -1) {
             res.push(article)
           }
         } else if (searchParam && !classify) {
-          if (article.name.indexOf(searchParam) > -1) {
+          if (article.name.toLowerCase().indexOf(searchParam) > -1 || article.classifyName.toLowerCase().indexOf(searchParam) > -1) {
             res.push(article)
           }
         } else if (!searchParam && classify) {
