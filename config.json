@@ -452,8 +452,32 @@
                 "url": "./posts/database/mysql/锁表语句.html"
               },
               {
+                "name": "事务控制",
+                "url": "./posts/database/mysql/事务控制.html"
+              },
+              {
+                "name": "SQL Mode",
+                "url": "./posts/database/mysql/SQL Mode.html"
+              },
+              {
+                "name": "分区",
+                "url": "./posts/database/mysql/分区.html"
+              },
+              {
+                "name": "锁问题",
+                "url": "./posts/database/mysql/锁问题.html"
+              },
+              {
                 "name": "SQL查询优化参考",
                 "url": "./posts/database/mysql/SQL查询优化参考.html"
+              },
+              {
+                "name": "多表删除",
+                "url": "./posts/database/mysql/多表删除.html"
+              },
+              {
+                "name": "修复损坏的Innodb表",
+                "url": "./posts/database/mysql/修复损坏的Innodb表.html"
               }
             ]
           }
