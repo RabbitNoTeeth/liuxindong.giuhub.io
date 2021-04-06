@@ -392,6 +392,24 @@
                 "url": "./posts/java/nio/NIO概述.html"
               }
             ]
+          },
+          {
+            "id": "netty",
+            "label": "Netty",
+            "articles": [
+              {
+                "name": "《Netty In Action》核心组件",
+                "url": "./posts/java/netty/《Netty In Action》核心组件.html"
+              },
+              {
+                "name": "《Netty In Action》第一款Netty应用程序",
+                "url": "./posts/java/netty/《Netty In Action》第一款Netty应用程序.html"
+              },
+              {
+                "name": "《Netty In Action》组件和设计",
+                "url": "./posts/java/netty/《Netty In Action》组件和设计.html"
+              }
+            ]
           }
         ]
       },
