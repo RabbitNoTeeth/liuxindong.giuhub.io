@@ -530,6 +530,34 @@
         ]
       },
       {
+        "id": "os",
+        "label": "操作系统",
+        "children": [
+          {
+            "id": "os_linux",
+            "label": "Linux",
+            "articles": [
+              {
+                "name": "添加开机自启动",
+                "url": "./posts/os/linux/添加开机自启动.html"
+              },
+              {
+                "name": "iptables安装与使用",
+                "url": "./posts/os/linux/iptables安装与使用.html"
+              },
+              {
+                "name": "firewalld使用",
+                "url": "./posts/os/linux/firewalld使用.html"
+              },
+              {
+                "name": "binsh^M：损坏的解释器 没有那个文件或目录",
+                "url": "./posts/os/linux/binsh^M：损坏的解释器 没有那个文件或目录.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "rdManagement",
         "label": "研发管理",
         "children": [
