@@ -2,6 +2,11 @@
     color: #000000 !important;
 }
 
+.el-tree-node__content {
+    font-size: 12px;
+    height: 20px;
+}
+
 .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
     background-color: #409EFF !important;
     color: #fff !important;
@@ -92,7 +97,7 @@ body, html {
 }
 
 .center_main_right_article_title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: #000;
     text-decoration:none;
