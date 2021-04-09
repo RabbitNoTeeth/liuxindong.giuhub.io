@@ -464,6 +464,18 @@
               {
                 "name": "扩展对象的功能性",
                 "url": "./posts/javascript/es6/扩展对象的功能性.html"
+              },
+              {
+                "name": "解构",
+                "url": "./posts/javascript/es6/解构.html"
+              },
+              {
+                "name": "Set集合",
+                "url": "./posts/javascript/es6/Set集合.html"
+              },
+              {
+                "name": "Map集合",
+                "url": "./posts/javascript/es6/Map集合.html"
               }
             ]
           }
