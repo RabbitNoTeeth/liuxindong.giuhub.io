@@ -442,6 +442,34 @@
         ]
       },
       {
+        "id": "javascript",
+        "label": "JavaScript",
+        "children": [
+          {
+            "id": "javascript_es6",
+            "label": "ES6",
+            "articles": [
+              {
+                "name": "块级作用域绑定",
+                "url": "./posts/javascript/es6/块级作用域绑定.html"
+              },
+              {
+                "name": "字符串",
+                "url": "./posts/javascript/es6/字符串.html"
+              },
+              {
+                "name": "函数",
+                "url": "./posts/javascript/es6/函数.html"
+              },
+              {
+                "name": "扩展对象的功能性",
+                "url": "./posts/javascript/es6/扩展对象的功能性.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "database",
         "label": "数据库",
         "children": [
