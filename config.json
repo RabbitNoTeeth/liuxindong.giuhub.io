@@ -590,6 +590,46 @@
         ]
       },
       {
+        "id": "cicd",
+        "label": "CI/CD",
+        "children": [
+          {
+            "id": "cicd_jenkins",
+            "label": "Jenkins",
+            "articles": [
+              {
+                "name": "安装启动",
+                "url": "./posts/cicd/jenkins/安装启动.html"
+              },
+              {
+                "name": "全局工具配置",
+                "url": "./posts/cicd/jenkins/全局工具配置.html"
+              },
+              {
+                "name": "配置GitLab",
+                "url": "./posts/cicd/jenkins/配置GitLab.html"
+              },
+              {
+                "name": "配置SSH，执行远程shell及发送部署程序",
+                "url": "./posts/cicd/jenkins/配置SSH，执行远程shell及发送部署程序.html"
+              },
+              {
+                "name": "配置Gradle打包",
+                "url": "./posts/cicd/jenkins/配置Gradle打包.html"
+              },
+              {
+                "name": "配置GitLab WebHook回调，实现自动构建",
+                "url": "./posts/cicd/jenkins/配置GitLab WebHook回调，实现自动构建.html"
+              },
+              {
+                "name": "参数化构建，让构建任务更加灵活",
+                "url": "./posts/cicd/jenkins/参数化构建，让构建任务更加灵活.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "communication",
         "label": "通讯",
         "children": [
