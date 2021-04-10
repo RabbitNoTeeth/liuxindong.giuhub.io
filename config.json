@@ -476,6 +476,26 @@
               {
                 "name": "Map集合",
                 "url": "./posts/javascript/es6/Map集合.html"
+              },
+              {
+                "name": "迭代器和生成器",
+                "url": "./posts/javascript/es6/迭代器和生成器.html"
+              },
+              {
+                "name": "类",
+                "url": "./posts/javascript/es6/类.html"
+              },
+              {
+                "name": "改进的数组功能",
+                "url": "./posts/javascript/es6/改进的数组功能.html"
+              },
+              {
+                "name": "Promise",
+                "url": "./posts/javascript/es6/Promise.html"
+              },
+              {
+                "name": "模块",
+                "url": "./posts/javascript/es6/模块.html"
               }
             ]
           }
