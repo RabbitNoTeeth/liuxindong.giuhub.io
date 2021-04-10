@@ -590,6 +590,22 @@
         ]
       },
       {
+        "id": "communication",
+        "label": "通讯",
+        "children": [
+          {
+            "id": "communication_webrtc",
+            "label": "WebRTC",
+            "articles": [
+              {
+                "name": "简介及基础环境搭建",
+                "url": "./posts/communication/webrtc/简介及基础环境搭建.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "os",
         "label": "操作系统",
         "children": [
