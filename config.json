@@ -438,6 +438,20 @@
                 "url": "./posts/java/netty/《Netty In Action》预置的ChannelHandler和编解码器.html"
               }
             ]
+          },
+          {
+            "id": "spring",
+            "label": "Spring",
+            "articles": [
+              {
+                "name": "图解IOC与DI",
+                "url": "./posts/java/spring/图解IOC与DI.html"
+              },
+              {
+                "name": "Bean生命周期",
+                "url": "./posts/java/spring/Bean生命周期.html"
+              }
+            ]
           }
         ]
       },
