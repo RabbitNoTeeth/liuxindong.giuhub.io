@@ -450,6 +450,10 @@
               {
                 "name": "Bean生命周期",
                 "url": "./posts/java/spring/Bean生命周期.html"
+              },
+              {
+                "name": "Bean装配",
+                "url": "./posts/java/spring/Bean装配.html"
               }
             ]
           }
