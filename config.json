@@ -458,6 +458,34 @@
               {
                 "name": "事务",
                 "url": "./posts/java/spring/事务.html"
+              },
+              {
+                "name": "AOP",
+                "url": "./posts/java/spring/AOP.html"
+              },
+              {
+                "name": "MVC：跨重定向传递数据",
+                "url": "./posts/java/spring/MVC：跨重定向传递数据.html"
+              },
+              {
+                "name": "MVC：全局异常处理",
+                "url": "./posts/java/spring/MVC：全局异常处理.html"
+              },
+              {
+                "name": "发布和使用RMI",
+                "url": "./posts/java/spring/发布和使用RMI.html"
+              },
+              {
+                "name": "使用Hessian、Burlap或者HttpInvoker发布远程服务",
+                "url": "./posts/java/spring/使用Hessian、Burlap或者HttpInvoker发布远程服务.html"
+              },
+              {
+                "name": "发布和使用WebService",
+                "url": "./posts/java/spring/发布和使用WebService.html"
+              },
+              {
+                "name": "Cache缓存",
+                "url": "./posts/java/spring/Cache缓存.html"
               }
             ]
           }
