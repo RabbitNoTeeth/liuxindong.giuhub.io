@@ -454,6 +454,10 @@
               {
                 "name": "Bean装配",
                 "url": "./posts/java/spring/Bean装配.html"
+              },
+              {
+                "name": "事务",
+                "url": "./posts/java/spring/事务.html"
               }
             ]
           }
