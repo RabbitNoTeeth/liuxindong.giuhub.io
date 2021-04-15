@@ -472,6 +472,22 @@
                 "url": "./posts/java/spring/MVC：全局异常处理.html"
               },
               {
+                "name": "MVC：添加Filter过滤器",
+                "url": "./posts/java/spring/MVC：添加Filter过滤器.html"
+              },
+              {
+                "name": "MVC：添加Interrupter拦截器",
+                "url": "./posts/java/spring/MVC：添加Interrupter拦截器.html"
+              },
+              {
+                "name": "MVC：添加Listener监听器",
+                "url": "./posts/java/spring/MVC：添加Listener监听器.html"
+              },
+              {
+                "name": "开发WebSocket",
+                "url": "./posts/java/spring/开发WebSocket.html"
+              },
+              {
                 "name": "发布和使用RMI",
                 "url": "./posts/java/spring/发布和使用RMI.html"
               },
@@ -486,6 +502,18 @@
               {
                 "name": "Cache缓存",
                 "url": "./posts/java/spring/Cache缓存.html"
+              },
+              {
+                "name": "SpringBoot：添加应用监听器",
+                "url": "./posts/java/spring/SpringBoot：添加应用监听器.html"
+              },
+              {
+                "name": "SpringBoot：修改静态资源目录",
+                "url": "./posts/java/spring/SpringBoot：修改静态资源目录.html"
+              },
+              {
+                "name": "SpringBoot：获取spring容器",
+                "url": "./posts/java/spring/SpringBoot：获取spring容器.html"
               }
             ]
           }
