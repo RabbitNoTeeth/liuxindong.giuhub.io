@@ -724,6 +724,22 @@
         ]
       },
       {
+        "id": "versionControl",
+        "label": "版本控制",
+        "children": [
+          {
+            "id": "versionControl_git",
+            "label": "Git",
+            "articles": [
+              {
+                "name": "Git操作大全",
+                "url": "./posts/versioncontrol/git/Git操作大全.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "os",
         "label": "操作系统",
         "children": [
