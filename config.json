@@ -720,6 +720,16 @@
                 "url": "./posts/communication/webrtc/简介及基础环境搭建.html"
               }
             ]
+          },
+          {
+            "id": "communication_gb28181",
+            "label": "GB/T28181",
+            "articles": [
+              {
+                "name": "GB/T28181协议详解",
+                "url": "./posts/communication/gb28181/GB28181协议详解.html"
+              }
+            ]
           }
         ]
       },
