@@ -720,16 +720,6 @@
                 "url": "./posts/communication/webrtc/简介及基础环境搭建.html"
               }
             ]
-          },
-          {
-            "id": "communication_gb28181",
-            "label": "GB/T28181",
-            "articles": [
-              {
-                "name": "GB/T28181协议详解",
-                "url": "./posts/communication/gb28181/GB28181协议详解.html"
-              }
-            ]
           }
         ]
       },
@@ -772,6 +762,16 @@
               {
                 "name": "binsh^M：损坏的解释器 没有那个文件或目录",
                 "url": "./posts/os/linux/binsh^M：损坏的解释器 没有那个文件或目录.html"
+              }
+            ]
+          },
+          {
+            "id": "os_macos",
+            "label": "MacOS",
+            "articles": [
+              {
+                "name": "安装v2rayX",
+                "url": "./posts/os/macos/安装v2rayX.html"
               }
             ]
           }
