@@ -668,6 +668,16 @@
         ]
       },
       {
+        "id": "computervision",
+        "label": "计算机视觉",
+        "articles": [
+          {
+            "name": "OpenCV+Python 开发环境搭建",
+            "url": "./posts/computervision/OpenCV+Python 开发环境搭建.html"
+          }
+        ]
+      },
+      {
         "id": "cicd",
         "label": "CI/CD",
         "children": [
