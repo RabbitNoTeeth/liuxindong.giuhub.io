@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 1 安装python
 
 从[官网](https://www.python.org/downloads/)下载安装，python3或者python2都可。

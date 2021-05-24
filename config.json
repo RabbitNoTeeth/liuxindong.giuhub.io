@@ -674,6 +674,10 @@
           {
             "name": "OpenCV+Python 开发环境搭建",
             "url": "./posts/computervision/OpenCV+Python 开发环境搭建.html"
+          },
+          {
+            "name": "OpenCV+Clion+Windows 开发环境搭建",
+            "url": "./posts/computervision/OpenCV+Clion+Windows 开发环境搭建.html"
           }
         ]
       },
