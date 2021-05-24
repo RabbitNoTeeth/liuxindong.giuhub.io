@@ -682,6 +682,22 @@
         ]
       },
       {
+        "id": "ide",
+        "label": "IDE 开发环境工具",
+        "children": [
+          {
+            "id": "ide_clion",
+            "label": "CLion",
+            "articles": [
+              {
+                "name": "解决CLion输出窗口中文乱码问题",
+                "url": "./posts/ide/clion/解决CLion输出窗口中文乱码问题.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "cicd",
         "label": "CI/CD",
         "children": [
