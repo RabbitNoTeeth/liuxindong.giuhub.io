@@ -692,6 +692,10 @@
               {
                 "name": "解决CLion输出窗口中文乱码问题",
                 "url": "./posts/ide/clion/解决CLion输出窗口中文乱码问题.html"
+              },
+              {
+                "name": "解决CLion无法输入EOF字符问题",
+                "url": "./posts/ide/clion/解决CLion无法输入EOF字符问题.html"
               }
             ]
           }
