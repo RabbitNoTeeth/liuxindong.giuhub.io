@@ -50,6 +50,16 @@
         ]
       },
       {
+        "id": "c",
+        "label": "C",
+        "articles": [
+          {
+            "name": "运算符优先级与求值次序",
+            "url": "./posts/c/运算符优先级与求值次序.html"
+          }
+        ]
+      },
+      {
         "id": "java",
         "label": "Java",
         "children": [
