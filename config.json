@@ -51,7 +51,7 @@
       },
       {
         "id": "c",
-        "label": "C",
+        "label": "C语言",
         "articles": [
           {
             "name": "运算符优先级与求值次序",
@@ -64,6 +64,14 @@
           {
             "name": "静态变量",
             "url": "./posts/c/静态变量.html"
+          },
+          {
+            "name": "寄存器变量",
+            "url": "./posts/c/寄存器变量.html"
+          },
+          {
+            "name": "预处理器",
+            "url": "./posts/c/预处理器.html"
           }
         ]
       },
