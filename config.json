@@ -72,6 +72,10 @@
           {
             "name": "预处理器",
             "url": "./posts/c/预处理器.html"
+          },
+          {
+            "name": "指针",
+            "url": "./posts/c/指针.html"
           }
         ]
       },
