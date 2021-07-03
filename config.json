@@ -76,6 +76,10 @@
           {
             "name": "指针",
             "url": "./posts/c/指针.html"
+          },
+          {
+            "name": "结构",
+            "url": "./posts/c/结构.html"
           }
         ]
       },
