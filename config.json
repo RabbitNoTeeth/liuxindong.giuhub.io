@@ -80,6 +80,14 @@
           {
             "name": "结构",
             "url": "./posts/c/结构.html"
+          },
+          {
+            "name": "存储类",
+            "url": "./posts/c/存储类.html"
+          },
+          {
+            "name": "标准库",
+            "url": "./posts/c/标准库.html"
           }
         ]
       },
