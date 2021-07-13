@@ -704,6 +704,10 @@
               {
                 "name": "修复损坏的Innodb表",
                 "url": "./posts/database/mysql/修复损坏的Innodb表.html"
+              },
+              {
+                "name": "设置root远程登录",
+                "url": "./posts/database/mysql/设置root远程登录.html"
               }
             ]
           }
@@ -848,6 +852,26 @@
               {
                 "name": "安装v2rayX",
                 "url": "./posts/os/macos/安装v2rayX.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "virtualization",
+        "label": "虚拟化",
+        "children": [
+          {
+            "id": "docker",
+            "label": "docker",
+            "articles": [
+              {
+                "name": "docker常用命令",
+                "url": "./posts/virtualization/docker/docker常用命令.html"
+              },
+              {
+                "name": "Dockerfile教程",
+                "url": "./posts/virtualization/docker/Dockerfile教程.html"
               }
             ]
           }
