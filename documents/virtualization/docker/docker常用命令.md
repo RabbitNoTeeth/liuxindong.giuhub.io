@@ -363,4 +363,27 @@ docker build [OPTIONS] PATH | URL | -
 
 
 
+# 4 远程镜像管理
+
+## 4.1 pull
+
+从docker hub（也可以是私服）拉取镜像或者仓库。
+
+```
+docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+```
+
+
+
+**Options:**
+
+```
+  -a, --all-tags                Download all tagged images in the repository
+      --disable-content-trust   Skip image verification (default true)
+      --help                    Print usage
+```
+
+
+
 未完待续...
+
