@@ -878,6 +878,32 @@
         ]
       },
       {
+        "id": "webgis",
+        "label": "WebGIS",
+        "children": [
+          {
+            "id": "geoserver",
+            "label": "GeoServer",
+            "articles": [
+              {
+                "name": "GeoServer环境搭建",
+                "url": "./posts/webgis/geoserver/GeoServer环境搭建.html"
+              }
+            ]
+          },
+          {
+            "id": "postgis",
+            "label": "PostGIS",
+            "articles": [
+              {
+                "name": "PostGIS环境搭建",
+                "url": "./posts/webgis/postgis/PostGIS环境搭建.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "rdManagement",
         "label": "研发管理",
         "children": [
