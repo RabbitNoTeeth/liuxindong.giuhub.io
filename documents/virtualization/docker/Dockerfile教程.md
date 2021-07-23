@@ -208,4 +208,253 @@ COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
 
 
 
+## 3.4 EXPOSE
+
+通知docker该容器在运行时需要监听的端口。
+
+
+
+**格式：**
+
+```
+EXPOSE <port> [<port>/<protocol>...]
+```
+
+
+
+可以对端口协议进行标识，来区分是 UDP 还是 TCP，当不进行特殊标识时，默认为 TCP。如：
+
+```
+EXPOSE 8080				# 监听8080端口，tcp协议
+EXPOSE 8081/tcp			# 监听8081端口，tcp协议
+EXPOSE 8082/udp			# 监听8082端口，udp协议
+EXPOSE 8083/tcp			# 监听8083端口，tcp协议
+EXPOSE 8083/udp			# 监听8083端口，udp协议
+```
+
+
+
+**注意：**
+
+EXPOSE 并没有公开所声明的端口，容器启动后，如果需要允许外部访问，仍需要在 `docker run` 命令时，通过 `-p` 参数来指定。如：
+
+```
+docker run -p 8080:8080 -p 8081:8081/tcp -p 8082:8082/udp ...
+```
+
+
+
+## 3.5 ENV
+
+设置环境变量，这些环境变量在构建阶段对后续的所有指定可见并且可进行行内替换。
+
+
+
+**格式：**
+
+```
+ENV <key>=<value> ...
+```
+
+
+
+如果某些特殊字符不经过转义，那么变量的声明将被打断。可以通过反斜杠或者双引号在变量值中使用空白字符。如：
+
+```
+ENV MY_NAME="John Doe"
+ENV MY_DOG=Rex\ The\ Dog
+ENV MY_CAT=fluffy
+```
+
+
+
+可在一个`ENV`指令中声明多个变量：
+
+```
+ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog \
+    MY_CAT=fluffy
+```
+
+
+
+通过 `ENV` 声明的变量会持久化到该镜像的容器中，可以通过 `docker inspect` 来查看，并且可通过 `docker run --env <key>=<value>` 来修改。
+
+
+
+**建议：**如果只是在构建阶段使用的变量，那么建议通过 `ARG` 指令来声明，否则通过 `ENV` 来声明。
+
+
+
+## 3.6 ADD
+
+拷贝宿主机中文件、文件夹或者远程文件到镜像文件系统中。
+
+
+
+**格式**（2种格式，第2种适用于路径中含有空格的情况）：
+
+> --chown 只对基于linux的镜像生效，对基于windows的镜像不生效。
+
+```
+ADD [--chown=<user>:<group>] <src>... <dest>
+ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
+```
+
+
+
+`<src>`中支持通配符，匹配规则使用go语言的 [filepath.Match](http://golang.org/pkg/path/filepath#Match) 规则。例如：
+
+```
+ADD hom* /mydir/		# 拷贝所有以 hom 开头的文件
+ADD hom?.txt /mydir/ 	# 拷贝所有以 hom 开头的txt文件
+```
+
+
+
+`<dest>`中路径可使用绝对路径或者相对`WORKDIR`的相对路径，如：
+
+```
+ADD test.txt opt/		# 拷贝test.txt到 WORKDIR/opt 目录中
+ADD test.txt /opt/		# 拷贝test.txt到 /opt 目录中
+```
+
+
+
+对于路径中可能包含的特殊字符，需要进行转义，转移规则使用go语言的字符转移规则。如要拷贝 `arr[0].txt` 文件，那么在 ADD 指令中需要这样写：
+
+```
+ADD arr[[]0].txt /mydir/
+```
+
+
+
+所有的文件或者文件夹拷贝到镜像中后，其UID 和GID都为0，可以通过 `--chown` 来指定：
+
+```
+ADD --chown=55:mygroup files* /somedir/
+ADD --chown=bin files* /somedir/
+ADD --chown=1 files* /somedir/
+ADD --chown=10:11 files* /somedir/
+```
+
+
+
+## 3.7 WORKDIR
+
+为 `RUN`, `CMD`, `ENTRYPOINT`, `COPY` 和 `ADD ` 这些指令设置工作目录。
+
+
+
+**格式：**
+
+```
+WORKDIR /path/to/workdir
+```
+
+
+
+`WORKDIR` 指令可声明多次，如果声明时使用的是相对路径，那么将表示相对于上一个 `WORKDIR` 声明的路径，比如下面的示例：
+
+```
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+RUN pwd
+```
+
+`pwd`命令运行后的输出文件所在目录为  `/a/b/c` 。
+
+
+
+`WORKDIR` 指令可以解析 `ENV` 声明的变量，如：
+
+```
+ENV DIRPATH=/path
+WORKDIR $DIRPATH/$DIRNAME
+RUN pwd
+```
+
+`pwd`命令运行后的输出文件所在目录为  `/path/$DIRNAME` 。
+
+
+
+## 3.8 CMD
+
+为容器执行提供默认行为（执行动作）。可以声明多个 `CMD` 指令，但是只有最后一个 `CMD` 指令生效。
+
+
+
+**格式：**
+
+- `CMD ["executable","param1","param2"]` 
+
+  *exec* 格式，首选的格式。
+
+- `CMD ["param1","param2"]` 
+
+  作为 *ENTRYPOINT*  的默认参数。
+
+- `CMD command param1 param2` 
+
+  *shell* 格式。
+
+
+
+exec 和 shell 格式下的 CMD 声明是不同的， 前者必须通过json字符数组的格式来声明，如：
+
+```
+CMD [ "echo", "This is a test." ]					# 在exec下运行
+CMD [ "sh", "-c", "echo", "This is a test." ]		# 在shell下运行
+CMD echo "This is a test."							# 在shell下运行
+```
+
+
+
+## 3.9 RUN
+
+声明在镜像构建阶段要执行的命令，这些命令执行完成后的结果可在后续的构建过程中使用。
+
+
+
+**格式：**
+
+- `RUN <command>` 
+
+  *shell* 格式，命令在shell下执行，Linux 中默认为 `/bin/sh -c` ，Windows中默认为 `cmd /S /C` 。
+
+- `RUN ["executable", "param1", "param2"]` 
+
+  *exec* 格式
+
+
+
+可通过 `\` 来实现换行，如：
+
+```
+RUN /bin/bash -c 'source $HOME/.bashrc; \
+echo $HOME'
+```
+
+等价于
+
+```
+RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
+```
+
+
+
+**注意：**在使用json字符数组格式的声明中，要处理好字符的转义问题，如：
+
+```
+RUN ["c:\windows\system32\tasklist.exe"]
+```
+
+上述声明存在字符未转义问题，正确写法为：
+
+```
+RUN ["c:\\windows\\system32\\tasklist.exe"]
+```
+
+
+
 未完待续...
