@@ -59,7 +59,7 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
    > 通过 -v 将宿主机内的地图数据目录挂载到容器中
 
    ```
-   docker run -p 8080:8080 -v /home/webgis/geoserver/data/:/opt/geoserver/data_dir/data/ -d --name geoserver
+   docker run -p 8080:8080 -v /home/webgis/geoserver/data/:/opt/geoserver/data_dir/data/ --privileged -d --name geoserver
    ```
 
    ② 通过 `docker ps` 查看正在运行的容器
