@@ -64,11 +64,11 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
 
    ① 通过 `docker run` 启动容器
 
-   > -p 8080:8080  																								geoserver默认监听8080端口，映射到宿主机8080端口
+   > -p 8080:8080                                                                                          geoserver默认监听8080端口，映射到宿主机8080端口
    >
-   > -v /home/webgis/geoserver/data:/opt/geoserver/data_dir				                                         挂载geoserver数据目录
+   > -v /home/webgis/geoserver/data:/opt/geoserver/data_dir           挂载geoserver数据目录
    >
-   > --privileged																									 解决挂载目录的权限问题
+   > --privileged                                                                                             解决挂载目录的权限问题
    
    ```
    docker run -p 8080:8080 -v /home/webgis/geoserver/data:/opt/geoserver/data_dir --privileged -d --name geoserver

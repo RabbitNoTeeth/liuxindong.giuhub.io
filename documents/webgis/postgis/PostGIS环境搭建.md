@@ -16,10 +16,16 @@ docker pull postgis/postgis
 
 启动容器：
 
-> POSTGRES_PASSWORD：数据库密码，根据需要自己定义
+> -e POSTGRES_PASSWORD=mysecretpassword                           设置数据库密码
+>
+> -p 5432:5432                                                                                      postgis默认监听5432端口，映射到宿主机5432端口
+>
+> -v /home/webgis/postgis/data:/var/lib/postgresql/data            挂载postgis数据目录
+>
+> --privileged                                                                                         解决挂载目录的权限问题
 
 ```
-docker run --name postgis -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgis/postgis
+docker run --name postgis -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -v /home/webgis/postgis/data:/var/lib/postgresql/data --privileged -d postgis/postgis
 ```
 
 
