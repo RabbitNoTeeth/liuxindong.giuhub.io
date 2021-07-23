@@ -20,6 +20,8 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
 
    因为是构建docker镜像用，此镜像只用于跑geoserver服务，所以直接下载可独立执行的程序包。
 
+   
+
 2. 编写Dockerfile
 
    ```
@@ -34,11 +36,15 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
 
    如果docker所在服务器不能够连接互联网，那么需要提前用能够连接互联网的docker拉取并导出镜像 `adoptopenjdk:8-jdk-hotspot`，然后将此镜像导入到当前docker中。
 
+   
+
 3. 构建docker镜像
 
    ① 将1中下载好的程序包解压并上传至docker所在的服务器中，同时将2中编写的Dockerfile上传至服务器中，将二者放在同一目录下，例如在我构建时，将它们放在了 `/home/docker/images/geoserver` 目录下：
 
    ![](./resources/1.2.png)
+
+   
 
    ② 执行 `docker build` 命令进行构建
 
@@ -46,28 +52,38 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
    docker build -f /home/docker/images/geoserver/Dockerfile -t geoserver:2.19.2
    ```
 
+   
+
    ③ 构建成功后，可通过 `docker images` 查看镜像信息
 
    ![](./resources/1.3.png)
+
+   
 
 4. 启动docker镜像
 
    ① 通过 `docker run` 启动容器
 
-   > geoserver默认监听8080端口
+   > -p 8080:8080  																								geoserver默认监听8080端口，映射到宿主机8080端口
    >
-   > 通过 -v 将宿主机内的地图数据目录挂载到容器中
+   > -v /home/webgis/geoserver/data:/opt/geoserver/data_dir				                                         挂载geoserver数据目录
+   >
+   > --privileged																									 解决挂载目录的权限问题
+   
+   ```
+   docker run -p 8080:8080 -v /home/webgis/geoserver/data:/opt/geoserver/data_dir --privileged -d --name geoserver
+   ```
 
-   ```
-   docker run -p 8080:8080 -v /home/webgis/geoserver/data/:/opt/geoserver/data_dir/data/ --privileged -d --name geoserver
-   ```
+   
 
    ② 通过 `docker ps` 查看正在运行的容器
 
    ![](./resources/1.4.png)
-
+   
+   
+   
    ③ 打开浏览器，访问地址 http://yourhost:8080/geoserver ，出现如下页面说明启动成功。
-
+   
    ![](./resources/1.5.png)
 
 
@@ -79,6 +95,8 @@ geoserver提供了[docker官方镜像](https://hub.docker.com/r/geonode/geoserve
    官方提供2种格式的程序：[Platform Independent Binary（可独立执行的程序包）](http://sourceforge.net/projects/geoserver/files/GeoServer/2.19.2/geoserver-2.19.2-bin.zip)与 [Web Archive（war包，可放入se'rvlet容器中执行）](http://sourceforge.net/projects/geoserver/files/GeoServer/2.19.2/geoserver-2.19.2-war.zip)
 
    ![](./resources/1.1.png)
+
+   
 
 2. 启动geoserver
 
