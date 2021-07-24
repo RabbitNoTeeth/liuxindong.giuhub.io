@@ -364,6 +364,26 @@ docker ps [OPTIONS]
 
 
 
+## 2.2 inspect
+
+返回docker对象（镜像或者容器）的信息
+
+```
+docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+```
+
+
+
+**Options:**
+
+```
+  -f, --format string   Format the output using the given Go template
+  -s, --size            Display total file sizes if the type is container
+      --type string     Return JSON for specified type
+```
+
+
+
 # 3 本地镜像管理
 
 ## 3.1 save
