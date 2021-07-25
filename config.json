@@ -922,6 +922,22 @@
             ]
           }
         ]
+      },
+      {
+        "id": "mathematics",
+        "label": "数学",
+        "children": [
+          {
+            "id": "linearalgebra",
+            "label": "线性代数",
+            "articles": [
+              {
+                "name": "行列式",
+                "url": "./posts/mathematics/linearalgebra/行列式.html"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
