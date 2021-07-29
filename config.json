@@ -888,6 +888,10 @@
               {
                 "name": "地理信息系统概述",
                 "url": "./posts/gis/basics/地理信息系统概述.html"
+              },
+              {
+                "name": "地理信息空间参考系统",
+                "url": "./posts/gis/basics/地理信息空间参考系统.html"
               }
             ]
           },
