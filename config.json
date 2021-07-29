@@ -878,26 +878,42 @@
         ]
       },
       {
-        "id": "webgis",
-        "label": "WebGIS",
+        "id": "gis",
+        "label": "GIS",
         "children": [
           {
-            "id": "geoserver",
-            "label": "GeoServer",
+            "id": "gis_basics",
+            "label": "地理信息系统概论",
             "articles": [
               {
-                "name": "GeoServer环境搭建",
-                "url": "./posts/webgis/geoserver/GeoServer环境搭建.html"
+                "name": "地理信息系统概述",
+                "url": "./posts/gis/basics/地理信息系统概述.html"
               }
             ]
           },
           {
-            "id": "postgis",
-            "label": "PostGIS",
-            "articles": [
+            "id": "webgis",
+            "label": "WebGIS",
+            "children": [
               {
-                "name": "PostGIS环境搭建",
-                "url": "./posts/webgis/postgis/PostGIS环境搭建.html"
+                "id": "geoserver",
+                "label": "GeoServer",
+                "articles": [
+                  {
+                    "name": "GeoServer环境搭建",
+                    "url": "./posts/gis/webgis/geoserver/GeoServer环境搭建.html"
+                  }
+                ]
+              },
+              {
+                "id": "postgis",
+                "label": "PostGIS",
+                "articles": [
+                  {
+                    "name": "PostGIS环境搭建",
+                    "url": "./posts/gis/webgis/postgis/PostGIS环境搭建.html"
+                  }
+                ]
               }
             ]
           }
