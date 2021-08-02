@@ -1,0 +1,749 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc {
+    left: 20px;
+    top: 10px;
+    bottom: 10px;
+    max-width: 300px;
+    overflow-y: auto;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+</style><title>地理空间数据的组成与特征</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3"><a class="md-toc-inner" href="#1-空间数据">1 空间数据</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" href="#11-定义">1.1 定义</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n196"><a class="md-toc-inner" href="#12-特征">1.2 特征</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n216"><a class="md-toc-inner" href="#13-分类">1.3 分类</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n241"><a class="md-toc-inner" href="#131-图形数据">1.3.1 图形数据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n356"><a class="md-toc-inner" href="#132-图像数据">1.3.2 图像数据</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n422"><a class="md-toc-inner" href="#2-矢量数据">2 矢量数据</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n424"><a class="md-toc-inner" href="#21-基本概念">2.1 基本概念</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n431"><a class="md-toc-inner" href="#22-数据编码">2.2 数据编码</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n507"><a class="md-toc-inner" href="#23-数据压缩">2.3 数据压缩</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n543"><a class="md-toc-inner" href="#24-数据变换">2.4 数据变换</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n562"><a class="md-toc-inner" href="#3-栅格数据">3 栅格数据</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n564"><a class="md-toc-inner" href="#31-基本概念">3.1 基本概念</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n591"><a class="md-toc-inner" href="#32-数据存储">3.2 数据存储</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n599"><a class="md-toc-inner" href="#33-数据压缩">3.3 数据压缩</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n624"><a class="md-toc-inner" href="#34-数据运算">3.4 数据运算</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n626"><a class="md-toc-inner" href="#341-基本运算">3.4.1 基本运算</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n627"><a class="md-toc-inner" href="#342-宏运算">3.4.2 宏运算</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n782"><a class="md-toc-inner" href="#4-矢量和栅格数据的比较">4 矢量和栅格数据的比较</a></span></p></div><p><span>参考资料：</span></p><ul><li><a href='./resources/pdf/第三讲 地理空间数据的组成与特征（第一节）.pdf'><span>第三讲 地理空间数据的组成与特征（第一节）</span></a></li></ul><ul><li><a href='./resources/pdf/第三讲 地理空间数据的组成与特征（第二节）.pdf'><span>第三讲 地理空间数据的组成与特征（第二节）</span></a></li></ul><ul><li><a href='./resources/pdf/第三讲 地理空间数据的组成与特征（第三节）.pdf'><span>第三讲 地理空间数据的组成与特征（第三节）</span></a></li></ul><ul><li><a href='./resources/pdf/第三讲 地理空间数据的组成与特征（第四节）.pdf'><span>第三讲 地理空间数据的组成与特征（第四节）</span></a></li></ul><p>&nbsp;</p><h1 id='1-空间数据'><span>1 空间数据</span></h1><h2 id='11-定义'><span>1.1 定义</span></h2><p><strong><span>空间对象：</span></strong><span>是指GIS处理的客体，是现实世界中客观存在的实体或现象。空间对象可以抽象成点、线、面和体等多种数据类型及其组合。</span></p><p><img src="./resources/3.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>点对象：</span></strong><span>相对集中于一个较小范围，且按比例尺缩小后仅能呈现点状分布的实体或现象。</span></p><p><img src="./resources/3.2.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>线对象：</span></strong><span>呈线状或带状分布的实体或动态现象。</span></p><p><img src="./resources/3.3.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>面对象：</span></strong><span>分布于较大范围，且按比例尺缩小后仍能明确显示其轮廓的实体或对象。</span></p><p><img src="./resources/3.4.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>体对象：</span></strong><span>通常用来表示人工或自然的具有长、宽、高的三维目标。</span></p><p><img src="./resources/3.5.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>地理数据：</span></strong><span>表示地理位置、分布特点的自然现象和社会现象的诸要素文件。它包括自然地理数据和社会经济数据。</span></p><p><img src="./resources/3.6.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='12-特征'><span>1.2 特征</span></h2><ol><li><p><span>空间特征</span></p><p><span>指空间物体的几何特征以及拓扑关系。</span></p></li><li><p><span>属性特征</span></p><p><span>与空间现象的属性信息相关联。</span></p></li><li><p><span>时间特征</span></p><p><span>地理空间数据是动态的信息。</span></p></li></ol><p>&nbsp;</p><h2 id='13-分类'><span>1.3 分类</span></h2><p><span>根据数据来源，地理空间数据可分为以下四类：</span></p><ol><li><p><span>图形数据</span></p><p><span>数字化的数据。</span></p></li><li><p><span>图像数据</span></p><p><span>航空和航天数据。</span></p></li><li><p><span>实体属性数据</span></p><p><span>空间实体的专题信息数据。</span></p></li><li><p><span>统计数据</span></p><p><span>描述性数据。</span></p></li></ol><p>&nbsp;</p><h3 id='131-图形数据'><span>1.3.1 图形数据</span></h3><p><strong><span>图形数据的概念：</span></strong></p><p><span>把构成地图要素的点、线、面以点的坐标对（x，y）形式记录下来，形成有规律的数据集合体。</span></p><p><img src="./resources/3.7.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图形数据的来源：</span></strong></p><ul><li><span>纸质地图数字化</span></li><li><span>空间分析</span></li><li><span>外业测量</span></li><li><span>图像数据转换</span></li></ul><p>&nbsp;</p><p><strong><span>图形数据的表达：</span></strong></p><p><img src="./resources/3.8.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图形数据的组织：</span></strong></p><p><img src="./resources/3.9.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图形数据的比例尺：</span></strong></p><p><span>比例尺反应了制图区域和地图的比例关系。地图上某线段的长度与实地相应线段的水平长度之比，成为地图比例尺。</span></p><p><img src="./resources/3.10.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图形数据的拓扑结构：</span></strong></p><p><span>拓扑结构是指基本要素点、线、面和体之间具有邻接、关联和包含的拓扑关系，与长度、面积无关。</span></p><p><img src="./resources/3.11.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>基本拓扑关系：</span></strong></p><ol><li><p><span>拓扑邻接</span></p><p><span>指存在于空间图形中同类要素之间的拓扑关系，如节点邻接关系、多边形邻接关系等。</span></p><p><img src="./resources/3.14.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>拓扑关联</span></p><p><span>指存在于空间图形中不同类要素之间的拓扑关系，如多边形与弧段、弧段与节点之间的关联关系。</span></p><p><img src="./resources/3.12.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>拓扑包含</span></p><p><span>指存在于空间图形中同类但不同级的基本要素之间的拓扑关系。</span></p><p><img src="./resources/3.13.png" referrerpolicy="no-referrer"></p></li></ol><p>&nbsp;</p><h3 id='132-图像数据'><span>1.3.2 图像数据</span></h3><p><strong><span>图像数据的概念：</span></strong></p><p><span>图像数据的最小单元为像元或像素，像元的数值可用于描述客观世界中存在的现象。</span></p><p><img src="./resources/3.15.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图像数据的实质：</span></strong></p><p><span>图像数据的实质是像元的阵列，每个像元由行列号确定其位置，且具有实体属性的编码值。</span></p><p><img src="./resources/3.16.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>空间分辨率：</span></strong></p><p><span>指像元所代表的地面范围的大小，即扫描仪的瞬时视场，或地面物体能分辨的最小单元。</span></p><p><img src="./resources/3.17.png" referrerpolicy="no-referrer"></p><p><img src="./resources/3.18.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图像数据的表达：</span></strong></p><p><img src="./resources/3.19.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>图像数据的组织形式：</span></strong></p><ol><li><p><span>面向栅格单元的组织方式</span></p><p><span>以不同层中对应于同一像元位置上的各个属性值表示为一个数组。</span></p></li><li><p><span>面向地理实体</span></p><p><span>以多边形为单位，记录属性值及组成多边形的各个像元坐标。</span></p></li><li><p><span>以“层”方式存储</span></p><p><span>以层为基础，每层以像元为序，记录其坐标和属性值。</span></p></li></ol><p>&nbsp;</p><p><strong><span>图像数据的方向表达：</span></strong></p><p><img src="./resources/3.20.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h1 id='2-矢量数据'><span>2 矢量数据</span></h1><h2 id='21-基本概念'><span>2.1 基本概念</span></h2><p><span>矢量数据是指通过记录地理实体坐标的方式精确地表示点、线、面等实体地空间位置和形状。</span></p><p><img src="./resources/3.21.png" referrerpolicy="no-referrer"></p><p><img src="./resources/3.22.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='22-数据编码'><span>2.2 数据编码</span></h2><p><span>把需要加工处理的信息，根据一定的数据结构和目标的定性特征，用特定的代码或编码字符来表示，以便于计算机识别和管理。</span></p><p>&nbsp;</p><p><strong><span>数据编码方法：</span></strong></p><ol><li><p><span>坐标序列法</span></p><p><span>任何点、线、面实体都可以用某一坐标体系中的坐标点坐标（x，y）来表示。</span></p><p><img src="./resources/3.23.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>树状索引编码法</span></p><p><span>采用树状索引以减少数据冗余并间接表示邻域信息。</span></p><p><img src="./resources/3.24.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>拓扑结构编码法</span></p><p><span>输入数据的同时输入拓扑连接关系，从一系列相互关联的链中建立拓扑结构，解决多边形嵌套和邻域关系。</span></p><p><img src="./resources/3.25.png" referrerpolicy="no-referrer"></p></li></ol><p>&nbsp;</p><h2 id='23-数据压缩'><span>2.3 数据压缩</span></h2><p><span>从所取得的矢量数据集合中抽出一个子集作为一个新的数据源，在规定的精度范围内最好地逼近原集合，而又取得尽可能大的压缩比。</span></p><p><img src="./resources/3.26.png" referrerpolicy="no-referrer"></p><p><img src="./resources/3.27.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>数据压缩方法：</span></strong></p><ol><li><span>间隔取点法</span></li><li><span>间隔取点法 - 按距离取点</span></li><li><span>垂距法</span></li><li><span>偏角法</span></li><li><span>光栏法</span></li><li><span>道格拉斯 - 普克法</span></li></ol><p>&nbsp;</p><h2 id='24-数据变换'><span>2.4 数据变换</span></h2><ol><li><span>平移变换</span></li><li><span>比例变换</span></li><li><span>旋转变换</span></li><li><span>错位变换</span></li></ol><p>&nbsp;</p><h1 id='3-栅格数据'><span>3 栅格数据</span></h1><h2 id='31-基本概念'><span>3.1 基本概念</span></h2><p>&nbsp;</p><p><strong><span>栅格数据：</span></strong><span>是指把空间分割成统一的尺寸与形状（栅格或格子）的一种空间填充数据结构，整个区域由栅格单元（像元或像素）组成。通过分层表示不同种类的信息，每层只能描述一种信息。</span></p><p><img src="./resources/3.28.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>栅格数据的获取：</span></strong></p><p><img src="./resources/3.29.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='32-数据存储'><span>3.2 数据存储</span></h2><p>&nbsp;</p><p><strong><span>栅格单元位置和属性：</span></strong><span>每个栅格单元都有自己的位置和属性值。</span></p><p><img src="./resources/3.30.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>栅格单元地理坐标的推算：</span></strong></p><p><img src="./resources/3.31.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='33-数据压缩'><span>3.3 数据压缩</span></h2><p><span>数据压缩方法：</span></p><ol><li><p><span>长度编码法</span></p><p><span>从左至右，从上至下扫描栅格数据，记录属性值及相同的栅格数据。</span></p><p><img src="./resources/3.32.png" referrerpolicy="no-referrer"></p><p><span>缺点：</span></p><ul><li><span>每行长度不同，在数据差异大时较少使用</span></li></ul><p>&nbsp;</p></li><li><p><span>改变扫描顺序法</span></p><p><span>迂回式的读取方式，省去每次跳回每行开始处的时间，节省扫描时间。</span></p><p><img src="./resources/3.33.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>链式编码法</span></p><p><span>又称边界链码法，多边形的边界可由某一原点开始并按某些基本方向确定的单位矢量链。</span></p><p><img src="./resources/3.34.png" referrerpolicy="no-referrer"></p><p><span>优点：</span></p><ul><li><span>具有很强的压缩能力。</span></li></ul><ul><li><span>具有一定的运算能力，如周长、面积等。</span></li></ul><p><span>缺点：</span></p><ul><li><span>难以实现叠加运算。</span></li></ul><ul><li><span>局部修改将改变整体结构，效率低。</span></li></ul><ul><li><span>相邻边界重复存储。</span></li></ul><p>&nbsp;</p></li><li><p><span>游程长度编码法</span></p><p><span>按行的顺序存储多边形内各个像元的序号，即在某行上从左至右存储该多边形的始末像元序号。</span></p><p><img src="./resources/3.35.png" referrerpolicy="no-referrer"></p><p><span>特点：</span></p><ul><li><span>在许多相邻像元属性值相同的基础上，压缩效率更高。</span></li></ul><ul><li><span>在进行网格加密时，数据量没有明显的增加。</span></li></ul><ul><li><span>易于检索、叠加、合并等操作。</span></li></ul><ul><li><span>压缩和解压处理工作都有所增加。</span></li></ul><p>&nbsp;</p></li><li><p><span>块式编码法</span></p><p><span>将游程长度编码扩大到二维的情况，把多边形范围划分成由像元组成的正方形，然后对各个正方形进行编码。</span></p><p><img src="./resources/3.36.png" referrerpolicy="no-referrer"></p><p><span>特点：</span></p><ul><li><span>所能包含的正放心越大，边界越简单，编码的效果越好。</span></li></ul><ul><li><span>在合并、插入、检查延展性、计算面积等操作时有明显的优越性。</span></li></ul><ul><li><span>对不适应的运算方式，必须再转换成简单数据形式才能顺利进行。</span></li></ul><p>&nbsp;</p></li><li><p><span>四叉树编码法</span></p><p><span>将 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.279ex" height="1.528ex" role="img" focusable="false" viewBox="0 -675.5 1007.3 675.5" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-31-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-31-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-31-TEX-N-32"></use></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-31-TEX-I-1D45B"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi>n</mi></msup></math></mjx-assistive-mml></mjx-container><script type="math/tex">2^n</script><span> x </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.279ex" height="1.528ex" role="img" focusable="false" viewBox="0 -675.5 1007.3 675.5" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-31-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-31-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-31-TEX-N-32"></use></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-31-TEX-I-1D45B"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi>n</mi></msup></math></mjx-assistive-mml></mjx-container><script type="math/tex">2^n</script><span> 像元阵列的区域，逐步分解成包含单一类型的方形区域，最小的方形区域为一个像元。</span></p><p><img src="./resources/3.37.png" referrerpolicy="no-referrer"></p><p><span>优点：</span></p><ul><li><span>容易而有效地计算多边形地数量特征。</span></li></ul><ul><li><span>阵列的各个部分分辨率是可变的。</span></li></ul><ul><li><span>与简单栅格编码地相互转换较容易。</span></li></ul><ul><li><span>多边形中嵌套不同类型小多边形地表示较方便。</span></li></ul><p><span>缺点：</span></p><ul><li><span>转换的不确定性，用同一形状和大小的多边形可能得出多种不同的四叉树结构。</span></li></ul></li></ol><p>&nbsp;</p><h2 id='34-数据运算'><span>3.4 数据运算</span></h2><h3 id='341-基本运算'><span>3.4.1 基本运算</span></h3><ol><li><p><span>平移</span></p><p><img src="./resources/3.38.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>算术组合</span></p><p><span>加减乘除、开方、平方等</span></p><p><img src="./resources/3.39.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>布尔逻辑运算</span></p><p><img src="./resources/3.40.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li></ol><h3 id='342-宏运算'><span>3.4.2 宏运算</span></h3><ol><li><p><span>扩张</span></p><p><span>描述地理事物的扩张，如城市扩张、污染扩散等。</span></p><p><img src="./resources/3.41.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>侵蚀</span></p><p><span>描述地理事物分布或影响范围的缩小，如农田被侵占。</span></p><p><img src="./resources/3.42.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>加粗</span></p><p><img src="./resources/3.43.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li><li><p><span>填充</span></p><p><span>带有边界条件的逐步加粗法。</span></p><p><img src="./resources/3.44.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p></li></ol><h1 id='4-矢量和栅格数据的比较'><span>4 矢量和栅格数据的比较</span></h1><p>&nbsp;</p><p><img src="./resources/3.45.png" referrerpolicy="no-referrer"></p></div></div>
+</body>
+</html>

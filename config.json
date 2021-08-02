@@ -892,6 +892,10 @@
               {
                 "name": "地理信息空间参考系统",
                 "url": "./posts/gis/basics/地理信息空间参考系统.html"
+              },
+              {
+                "name": "地理空间数据的组成与特征",
+                "url": "./posts/gis/basics/地理空间数据的组成与特征.html"
               }
             ]
           },
