@@ -886,16 +886,8 @@
             "label": "地理信息系统概论",
             "articles": [
               {
-                "name": "地理信息系统概述",
-                "url": "./posts/gis/basics/地理信息系统概述.html"
-              },
-              {
-                "name": "地理信息空间参考系统",
-                "url": "./posts/gis/basics/地理信息空间参考系统.html"
-              },
-              {
-                "name": "地理空间数据的组成与特征",
-                "url": "./posts/gis/basics/地理空间数据的组成与特征.html"
+                "name": "《地理信息系统概论（中山大学）》",
+                "url": "./posts/gis/basics/《地理信息系统概论（中山大学）》.html"
               }
             ]
           },
