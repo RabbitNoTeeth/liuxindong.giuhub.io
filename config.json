@@ -883,11 +883,15 @@
         "children": [
           {
             "id": "gis_basics",
-            "label": "地理信息系统概论",
+            "label": "基础知识",
             "articles": [
               {
                 "name": "《地理信息系统概论（中山大学）》",
                 "url": "./posts/gis/basics/《地理信息系统概论（中山大学）》.html"
+              },
+              {
+                "name": "地理空间数据",
+                "url": "./posts/gis/basics/地理空间数据.html"
               }
             ]
           },
