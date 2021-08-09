@@ -916,6 +916,10 @@
                   {
                     "name": "PostGIS环境搭建",
                     "url": "./posts/gis/webgis/postgis/PostGIS环境搭建.html"
+                  },
+                  {
+                    "name": "PostGIS导入、导出shp格式数据",
+                    "url": "./posts/gis/webgis/postgis/PostGIS导入、导出shp格式数据.html"
                   }
                 ]
               }
