@@ -12,13 +12,13 @@
 
 可在开始菜单中找到该工具，如下图：
 
-![](./resources/2.1.PNG)
+![](./resources/2.1.png)
 
 
 
 也可以在PostGIS安装目录中找到该工具，如下图：
 
-![](./resources/2.2.PNG)
+![](./resources/2.2.png)
 
 
 
@@ -26,19 +26,19 @@
 
 点击“View connection details”填写数据库配置
 
-![](./resources/2.3.PNG)
+![](./resources/2.3.png)
 
 
 
 填写数据库配置
 
-![](./resources/2.4.PNG)
+![](./resources/2.4.png)
 
 
 
 连接成功后，日志窗口中将打印成功日志
 
-![](./resources/2.5.PNG)
+![](./resources/2.5.png)
 
 
 
@@ -46,19 +46,19 @@
 
 点击“Add File”按钮，选择shp文件（注意：文件所在路径不能含有中文，否则将导入失败）
 
-![](./resources/2.6.PNG)
+![](./resources/2.6.png)
 
 
 
 文件选择完成，可修改“Table”列来设置将数据导入哪个表中
 
-![](./resources/2.7.PNG)
+![](./resources/2.7.png)
 
 
 
 点击“Options”可设置其他导入属性，如编码等
 
-![](./resources/2.8.PNG)
+![](./resources/2.8.png)
 
 
 
@@ -66,13 +66,13 @@
 
 点击“Import”进行导入
 
-![](./resources/2.9.PNG)
+![](./resources/2.9.png)
 
 
 
 导入成功后，日志窗口将打印成功日志
 
-![](./resources/2.10.PNG)
+![](./resources/2.10.png)
 
 
 
@@ -137,13 +137,13 @@ shp2pgsql -c C:\Users\Lenovo\Desktop\gisdata\hunan.shp | psql -h localhost -U po
 
 可在开始菜单中找到该工具，如下图：
 
-![](./resources/2.1.PNG)
+![](./resources/2.1.png)
 
 
 
 也可以在PostGIS安装目录中找到该工具，如下图：
 
-![](./resources/2.2.PNG)
+![](./resources/2.2.png)
 
 
 
@@ -151,19 +151,19 @@ shp2pgsql -c C:\Users\Lenovo\Desktop\gisdata\hunan.shp | psql -h localhost -U po
 
 点击“View connection details”填写数据库配置
 
-![](./resources/2.3.PNG)
+![](./resources/2.3.png)
 
 
 
 填写数据库配置
 
-![](./resources/2.4.PNG)
+![](./resources/2.4.png)
 
 
 
 连接成功后，日志窗口中将打印成功日志
 
-![](./resources/2.5.PNG)
+![](./resources/2.5.png)
 
 
 
@@ -171,19 +171,19 @@ shp2pgsql -c C:\Users\Lenovo\Desktop\gisdata\hunan.shp | psql -h localhost -U po
 
 点击“Add Table”按钮，选择数据所在表格
 
-![](./resources/2.11.PNG)
+![](./resources/2.11.png)
 
 
 
 表格选择完成，可修改“Filename”列来设置导出文件名称
 
-![](./resources/2.12.PNG)
+![](./resources/2.12.png)
 
 
 
 点击“Options”可设置其他导出属性
 
-![](./resources/2.13.PNG)
+![](./resources/2.13.png)
 
 
 
@@ -191,19 +191,19 @@ shp2pgsql -c C:\Users\Lenovo\Desktop\gisdata\hunan.shp | psql -h localhost -U po
 
 点击“Export”进行导出
 
-![](./resources/2.15.PNG)
+![](./resources/2.15.png)
 
 
 
 选择导出文件位置
 
-![](./resources/2.14.PNG)
+![](./resources/2.14.png)
 
 
 
 导出成功后，日志窗口将打印成功日志
 
-![](./resources/2.16.PNG)
+![](./resources/2.16.png)
 
 
 
