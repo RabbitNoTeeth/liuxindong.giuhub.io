@@ -956,8 +956,8 @@
             "label": "入门",
             "articles": [
               {
-                "name": "图形学中需要具备的线性代数知识",
-                "url": "./posts/computergraphics/introduction/图形学中需要具备的线性代数知识.html"
+                "name": "向量与线性代数",
+                "url": "./posts/computergraphics/introduction/向量与线性代数.html"
               }
             ]
           }
