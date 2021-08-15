@@ -958,6 +958,14 @@
               {
                 "name": "向量与线性代数",
                 "url": "./posts/computergraphics/introduction/向量与线性代数.html"
+              },
+              {
+                "name": "齐次坐标",
+                "url": "./posts/computergraphics/introduction/齐次坐标.html"
+              },
+              {
+                "name": "变换（二维空间）",
+                "url": "./posts/computergraphics/introduction/变换（二维空间）.html"
               }
             ]
           }
