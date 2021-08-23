@@ -1,7 +1,7 @@
 [
   {
     "id": "root",
-    "label": "全部",
+    "label": "所有文章",
     "children": [
       {
         "id": "dataStructure_algorithm",
@@ -970,6 +970,10 @@
               {
                 "name": "变换（三维空间）",
                 "url": "./posts/computergraphics/introduction/变换（三维空间）.html"
+              },
+              {
+                "name": "变换（观测变换）",
+                "url": "./posts/computergraphics/introduction/变换（观测变换）.html"
               }
             ]
           }
