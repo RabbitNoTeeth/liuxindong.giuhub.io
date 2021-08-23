@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="./logo.ico">
-  <title>Bookish</title>
+  <title>刘新冬的博客</title>
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/theme-chalk/index.min.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
@@ -13,52 +13,46 @@
 <div id="app">
   <!--顶部-->
   <div class="header">
-    <div class="header_left">
-      Bookish
-    </div>
-    <div class="header_right">
-      <el-input placeholder="请输入搜索内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px" clearable></el-input>
+    <div style="width: 960px;margin-left: auto;margin-right: auto;text-align: left">
+      <span style="font-size: 24px;font-weight: bold;color: white"><i>LiuXinDong's blog</i></span>
+      <el-input placeholder="请输入搜索内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px;margin-left: 300px" clearable></el-input>
     </div>
   </div>
-  <!--中部-->
-  <div class="center">
-    <div class="center_main">
-      <div class="center_main_left">
-        <el-tree
-            :data="treeData"
-            highlight-current
-            node-key="id"
-            :default-expanded-keys="['root']"
-            :expand-on-click-node="false"
-            @node-click="handleNodeClick"
-        >
-      <span slot-scope="{ node, data }">
-        <span>{{ node.label }}</span>
-        <span>{{ node.isLeaf && data.articles ? ('(' + data.articles.length + ')') : ''}}</span>
-      </span>
-        </el-tree>
+  <div style="width: 960px;margin-left: auto;margin-right: auto;text-align: left;padding-top: 60px;display: flex;height: 95%;box-sizing:border-box;">
+    <div style="width: 250px;position: fixed">
+      <el-tree
+              :data="treeData"
+              highlight-current
+              node-key="id"
+              :default-expanded-keys="['root']"
+              :expand-on-click-node="false"
+              @node-click="handleNodeClick"
+      >
+          <span slot-scope="{ node, data }">
+            <span>{{ node.label }}</span>
+            <span>{{ node.isLeaf && data.articles ? ('(' + data.articles.length + ')') : ''}}</span>
+          </span>
+      </el-tree>
+      <!--<div style="padding-top: 20px">
+        // 放上github
+      </div>-->
+    </div>
+    <div style="flex: 1;height: 100%;padding-left: 270px">
+      <div class="center_main_right_num">
+        <span>共&nbsp;<b>{{articles.length}}</b>&nbsp;条</span>
       </div>
-      <div class="center_main_right">
-        <div class="center_main_right_num">
-          <span>共&nbsp;<b>{{articles.length}}</b>&nbsp;条</span>
-        </div>
-        <div class="center_main_right_article" v-for="(article, index) in articles" :key="index">
-          <p>
-            <a class="center_main_right_article_title" :href="article.url" target="_blank">
-              {{index + 1}}.&nbsp;&nbsp;{{article.name}}
-            </a>
-          </p>
-          <p class="center_main_right_article_date">
-            <i class="el-icon-collection-tag"></i>
-            <span>&nbsp;{{article.classifyName.substring(5)}}</span>
-          </p>
-        </div>
+      <div class="center_main_right_article" v-for="(article, index) in articles" :key="index">
+        <p>
+          <a class="center_main_right_article_title" :href="article.url" target="_blank">
+            {{index + 1}}.&nbsp;&nbsp;{{article.name}}
+          </a>
+        </p>
+        <p class="center_main_right_article_date">
+          <i class="el-icon-collection-tag"></i>
+          <span>&nbsp;{{article.classifyName.substring(5)}}</span>
+        </p>
       </div>
     </div>
-  </div>
-  <!--底部-->
-  <div class="footer">
-    <span>冀ICP备18007028号</span>
   </div>
 </div>
 </body>
