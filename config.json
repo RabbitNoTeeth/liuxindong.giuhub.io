@@ -966,6 +966,10 @@
               {
                 "name": "变换（二维空间）",
                 "url": "./posts/computergraphics/introduction/变换（二维空间）.html"
+              },
+              {
+                "name": "变换（三维空间）",
+                "url": "./posts/computergraphics/introduction/变换（三维空间）.html"
               }
             ]
           }
