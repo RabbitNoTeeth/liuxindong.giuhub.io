@@ -1010,6 +1010,28 @@
             ]
           }
         ]
+      },
+      {
+        "id": "kaozheng",
+        "label": "考证",
+        "children": [
+          {
+            "id": "ruankao",
+            "label": "软考",
+            "children": [
+              {
+                "id": "gaoji-xiangmuguanli",
+                "label": "高级-信息系统项目管理师",
+                "articles": [
+                  {
+                    "name": "知识领域与过程组的映射",
+                    "url": "./posts/kaozheng/ruankao/知识领域与过程组的映射.html"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }
