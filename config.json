@@ -804,6 +804,22 @@
         ]
       },
       {
+        "id": "mq",
+        "label": "消息中间件",
+        "children": [
+          {
+            "id": "mq_rabbitmq",
+            "label": "RabbitMQ",
+            "articles": [
+              {
+                "name": "启用web管理页面",
+                "url": "./posts/mq/rabbitmq/启用web管理页面.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "versionControl",
         "label": "版本控制",
         "children": [
