@@ -990,6 +990,10 @@
               {
                 "name": "变换（观测变换）",
                 "url": "./posts/computergraphics/introduction/变换（观测变换）.html"
+              },
+              {
+                "name": "光栅化",
+                "url": "./posts/computergraphics/introduction/光栅化.html"
               }
             ]
           }
