@@ -1029,7 +1029,11 @@
                 "articles": [
                   {
                     "name": "知识领域与过程组的映射",
-                    "url": "./posts/kaozheng/ruankao/知识领域与过程组的映射.html"
+                    "url": "./posts/kaozheng/ruankao/gaoji-xiangmuguanli/知识领域与过程组的映射.html"
+                  },
+                  {
+                    "name": "项目立项管理",
+                    "url": "./posts/kaozheng/ruankao/gaoji-xiangmuguanli/项目立项管理.html"
                   }
                 ]
               }
