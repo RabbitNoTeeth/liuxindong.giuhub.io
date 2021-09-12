@@ -1,21 +1,5 @@
 RabbitMQ自带web管理页面，但是在安装后是默认不启用的，需要手动执行以下命令才可以启动：
 
-
-
-**Windows：**
-
-1. 进入目录 `RabbitMQ安装目录/sbin`
-
-2. 打开命令行，执行
-
-   ```
-   rabbitmq-plugins.bat enable rabbitmq_management
-   ```
-
-   
-
-**Linux：**
-
 1. 进入目录 `RabbitMQ安装目录/sbin`
 
 2. 打开命令行，执行
@@ -23,6 +7,7 @@ RabbitMQ自带web管理页面，但是在安装后是默认不启用的，需要
    ```
    rabbitmq-plugins enable rabbitmq_management
    ```
+
 
 
 
