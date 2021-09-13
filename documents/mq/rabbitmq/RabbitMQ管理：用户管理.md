@@ -6,7 +6,7 @@
 
 
 
-## **创建用户**
+## 创建用户
 
 ```
 rabbitmqctl add_user {user} {password}
@@ -19,7 +19,7 @@ rabbitmqctl add_user {user} {password}
 
 
 
-## **删除用户**
+## 删除用户
 
 ```
 rabbitmqctl delete_user {user}
@@ -31,7 +31,7 @@ rabbitmqctl delete_user {user}
 
 
 
-## **修改密码**
+## 修改密码
 
 ```
 rabbitmqctl change_password {user} {newpassword}
