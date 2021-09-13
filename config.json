@@ -812,8 +812,16 @@
             "label": "RabbitMQ",
             "articles": [
               {
-                "name": "启用web管理页面",
-                "url": "./posts/mq/rabbitmq/启用web管理页面.html"
+                "name": "RabbitMQ管理：Web端管理",
+                "url": "./posts/mq/rabbitmq/RabbitMQ管理：Web端管理.html"
+              },
+              {
+                "name": "RabbitMQ管理：多租户与权限",
+                "url": "./posts/mq/rabbitmq/RabbitMQ管理：多租户与权限.html"
+              },
+              {
+                "name": "RabbitMQ管理：用户管理",
+                "url": "./posts/mq/rabbitmq/RabbitMQ管理：用户管理.html"
               }
             ]
           }
