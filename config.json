@@ -1052,6 +1052,22 @@
             ]
           }
         ]
+      },
+      {
+        "id": "tool_text",
+        "label": "文本工具",
+        "children": [
+          {
+            "id": "markdown_md",
+            "label": "Markdown",
+            "articles": [
+              {
+                "name": "Markdown表情",
+                "url": "./posts/texttool/markdown/Markdown表情.html"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
