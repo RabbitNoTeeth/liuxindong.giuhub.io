@@ -1,4 +1,6 @@
-# 如何插入公式
+[TOC]
+
+**如何插入公式**
 
 $LATEX$ 的数学公式有两种：行中公式和独立公式（行间公式）。行中公式放在文中与其它文字混编，独立公式单独成行。
 
@@ -1238,63 +1240,77 @@ $\bigcup_1^{k} p$
 
 通常使用 `\frac {分子} {分母}` 命令产生一个分数，分数可嵌套。 便捷情况可直接输入 `\frac ab` 来快速生成一个 \frac abba 。 如果分式很复杂，亦可使用 `分子 \over 分母` 命令，此时分数仅有一层。
 
-功能|语法|效果
 
-分数
+
+**分数**
 
 ```
 \frac{2}{4}=0.5
 ```
 
-{\displaystyle {\frac {2}{4}}=0.5}42=0.5
+$\frac{2}{4}=0.5$
 
-小型分数
+
+
+**小型分数**
 
 ```
 \tfrac{2}{4} = 0.5
 ```
 
-{\displaystyle {\tfrac {2}{4}}=0.5}42=0.5
+$\tfrac{2}{4} = 0.5$
 
-连分式（大型嵌套分式）
+
+
+**连分式（大型嵌套分式）**
 
 ```
 \cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} = a
 ```
 
-{\displaystyle {\cfrac {2}{c+{\cfrac {2}{d+{\cfrac {2}{4}}}}}}=a}c+d+4222=a
+$\cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} = a$
 
-大型不嵌套分式
+
+
+**大型不嵌套分式**
 
 ```
-\dfrac{2}{4} = 0.5 \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a
+\dfrac{2}{4} = 0.5, \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a
 ```
 
-{\displaystyle {\dfrac {2}{4}}=0.5\qquad {\dfrac {2}{c+{\dfrac {2}{d+{\dfrac {2}{4}}}}}}=a}42=0.5c+d+4222=a
+$\dfrac{2}{4} = 0.5, \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a$​
 
-二项式系数
+
+
+**二项式系数**
 
 ```
 \dbinom{n}{r}=\binom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}
 ```
 
-{\displaystyle {\dbinom {n}{r}}={\binom {n}{n-r}}=\mathrm {C} _{n}^{r}=\mathrm {C} _{n}^{n-r}}(rn)=(n−rn)=Cnr=Cnn−r
+$\dbinom{n}{r}=\binom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}$
 
-小型二项式系数
+
+
+**小型二项式系数**
 
 ```
 \tbinom{n}{r}=\tbinom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}
 ```
 
-{\displaystyle {\tbinom {n}{r}}={\tbinom {n}{n-r}}=\mathrm {C} _{n}^{r}=\mathrm {C} _{n}^{n-r}}(rn)=(n−rn)=Cnr=Cnn−r
+$\tbinom{n}{r}=\tbinom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}$
 
-大型二项式系数
+
+
+**大型二项式系数**
 
 ```
 \binom{n}{r}=\dbinom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}
 ```
 
-{\displaystyle {\binom {n}{r}}={\dbinom {n}{n-r}}=\mathrm {C} _{n}^{r}=\mathrm {C} _{n}^{n-r}}(rn)=(n−rn)=Cnr=Cnn−r
+$\binom{n}{r}=\dbinom{n}{n-r}=\mathrm{C}_n^r=\mathrm{C}_n^{n-r}$
+
+
 
 在以e为底的指数函数、极限和积分中尽量不要使用 `\frac` 符号：它会使整段函数看起来很怪，而且可能产生歧义。也正是因此它在专业数学排版中几乎从不出现。 横着写这些分式，中间使用斜线间隔 `/` （用斜线代替分数线）。
 
@@ -1306,28 +1322,38 @@ $\bigcup_1^{k} p$
   \hline \\
   e^{i\frac{\pi}2} \quad e^{\frac{i\pi}2}& e^{i\pi/2} \\
   \int_{-\frac\pi2}^\frac\pi2 \sin x\,dx & \int_{-\pi/2}^{\pi/2}\sin x\,dx \\
-  \end{array}Copy to clipboardErrorCopied
+  \end{array}
   ```
 
 - 显示：
 
-  \begin{array}{cc} \mathrm{Bad} & \mathrm{Better} \\ \hline \\ e^{i\frac{\pi}2} \quad e^{\frac{i\pi}2}& e^{i\pi/2} \\ \int_{-\frac\pi2}^\frac\pi2 \sin x\,dx & \int_{-\pi/2}^{\pi/2}\sin x\,dx \\ \end{array}Badei2πe2iπ∫−2π2πsinxdxBettereiπ/2∫−π/2π/2sinxdx
+  $$
+  \begin{array}{cc}
+  \mathrm{Bad} & \mathrm{Better} \\
+  \hline \\
+  e^{i\frac{\pi}2} \quad e^{\frac{i\pi}2}& e^{i\pi/2} \\
+  \int_{-\frac\pi2}^\frac\pi2 \sin x\,dx & \int_{-\pi/2}^{\pi/2}\sin x\,dx \\
+  \end{array}
+  $$
+  
 
-## [矩阵、条件表达式、方程组](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=矩阵、条件表达式、方程组)
+# 矩阵、条件表达式、方程组
 
-语法：
+**语法：**
 
 ```
 \begin{类型}
 公式内容
-\end{类型}Copy to clipboardErrorCopied
+\end{类型}
 ```
 
 类型可以是：矩阵 `matrix` `pmatrix` `bmatrix` `Bmatrix` `vmatrix` `Vmatrix`、条件表达式 `cases`、多行对齐方程式 `aligned`、数组 `array`。
 
 在公式内容中：在每一行中插入 `&` 来指定需要**对齐**的内容，在每行结尾处使用 `\\` **换行**。
 
-### [无框矩阵](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=无框矩阵)
+
+
+## 无框矩阵
 
 在开头使用 `begin{matrix}`，在结尾使用 `end{matrix}`，在中间插入矩阵元素，每个元素之间插入 `&` ，并在每行结尾处使用 `\\` 。
 
@@ -1335,32 +1361,49 @@ $\bigcup_1^{k} p$
 \begin{matrix}
 x & y \\
 z & v
-\end{matrix}Copy to clipboardErrorCopied
+\end{matrix}
 ```
 
-{\displaystyle {\begin{matrix}x&y\\z&v\end{matrix}}}xzyv
+$\begin{matrix}
+x & y \\
+z & v
+\end{matrix}$
 
-### [有框矩阵](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=有框矩阵)
+
+
+## 有框矩阵
 
 在开头将 `matrix` 替换为 `pmatrix` `bmatrix` `Bmatrix` `vmatrix` `Vmatrix` 。
+
+
 
 ```
 \begin{vmatrix}
 x & y \\
 z & v
-\end{vmatrix}Copy to clipboardErrorCopied
+\end{vmatrix}
 ```
 
-{\displaystyle {\begin{vmatrix}x&y\\z&v\end{vmatrix}}}∣∣∣∣∣xzyv∣∣∣∣∣
+$\begin{vmatrix}
+x & y \\
+z & v
+\end{vmatrix}$
+
+
 
 ```
 \begin{Vmatrix}
 x & y \\
 z & v
-\end{Vmatrix}Copy to clipboardErrorCopied
+\end{Vmatrix}
 ```
 
-{\displaystyle {\begin{Vmatrix}x&y\\z&v\end{Vmatrix}}}∥∥∥∥∥xzyv∥∥∥∥∥
+$\begin{Vmatrix}
+x & y \\
+z & v
+\end{Vmatrix}$
+
+
 
 使用 `\cdots` \cdots⋯ , `\ddots` \ddots⋱ , `\vdots` \vdots⋮ 来输入**省略符号**。
 
@@ -1369,42 +1412,64 @@ z & v
 0      & \cdots & 0      \\
 \vdots & \ddots & \vdots \\
 0      & \cdots & 0
-\end{bmatrix}Copy to clipboardErrorCopied
+\end{bmatrix}
 ```
 
-{\displaystyle {\begin{bmatrix}0&\cdots &0\\\vdots &\ddots &\vdots \\0&\cdots &0\end{bmatrix}}}⎣⎢⎢⎡0⋮0⋯⋱⋯0⋮0⎦⎥⎥⎤
+$\begin{bmatrix}
+0      & \cdots & 0      \\
+\vdots & \ddots & \vdots \\
+0      & \cdots & 0
+\end{bmatrix}$
+
+
 
 ```
 \begin{Bmatrix}
 x & y \\
 z & v
-\end{Bmatrix}Copy to clipboardErrorCopied
+\end{Bmatrix}
 ```
 
-{\displaystyle {\begin{Bmatrix}x&y\\z&v\end{Bmatrix}}}{xzyv}
+$\begin{Bmatrix}
+x & y \\
+z & v
+\end{Bmatrix}$
+
+
 
 ```
 \begin{pmatrix}
 x & y \\
 z & v
-\end{pmatrix}Copy to clipboardErrorCopied
+\end{pmatrix}
 ```
 
-{\displaystyle {\begin{pmatrix}x&y\\z&v\end{pmatrix}}}(xzyv)
+$\begin{pmatrix}
+x & y \\
+z & v
+\end{pmatrix}$
 
-### [条件表达式](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=条件表达式)
+
+
+## 条件表达式
 
 ```
 f(n) =
 \begin{cases} 
 n/2,  & \text{if }n\text{ is even} \\
 3n+1, & \text{if }n\text{ is odd}
-\end{cases}Copy to clipboardErrorCopied
+\end{cases}
 ```
 
-{\displaystyle f(n)={\begin{cases}n/2,&{\text{if }}n{\text{ is even}}\\3n+1,&{\text{if }}n{\text{ is odd}}\end{cases}}}f(n)={n/2,3n+1,if n is evenif n is odd
+$f(n) =
+\begin{cases} 
+n/2,  & \text{if }n\text{ is even} \\
+3n+1, & \text{if }n\text{ is odd}
+\end{cases}$
 
-### [多行等式、同余式](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=多行等式、同余式)
+
+
+## 多行等式、同余式
 
 人们经常想要一列整齐且居中的方程式序列。使用 `\begin{aligned}…\end{aligned}`。
 
@@ -1413,45 +1478,48 @@ n/2,  & \text{if }n\text{ is even} \\
 f(x) & = (m+n)^2 \\
      & = m^2+2mn+n^2 \\
 \end{aligned}
-Copy to clipboardErrorCopied
 ```
 
-{\displaystyle {\begin{aligned}f(x)&=(m+n)^{2}\\&=m^{2}+2mn+n^{2}\\\end{aligned}}}f(x)=(m+n)2=m2+2mn+n2
+$\begin{aligned}
+f(x) & = (m+n)^2 \\
+     & = m^2+2mn+n^2 \\
+\end{aligned}$
 
-```
-begin{aligned}
-3^{6n+3}+4^{6n+3} 
-& \equiv (3^3)^{2n+1}+(4^3)^{2n+1}\\  
-& \equiv 27^{2n+1}+64^{2n+1}\\  
-& \equiv 27^{2n+1}+(-27)^{2n+1}\\ 
-& \equiv 27^{2n+1}-27^{2n+1}\\
-& \equiv 0 \pmod{91}\\
-\end{aligned}Copy to clipboardErrorCopied
-```
 
-{\displaystyle {\begin{aligned}3^{6n+3}+4^{6n+3}&\equiv (3^{3})^{2n+1}+(4^{3})^{2n+1}\\&\equiv 27^{2n+1}+64^{2n+1}\\&\equiv 27^{2n+1}+(-27)^{2n+1}\\&\equiv 27^{2n+1}-27^{2n+1}\\&\equiv 0{\pmod {91}}\\\end{aligned}}}36n+3+46n+3≡(33)2n+1+(43)2n+1≡272n+1+642n+1≡272n+1+(−27)2n+1≡272n+1−272n+1≡0(mod91)
 
 ```
 \begin{alignedat}{3}
 f(x) & = (m-n)^2 \\
 f(x) & = (-m+n)^2 \\
      & = m^2-2mn+n^2 \\
-\end{alignedat}Copy to clipboardErrorCopied
+\end{alignedat}
 ```
 
-{\displaystyle {\begin{alignedat}{3}f(x)&=(m-n)^{2}\\f(x)&=(-m+n)^{2}\\&=m^{2}-2mn+n^{2}\\\end{alignedat}}}f(x)f(x)=(m−n)2=(−m+n)2=m2−2mn+n2
+$\begin{alignedat}{3}
+f(x) & = (m-n)^2 \\
+f(x) & = (-m+n)^2 \\
+     & = m^2-2mn+n^2 \\
+\end{alignedat}$
 
-### [方程组](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=方程组)
+
+
+## 方程组
 
 ```
 \begin{cases}
 3x + 5y +  z \\
 7x - 2y + 4z \\
 -6x + 3y + 2z
-\end{cases}Copy to clipboardErrorCopied
+\end{cases}
 ```
 
-{\displaystyle {\begin{cases}3x+5y+z\\7x-2y+4z\\-6x+3y+2z\end{cases}}}⎩⎪⎪⎨⎪⎪⎧3x+5y+z7x−2y+4z−6x+3y+2z
+$\begin{cases}
+3x + 5y +  z \\
+7x - 2y + 4z \\
+-6x + 3y + 2z
+\end{cases}$
+
+
 
 或
 
@@ -1460,58 +1528,70 @@ f(x) & = (-m+n)^2 \\
 3x + 5y +  z \\
 7x - 2y + 4z \\
 -6x + 3y + 2z
-\end{aligned}\right.Copy to clipboardErrorCopied
+\end{aligned}\right.
 ```
 
-\left\{\begin{aligned} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{aligned}\right.⎩⎪⎪⎨⎪⎪⎧3x+5y+z7x−2y+4z−6x+3y+2z
+$\left\{\begin{aligned}
+3x + 5y +  z \\
+7x - 2y + 4z \\
+-6x + 3y + 2z
+\end{aligned}\right.$
 
-## [数组与表格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=数组与表格)
+
+
+# 数组与表格
 
 通常，一个格式化后的表格比单纯的文字或排版后的文字更具有可读性。数组和表格均以 `\begin{array}` 开头，并在其后定义列数及每一列的文本对齐属性，`c` `l` `r` 分别代表居中、左对齐及右对齐。若需要插入垂直分割线，在定义式中插入 `|` ，若要插入水平分割线，在下一行输入前插入 `\hline` 。与矩阵相似，每行元素间均须要插入 `&` ，每行元素以 `\\` 结尾，最后以 `\end{array}` 结束数组。
 
-- 例子：
 
-  ```
-  \begin{array}{c|lcr}
-  n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\
-  \hline
-  1 & 0.24 & 1 & 125 \\
-  2 & -1 & 189 & -8 \\
-  3 & -20 & 2000 & 1+10i
-  \end{array}Copy to clipboardErrorCopied
-  ```
 
-- 显示：
+```
+\begin{array}{c|lcr}
+n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\
+\hline
+1 & 0.24 & 1 & 125 \\
+2 & -1 & 189 & -8 \\
+3 & -20 & 2000 & 1+10i
+\end{array}
+```
 
-  \begin{array}{c|lcr} n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\ \hline 1 & 0.24 & 1 & 125 \\ 2 & -1 & 189 & -8 \\ 3 & -20 & 2000 & 1+10i \end{array}n123左对齐0.24−1−20居中对齐11892000右对齐125−81+10i
+$\begin{array}{c|lcr}
+n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\
+\hline
+1 & 0.24 & 1 & 125 \\
+2 & -1 & 189 & -8 \\
+3 & -20 & 2000 & 1+10i
+\end{array}$
 
-- 例子:
+
 
 ```
 \begin{array}{lcl}
 z        & = & a \\
 f(x,y,z) & = & x + y + z 
-\end{array}Copy to clipboardErrorCopied
+\end{array}
 ```
 
-- 显示：
+$\begin{array}{lcl}
+z        & = & a \\
+f(x,y,z) & = & x + y + z 
+\end{array}$
 
-{\displaystyle {\begin{array}{lcl}z&=&a\\f(x,y,z)&=&x+y+z\end{array}}}zf(x,y,z)==ax+y+z
 
-- 例子:
 
 ```
 \begin{array}{lcr}
 z        & = & a \\
 f(x,y,z) & = & x + y + z    
-\end{array}Copy to clipboardErrorCopied
+\end{array}
 ```
 
-- 显示:
+$\begin{array}{lcr}
+z        & = & a \\
+f(x,y,z) & = & x + y + z    
+\end{array}$
 
-{\displaystyle {\begin{array}{lcr}z&=&a\\f(x,y,z)&=&x+y+z\end{array}}}zf(x,y,z)==ax+y+z
 
-- 例子:
 
 ```
 \begin{array}{ccc}
@@ -1521,976 +1601,762 @@ a & b & S \\
 0&1&1\\
 1&0&1\\
 1&1&0\\
-\end{array}Copy to clipboardErrorCopied
+\end{array}
 ```
 
-- 显示:
+$\begin{array}{ccc}
+a & b & S \\
+\hline
+0&0&1\\
+0&1&1\\
+1&0&1\\
+1&1&0\\
+\end{array}$
 
-{\displaystyle {\begin{array}{ccc}a&b&S\\\hline 0&0&1\\0&1&1\\1&0&1\\1&1&0\\\end{array}}}a0011b0101S1110
 
-### [嵌套数组或表格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=嵌套数组或表格)
+
+## 嵌套数组或表格
 
 多个数组/表格可 **互相嵌套** 并组成一组数组/一组表格。 使用嵌套前必须声明 `$$` 符号。
 
-- 例子：
 
-  ```
-  % outer vertical array of arrays 外层垂直表格
-  \begin{array}{c}
-    % inner horizontal array of arrays 内层水平表格
-    \begin{array}{cc}
-        % inner array of minimum values 内层"最小值"数组
-        \begin{array}{c|cccc}
-        \text{min} & 0 & 1 & 2 & 3\\
-        \hline
-        0 & 0 & 0 & 0 & 0\\
-        1 & 0 & 1 & 1 & 1\\
-        2 & 0 & 1 & 2 & 2\\
-        3 & 0 & 1 & 2 & 3
-        \end{array}
-    &
-        % inner array of maximum values 内层"最大值"数组
-        \begin{array}{c|cccc}
-        \text{max}&0&1&2&3\\
-        \hline
-        0 & 0 & 1 & 2 & 3\\
-        1 & 1 & 1 & 2 & 3\\
-        2 & 2 & 2 & 2 & 3\\
-        3 & 3 & 3 & 3 & 3
-        \end{array}
-    \end{array}
-    % 内层第一行表格组结束
-    \\
-    % inner array of delta values 内层第二行Delta值数组
-        \begin{array}{c|cccc}
-        \Delta&0&1&2&3\\
-        \hline
-        0 & 0 & 1 & 2 & 3\\
-        1 & 1 & 0 & 1 & 2\\
-        2 & 2 & 1 & 0 & 1\\
-        3 & 3 & 2 & 1 & 0
-        \end{array}
-        % 内层第二行表格组结束
-  \end{array}Copy to clipboardErrorCopied
-  ```
 
-- 显示：
+```
+% outer vertical array of arrays 外层垂直表格
+\begin{array}{c}
+  % inner horizontal array of arrays 内层水平表格
+  \begin{array}{cc}
+      % inner array of minimum values 内层"最小值"数组
+      \begin{array}{c|cccc}
+      \text{min} & 0 & 1 & 2 & 3\\
+      \hline
+      0 & 0 & 0 & 0 & 0\\
+      1 & 0 & 1 & 1 & 1\\
+      2 & 0 & 1 & 2 & 2\\
+      3 & 0 & 1 & 2 & 3
+      \end{array}
+  &
+      % inner array of maximum values 内层"最大值"数组
+      \begin{array}{c|cccc}
+      \text{max}&0&1&2&3\\
+      \hline
+      0 & 0 & 1 & 2 & 3\\
+      1 & 1 & 1 & 2 & 3\\
+      2 & 2 & 2 & 2 & 3\\
+      3 & 3 & 3 & 3 & 3
+      \end{array}
+  \end{array}
+  % 内层第一行表格组结束
+  \\
+  % inner array of delta values 内层第二行Delta值数组
+      \begin{array}{c|cccc}
+      \Delta&0&1&2&3\\
+      \hline
+      0 & 0 & 1 & 2 & 3\\
+      1 & 1 & 0 & 1 & 2\\
+      2 & 2 & 1 & 0 & 1\\
+      3 & 3 & 2 & 1 & 0
+      \end{array}
+      % 内层第二行表格组结束
+\end{array}
+```
 
-  % outer vertical array of arrays 外层垂直表格 \begin{array}{c} % inner horizontal array of arrays 内层水平表格 \begin{array}{cc} % inner array of minimum values 内层"最小值"数组 \begin{array}{c|cccc} \text{min} & 0 & 1 & 2 & 3\\ \hline 0 & 0 & 0 & 0 & 0\\ 1 & 0 & 1 & 1 & 1\\ 2 & 0 & 1 & 2 & 2\\ 3 & 0 & 1 & 2 & 3 \end{array} & % inner array of maximum values 内层"最大值"数组 \begin{array}{c|cccc} \text{max}&0&1&2&3\\ \hline 0 & 0 & 1 & 2 & 3\\ 1 & 1 & 1 & 2 & 3\\ 2 & 2 & 2 & 2 & 3\\ 3 & 3 & 3 & 3 & 3 \end{array} \end{array} % 内层第一行表格组结束 \\ % inner array of delta values 内层第二行Delta值数组 \begin{array}{c|cccc} \Delta&0&1&2&3\\ \hline 0 & 0 & 1 & 2 & 3\\ 1 & 1 & 0 & 1 & 2\\ 2 & 2 & 1 & 0 & 1\\ 3 & 3 & 2 & 1 & 0 \end{array} % 内层第二行表格组结束 \end{array}min012300000101112012230123max012300123111232222333333Δ012300123110122210133210
+$% outer vertical array of arrays 外层垂直表格
+\begin{array}{c}
+  % inner horizontal array of arrays 内层水平表格
+  \begin{array}{cc}
+      % inner array of minimum values 内层"最小值"数组
+      \begin{array}{c|cccc}
+      \text{min} & 0 & 1 & 2 & 3\\
+      \hline
+      0 & 0 & 0 & 0 & 0\\
+      1 & 0 & 1 & 1 & 1\\
+      2 & 0 & 1 & 2 & 2\\
+      3 & 0 & 1 & 2 & 3
+      \end{array}
+  &
+      % inner array of maximum values 内层"最大值"数组
+      \begin{array}{c|cccc}
+      \text{max}&0&1&2&3\\
+      \hline
+      0 & 0 & 1 & 2 & 3\\
+      1 & 1 & 1 & 2 & 3\\
+      2 & 2 & 2 & 2 & 3\\
+      3 & 3 & 3 & 3 & 3
+      \end{array}
+  \end{array}
+  % 内层第一行表格组结束
+  \\
+  % inner array of delta values 内层第二行Delta值数组
+      \begin{array}{c|cccc}
+      \Delta&0&1&2&3\\
+      \hline
+      0 & 0 & 1 & 2 & 3\\
+      1 & 1 & 0 & 1 & 2\\
+      2 & 2 & 1 & 0 & 1\\
+      3 & 3 & 2 & 1 & 0
+      \end{array}
+      % 内层第二行表格组结束
+\end{array}$
 
-### [用数组实现带分割符号的矩阵](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=用数组实现带分割符号的矩阵)
 
-- 例子：
 
-  ```
-  $$
-  \left[
-    \begin{array}{cc|c}
-      1&2&3\\
-      4&5&6
-    \end{array}
-  \right]
-  $$Copy to clipboardErrorCopied
-  ```
+## 用数组实现带分割符号的矩阵
 
-- 显示：
+```
+$$
+\left[
+  \begin{array}{cc|c}
+    1&2&3\\
+    4&5&6
+  \end{array}
+\right]
+$$
+```
 
-  \left[ \begin{array}{cc|c} 1&2&3\\ 4&5&6 \end{array} \right][142536]
+$$$
+\left[
+  \begin{array}{cc|c}
+    1&2&3\\
+    4&5&6
+  \end{array}
+\right]
+$$$
 
 其中 `cc|c` 代表在一个三列矩阵中的第二和第三列之间插入分割线。
 
-## [字体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=字体)
 
-### [希腊字母](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=希腊字母)
+
+# 字体
+
+## 希腊字母
 
 输入 `\小写希腊字母英文全称` 和 `\首字母大写希腊字母英文全称` 来分别输入小写和大写希腊字母。
 
-```
-\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta
-```
+| syntax   | preview    | syntax   | preview    |
+| -------- | ---------- | -------- | ---------- |
+| \Alpha   | $\Alpha$   | \alpha   | $\alpha$   |
+| \Beta    | $\Beta$    | \beta    | $\beta$    |
+| \Delta   | $\Delta$   | \delta   | $\delta$   |
+| \Epsilon | $\Epsilon$ | \epsilon | $\epsilon$ |
+| \Zeta    | $\Zeta$    | \zeta    | $\zeta$    |
+| \Eta     | $\Eta$     | \eta     | $\eta$     |
+| \Theta   | $\Theta$   | \theta   | $\theta$   |
+| \Iota    | $\Iota$    | \iota    | $\iota$    |
+| \Kappa   | $\Kappa$   | \kappa   | $\kappa$   |
+| \Lambda  | $\Lambda$  | \lambda  | $\lambda$  |
+| \Mu      | $\Mu$      | \mu      | $\mu$      |
+| \Nu      | $\Nu$      | \nu      | $\nu$      |
+| \Xi      | $\Xi$      | \xi      | $\xi$      |
+| \Omicron | $\Omicron$ | \omicron | $\omicron$ |
+| \Pi      | $\Pi$      | \pi      | $\pi$      |
+| \Rho     | $\Rho$     | \rho     | $\rho$     |
+| \Sigma   | $\Sigma$   | \sigma   | $\sigma$   |
+| \Tau     | $\Tau$     | \tau     | $\tau$     |
+| \Upsilon | $\Upsilon$ | \upsilon | $\upsilon$ |
+| \Phi     | $\Phi$     | \phi     | $\phi$     |
+| \Chi     | $\Chi$     | \chi     | $\chi$     |
+| \Psi     | $\Psi$     | \psi     | $\psi$     |
+| \Omega   | $\Omega$   | \omega   | $\omega$   |
 
-{\displaystyle \mathrm {A} \mathrm {B} \Gamma \Delta \mathrm {E} \mathrm {Z} \mathrm {H} \Theta }ABΓΔEZHΘ
 
-```
-\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi
-```
-
-{\displaystyle \mathrm {I} \mathrm {K} \Lambda \mathrm {M} \mathrm {N} \mathrm {O} \Xi \Pi }IKΛMNOΞΠ
-
-```
-\Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega
-```
-
-{\displaystyle \mathrm {P} \Sigma \mathrm {T} \Upsilon \Phi \mathrm {X} \Psi \Omega }PΣTΥΦXΨΩ
-
-```
-\alpha \beta \gamma \delta \epsilon \zeta \eta \theta
-```
-
-{\displaystyle \alpha \beta \gamma \delta \epsilon \zeta \eta \theta}αβγδϵζηθ
-
-```
-\iota \kappa \lambda \mu \nu \omicron \xi \pi
-```
-
-{\displaystyle \iota \kappa \lambda \mu \nu \mathrm {o} \xi \pi }ικλμνoξπ
-
-```
-\rho \sigma \tau \upsilon \phi \chi \psi \omega
-```
-
-{\displaystyle \rho \sigma \tau \upsilon \phi \chi \psi \omega}ρστυϕχψω
 
 **部分字母有变量专用形式，以 `\var-` 开头。**
 
 ```
-\varepsilon \digamma \varkappa \varpi
+\varepsilon, \digamma, \varkappa, \varpi
 ```
 
-{\displaystyle \varepsilon \digamma \varkappa \varpi}εϝϰϖ
+$\varepsilon, \digamma, \varkappa, \varpi$​
+
+
 
 ```
-\varrho \varsigma \vartheta \varphi
+\varrho, \varsigma, \vartheta, \varphi
 ```
 
-{\displaystyle \varrho \varsigma \vartheta \varphi}ϱςϑφ
+$\varrho, \varsigma, \vartheta, \varphi$
 
-### [希伯来符号](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=希伯来符号)
+
+
+## 希伯来符号
 
 ```
-\aleph \beth \gimel \daleth
+\aleph, \beth, \gimel, \daleth
 ```
 
-{\displaystyle \aleph \beth \gimel \daleth}ℵℶℷℸ
+$\aleph, \beth, \gimel, \daleth$
 
-### [部分字体的简称](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=部分字体的简称)
+
+
+## 部分字体的简称
 
 若要对公式的某一部分字符进行字体转换，可以用 `{\字体 {需转换的部分字符}}` 命令，其中 `\字体` 部分可以参照下表选择合适的字体。一般情况下，公式默认为意大利体 italicitalic 。
 
-|输入|说明|显示|输入|说明|显示| |:--:|:--:|:--:|:--:|:--:|:--:|:--:| |\rm|罗马体|\rm{Sample}Sample|\cal|花体|\cal{SAMPLE}\calSAMPLE| |\it|意大利体|\it{Sample}*S**a**m**p**l**e*|\Bbb|黑板粗体|\Bbb{SAMPLE}SAMPLE| |\bf|粗体|\bf{Sample}**S****a****m****p****l****e**|\mit|数学斜体|\mit{SAMPLE}\mitSAMPLE| |\sf|等线体|\sf{Sample}Sample|\scr|手写体|\scr{SAMPLE}\scrSAMPLE| |\tt|打字机体|\tt{Sample}Sample|\frak|旧德式字体|\frak{Sample}Sample|
 
-### [所有字体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=所有字体)
 
-#### [黑板报粗体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=黑板报粗体)
+**罗马体**
+
+```
+\rm{Sample}
+```
+
+$\rm{Sample}$
+
+
+
+**花体**
+
+```
+\cal{Sample}
+```
+
+$\cal{Sample}$
+
+
+
+**意大利体**
+
+```
+\it{Sample}
+```
+
+$\it{Sample}$
+
+
+
+**黑板粗体**
+
+```
+\Bbb{Sample}
+```
+
+$\Bbb{Sample}$
+
+
+
+**粗体**
+
+```
+\bf{Sample}
+```
+
+$\bf{Sample}$
+
+
+
+**数学斜体**
+
+```
+\mit{Sample}
+```
+
+$\mit{Sample}$
+
+
+
+**等线体**
+
+```
+\sf{Sample}
+```
+
+$\sf{Sample}$
+
+
+
+**手写体**
+
+```
+\scr{Sample}
+```
+
+$\scr{Sample}$
+
+
+
+**打字机体**
+
+```
+\tt{Sample}
+```
+
+$\tt{Sample}$
+
+
+
+**旧德式字体**
+
+```
+\frak{Sample}
+```
+
+$\frak{Sample}$
+
+
+
+## 所有字体
+
+
+
+**黑板报粗体**
 
 ```
 \mathbb{ABCDEFGHI}
 ```
 
-{\displaystyle \mathbb {ABCDEFGHI} }ABCDEFGHI
+$\mathbb{ABCDEFGHI}$
 
-```
-\mathbb{JKLMNOPQR}
-```
 
-{\displaystyle \mathbb {JKLMNOPQR} }JKLMNOPQR
 
-```
-\mathbb{STUVWXYZ}
-```
-
-{\displaystyle \mathbb {STUVWXYZ} }STUVWXYZ
-
-#### [粗体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=粗体)
+**粗体**
 
 ```
 \mathbf{ABCDEFGHI}
 ```
 
-{\displaystyle \mathbf {ABCDEFGHI} }**A****B****C****D****E****F****G****H****I**
+$\mathbf{ABCDEFGHI}$
 
-```
-\mathbf{JKLMNOPQR}
-```
 
-{\displaystyle \mathbf {JKLMNOPQR} }**J****K****L****M****N****O****P****Q****R**
 
-```
-\mathbf{STUVWXYZ}
-```
-
-{\displaystyle \mathbf {STUVWXYZ} }**S****T****U****V****W****X****Y****Z**
-
-```
-\mathbf{abcdefghijklm}
-```
-
-{\displaystyle \mathbf {abcdefghijklm} }**a****b****c****d****e****f****g****h****i****j****k****l****m**
-
-```
-\mathbf{nopqrstuvwxyz}
-```
-
-{\displaystyle \mathbf {nopqrstuvwxyz} }**n****o****p****q****r****s****t****u****v****w****x****y****z**
-
-```
-\mathbf{0123456789}
-```
-
-{\displaystyle \mathbf {0123456789} }**0****1****2****3****4****5****6****7****8****9**
-
-#### [粗体希腊字母](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=粗体希腊字母)
+**粗体希腊字母**
 
 ```
 \boldsymbol{\Alpha\Beta\Gamma\Delta\Epsilon\Zeta\Eta\Theta}
 ```
 
-{\displaystyle {\boldsymbol {\mathrm {A} \mathrm {B} \Gamma \Delta \mathrm {E} \mathrm {Z} \mathrm {H} \Theta }}}AB**Γ****Δ**EZH**Θ**
+$\boldsymbol{\Alpha\Beta\Gamma\Delta\Epsilon\Zeta\Eta\Theta}$
 
-```
-\boldsymbol{\Iota\Kappa\Lambda\Mu\Nu\Xi\Pi\Rho}
-```
 
-{\displaystyle {\boldsymbol {\mathrm {I} \mathrm {K} \Lambda \mathrm {M} \mathrm {N} \Xi \Pi \mathrm {P} }}}IK**Λ**MN**Ξ****Π**P
 
-```
-\boldsymbol{\Sigma\Tau\Upsilon\Phi\Chi\Psi\Omega}
-```
-
-{\displaystyle {\boldsymbol {\Sigma \mathrm {T} \Upsilon \Phi \mathrm {X} \Psi \Omega }}}**Σ**T**Υ****Φ**X**Ψ****Ω**
-
-```
-\boldsymbol{\alpha\beta\gamma\delta\epsilon\zeta\eta\theta}
-```
-
-{\displaystyle {\boldsymbol {\alpha \beta \gamma \delta \epsilon \zeta \eta \theta}}}**α****β****γ****δ****ϵ****ζ****η****θ**
-
-```
-\boldsymbol{\iota\kappa\lambda\mu\nu\xi\pi\rho}
-```
-
-{\displaystyle {\boldsymbol {\iota \kappa \lambda \mu \nu \xi \pi \rho}}}**ι****κ****λ****μ****ν****ξ****π****ρ**
-
-```
-\boldsymbol{\sigma\tau\upsilon\phi\chi\psi\omega}
-```
-
-{\displaystyle {\boldsymbol {\sigma \tau \upsilon \phi \chi \psi \omega}}}**σ****τ****υ****ϕ****χ****ψ****ω**
-
-```
-\boldsymbol{\varepsilon\digamma\varkappa\varpi}
-```
-
-{\displaystyle {\boldsymbol {\varepsilon \digamma \varkappa \varpi}}}**ε**ϝϰ**ϖ**
-
-```
-\boldsymbol{\varrho\varsigma\vartheta\varphi}
-```
-
-{\displaystyle {\boldsymbol {\varrho \varsigma \vartheta \varphi}}}**ϱ****ς****ϑ****φ**
-
-#### [斜体（拉丁字母默认）](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=斜体（拉丁字母默认）)
+**斜体（拉丁字母默认）**
 
 ```
 \mathit{0123456789}
 ```
 
-{\displaystyle {\mathit {0123456789}}}*0**1**2**3**4**5**6**7**8**9*
+$\mathit{0123456789}$
 
-#### [斜体希腊字母（小写字母默认）](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=斜体希腊字母（小写字母默认）)
+
+
+**斜体希腊字母（小写字母默认）**
 
 ```
 \mathit{\Alpha\Beta\Gamma\Delta\Epsilon\Zeta\Eta\Theta}
 ```
 
-{\displaystyle {\mathit {\mathrm {A} \mathrm {B} \Gamma \Delta \mathrm {E} \mathrm {Z} \mathrm {H} \Theta }}}AB*Γ**Δ*EZH*Θ*
+$\mathit{\Alpha\Beta\Gamma\Delta\Epsilon\Zeta\Eta\Theta}$
 
-```
-\mathit{\Iota\Kappa\Lambda\Mu\Nu\Xi\Pi\Rho}
-```
 
-{\displaystyle {\mathit {\mathrm {I} \mathrm {K} \Lambda \mathrm {M} \mathrm {N} \Xi \Pi \mathrm {P} }}}IK*Λ*MN*Ξ**Π*P
 
-```
-\mathit{\Sigma\Tau\Upsilon\Phi\Chi\Psi\Omega}
-```
-
-{\displaystyle {\mathit {\Sigma \mathrm {T} \Upsilon \Phi \mathrm {X} \Psi \Omega }}}*Σ*T*Υ**Φ*X*Ψ**Ω*
-
-#### [罗马体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=罗马体)
+**罗马体**
 
 ```
 \mathrm{ABCDEFGHI}
 ```
 
-{\displaystyle \mathrm {ABCDEFGHI} }ABCDEFGHI
+$\mathrm{ABCDEFGHI}$
 
-```
-\mathrm{JKLMNOPQR}
-```
 
-{\displaystyle \mathrm {JKLMNOPQR} }JKLMNOPQR
 
-```
-\mathrm{STUVWXYZ}
-```
-
-{\displaystyle \mathrm {STUVWXYZ} }STUVWXYZ
-
-```
-\mathrm{abcdefghijklm}
-```
-
-{\displaystyle \mathrm {abcdefghijklm} }abcdefghijklm
-
-```
-\mathrm{nopqrstuvwxyz}
-```
-
-{\displaystyle \mathrm {nopqrstuvwxyz} }nopqrstuvwxyz
-
-```
-\mathrm{0123456789}
-```
-
-{\displaystyle \mathrm {0123456789} }0123456789
-
-#### [无衬线体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=无衬线体)
+**无衬线体**
 
 ```
 \mathsf{ABCDEFGHI}
 ```
 
-{\displaystyle {\mathsf {ABCDEFGHI}}}ABCDEFGHI
+$\mathsf{ABCDEFGHI}$
 
-```
-\mathsf{JKLMNOPQR}
-```
 
-{\displaystyle {\mathsf {JKLMNOPQR}}}JKLMNOPQR
 
-```
-\mathsf{STUVWXYZ}
-```
-
-{\displaystyle {\mathsf {STUVWXYZ}}}STUVWXYZ
-
-```
-\mathsf{abcdefghijklm}
-```
-
-{\displaystyle {\mathsf {abcdefghijklm}}}abcdefghijklm
-
-```
-\mathsf{nopqrstuvwxyz}
-```
-
-{\displaystyle {\mathsf {nopqrstuvwxyz}}}nopqrstuvwxyz
-
-```
-\mathsf{0123456789}
-```
-
-{\displaystyle {\mathsf {0123456789}}}0123456789
-
-#### [无衬线体希腊字母（仅大写）](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=无衬线体希腊字母（仅大写）)
-
-```
-\mathsf{\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta}
-```
-
-{\displaystyle {\mathsf {\mathrm {A} \mathrm {B} \Gamma \Delta \mathrm {E} \mathrm {Z} \mathrm {H} \Theta }}}ABΓΔEZHΘ
-
-```
-\mathsf{\Iota \Kappa \Lambda \Mu \Nu \Xi \Pi \Rho}
-```
-
-{\displaystyle {\mathsf {\mathrm {I} \mathrm {K} \Lambda \mathrm {M} \mathrm {N} \Xi \Pi \mathrm {P} }}}IKΛMNΞΠP
-
-```
-\mathsf{\Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}
-```
-
-{\displaystyle {\mathsf {\Sigma \mathrm {T} \Upsilon \Phi \mathrm {X} \Psi \Omega }}}ΣTΥΦXΨΩ
-
-#### [手写体 / 花体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=手写体-花体)
+**手写体 / 花体**
 
 ```
 \mathcal{ABCDEFGHI}
 ```
 
-{\displaystyle {\mathcal {ABCDEFGHI}}}ABCDEFGHI
+$\mathcal{ABCDEFGHI}$
 
-```
-\mathcal{JKLMNOPQR}
-```
 
-{\displaystyle {\mathcal {JKLMNOPQR}}}JKLMNOPQR
 
-```
-\mathcal{STUVWXYZ}
-```
-
-{\displaystyle {\mathcal {STUVWXYZ}}}STUVWXYZ
-
-#### [Fraktur 体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=fraktur-体)
+**Fraktur 体**
 
 ```
 \mathfrak{ABCDEFGHI}
 ```
 
-{\displaystyle {\mathfrak {ABCDEFGHI}}}ABCDEFGHI
+$\mathfrak{ABCDEFGHI}$
 
-```
-\mathfrak{JKLMNOPQR}
-```
 
-{\displaystyle {\mathfrak {JKLMNOPQR}}}JKLMNOPQR
 
-```
-\mathfrak{STUVWXYZ}
-```
-
-{\displaystyle {\mathfrak {STUVWXYZ}}}STUVWXYZ
-
-```
-\mathfrak{abcdefghijklm}
-```
-
-{\displaystyle {\mathfrak {abcdefghijklm}}}abcdefghijklm
-
-```
-\mathfrak{nopqrstuvwxyz}
-```
-
-{\displaystyle {\mathfrak {nopqrstuvwxyz}}}nopqrstuvwxyz
-
-```
-\mathfrak{0123456789}
-```
-
-{\displaystyle {\mathfrak {0123456789}}}0123456789
-
-#### [小型手写体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=小型手写体)
+**小型手写体**
 
 ```
 {\scriptstyle\text{abcdefghijklm}}
 ```
 
-{\displaystyle {\scriptstyle {\text{abcdefghijklm}}}}abcdefghijklm
+${\scriptstyle\text{abcdefghijklm}}$
 
-### [混合字体](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=混合字体)
 
-特征|语法|渲染效果
 
-斜体字符（忽略空格）
-
-```
-x y z
-```
-
-{\displaystyle xyz}xyz
-
-非斜体字符
-
-```
-\text{x y z}
-```
-
-{\displaystyle {\text{x y z}}}x y z
-
-混合斜体（差）
-
-```
-\text{if} n \text{is even}
-```
-
-{\displaystyle {\text{if}}n{\text{is even}}}ifnis even
-
-混合斜体（好）
-
-```
-\text{if }n\text{ is even}
-```
-
-{\displaystyle {\text{if }}n{\text{ is even}}}if n is even
-
-混合斜体（替代品：`~` 或者 `\ ` 强制空格）
-
-```
-\text{if}~n\ \text{is even}
-```
-
-{\displaystyle {\text{if}}~n\ {\text{is even}}}if n is even
-
-### [注释文本](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=注释文本)
+## 注释文本
 
 使用 `\text {文字}` 来添加注释文本（注释文本不会被识别为公式，不用斜体显示）。`\text {文字}`中仍可以使用 `$公式$` 插入其它公式。
 
-- 例子：
 
-  ```
-  f(n)= \begin{cases}
-  n/2, & \text {if $n$ is even} \\
-  3n+1, &\text{if $n$ is odd}
-  \end{cases} Copy to clipboardErrorCopied
-  ```
 
-- 显示：
+```
+f(n)= \begin{cases}
+n/2, & \text {if $n$ is even} \\
+3n+1, &\text{if $n$ is odd}
+\end{cases} 
+```
 
-f(n)= \begin{cases} n/2, & \text {if}\ n\ \text{is even} \\ 3n+1, & \text {if}\ n\ \text{is odd} \end{cases}f(n)={n/2,3n+1,if n is evenif n is odd
+$f(n)= \begin{cases}
+n/2, & \text {if $n$ is even} \\
+3n+1, &\text{if $n$ is odd}
+\end{cases} $
 
-## [括号](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=括号)
+
+
+# 括号
 
 `()`、`[]` 和 `|` 表示符号本身，使用 `\{\}` 来表示 `{}` 。
 
-功能|语法|显示
-
-短括号
-
-```
-\frac{1}{2}
-```
-
-{\displaystyle ({\frac {1}{2}})}(21)
-
-长括号
-
-```
-\left(\frac{1}{2} \right
-```
-
-{\displaystyle \left({\frac {1}{2}}\right)}(21)
-
 使用 `\left` 和 `\right` 来创建自动匹配高度的 (圆括号)，[方括号] 和 {花括号} 。
 
-功能|语法|显示
 
-圆括号，小括号
+
+**圆括号，小括号**
 
 ```
 \left( \frac{a}{b} \right)
 ```
 
-{\displaystyle \left({\frac {a}{b}}\right)}(ba)
+$\left( \frac{a}{b} \right)$
 
-方括号，中括号
+
+
+**方括号，中括号**
 
 ```
 \left[ \frac{a}{b} \right]
 ```
 
-{\displaystyle \left[{\frac {a}{b}}\right]}[ba]
+$\left[ \frac{a}{b} \right]$
 
-花括号，大括号
+
+
+**花括号，大括号**
 
 ```
 \left{ \frac{a}{b} \right}
 ```
 
-{\displaystyle \left\{{\frac {a}{b}}\right\}}{ba}
+$\left{ \frac{a}{b} \right}$​
 
-角括号
+
+
+**角括号**
 
 ```
 \left \langle \frac{a}{b} \right \rangle
 ```
 
-{\displaystyle \left\langle {\frac {a}{b}}\right\rangle }⟨ba⟩
+$\left \langle \frac{a}{b} \right \rangle$
 
-单竖线，绝对值
+
+
+**单竖线，绝对值**
 
 ```
 \left| \frac{a}{b} \right|
 ```
 
-{\displaystyle \left| \frac{a}{b} \right|}∣∣∣∣ba∣∣∣∣
+$\left| \frac{a}{b} \right|$
 
-双竖线，范
+
 
 ```
 \left \| \frac{a}{b} \right \|
 ```
 
-{\displaystyle \left\|{\frac {a}{b}}\right\|}∥∥∥∥ba∥∥∥∥
+$\left \| \frac{a}{b} \right \|$
 
-取整函数
+
+
+**取整函数**
 
 ```
 \left \lfloor \frac{a}{b} \right \rfloor
 ```
 
-{\displaystyle \left\lfloor {\frac {a}{b}}\right\rfloor }⌊ba⌋
+$\left \lfloor \frac{a}{b} \right \rfloor$
 
-取顶函数
+
+
+**取顶函数**
 
 ```
 \left \lceil \frac{c}{d} \right \rceil
 ```
 
-{\displaystyle \left\lceil {\frac {c}{d}}\right\rceil }⌈dc⌉
+$\left \lceil \frac{c}{d} \right \rceil$
 
-斜线与反斜线
+
+
+**斜线与反斜线**
 
 ```
 \left / \frac{a}{b} \right \backslash
 ```
 
-{\displaystyle \left/{\frac {a}{b}}\right\backslash }/ba\
+$\left / \frac{a}{b} \right \backslash$
 
-上下箭头
+
+
+**上下箭头**
 
 ```
 \left \uparrow \frac{a}{b} \right \downarrow
 ```
 
-{\displaystyle \left\uparrow {\frac {a}{b}}\right\downarrow }⏐⏐⏐↑ba↓⏐⏐⏐
+$\left \uparrow \frac{a}{b} \right \downarrow$​
+
+
 
 ```
 \left \Uparrow \frac{a}{b} \right \Downarrow
 ```
 
-{\displaystyle \left\Uparrow {\frac {a}{b}}\right\Downarrow }‖‖‖⇑ba⇓‖‖‖
+$\left \Uparrow \frac{a}{b} \right \Downarrow$
+
+
 
 ```
 \left \updownarrow \frac{a}{b} \right \Updownarrow
 ```
 
-{\displaystyle \left\updownarrow {\frac {a}{b}}\right\Updownarrow }↓⏐⏐↑ba⇓‖‖⇑
+$\left \updownarrow \frac{a}{b} \right \Updownarrow$
 
-混合括号
+
+
+**混合括号**
 
 ```
 \left[ 0,1 \right)
 ```
 
-{\displaystyle \left[0,1\right)}[0,1)
+$\left[ 0,1 \right)$
+
+
 
 ```
 \left \langle \psi \right |
 ```
 
-\left \langle \psi \right |⟨ψ∣
+$\left \langle \psi \right |$
+
+
 
 如果括号只有一边，要用 `\left.` 或 `\right.` 匹配另一边。
 
-单左括号
+**单左括号**
 
 ```
 \left \{\frac{a}{b} \right.
 ```
 
-{\displaystyle \left\{{\frac {a}{b}}\right.}{ba
+$\left \{\frac{a}{b} \right.$
 
-单右括号
+
+
+**单右括号**
 
 ```
 \left. \frac{a}{b} \right \}
 ```
 
-{\displaystyle \left.{\frac {a}{b}}\right\}}ba}
+$\left. \frac{a}{b} \right \}$
 
-备注：
 
-- 可以使用 `\big, \Big, \bigg, \Bigg` 控制括号的大小，比如代码
 
-  `\Bigg ( \bigg [ \Big \{ \big \langle \left | \| \frac{a}{b} \| \right | \big \rangle \Big \} \bigg ] \Bigg )`
+**备注：**
 
-  显示︰
+可以使用 `\big, \Big, \bigg, \Bigg` 控制括号的大小，比如代码
 
-  \Bigg ( \bigg [ \Big \{ \big \langle \left | \| \frac{a}{b} \| \right | \big \rangle \Big \} \bigg ] \Bigg )([{⟨∣∣∣∣∥ba∥∣∣∣∣⟩}])
+```
+\Bigg ( \bigg [ \Big \{ \big \langle \left | \| \frac{a}{b} \| \right | \big \rangle \Big \} \bigg ] \Bigg )
+```
 
-## [空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=空格)
+$\Bigg ( \bigg [ \Big \{ \big \langle \left | \| \frac{a}{b} \| \right | \big \rangle \Big \} \bigg ] \Bigg )$
 
-注意 TeX 能够自动处理大多数的空格，但是您有时候需要自己来控制。
 
-功能|语法|显示|宽度
 
-### [2 个 quad 空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=_2-个-quad-空格)
+# 空格
+
+注意 TeX 能够自动处理大多数的空格，但是有时候需要自己来控制。
+
+
+
+## 2 个 quad 空格
 
 ```
 \alpha\qquad\beta
 ```
 
-{\displaystyle \alpha \qquad \beta}αβ
+$\alpha\qquad\beta$
 
-{\displaystyle mm}mm
 
-### [quad 空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=quad-空格)
+
+## quad 空格
 
 ```
 \alpha\quad\beta
 ```
 
-{\displaystyle \alpha \quad \beta}αβ
+$\alpha\quad\beta$
 
-{\displaystyle m}m
 
-### [大空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=大空格)
+
+## 大空格
 
 ```
 \alpha\ \beta
 ```
 
-{\displaystyle \alpha \ \beta}α β
+$\alpha\ \beta$
 
-{\displaystyle {\frac{m}{3}}}3m
 
-### [中等空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=中等空格)
+
+## 中等空格
 
 ```
 \alpha\;\beta
 ```
 
-{\displaystyle \alpha \;\beta}αβ
+$\alpha\;\beta$
 
-{\displaystyle {\frac {2m}{7}}}72m
 
-### [小空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=小空格)
+
+## 小空格
 
 ```
 \alpha\,\beta
 ```
 
-{\displaystyle \alpha \,\beta}αβ
+$\alpha\,\beta$
 
-{\displaystyle {\frac {m}{6}}}6m
 
-### [没有空格](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=没有空格)
+
+## 没有空格
 
 ```
 \alpha\beta
 ```
 
-{\displaystyle \alpha \beta }αβ
+$\alpha\beta$
 
-{\displaystyle 0}0
 
-### [紧贴](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=紧贴)
+
+## 紧贴
 
 ```
 \alpha\!\beta
 ```
 
-{\displaystyle \alpha \!\beta}αβ
+$\alpha\!\beta$
 
-{\displaystyle -{\frac {m}{6}}}−6m
 
-## [颜色](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=颜色)
 
-### [Cmd Markdown 公式指导手册](https://www.zybuluo.com/codeep/note/163962#七交换图表使用参考)里是这样写的：
+# 颜色
 
 使用 `\color{颜色}{文字}` 来更改特定的文字颜色。 更改文字颜色 **需要浏览器支持** ，如果浏览器不知道你所需的颜色，那么文字将被渲染为黑色。
 
 对于较旧的浏览器（HTML4与CSS2），以下颜色是被支持的：
 
-| 输入   | 显示                     | 输入    | 显示                      |
-| ------ | ------------------------ | ------- | ------------------------- |
-| black  | \color{black}{text}text  | grey    | \color{grey}{text}text    |
-| silver | \color{silver}{text}text | white   | \color{white}{text}text   |
-| maroon | \color{maroon}{text}text | red     | \color{red}{text}text     |
-| yellow | \color{yellow}{text}text | lime    | \color{lime}{text}text    |
-| olive  | \color{olive}{text}text  | green   | \color{green}{text}text   |
-| teal   | \color{teal}{text}text   | auqa    | \color{auqa}{text}text    |
-| blue   | \color{blue}{text}text   | navy    | \color{navy}{text}text    |
-| purple | \color{purple}{text}text | fuchsia | \color{fuchsia}{text}text |
+| 输入   | 显示                   | 输入    | 显示                    |
+| ------ | ---------------------- | ------- | ----------------------- |
+| black  | $\color{black}{text}$​  | grey    | $\color{grey}{text}$    |
+| silver | $\color{silver}{text}$​ | white   | $\color{white}{text}$   |
+| maroon | $\color{maroon}{text}$ | red     | $\color{red}{text}$     |
+| yellow | $\color{yellow}{text}$ | lime    | $\color{lime}{text}$    |
+| olive  | $\color{olive}{text}$  | green   | $\color{green}{text}$   |
+| teal   | $\color{teal}{text}$   | auqa    | $\color{auqa}{text}$    |
+| blue   | $\color{blue}{text}$   | navy    | $\color{navy}{text}$    |
+| purple | $\color{purple}{text}$ | fuchsia | $\color{fuchsia}{text}$ |
 
-对于较新的浏览器（HTML5与CSS3），额外的124种颜色将被支持：
+
+
+对于较新的浏览器（HTML5与CSS3），额外的124种颜色也支持：
 
 输入 `\color {#rgb} {text}` 来自定义更多的颜色，其中 `#rgb` 的 `r` `g` `b` 可输入 `0-9` 和 `a-f` 来表示红色、绿色和蓝色的纯度（饱和度）。
 
-- 例子：
+```
+\begin{array}{|rrrrrrrr|}\hline
+\verb+#000+ & \color{#000}{text} & & &
+\verb+#00F+ & \color{#00F}{text} & & \\
+& & \verb+#0F0+ & \color{#0F0}{text} &
+& & \verb+#0FF+ & \color{#0FF}{text}\\
+\verb+#F00+ & \color{#F00}{text} & & &
+\verb+#F0F+ & \color{#F0F}{text} & & \\
+& & \verb+#FF0+ & \color{#FF0}{text} &
+& & \verb+#FFF+ & \color{#FFF}{text}\\
+\hline
+\end{array}
+```
+
+$\begin{array}{|rrrrrrrr|}\hline
+\verb+#000+ & \color{#000}{text} & & &
+\verb+#00F+ & \color{#00F}{text} & & \\
+& & \verb+#0F0+ & \color{#0F0}{text} &
+& & \verb+#0FF+ & \color{#0FF}{text}\\
+\verb+#F00+ & \color{#F00}{text} & & &
+\verb+#F0F+ & \color{#F0F}{text} & & \\
+& & \verb+#FF0+ & \color{#FF0}{text} &
+& & \verb+#FFF+ & \color{#FFF}{text}\\
+\hline
+\end{array}$
+
+
+
+```
+\begin{array}{|rrrrrrrr|}
+\hline
+\verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text}  \\
+\verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text}  \\
+\verb+#A00+ & \color{#A00}{text} & \verb+#A05+ & \color{#A05}{text} & \verb+#A0A+ & \color{#A0A}{text} & \verb+#A0F+ & \color{#A0F}{text}  \\
+\verb+#F00+ & \color{#F00}{text} & \verb+#F05+ & \color{#F05}{text} & \verb+#F0A+ & \color{#F0A}{text} & \verb+#F0F+ & \color{#F0F}{text}  \\
+\hline
+\verb+#080+ & \color{#080}{text} & \verb+#085+ & \color{#085}{text} & \verb+#08A+ & \color{#08A}{text} & \verb+#08F+ & \color{#08F}{text}  \\
+\verb+#580+ & \color{#580}{text} & \verb+#585+ & \color{#585}{text} & \verb+#58A+ & \color{#58A}{text} & \verb+#58F+ & \color{#58F}{text}  \\
+\verb+#A80+ & \color{#A80}{text} & \verb+#A85+ & \color{#A85}{text} & \verb+#A8A+ & \color{#A8A}{text} & \verb+#A8F+ & \color{#A8F}{text}  \\
+\verb+#F80+ & \color{#F80}{text} & \verb+#F85+ & \color{#F85}{text} & \verb+#F8A+ & \color{#F8A}{text} & \verb+#F8F+ & \color{#F8F}{text}  \\
+\hline
+\verb+#0F0+ & \color{#0F0}{text} & \verb+#0F5+ & \color{#0F5}{text} & \verb+#0FA+ & \color{#0FA}{text} & \verb+#0FF+ & \color{#0FF}{text}  \\
+\verb+#5F0+ & \color{#5F0}{text} & \verb+#5F5+ & \color{#5F5}{text} & \verb+#5FA+ & \color{#5FA}{text} & \verb+#5FF+ & \color{#5FF}{text}  \\
+\verb+#AF0+ & \color{#AF0}{text} & \verb+#AF5+ & \color{#AF5}{text} & \verb+#AFA+ & \color{#AFA}{text} & \verb+#AFF+ & \color{#AFF}{text}  \\
+\verb+#FF0+ & \color{#FF0}{text} & \verb+#FF5+ & \color{#FF5}{text} & \verb+#FFA+ & \color{#FFA}{text} & \verb+#FFF+ & \color{#FFF}{text}  \\
+\hline
+\end{array}
+```
+
+$\begin{array}{|rrrrrrrr|}
+\hline
+\verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text}  \\
+\verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text}  \\
+\verb+#A00+ & \color{#A00}{text} & \verb+#A05+ & \color{#A05}{text} & \verb+#A0A+ & \color{#A0A}{text} & \verb+#A0F+ & \color{#A0F}{text}  \\
+\verb+#F00+ & \color{#F00}{text} & \verb+#F05+ & \color{#F05}{text} & \verb+#F0A+ & \color{#F0A}{text} & \verb+#F0F+ & \color{#F0F}{text}  \\
+\hline
+\verb+#080+ & \color{#080}{text} & \verb+#085+ & \color{#085}{text} & \verb+#08A+ & \color{#08A}{text} & \verb+#08F+ & \color{#08F}{text}  \\
+\verb+#580+ & \color{#580}{text} & \verb+#585+ & \color{#585}{text} & \verb+#58A+ & \color{#58A}{text} & \verb+#58F+ & \color{#58F}{text}  \\
+\verb+#A80+ & \color{#A80}{text} & \verb+#A85+ & \color{#A85}{text} & \verb+#A8A+ & \color{#A8A}{text} & \verb+#A8F+ & \color{#A8F}{text}  \\
+\verb+#F80+ & \color{#F80}{text} & \verb+#F85+ & \color{#F85}{text} & \verb+#F8A+ & \color{#F8A}{text} & \verb+#F8F+ & \color{#F8F}{text}  \\
+\hline
+\verb+#0F0+ & \color{#0F0}{text} & \verb+#0F5+ & \color{#0F5}{text} & \verb+#0FA+ & \color{#0FA}{text} & \verb+#0FF+ & \color{#0FF}{text}  \\
+\verb+#5F0+ & \color{#5F0}{text} & \verb+#5F5+ & \color{#5F5}{text} & \verb+#5FA+ & \color{#5FA}{text} & \verb+#5FF+ & \color{#5FF}{text}  \\
+\verb+#AF0+ & \color{#AF0}{text} & \verb+#AF5+ & \color{#AF5}{text} & \verb+#AFA+ & \color{#AFA}{text} & \verb+#AFF+ & \color{#AFF}{text}  \\
+\verb+#FF0+ & \color{#FF0}{text} & \verb+#FF5+ & \color{#FF5}{text} & \verb+#FFA+ & \color{#FFA}{text} & \verb+#FFF+ & \color{#FFF}{text}  \\
+\hline
+\end{array}$
 
-  ```
-  \begin{array}{|rrrrrrrr|}\hline
-  \verb+#000+ & \color{#000}{text} & & &
-  \verb+#00F+ & \color{#00F}{text} & & \\
-  & & \verb+#0F0+ & \color{#0F0}{text} &
-  & & \verb+#0FF+ & \color{#0FF}{text}\\
-  \verb+#F00+ & \color{#F00}{text} & & &
-  \verb+#F0F+ & \color{#F0F}{text} & & \\
-  & & \verb+#FF0+ & \color{#FF0}{text} &
-  & & \verb+#FFF+ & \color{#FFF}{text}\\
-  \hline
-  \end{array}Copy to clipboardErrorCopied
-  ```
-
-- 显示：
-
-  \begin{array}{|rrrrrrrr|}\hline \verb+#000+ & \color{#000}{text} & & & \verb+#00F+ & \color{#00F}{text} & & \\ & & \verb+#0F0+ & \color{#0F0}{text} & & & \verb+#0FF+ & \color{#0FF}{text}\\ \verb+#F00+ & \color{#F00}{text} & & & \verb+#F0F+ & \color{#F0F}{text} & & \\ & & \verb+#FF0+ & \color{#FF0}{text} & & & \verb+#FFF+ & \color{#FFF}{text}\\ \hline \end{array}#000#F00texttext#0F0#FF0texttext#00F#F0Ftexttext#0FF#FFFtexttext
-
-- 例子：
-
-  ```
-  \begin{array}{|rrrrrrrr|}
-  \hline
-  \verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text}  \\
-  \verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text}  \\
-  \verb+#A00+ & \color{#A00}{text} & \verb+#A05+ & \color{#A05}{text} & \verb+#A0A+ & \color{#A0A}{text} & \verb+#A0F+ & \color{#A0F}{text}  \\
-  \verb+#F00+ & \color{#F00}{text} & \verb+#F05+ & \color{#F05}{text} & \verb+#F0A+ & \color{#F0A}{text} & \verb+#F0F+ & \color{#F0F}{text}  \\
-  \hline
-  \verb+#080+ & \color{#080}{text} & \verb+#085+ & \color{#085}{text} & \verb+#08A+ & \color{#08A}{text} & \verb+#08F+ & \color{#08F}{text}  \\
-  \verb+#580+ & \color{#580}{text} & \verb+#585+ & \color{#585}{text} & \verb+#58A+ & \color{#58A}{text} & \verb+#58F+ & \color{#58F}{text}  \\
-  \verb+#A80+ & \color{#A80}{text} & \verb+#A85+ & \color{#A85}{text} & \verb+#A8A+ & \color{#A8A}{text} & \verb+#A8F+ & \color{#A8F}{text}  \\
-  \verb+#F80+ & \color{#F80}{text} & \verb+#F85+ & \color{#F85}{text} & \verb+#F8A+ & \color{#F8A}{text} & \verb+#F8F+ & \color{#F8F}{text}  \\
-  \hline
-  \verb+#0F0+ & \color{#0F0}{text} & \verb+#0F5+ & \color{#0F5}{text} & \verb+#0FA+ & \color{#0FA}{text} & \verb+#0FF+ & \color{#0FF}{text}  \\
-  \verb+#5F0+ & \color{#5F0}{text} & \verb+#5F5+ & \color{#5F5}{text} & \verb+#5FA+ & \color{#5FA}{text} & \verb+#5FF+ & \color{#5FF}{text}  \\
-  \verb+#AF0+ & \color{#AF0}{text} & \verb+#AF5+ & \color{#AF5}{text} & \verb+#AFA+ & \color{#AFA}{text} & \verb+#AFF+ & \color{#AFF}{text}  \\
-  \verb+#FF0+ & \color{#FF0}{text} & \verb+#FF5+ & \color{#FF5}{text} & \verb+#FFA+ & \color{#FFA}{text} & \verb+#FFF+ & \color{#FFF}{text}  \\
-  \hline
-  \end{array}Copy to clipboardErrorCopied
-  ```
-
-- 显示：
-
-  \begin{array}{|rrrrrrrr|} \hline \verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text} \\ \verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text} \\ \verb+#A00+ & \color{#A00}{text} & \verb+#A05+ & \color{#A05}{text} & \verb+#A0A+ & \color{#A0A}{text} & \verb+#A0F+ & \color{#A0F}{text} \\ \verb+#F00+ & \color{#F00}{text} & \verb+#F05+ & \color{#F05}{text} & \verb+#F0A+ & \color{#F0A}{text} & \verb+#F0F+ & \color{#F0F}{text} \\ \hline \verb+#080+ & \color{#080}{text} & \verb+#085+ & \color{#085}{text} & \verb+#08A+ & \color{#08A}{text} & \verb+#08F+ & \color{#08F}{text} \\ \verb+#580+ & \color{#580}{text} & \verb+#585+ & \color{#585}{text} & \verb+#58A+ & \color{#58A}{text} & \verb+#58F+ & \color{#58F}{text} \\ \verb+#A80+ & \color{#A80}{text} & \verb+#A85+ & \color{#A85}{text} & \verb+#A8A+ & \color{#A8A}{text} & \verb+#A8F+ & \color{#A8F}{text} \\ \verb+#F80+ & \color{#F80}{text} & \verb+#F85+ & \color{#F85}{text} & \verb+#F8A+ & \color{#F8A}{text} & \verb+#F8F+ & \color{#F8F}{text} \\ \hline \verb+#0F0+ & \color{#0F0}{text} & \verb+#0F5+ & \color{#0F5}{text} & \verb+#0FA+ & \color{#0FA}{text} & \verb+#0FF+ & \color{#0FF}{text} \\ \verb+#5F0+ & \color{#5F0}{text} & \verb+#5F5+ & \color{#5F5}{text} & \verb+#5FA+ & \color{#5FA}{text} & \verb+#5FF+ & \color{#5FF}{text} \\ \verb+#AF0+ & \color{#AF0}{text} & \verb+#AF5+ & \color{#AF5}{text} & \verb+#AFA+ & \color{#AFA}{text} & \verb+#AFF+ & \color{#AFF}{text} \\ \verb+#FF0+ & \color{#FF0}{text} & \verb+#FF5+ & \color{#FF5}{text} & \verb+#FFA+ & \color{#FFA}{text} & \verb+#FFF+ & \color{#FFF}{text} \\ \hline \end{array}#000#500#A00#F00#080#580#A80#F80#0F0#5F0#AF0#FF0texttexttexttexttexttexttexttexttexttexttexttext#005#505#A05#F05#085#585#A85#F85#0F5#5F5#AF5#FF5texttexttexttexttexttexttexttexttexttexttexttext#00A#50A#A0A#F0A#08A#58A#A8A#F8A#0FA#5FA#AFA#FFAtexttexttexttexttexttexttexttexttexttexttexttext#00F#50F#A0F#F0F#08F#58F#A8F#F8F#0FF#5FF#AFF#FFFtexttexttexttexttexttexttexttexttexttexttexttext
-
-### [维基百科的](https://1024th.github.io/MathJax_Tutorial_CN/#/document?id=维基百科的数学公式教程里是这样写的：)[数学公式教程](https://zh.wikipedia.org/wiki/Help:数学公式)里是这样写的：
-
-语法：`{\color{颜色}表达式}`
-
-**作者实测：在部分浏览器中，上面的语法可能是错误的**（只将表达式的第一个字符着色），`\color{颜色}{文字}`的语法才是正确的。例如：
-
-`{\color{Red}abc}`显示{\color{Red}abc}abc
-`\color{Red}{abc}`显示\color{Red}{abc}abc
-
-**支持色调表：**
-
-{\displaystyle \color {Apricot}{\text{Apricot}}}Apricot
-
-{\displaystyle \color {Aquamarine}{\text{Aquamarine}}}Aquamarine
-
-{\displaystyle \color {Bittersweet}{\text{Bittersweet}}}Bittersweet
-
-{\displaystyle \color {Black}{\text{Black}}}Black
-
-{\displaystyle \color {Blue}{\text{Blue}}}Blue
-
-{\displaystyle \color {BlueGreen}{\text{BlueGreen}}}BlueGreen
-
-{\displaystyle \color {BlueViolet}{\text{BlueViolet}}}BlueViolet
-
-{\displaystyle \color {BrickRed}{\text{BrickRed}}}BrickRed
-
-{\displaystyle \color {Brown}{\text{Brown}}}Brown
-
-{\displaystyle \color {BurntOrange}{\text{BurntOrange}}}BurntOrange
-
-{\displaystyle \color {CadetBlue}{\text{CadetBlue}}}CadetBlue
-
-{\displaystyle \color {CarnationPink}{\text{CarnationPink}}}CarnationPink
-
-{\displaystyle \color {Cerulean}{\text{Cerulean}}}Cerulean
-
-{\displaystyle \color {CornflowerBlue}{\text{CornflowerBlue}}}CornflowerBlue
-
-{\displaystyle \color {Cyan}{\text{Cyan}}}Cyan
-
-{\displaystyle \color {Dandelion}{\text{Dandelion}}}Dandelion
-
-{\displaystyle \color {DarkOrchid}{\text{DarkOrchid}}}DarkOrchid
-
-{\displaystyle \color {Emerald}{\text{Emerald}}}Emerald
-
-{\displaystyle \color {ForestGreen}{\text{ForestGreen}}}ForestGreen
-
-{\displaystyle \color {Fuchsia}{\text{Fuchsia}}}Fuchsia
-
-{\displaystyle \color {Goldenrod}{\text{Goldenrod}}}Goldenrod
-
-{\displaystyle \color {Gray}{\text{Gray}}}Gray
-
-{\displaystyle \color {Green}{\text{Green}}}Green
-
-{\displaystyle \color {GreenYellow}{\text{GreenYellow}}}GreenYellow
-
-{\displaystyle \color {JungleGreen}{\text{JungleGreen}}}JungleGreen
-
-{\displaystyle \color {Lavender}{\text{Lavender}}}Lavender
-
-{\displaystyle \color {LimeGreen}{\text{LimeGreen}}}LimeGreen
-
-{\displaystyle \color {Magenta}{\text{Magenta}}}Magenta
-
-{\displaystyle \color {Mahogany}{\text{Mahogany}}}Mahogany
-
-{\displaystyle \color {Maroon}{\text{Maroon}}}Maroon
-
-{\displaystyle \color {Melon}{\text{Melon}}}Melon
-
-{\displaystyle \color {MidnightBlue}{\text{MidnightBlue}}}MidnightBlue
-
-{\displaystyle \color {Mulberry}{\text{Mulberry}}}Mulberry
-
-{\displaystyle \color {NavyBlue}{\text{NavyBlue}}}NavyBlue
-
-{\displaystyle \color {OliveGreen}{\text{OliveGreen}}}OliveGreen
-
-{\displaystyle \color {Orange}{\text{Orange}}}Orange
-
-{\displaystyle \color {OrangeRed}{\text{OrangeRed}}}OrangeRed
-
-{\displaystyle \color {Orchid}{\text{Orchid}}}Orchid
-
-{\displaystyle \color {Peach}{\text{Peach}}}Peach
-
-{\displaystyle \color {Periwinkle}{\text{Periwinkle}}}Periwinkle
-
-{\displaystyle \color {PineGreen}{\text{PineGreen}}}PineGreen
-
-{\displaystyle \color {Plum}{\text{Plum}}}Plum
-
-{\displaystyle \color {ProcessBlue}{\text{ProcessBlue}}}ProcessBlue
-
-{\displaystyle \color {Purple}{\text{Purple}}}Purple
-
-{\displaystyle \color {RawSienna}{\text{RawSienna}}}RawSienna
-
-{\displaystyle \color {Red}{\text{Red}}}Red
-
-{\displaystyle \color {RedOrange}{\text{RedOrange}}}RedOrange
-
-{\displaystyle \color {RedViolet}{\text{RedViolet}}}RedViolet
-
-{\displaystyle \color {Rhodamine}{\text{Rhodamine}}}Rhodamine
-
-{\displaystyle \color {RoyalBlue}{\text{RoyalBlue}}}RoyalBlue
-
-{\displaystyle \color {RoyalPurple}{\text{RoyalPurple}}}RoyalPurple
-
-{\displaystyle \color {RubineRed}{\text{RubineRed}}}RubineRed
-
-{\displaystyle \color {Salmon}{\text{Salmon}}}Salmon
-
-{\displaystyle \color {SeaGreen}{\text{SeaGreen}}}SeaGreen
-
-{\displaystyle \color {Sepia}{\text{Sepia}}}Sepia
-
-{\displaystyle \color {SkyBlue}{\text{SkyBlue}}}SkyBlue
-
-{\displaystyle \color {SpringGreen}{\text{SpringGreen}}}SpringGreen
-
-{\displaystyle \color {Tan}{\text{Tan}}}Tan
-
-{\displaystyle \color {TealBlue}{\text{TealBlue}}}TealBlue
-
-{\displaystyle \color {Thistle}{\text{Thistle}}}Thistle
-
-{\displaystyle \color {Turquoise}{\text{Turquoise}}}Turquoise
-
-{\displaystyle \color {Violet}{\text{Violet}}}Violet
-
-{\displaystyle \color {VioletRed}{\text{VioletRed}}}VioletRed
-
-{\displaystyle \color {White}{\text{White}}}White
-
-{\displaystyle \color {WildStrawberry}{\text{WildStrawberry}}}WildStrawberry
-
-{\displaystyle \color {Yellow}{\text{Yellow}}}Yellow
-
-{\displaystyle \color {YellowGreen}{\text{YellowGreen}}}YellowGreen
-
-{\displaystyle \color {YellowOrange}{\text{YellowOrange}}}YellowOrange
-
-＊注︰输入时第一个字母必需以大写输入，如`\color{OliveGreen}`。
-
-例子
-
-- `{\color{Blue}x^2}+{\color{Brown}2x} - {\color{OliveGreen}1}`
-
-  {\displaystyle {\color {Blue}x^{2}}+{\color {Brown}2x}-{\color {OliveGreen}1}}x2+2x−1
-
-- `x_{\color{Maroon}1,2}=\frac{-b\pm\sqrt{{\color{Maroon}b^2-4ac}}}{2a}`
-
-  {\displaystyle x_{\color {Maroon}1,2}={\frac {-b\pm {\sqrt {\color {Maroon}b^{2}-4ac}}}{2a}}}x1,2=2a−b±b2−4ac

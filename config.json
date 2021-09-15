@@ -1062,6 +1062,10 @@
             "label": "Markdown",
             "articles": [
               {
+                "name": "Markdown公式",
+                "url": "./posts/texttool/markdown/Markdown公式.html"
+              },
+              {
                 "name": "Markdown表情",
                 "url": "./posts/texttool/markdown/Markdown表情.html"
               }
