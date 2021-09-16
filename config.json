@@ -1002,6 +1002,10 @@
               {
                 "name": "光栅化",
                 "url": "./posts/computergraphics/introduction/光栅化.html"
+              },
+              {
+                "name": "着色",
+                "url": "./posts/computergraphics/introduction/着色.html"
               }
             ]
           }
