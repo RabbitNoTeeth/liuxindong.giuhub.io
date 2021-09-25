@@ -822,6 +822,10 @@
               {
                 "name": "RabbitMQ管理：用户管理",
                 "url": "./posts/mq/rabbitmq/RabbitMQ管理：用户管理.html"
+              },
+              {
+                "name": "RabbitMQ日志：crash转储文件分析",
+                "url": "./posts/mq/rabbitmq/RabbitMQ日志：crash转储文件分析.html"
               }
             ]
           }
