@@ -784,6 +784,16 @@
                 "url": "./posts/cicd/jenkins/参数化构建，让构建任务更加灵活.html"
               }
             ]
+          },
+          {
+            "id": "cicd_maven",
+            "label": "Maven",
+            "articles": [
+              {
+                "name": "下载源码及javadoc",
+                "url": "./posts/cicd/maven/下载源码及javadoc.html"
+              }
+            ]
           }
         ]
       },
