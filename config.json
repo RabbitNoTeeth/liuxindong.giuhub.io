@@ -793,8 +793,8 @@
                 "name": "下载源码及javadoc",
                 "url": "./posts/cicd/maven/下载源码及javadoc.html"
               },{
-                "name": "构建fatjar",
-                "url": "./posts/cicd/maven/构建fatjar.html"
+                "name": "构建可执行的fat jar",
+                "url": "./posts/cicd/maven/构建可执行的fat jar.html"
               }
             ]
           }
