@@ -949,6 +949,16 @@
             "label": "WebGIS",
             "children": [
               {
+                "id": "webgis-basic",
+                "label": "基础知识",
+                "articles": [
+                  {
+                    "name": "WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等",
+                    "url": "./posts/gis/webgis/basic/WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等.html"
+                  }
+                ]
+              },
+              {
                 "id": "geoserver",
                 "label": "GeoServer",
                 "articles": [
