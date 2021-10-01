@@ -972,6 +972,10 @@
                   {
                     "name": "GeoServer发布mbtiles瓦片数据",
                     "url": "./posts/gis/webgis/geoserver/GeoServer发布mbtiles瓦片数据.html"
+                  },
+                  {
+                    "name": "GeoServer对地图进行切片",
+                    "url": "./posts/gis/webgis/geoserver/GeoServer对地图进行切片.html"
                   }
                 ]
               },
