@@ -2,23 +2,20 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-
-<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
-.mac-os-11 { --title-bar-height:28px; }
+<title>GeoServer发布MBTiles瓦片数据</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-.typora-export .task-list-item input { pointer-events: none; }
 @media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
@@ -27,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+img { max-width: 100%; vertical-align: middle; }
 button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -50,7 +47,7 @@ sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); 
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px; }
+figure > table { margin: 0px !important; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
@@ -67,7 +64,7 @@ div.hr:focus { cursor: none; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
 .md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -79,32 +76,28 @@ div.hr:focus { cursor: none; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
-li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  .typora-export #write { break-after: avoid; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
-  .is-mac table { break-inside: avoid; }
-  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
-#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-.MathJax_ref { fill: currentcolor; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
@@ -137,70 +130,27 @@ kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
 code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
 table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
 mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-.md-expand mark .md-meta { opacity: 0.3 !important; }
-mark .md-meta { color: rgb(0, 0, 0); }
-@media print {
-  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
-}
-.md-diagram-panel .messageText { stroke: none !important; }
-.md-diagram-panel .start-state { fill: var(--node-fill); }
-.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
-.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
-.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
-.md-fences.md-fences-math { font-size: 1em; }
-.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background: inherit; }
-.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
-.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
-.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
-.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
-@media screen and (max-width: 1024px) {
-  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
-}
-@media screen and (max-width: 800px) {
-  .typora-export-sidebar { display: none; }
-}
-.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
-.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
-.outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
-.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
-.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
-.outline-expander:hover::before { content: ""; }
-.outline-h1 > .outline-item { padding-left: 0px; }
-.outline-h2 > .outline-item { padding-left: 1em; }
-.outline-h3 > .outline-item { padding-left: 2em; }
-.outline-h4 > .outline-item { padding-left: 3em; }
-.outline-h5 > .outline-item { padding-left: 4em; }
-.outline-h6 > .outline-item { padding-left: 5em; }
-.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
-.outline-label:hover { text-decoration: underline; }
-.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
-.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
-.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
-.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
-.outline-children { display: none; }
-.info-panel-tab-wrapper { display: none; }
-.outline-item-open > .outline-children { display: block; }
-.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
-.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
-.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
-.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
-.typora-export-collapse-outline .outline-children { display: none; }
-.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
-.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
-.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
-.md-inline-math-container mjx-container { zoom: 0.95; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 
 :root {
@@ -210,17 +160,12 @@ mark .md-meta { color: rgb(0, 0, 0); }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
+html {
     font-size: 16px;
-    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -231,19 +176,6 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
-
-@media only screen and (min-width: 1400px) {
-	#write {
-		max-width: 1024px;
-	}
-}
-
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
-}
-
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -298,33 +230,17 @@ h6 code {
     font-size: inherit;
 }
 h1 {
+    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
+   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
-
-/*@media print {
-    .typora-export h1,
-    .typora-export h2 {
-        border-bottom: none;
-        padding-bottom: initial;
-    }
-
-    .typora-export h1::after,
-    .typora-export h2::after {
-        content: "";
-        display: block;
-        height: 100px;
-        margin-top: -96px;
-        border-top: 1px solid #eee;
-    }
-}*/
-
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -389,7 +305,7 @@ table {
     word-break: initial;
 }
 table tr {
-    border: 1px solid #dfe2e5;
+    border-top: 1px solid #dfe2e5;
     margin: 0;
     padding: 0;
 }
@@ -397,24 +313,24 @@ table tr:nth-child(2n),
 thead {
     background-color: #f8f8f8;
 }
-table th {
+table tr th {
     font-weight: bold;
     border: 1px solid #dfe2e5;
     border-bottom: 0;
     margin: 0;
     padding: 6px 13px;
 }
-table td {
+table tr td {
     border: 1px solid #dfe2e5;
     margin: 0;
     padding: 6px 13px;
 }
-table th:first-child,
-table td:first-child {
+table tr th:first-child,
+table tr td:first-child {
     margin-top: 0;
 }
-table th:last-child,
-table td:last-child {
+table tr th:last-child,
+table tr td:last-child {
     margin-bottom: 0;
 }
 
@@ -566,9 +482,9 @@ header, .context-menu, .megamenu-content, footer{
     color: #b4654d;
 }
 
-/*.html-for-mac {
+.html-for-mac .context-menu {
     --item-hover-bg-color: #E6F0FE;
-}*/
+}
 
 #md-notification .btn {
     border: 0;
@@ -576,7 +492,6 @@ header, .context-menu, .megamenu-content, footer{
 
 .dropdown-menu .divider {
     border-color: #e5e5e5;
-    opacity: 0.4;
 }
 
 .ty-preferences .window-content {
@@ -588,162 +503,10 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
-.menu-item-container a.menu-style-btn {
-    background-color: #f5f8fa;
-    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
-}
 
-
-
-mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-  min-height: 1px;
-  min-width: 1px;
-}
-
-mjx-container[jax="SVG"] > svg a {
-  fill: blue;
-  stroke: blue;
-}
-
-mjx-assistive-mml {
-  position: absolute !important;
-  top: 0px;
-  left: 0px;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 1px 0px 0px 0px !important;
-  border: 0px !important;
-  display: block !important;
-  width: auto !important;
-  overflow: hidden !important;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-mjx-assistive-mml[display="block"] {
-  width: 100% !important;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][display="true"][width="full"] {
-  display: flex;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > g > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
-  stroke-width: 3;
-}
-
-g[data-mml-node="xypic"] path {
-  stroke-width: inherit;
-}
-
-.MathJax g[data-mml-node="xypic"] path {
-  stroke-width: inherit;
-}
-
-</style><title>GeoServer发布mbtiles瓦片地图</title>
+</style>
 </head>
-<body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3"><a class="md-toc-inner" href="#1-安装mbtiles插件">1 安装mbtiles插件</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n61"><a class="md-toc-inner" href="#2-发布mbtiles瓦片地图">2 发布mbtiles瓦片地图</a></span></p></div><p><span>GeoServer默认不支持mbtiles瓦片地图，但是可通过安装相关插件来实现对瓦片地图的支持。</span></p><p>&nbsp;</p><p><strong><span>关于geoserver插件</span></strong></p><p><span>geoserver的插件扩展分为官方和社区两类，可以在官网的</span><a href="https://docs.geoserver.org/latest/en/user/index.html" target="_blank"><span>用户手册</span></a><span>页面中找到入口，如下图：</span></p><p><img src="./resources/2.1.png" style="zoom:100%;" /></p><p><span>在geoserver的</span><a href="https://build.geoserver.org/geoserver/main/" target="_blank"><span>资源下载</span></a><span>页面中，可以找到官方插件和社区插件的下载目录，如下图：</span></p><p><img src="./resources/2.2.png" style="zoom:100%;" /></p><p>&nbsp;</p><h1 id='1-安装mbtiles插件'><span>1 安装mbtiles插件</span></h1><p>&nbsp;</p><ol><li><p><strong><span>下载相关插件</span></strong><span>：</span></p><ul><li><a href="https://build.geoserver.org/geoserver/main/community-latest/geoserver-2.21-SNAPSHOT-mbtiles-store-plugin.zip" target="_blank"><span>mbtiles-store-plugin</span></a></li><li><a href="https://build.geoserver.org/geoserver/main/community-latest/geoserver-2.21-SNAPSHOT-mbtiles-plugin.zip" target="_blank"><span>mbtiles-plugin</span></a></li><li><a href="https://build.geoserver.org/geoserver/main/ext-latest/geoserver-2.21-SNAPSHOT-wps-plugin.zip" target="_blank"><span>wps-plugin</span></a></li></ul></li></ol><p>&nbsp;</p><ol start='2' ><li><p><strong><span>安装插件：</span></strong></p><p><span>将上述插件解压到geoserver安装位置的 </span><code>WEB-INF/lib</code><span> 目录下</span></p></li></ol><ol start='3' ><li><p><strong><span>重启geoserver</span></strong></p></li><li><p><strong><span>验证是否安装成功</span></strong></p><p><span>登录geoserver，创建数据源（store），在创建页面中可以看到 MBTiles 数据源选项说明安装成功，如下图：</span></p><p><img src="./resources/2.3.png" style="zoom:100%;" /></p></li></ol><p>&nbsp;</p><h1 id='2-发布mbtiles瓦片地图'><span>2 发布mbtiles瓦片地图</span></h1><ol><li><p><span>新建数据源，选择 MBTiles 数据源</span></p><p><img src="./resources/2.3.png" style="zoom:100%;" /></p></li><li><p><span>配置瓦片地图文件位置</span></p><p><span>如果是绝对路径，url的格式是 </span><code>file:C:\Data\landbase.mbtiles</code><span>，如果放在geoserver的数据目录（</span><code>/data_dir</code><span>）中，可以按照相对路径进行填写</span><code>file:data/landbase.mbtiles</code><span> 。</span></p><p><img src="./resources/2.4.png" style="zoom:100%;" /></p></li></ol><ol start='3' ><li><span>发布图层</span></li></ol></div></div>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n10"><a class="md-toc-inner" href="#1-安装mbtiles插件">1 安装MBTiles插件</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n14"><a class="md-toc-inner" href="#11-下载插件">1.1 下载插件</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n149"><a class="md-toc-inner" href="#12-安装插件">1.2 安装插件</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n150"><a class="md-toc-inner" href="#13-重启">1.3 重启</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n151"><a class="md-toc-inner" href="#14-验证">1.4 验证</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n34"><a class="md-toc-inner" href="#2-发布mbtiles瓦片数据">2 发布MBTiles瓦片数据</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n51"><a class="md-toc-inner" href="#21-创建数据源">2.1 创建数据源</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n44"><a class="md-toc-inner" href="#22-发布图层">2.2 发布图层</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n218"><a class="md-toc-inner" href="#23-预览图层">2.3 预览图层</a></span></p></div><p><span>GeoServer默认不支持MBTiles瓦片数据，但是可通过安装相关插件来实现对瓦片地图的支持。</span></p><p>&nbsp;</p><p><strong><span>关于geoserver插件</span></strong></p><p><span>geoserver的插件扩展分为官方和社区两类，可以在官网的</span><a href="https://docs.geoserver.org/latest/en/user/index.html" target="_blank"><span>用户手册</span></a><span>页面中找到入口，如下图：</span></p><p><img src="./resources/2.1.png" style="zoom:100%;" /></p><p><span>在geoserver的</span><a href="https://build.geoserver.org/geoserver/main/" target="_blank"><span>资源下载</span></a><span>页面中，可以找到官方插件和社区插件的下载目录，如下图：</span></p><p><img src="./resources/2.2.png" style="zoom:100%;" /></p><p>&nbsp;</p><h1><a name="1-安装mbtiles插件" class="md-header-anchor"></a><span>1 安装MBTiles插件</span></h1><h2><a name="11-下载插件" class="md-header-anchor"></a><span>1.1 下载插件</span></h2><ul><li><a href="https://build.geoserver.org/geoserver/main/community-latest/geoserver-2.21-SNAPSHOT-mbtiles-store-plugin.zip" target="_blank"><span>mbtiles-store-plugin</span></a></li><li><a href="https://build.geoserver.org/geoserver/main/community-latest/geoserver-2.21-SNAPSHOT-mbtiles-plugin.zip" target="_blank"><span>mbtiles-plugin</span></a></li><li><a href="https://build.geoserver.org/geoserver/main/ext-latest/geoserver-2.21-SNAPSHOT-wps-plugin.zip" target="_blank"><span>wps-plugin</span></a></li></ul><p>&nbsp;</p><h2><a name="12-安装插件" class="md-header-anchor"></a><span>1.2 安装插件</span></h2><p><span>将上述插件解压到geoserver安装位置的 </span><code>WEB-INF/lib</code><span> 目录下</span></p><p>&nbsp;</p><h2><a name="13-重启" class="md-header-anchor"></a><span>1.3 重启</span></h2><p><span>重新启动geoserver服务</span></p><p>&nbsp;</p><h2><a name="14-验证" class="md-header-anchor"></a><span>1.4 验证</span></h2><p><span>登录geoserver，创建数据源（store），在创建页面中可以看到 MBTiles 数据源选项说明安装成功，如下图：</span></p><p><img src="./resources/2.3.png" style="zoom:100%;" /></p><p>&nbsp;</p><h1><a name="2-发布mbtiles瓦片数据" class="md-header-anchor"></a><span>2 发布MBTiles瓦片数据</span></h1><h2><a name="21-创建数据源" class="md-header-anchor"></a><span>2.1 创建数据源</span></h2><ol><li><strong><span>新建数据源，选择MBTiles数据源：</span></strong></li></ol><p><img src="./resources/2.3.png" style="zoom:100%;" /></p><ol start='2' ><li><p><strong><span>编辑数据源属性：</span></strong></p><ul><li><p><span>① 选择所属工作区，如果未创建，需要先创建工作区（在geoserver中，工作区【workplace】类似于项目的概念，是顶层结构，地图数据源必须在工作区下）。</span></p></li><li><p><span>② 填写数据源名称，建议不要使用中文。</span></p></li><li><p><span>③ 填写MBTiles文件路径，该路径有两种可选择的格式：</span></p><ul><li><strong><span>绝对路径</span></strong><span>：指文件的绝对路径，格式为 </span><code>file:绝对路径</code><span>，例如 </span><code>file:D:\workplace\geoserver-2.19.2\data_dir\data\tangshan_tiles\唐山市_卫图2_Level_11.mbtiles</code><span>。</span></li><li><strong><span>相对路径</span></strong><span>：指相对于geoserver数据目录</span><code>/data_dir</code><span> 的路径，例如 </span><code>file:data/tangshan_tiles/唐山市_卫图2_Level_11.mbtiles</code><span>。</span></li></ul></li></ul></li></ol><p><img src="./resources/2.4.png" style="zoom:100%;" /></p><ol start='3' ><li><strong><span>保存数据源</span></strong></li></ol><p>&nbsp;</p><h2><a name="22-发布图层" class="md-header-anchor"></a><span>2.2 发布图层</span></h2><p><span>数据源保存提交后，将自动跳转对应的图层发布页面，点击“发布”按钮。</span></p><p><img src="./resources/2.5.png" style="zoom:100%;" /></p><p><span>然后编辑图层属性：</span></p><ul><li><span>① 填写图层基本属性。</span></li></ul><ul><li><span>② 确认坐标系，一般情况下，MBTiles数据源可自动读取出其坐标系，否则可以自己选择坐标系。</span></li></ul><ul><li><span>③ 确认地图范围，如果坐标系自动可以自动识别出，那么地图范围也可以自动识别出，否则可以通过按钮 </span><strong><font color="blue"><span>Compute from SRS bounds</span></font></strong><span>、</span><strong><font color="blue"><span>Compute from native bounds</span></font></strong><span> 来根据坐标系自动填充。</span></li></ul><ul><li><span>④ 点击 </span><strong><font color="blue"><span>Reload band definitions</span></font></strong><span> 按钮重新加载覆盖细节。</span></li></ul><ul><li><span>保存</span></li></ul><p><img src="./resources/2.6.png" style="zoom:100%;" /></p><p><img src="./resources/2.7.png" style="zoom:100%;" /></p><p>&nbsp;</p><h2><a name="23-预览图层" class="md-header-anchor"></a><span>2.3 预览图层</span></h2><p><span>进入</span><strong><font color="blue"><span>Layer Preview</span></font></strong><span> 页面，找到发布的图层，点击 </span><strong><font color="blue"><span>OpenLayers</span></font></strong><span> 按钮进行预览：</span></p><p><img src="./resources/2.8.png" style="zoom:100%;" /></p></div>
 </body>
 </html>

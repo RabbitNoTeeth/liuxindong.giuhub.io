@@ -957,8 +957,8 @@
                     "url": "./posts/gis/webgis/geoserver/GeoServer环境搭建.html"
                   },
                   {
-                    "name": "GeoServer发布mbtiles瓦片地图",
-                    "url": "./posts/gis/webgis/geoserver/GeoServer发布mbtiles瓦片地图.html"
+                    "name": "GeoServer发布mbtiles瓦片数据",
+                    "url": "./posts/gis/webgis/geoserver/GeoServer发布mbtiles瓦片数据.html"
                   }
                 ]
               },
