@@ -955,6 +955,9 @@
                   {
                     "name": "WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等",
                     "url": "./posts/gis/webgis/basic/WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等.html"
+                  },{
+                    "name": "WebGIS - XYZ",
+                    "url": "./posts/gis/webgis/basic/WebGIS - XYZ.html"
                   }
                 ]
               },
