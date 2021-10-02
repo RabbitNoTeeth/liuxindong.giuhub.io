@@ -99,4 +99,10 @@ GeoServer提供了地图切片功能，本篇文章就以我在<a href="./GeoSer
 
 
 
-:laughing: 接下来，便可以通过OpenLayers等工具加载地图来查看效果啦！
+切片完成后的地图瓦片文件存放在geoserver安装位置下的 `/data_dir/gwc` 目录中。
+
+
+
+:laughing: 接下来，便可以使用OpenLayers等客户端通过TMS或WMTS服务来加载地图啦！在GeoServer主页中，找到最右侧服务列表（如下图），点击对应的服务即可查看图层的资源地址。
+
+![](./resources/3.14.png)
