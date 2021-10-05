@@ -1112,8 +1112,8 @@
         ]
       },
       {
-        "id": "tool_text",
-        "label": "文本工具",
+        "id": "tool",
+        "label": "工具",
         "children": [
           {
             "id": "markdown_md",
@@ -1121,13 +1121,23 @@
             "articles": [
               {
                 "name": "Markdown公式",
-                "url": "./posts/texttool/markdown/Markdown公式.html"
+                "url": "./posts/tool/markdown/Markdown公式.html"
               },
               {
                 "name": "Markdown表情",
-                "url": "./posts/texttool/markdown/Markdown表情.html"
+                "url": "./posts/tool/markdown/Markdown表情.html"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "resource",
+        "label": "资源",
+        "articles": [
+          {
+            "name": "各类免费资源，拿来吧你！",
+            "url": "./posts/resource/各类免费资源，拿来吧你！.html"
           }
         ]
       }
