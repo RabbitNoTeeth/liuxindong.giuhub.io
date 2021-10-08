@@ -992,6 +992,16 @@
                     "url": "./posts/gis/webgis/postgis/PostGIS导入、导出shp格式数据.html"
                   }
                 ]
+              },
+              {
+                "id": "openlayers",
+                "label": "OpenLayers",
+                "articles": [
+                  {
+                    "name": "OpenLayers加载TMS瓦片地图",
+                    "url": "./posts/gis/webgis/openlayers/OpenLayers加载TMS瓦片地图.html"
+                  }
+                ]
               }
             ]
           }
