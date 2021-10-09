@@ -998,8 +998,12 @@
                 "label": "OpenLayers",
                 "articles": [
                   {
-                    "name": "OpenLayers加载TMS瓦片地图",
-                    "url": "./posts/gis/webgis/openlayers/OpenLayers加载TMS瓦片地图.html"
+                    "name": "OpenLayers加载GeoServer发布的TMS瓦片地图",
+                    "url": "./posts/gis/webgis/openlayers/OpenLayers加载GeoServer发布的TMS瓦片地图.html"
+                  },
+                  {
+                    "name": "OpenLayers加载GeoServer发布的WMTS瓦片地图",
+                    "url": "./posts/gis/webgis/openlayers/OpenLayers加载GeoServer发布的WMTS瓦片地图.html"
                   }
                 ]
               }

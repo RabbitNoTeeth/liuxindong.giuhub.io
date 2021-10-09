@@ -1,4 +1,4 @@
-OpenLayers可以使用 **<a href="../basic/WebGIS - XYZ.html" target="_blank">XYZ</a>** 来加载TMS服务发布的地图：
+OpenLayers可以使用 **<a href="../basic/WebGIS - XYZ.html" target="_blank">XYZ</a>** 来加载Geoserver发布的TMS瓦片地图：
 
 
 
