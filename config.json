@@ -272,6 +272,10 @@
               {
                 "name": "JVM常用命令",
                 "url": "./posts/java/jvm/JVM常用命令.html"
+              },
+              {
+                "name": "排查CPU占用过高问题",
+                "url": "./posts/java/jvm/排查CPU占用过高问题.html"
               }
             ]
           },
