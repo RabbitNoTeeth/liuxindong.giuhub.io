@@ -357,6 +357,10 @@ dump.hprof这个后缀是为了后续可以直接用MAT(Memory Anlysis Tool)打�
 
 
 
+:bulb: 可以使用 **<a href="http://www.eclipse.org/mat/downloads.php" target="_blank">Eclipse Memory Analyzer</a>** 工具分析堆转储文件，非常非常非常好用！
+
+
+
 ### 3.2.2 -finalizerinfo
 
 打印等待回收对象的信息。
