@@ -263,3 +263,60 @@ JNI global references: 880
 
 现在是2021-10-09，将程序重新打包部署，持续观察一段时间，等过几天后再来进一步更新。:sweat_smile:
 
+
+
+**<font size="6">7. 后续来了</font>**
+
+现在是2021-10-21，更新下程序优化的结果。
+
+很遗憾，经过第5步中的代码优化，问题并没有得到解决:sob:，只好继续进一步分析。
+
+
+
+再次打开MAT，分析堆转储。
+
+首先查看程序中实例数量，NioSockerChannel实例数达到了97940，每一个NioSockerChannel本质上都对应一个连接。而考虑实际场景，测温设备总数大约10000，并且是http协议，请求在响应完成后应该关闭，第5步的代码优化也保证了所有请求都能够响应，这个实例数很明显是不正常的，这还只是程序运行了大概4小时的堆转储
+
+<img src="./resources/10.5.png" style="zoom:100%;" />
+
+
+
+进一步查看NioSockerChannel实例的引用链，可以发现每个NioSockerChannel实例都被多个WindowsSelectorImpl实例引用，而WindowsSelectorImpl实例运行在名称为SelectThread的线程上
+
+<img src="./resources/10.6.png" style="zoom:100%;" />
+
+
+
+WindowsSelectorImpl是java nio在windows上的实现，也就是说，这些NioSockerChannel都是存活状态，导致系统底层要不断的轮询这些channel，查看是否有新的事件需要处理，那么下一步就要分析为什么channel没有关闭，当前服务为http服务，客户端请求后，创建channel进行处理，响应完成后，channel理应关闭才对。
+
+
+
+查看代码中创建http服务部分，发现vertx在创建http服务时，可以自定义一些配置（HttpServerOptions）：
+
+<img src="./resources/10.7.png" style="zoom:100%;" />
+
+
+
+那好，查看HttpServerOptions源码，发现其内部没有与channel关闭相关的参数，进一步查找其父类NetServerOptions，也没有找到有用的信息，再继续查找父类TCPSSLOptions，发现了这样一个属性：默认空闲超时时长
+
+<img src="./resources/10.8.png" style="zoom:100%;" />
+
+
+
+找到其set方法，查看注释，显然，idleTimeout用来控制空闲连接的超时时长，达到超时时长后该连接将被关闭；默认超时时长为0，即永不超时，也就是说连接永不关闭：
+
+<img src="./resources/10.9.png" style="zoom:100%;" />
+
+
+
+那好，修改创建http服务的代码，设置空闲连接的超时时长：
+
+<img src="./resources/10.10.png" style="zoom:100%;" />
+
+
+
+自从修改空闲连接的超时时长后，程序稳定运行了2天，cpu占用稳定在1%左右，进一步查看线程转储及堆转储，一切正常，问题解决！
+
+
+
+:tada::tada::tada:
