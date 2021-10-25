@@ -2,21 +2,24 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>项目范围管理</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-@media screen and (max-width: 500px) {
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) { 
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
   .CodeMirror-sizer { margin-left: 0px !important; }
@@ -24,14 +27,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
-button, input, select, textarea { color: inherit; font: inherit; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -43,17 +46,17 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
-.CodeMirror-linenumber { user-select: none; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -63,8 +66,8 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -72,37 +75,41 @@ div.hr:focus { cursor: none; }
 .CodeMirror-line, twitterwidget { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
-@media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
 .math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
 .md-toc-content::after, .md-toc::after { display: none; }
 .md-toc-item { display: block; color: rgb(65, 131, 196); }
@@ -115,7 +122,7 @@ p > .md-image:only-child { display: inline-block; width: 100%; }
 .md-toc-h4 .md-toc-inner { margin-left: 6em; }
 .md-toc-h5 .md-toc-inner { margin-left: 8em; }
 .md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 48em) { 
   .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
   .md-toc-h4 .md-toc-inner { margin-left: 5em; }
   .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
@@ -126,31 +133,72 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
-code { text-align: left; vertical-align: initial; }
-a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.md-inline-math .MathJax_SVG .noError { display: none !important; }
-.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
-.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
-.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none 0s ease 0s; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom: 0px; }
+table tr th { border-bottom-width: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-svg[id^="mermaidChart"] { line-height: 1em; }
-mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print { 
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) { 
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) { 
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ''; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ''; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ''; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: '−'; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
 
 
 :root {
@@ -160,12 +208,17 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-html {
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -176,6 +229,19 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -230,17 +296,33 @@ h6 code {
     font-size: inherit;
 }
 h1 {
-    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
-   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -305,7 +387,7 @@ table {
     word-break: initial;
 }
 table tr {
-    border-top: 1px solid #dfe2e5;
+    border: 1px solid #dfe2e5;
     margin: 0;
     padding: 0;
 }
@@ -313,24 +395,24 @@ table tr:nth-child(2n),
 thead {
     background-color: #f8f8f8;
 }
-table tr th {
+table th {
     font-weight: bold;
     border: 1px solid #dfe2e5;
     border-bottom: 0;
     margin: 0;
     padding: 6px 13px;
 }
-table tr td {
+table td {
     border: 1px solid #dfe2e5;
     margin: 0;
     padding: 6px 13px;
 }
-table tr th:first-child,
-table tr td:first-child {
+table th:first-child,
+table td:first-child {
     margin-top: 0;
 }
-table tr th:last-child,
-table tr td:last-child {
+table th:last-child,
+table td:last-child {
     margin-bottom: 0;
 }
 
@@ -482,9 +564,9 @@ header, .context-menu, .megamenu-content, footer{
     color: #b4654d;
 }
 
-.html-for-mac .context-menu {
+/*.html-for-mac {
     --item-hover-bg-color: #E6F0FE;
-}
+}*/
 
 #md-notification .btn {
     border: 0;
@@ -492,6 +574,7 @@ header, .context-menu, .megamenu-content, footer{
 
 .dropdown-menu .divider {
     border-color: #e5e5e5;
+    opacity: 0.4;
 }
 
 .ty-preferences .window-content {
@@ -503,11 +586,165 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
 
-</style>
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						} @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style><title>项目范围管理</title>
 </head>
-<body class='typora-export os-windows' >
-<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n15"><a class="md-toc-inner" href="#1-规划范围管理">1 规划范围管理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n19"><a class="md-toc-inner" href="#输入">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n32"><a class="md-toc-inner" href="#工具与技术">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n39"><a class="md-toc-inner" href="#输出">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n65"><a class="md-toc-inner" href="#2-收集需求">2 收集需求</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n69"><a class="md-toc-inner" href="#输入-n69">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n85"><a class="md-toc-inner" href="#工具与技术-n85">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n126"><a class="md-toc-inner" href="#输出-n126">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n142"><a class="md-toc-inner" href="#3-定义范围">3 定义范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n151"><a class="md-toc-inner" href="#输入-n151">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n164"><a class="md-toc-inner" href="#工具与方法">工具与方法</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n179"><a class="md-toc-inner" href="#输出-n179">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n207"><a class="md-toc-inner" href="#4-创建wbs">4 创建WBS</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n212"><a class="md-toc-inner" href="#输入-n212">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n228"><a class="md-toc-inner" href="#工具与方法-n228">工具与方法</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n276"><a class="md-toc-inner" href="#输出-n276">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n291"><a class="md-toc-inner" href="#5-确认范围">5 确认范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n295"><a class="md-toc-inner" href="#输入-n295">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n312"><a class="md-toc-inner" href="#工具与技术-n312">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n322"><a class="md-toc-inner" href="#输出-n322">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n336"><a class="md-toc-inner" href="#6-控制范围">6 控制范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n340"><a class="md-toc-inner" href="#输入-n340">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n353"><a class="md-toc-inner" href="#工具与技术-n353">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n359"><a class="md-toc-inner" href="#输出-n359">输出</a></span></p></div><p><strong><span>项目范围管理</span></strong></p><p><img src="./resources/4.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>项目范围管理：</span><strong><font color="red"><span>做且只做</span></font></strong><span>所需的全部工作。</span></p><p>&nbsp;</p><p><span>在讲解子过程之前，先了解下一些定义。</span></p><p>&nbsp;</p><p><strong><span>范围蔓延</span></strong><span>：指未对时间、成本和资源做相应调整，未经控制的产品或项目范围的扩大。</span></p><p><strong><span>镀金</span></strong><span>：来自</span><font color="red"><span>团队内部原因</span></font><span>造成的范围蔓延，例如项目人员为了“讨好”客户而做的</span><font color="red"><span>不解决实际问题、没有应用价值</span></font><span>的项目活动。</span></p><p><strong><span>范围潜变</span></strong><span>：来自</span><font color="red"><span>团队外部原因</span></font><span>造成的范围蔓延，例如客户不断提出</span><font color="red"><span>小的、不易察觉的</span></font><span>范围改变，如果不加控制，累积起来导致项目严重偏离既定的范围基准，导致项目失控和失败。</span></p><p>&nbsp;</p><p><strong><font color="red"><span>如果已经发生了范围蔓延，一定要走变更流程。</span></font></strong></p><p>&nbsp;</p><h1><a name="1-规划范围管理" class="md-header-anchor"></a><span>1 规划范围管理</span></h1><p><strong><span>是什么？</span></strong><span>：创建范围管理计划，书面描述将如何定义、确认和控制项目范围的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目中对如何管理范围提供指南和方向。</span></p><p>&nbsp;</p><h2><a name="输入" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目管理计划</span></font></strong></p><p><span>需要参照项目管理计划中</span><font color="red"><span>已批准的子计划</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>依据项目章程中的项目背景信息来规划各个范围管理过程。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与技术" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><span>专家判断</span></li><li><span>会议</span></li></ol><p>&nbsp;</p><h2><a name="输出" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述将</span><font color="red"><span>如何</span></font><span>定义、指定、监督、控制和确认项目范围。（注意：范围管理计划中都是描述如何去管理范围，并没有描述有哪些范围）</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目中对如何管理范围提供指南和方向，有助于降低项目范围蔓延的风险。</span></p></li><li><p><strong><font color="red"><span>需求管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述在整个项目生命周期中，</span><font color="red"><span>如何</span></font><span>分析、记录和管理需求。（注意：需求管理计划并没有描述有哪些需求）</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><font color="red"><span>如何规划、跟踪、报告各种需求活动，用什么标准对需求进行优先级排序</span></font><span>。</span></li><li><span>需求管理需要使用的</span><font color="red"><span>资源</span></font><span>。</span></li><li><font color="red"><span>培训计划</span></font><span>。</span></li><li><span>项目干系人</span><font color="red"><span>参与需求管理的策略</span></font><span>。</span></li><li><span>判断项目范围与需求不一致的</span><font color="red"><span>准则和纠正过程</span></font><span>。</span></li><li><font color="red"><span>需求跟踪结构</span></font><span>。</span></li><li><font color="red"><span>配置管理活动</span></font><span>。</span></li></ul><p>&nbsp;</p></li></ol><h1><a name="2-收集需求" class="md-header-anchor"></a><span>2 收集需求</span></h1><p><strong><span>是什么？</span></strong><span>：为实现项目目标而</span><font color="red"><span>确定、记录并管理</span></font><span>干系人的需要和需求的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：为定义和管理项目范围（包括产品范围）奠定基础。</span></p><p>&nbsp;</p><h2><a name="输入-n69" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><span>范围管理计划</span></p></li><li><p><strong><font color="red"><span>需求管理计划</span></font></strong></p><p><span>其中有描述“整个收集需求过程的工作流程”的规定。</span></p></li><li><p><span>干系人管理计划</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>其中有“产品、服务或成果的高层次描述”。</span></p></li><li><p><strong><font color="red"><span>干系人登记册</span></font></strong></p><p><span>其中有“干系人对项目的主要需求和期望”及“哪些干系人能提供需求方面的信息”等内容。</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n85" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>访谈</span></font></strong></p><p><span>与干系人</span><font color="red"><span>直接交谈</span></font><span>，向其提出预设和即兴的问题，记录他们的回答。</span></p></li><li><p><strong><font color="red"><span>焦点小组</span></font></strong></p><p><span>由一位受过训练的主持人引导预先选定的干系人和主题专家进行</span><font color="red"><span>互动式的讨论</span></font><span>。这些</span><font color="red"><span>参加者往往是同职能、同一领域或有相似背景条件的人</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>引导式研讨会</span></font></strong></p><p><span>把主要干系人召集在一起，通过</span><font color="red"><span>集中讨论</span></font><span>来定义产品需求。这些</span><font color="red"><span>参与者是跨职能、不同部门的干系人</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>群体创新技术</span></font></strong></p><ul><li><font color="red"><span>头脑风暴</span></font><span>：单纯地收集创意，不进行质疑、分析、批判和反对。</span></li><li><font color="red"><span>名义小组</span></font><span>：通过投票对创意进行优先排序，便于进一步头脑风暴。</span></li><li><font color="red"><span>思维导图（脑图）</span></font></li><li><font color="red"><span>亲和图</span></font><span>：对创意进行相似性分组。</span></li><li><font color="red"><span>多标准决策分析（如优先矩阵）</span></font><span>：建立多种标准，对备选方案进行评估和排序。</span></li></ul></li><li><p><strong><font color="red"><span>群体决策技术</span></font></strong></p><ul><li><font color="red"><span>一致同意</span></font></li><li><font color="red"><span>大多数原则</span></font></li><li><font color="red"><span>相对多数原则</span></font></li><li><font color="red"><span>独裁</span></font></li><li><font color="red"><span>德尔菲技术</span></font><span>：一组专家就某一主题达成一致意见的过程。通过问卷，专家匿名提交自己的意见，往往要经过多轮问卷才能达成一致意见。</span></li></ul></li><li><p><strong><font color="red"><span>问卷调查</span></font></strong></p><p><span>设计一系列书面问题，向众多受访者快速收集信息。</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n126" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述各种单一需求将如何满足与项目相关的业务需求。</span></p></li><li><p><strong><font color="red"><span>需求跟踪矩阵</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把</span><font color="red"><span>产品（项目）需求</span></font><span>从其</span><font color="red"><span>来源</span></font><span>连接到能满足需求的</span><font color="red"><span>可交付成果</span></font><span>的一种表格。</span></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><span>提供了在整个项目生命周期中</span><font color="red"><span>跟踪需求</span></font><span>的一种方法。</span></li><li><span>把每个</span><font color="red"><span>需求</span></font><span>与</span><font color="red"><span>业务目标</span></font><span>或</span><font color="red"><span>项目目标</span></font><span>联系起来。</span></li></ul><p><strong><span>注意</span></strong><span>：收集需求时产生的</span><font color="red"><span>需求文件和需求跟踪矩阵并不代表项目的真实范围</span></font><span>。</span></p></li></ol><p>&nbsp;</p><h1><a name="3-定义范围" class="md-header-anchor"></a><span>3 定义范围</span></h1><p><strong><span>是什么？</span></strong><span>：制定项目和产品详细描述的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><font color="red"><span>明确</span></font><span>所收集的需求</span><font color="red"><span>哪些将包含在项目范围内</span></font><span>，</span><font color="red"><span>哪些将排除在项目范围外</span></font><span>。</span></li><li><font color="red"><span>明确</span></font><span>项目、服务或成果的</span><font color="red"><span>边界</span></font><span>。</span></li></ul><p>&nbsp;</p><h2><a name="输入-n151" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><span>范围管理计划</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>包含对项目和产品特征的高层级描述，还包括项目审批要求。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><span>使用需求文件来选择哪些需求将包含在项目中。</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与方法" class="md-header-anchor"></a><span>工具与方法</span></h2><ol start='' ><li><p><span>专家判断</span></p></li><li><p><strong><font color="red"><span>产品分析</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把高层级的产品描述转变为有形的可交付成果。</span></p><p><strong><span>有哪些技术？</span></strong><span>：系统工程、价值工程、价值分析等。</span></p></li><li><p><strong><font color="red"><span>备选方案生成</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：制定尽可能多的潜在可选方案的技术，用于识别执行项目的不同方法。</span></p><p><strong><span>有哪些技术？</span></strong><span>：备选方案分析、横向思维。</span></p></li><li><p><span>引导式研讨会</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n179" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目范围说明书</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：对项目范围、主要可交付成果、假设条件和制约因素的描述。记录了整个范围，</span><font color="red"><span>包括项目和产品范围</span></font><span>，也代表项目</span><font color="red"><span>干系人之间就项目范围所达成的共识</span></font><span>。为了便于管理干系人的期望，项目范围说明书</span><font color="red"><span>可明确指出哪些工作不属于本项目范围</span></font><span>。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><p><strong><font color="red"><span>产品范围描述</span></font></strong></p><p><span>逐步细化在项目章程和需求文件中所属的产品、服务或成果的特征。</span></p></li><li><p><strong><font color="red"><span>验收标准</span></font></strong></p><p><span>可交付成果通过验收前必须满足的一系列条件。</span></p></li><li><p><strong><font color="red"><span>可交付成果</span></font></strong></p><p><span>必须产出的任何独特并可核实的产品、成果或服务能力。也包括辅助成果，如项目管理报告和文件。</span></p></li><li><p><strong><font color="red"><span>除外责任</span></font></strong></p><p><span>明确说明哪些内容不属于项目范围，有助于管理干系人的期望。</span></p></li><li><p><strong><font color="red"><span>制约因素</span></font></strong></p><p><span>对项目或过程的执行有影响的限制性因素（如预算、里程碑、合同条款等）。</span></p></li><li><p><strong><font color="red"><span>假设条件</span></font></strong></p><p><span>不需验证即可视为正确、真实的因素。还应描述若这些因素不成立，可能造成的潜在影响。</span></p></li></ul></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1><a name="4-创建wbs" class="md-header-anchor"></a><span>4 创建WBS</span></h1><p><strong><span>是什么？</span></strong><span>：把项目</span><font color="red"><span>可交付成果</span></font><span>和</span><font color="red"><span>项目工作</span></font><span>分解成较小的、更易于管理的</span><font color="red"><span>组件</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：对所要交付的内容提供一个</span><font color="red"><span>结构化</span></font><span>的视图。</span></p><p><strong><span>注意</span></strong><span>：WBS中的“工作“并不是</span><font color="red"><span>指工作本身，而是指工作所导致的产品或可交付成果</span></font><span>。</span></p><p>&nbsp;</p><h2><a name="输入-n212" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围管理计划</span></font></strong></p><p><span>定义了应该</span><font color="red"><span>如何</span></font><span>根据详细项目范围说明书</span><font color="red"><span>创建WBS</span></font><span>，以及应该</span><font color="red"><span>如何维护和批准WBS</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>项目范围说明书</span></font></strong></p><p><span>描述了</span><font color="red"><span>需要实施的工作</span></font><span>及</span><font color="red"><span>不包含在项目中的工作</span></font><span>，同时也列举和描述了会影响项目执行的各种</span><font color="red"><span>内外部制约或限制条件</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><span>对理解</span><font color="red"><span>需要产出什么项目结果，需要做什么来交付项目及其最终产品</span></font><span>，都非常重要。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与方法-n228" class="md-header-anchor"></a><span>工具与方法</span></h2><ol start='' ><li><p><strong><font color="red"><span>分解</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把项目范围和项目可交付成果</span><font color="red"><span>逐步划分</span></font><span>为更小、更便于管理的组成部分的技术。创建WBS，就是要将整个项目工作分解为工作包。</span></p><p><strong><span>什么是工作包？</span></strong><span>：位于WBS每条分支</span><font color="red"><span>最底层的可交付成果或项目工作组成部分</span></font><span>，可对其</span><font color="red"><span>成本</span></font><span>和</span><font color="red"><span>持续时间</span></font><span>进行估算和管理。工作包</span><font color="red"><span>大小在8~80小时</span></font><span>之间。</span></p><p><strong><span>分解的步骤？</span></strong><span>：</span></p><ul><li><font color="red"><span>识别和分析</span></font><span>可交付成果及相关工作。</span></li><li><font color="red"><span>确定</span></font><span>WBS的</span><font color="red"><span>结构和编排方法</span></font><span>。</span></li><li><font color="red"><span>自上而下</span></font><span>逐层细化</span><font color="red"><span>分解</span></font><span>。</span></li><li><span>为WBS组件</span><font color="red"><span>定制和分配标识编码</span></font><span>。</span></li><li><font color="red"><span>核实</span></font><span>可交付成果的分解程度是否恰当。</span></li></ul><p><strong><span>分解的方式？</span></strong><span>：</span></p><ul><li><span>把</span><font color="red"><span>项目生命周期的各个阶段</span></font><span>放在第</span><font color="red"><span>二</span></font><span>层。</span></li><li><span>把</span><font color="red"><span>可交付成果</span></font><span>放在第</span><font color="red"><span>二</span></font><span>层。</span></li><li><span>整合可能由项目团队以外的组织来实施的各种子组件（如</span><font color="red"><span>外包工作</span></font><span>）。</span></li></ul><p><strong><span>分解的原则？</span></strong><span>：</span></p><ul><li><p><font color="red"><span>100%原则（包含原则）</span></font>
-<span>仅包含所有可交付成果，所有下一级的元素之和必须100%地代表上一级元素。</span></p></li><li><p><font color="red"><span>独立责任原则</span></font></p><p><span>每个元素有且只有一个人负责。</span></p></li><li><p><font color="red"><span>80小时原则</span></font></p><p><span>工作包大小在8~80小时之间。</span></p></li><li><p><font color="red"><span>4~6层指导</span></font></p><p><span>不宜分解过细，每层建议4</span><span>~</span><span>7个元素，总层数建议在4~6层。</span></p></li><li><p><font color="red"><span>滚动分解原则</span></font></p><p><span>渐进明细。</span></p></li><li><p><font color="red"><span>功能或技术原则</span></font></p><p><span>分解时需要考虑将不同人员的工作分开。</span></p></li></ul></li><li><p><span>专家判断</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n276" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围基准</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：经过</span><font color="red"><span>批准</span></font><span>的</span><font color="red"><span>项目范围说明书、WBS、WBS词典</span></font><span>，只有</span><font color="red"><span>通过正式的变更控制程序才能进行变更</span></font><span>，它被用作比较的基础。</span></p><ul><li><span>项目范围说明书：是对项目范围、可交付成果、假设条件和制约因素的描述。记录了整个范围，包括项目和产品范围。</span></li><li><span>WBS：全部工作范围的层级分解。</span></li><li><span>WBS词典：针对每个WBS组件，详细描述可交付成果、活动和进度信息的文件。</span></li></ul></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1><a name="5-确认范围" class="md-header-anchor"></a><span>5 确认范围</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>”客户“或”发起人“正式验收</span></font><span>已完成的项目</span><font color="red"><span>可交付成果</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：使验收过程具有客观性，通过验收每个可交付成果，提高最终产品、服务或成果验收的可能性。</span></p><p>&nbsp;</p><h2><a name="输入-n295" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目管理计划</span></font></strong></p><p><span>定义了</span><font color="red"><span>如何正式验收</span></font><span>已完成的可交付成果。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><font color="red"><span>将需求与实际结果比较</span></font><span>，以决定是否有必要进行变更、采取纠正措施或预防措施。</span></p></li><li><p><strong><font color="red"><span>需求跟踪矩阵</span></font></strong></p><p><span>含有</span><font color="red"><span>与需求相关的信息</span></font><span>，包括如何确认需求。</span></p></li><li><p><strong><font color="red"><span>核实的可交付成果</span></font></strong></p><p><font color="red"><span>已完成的</span></font><span>，并由</span><font color="red"><span>控制质量过程核实为正确的</span></font><span>可交付成果。</span></p></li><li><p><span>工作绩效数据</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n312" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>检查</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：开展测量、审查与确认等活动，来</span><font color="red"><span>判断工作和可交付成果是否符合需求和产品验收标准</span></font><span>。</span></p><p><strong><span>包含哪些方式？</span></strong><span>：审查、走查、评审、巡检、测试等。</span></p><p><strong><span>注意</span></strong><span>：检查与审计不同，</span><font color="red"><span>检查</span></font><span>的是</span><font color="red"><span>结果</span></font><span>，</span><font color="red"><span>审计</span></font><span>的是</span><font color="red"><span>过程</span></font><span>。</span></p></li><li><p><span>群体决策技术</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n322" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>验收的可交付成果</span></font></strong></p><p><span>符合验收标准的可交付成果应</span><font color="red"><span>由客户或发起人正式签字批准</span></font><span>。</span></p><p><span>应该从客户或发起人那里获得</span><font color="red"><span>正式文件</span></font><span>，证明干系人对项目可交付成果的正式验收。</span></p></li><li><p><strong><font color="red"><span>变更请求</span></font></strong></p><p><span>针对未通过验收的情况，处理步骤为：</span><font color="red"><span>记录原因</span></font><span> </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.323ex" height="1.644ex" viewBox="0 -605.1 1000 707.6" role="img" focusable="false" style="vertical-align: -0.238ex;"><defs><path stroke-width="0" id="E1-MJMAIN-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E1-MJMAIN-21D2" x="0" y="0"></use></g></svg></span><script type="math/tex">\Rightarrow </script><span> </span><font color="red"><span>提交变更请求</span></font><span> </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.323ex" height="1.644ex" viewBox="0 -605.1 1000 707.6" role="img" focusable="false" style="vertical-align: -0.238ex;"><defs><path stroke-width="0" id="E2-MJMAIN-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E2-MJMAIN-21D2" x="0" y="0"></use></g></svg></span><script type="math/tex">\Rightarrow</script><span> </span><font color="red"><span>进行缺陷补救</span></font><span>。</span></p></li><li><p><span>工作绩效信息</span></p></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1><a name="6-控制范围" class="md-header-anchor"></a><span>6 控制范围</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>监督</span></font><span>项目和产品的范围</span><font color="red"><span>状态</span></font><span>，</span><font color="red"><span>管理</span></font><span>范围基准</span><font color="red"><span>变更</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目期间</span><font color="red"><span>保持对范围基准的维护</span></font><span>，</span><font color="red"><span>确认所有变更请求、纠正措施、预防措施都通过实施整体变更控制过程进行处理</span></font><span>。</span></p><p>&nbsp;</p><h2><a name="输入-n340" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><strong><font color="red"><span>项目管理计划</span></font></strong></li><li><span>需求文件</span></li><li><span>需求跟踪矩阵</span></li><li><strong><font color="red"><span>工作绩效数据</span></font></strong></li><li><span>组织过程资产</span></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n353" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>偏差分析</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：一种</span><font color="red"><span>确定实际绩效与基准的差异程度及原因</span></font><span>的技术。</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n359" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><strong><font color="red"><span>工作绩效信息</span></font></strong></li><li><strong><font color="red"><span>变更请求</span></font></strong></li><li><span>项目管理计划更新</span></li><li><span>项目文件更新</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p></div>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n15"><a class="md-toc-inner" style="" href="#1-规划范围管理">1 规划范围管理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n19"><a class="md-toc-inner" style="" href="#输入-1">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n32"><a class="md-toc-inner" style="" href="#工具与技术-1">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n39"><a class="md-toc-inner" style="" href="#输出-1">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n65"><a class="md-toc-inner" style="" href="#2-收集需求">2 收集需求</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n69"><a class="md-toc-inner" style="" href="#输入-2">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n85"><a class="md-toc-inner" style="" href="#工具与技术-2">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n126"><a class="md-toc-inner" style="" href="#输出-2">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n142"><a class="md-toc-inner" style="" href="#3-定义范围">3 定义范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n151"><a class="md-toc-inner" style="" href="#输入-3">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n164"><a class="md-toc-inner" style="" href="#工具与方法-1">工具与方法</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n179"><a class="md-toc-inner" style="" href="#输出-3">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n207"><a class="md-toc-inner" style="" href="#4-创建wbs">4 创建WBS</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n212"><a class="md-toc-inner" style="" href="#输入-4">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n228"><a class="md-toc-inner" style="" href="#工具与方法-2">工具与方法</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n276"><a class="md-toc-inner" style="" href="#输出-4">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n291"><a class="md-toc-inner" style="" href="#5-确认范围">5 确认范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n295"><a class="md-toc-inner" style="" href="#输入-5">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n312"><a class="md-toc-inner" style="" href="#工具与技术-3">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n322"><a class="md-toc-inner" style="" href="#输出-5">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n336"><a class="md-toc-inner" style="" href="#6-控制范围">6 控制范围</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n340"><a class="md-toc-inner" style="" href="#输入-6">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n353"><a class="md-toc-inner" style="" href="#工具与技术-4">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n359"><a class="md-toc-inner" style="" href="#输出-6">输出</a></span></p></div><p><strong><span>项目范围管理</span></strong></p><p><img src="./resources/4.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>项目范围管理：</span><strong><font color="red"><span>做且只做</span></font></strong><span>所需的全部工作。</span></p><p>&nbsp;</p><p><span>在讲解子过程之前，先了解下一些定义。</span></p><p>&nbsp;</p><p><strong><span>范围蔓延</span></strong><span>：指未对时间、成本和资源做相应调整，未经控制的产品或项目范围的扩大。</span></p><p><strong><span>镀金</span></strong><span>：来自</span><font color="red"><span>团队内部原因</span></font><span>造成的范围蔓延，例如项目人员为了“讨好”客户而做的</span><font color="red"><span>不解决实际问题、没有应用价值</span></font><span>的项目活动。</span></p><p><strong><span>范围潜变</span></strong><span>：来自</span><font color="red"><span>团队外部原因</span></font><span>造成的范围蔓延，例如客户不断提出</span><font color="red"><span>小的、不易察觉的</span></font><span>范围改变，如果不加控制，累积起来导致项目严重偏离既定的范围基准，导致项目失控和失败。</span></p><p>&nbsp;</p><p><strong><font color="red"><span>如果已经发生了范围蔓延，一定要走变更流程。</span></font></strong></p><p>&nbsp;</p><h1 id='1-规划范围管理'><span>1 规划范围管理</span></h1><p><strong><span>是什么？</span></strong><span>：创建范围管理计划，书面描述将如何定义、确认和控制项目范围的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目中对如何管理范围提供指南和方向。</span></p><p>&nbsp;</p><h2 id='输入-1'><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目管理计划</span></font></strong></p><p><span>需要参照项目管理计划中</span><font color="red"><span>已批准的子计划</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>依据项目章程中的项目背景信息来规划各个范围管理过程。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-1'><span>工具与技术</span></h2><ol start='' ><li><span>专家判断</span></li><li><span>会议</span></li></ol><p>&nbsp;</p><h2 id='输出-1'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述将</span><font color="red"><span>如何</span></font><span>定义、指定、监督、控制和确认项目范围。（注意：范围管理计划中都是描述如何去管理范围，并没有描述有哪些范围）</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目中对如何管理范围提供指南和方向，有助于降低项目范围蔓延的风险。</span></p></li><li><p><strong><font color="red"><span>需求管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述在整个项目生命周期中，</span><font color="red"><span>如何</span></font><span>分析、记录和管理需求。（注意：需求管理计划并没有描述有哪些需求）</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><font color="red"><span>如何规划、跟踪、报告各种需求活动，用什么标准对需求进行优先级排序</span></font><span>。</span></li><li><span>需求管理需要使用的</span><font color="red"><span>资源</span></font><span>。</span></li><li><font color="red"><span>培训计划</span></font><span>。</span></li><li><span>项目干系人</span><font color="red"><span>参与需求管理的策略</span></font><span>。</span></li><li><span>判断项目范围与需求不一致的</span><font color="red"><span>准则和纠正过程</span></font><span>。</span></li><li><font color="red"><span>需求跟踪结构</span></font><span>。</span></li><li><font color="red"><span>配置管理活动</span></font><span>。</span></li></ul><p>&nbsp;</p></li></ol><h1 id='2-收集需求'><span>2 收集需求</span></h1><p><strong><span>是什么？</span></strong><span>：为实现项目目标而</span><font color="red"><span>确定、记录并管理</span></font><span>干系人的需要和需求的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：为定义和管理项目范围（包括产品范围）奠定基础。</span></p><p>&nbsp;</p><h2 id='输入-2'><span>输入</span></h2><ol start='' ><li><p><span>范围管理计划</span></p></li><li><p><strong><font color="red"><span>需求管理计划</span></font></strong></p><p><span>其中有描述“整个收集需求过程的工作流程”的规定。</span></p></li><li><p><span>干系人管理计划</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>其中有“产品、服务或成果的高层次描述”。</span></p></li><li><p><strong><font color="red"><span>干系人登记册</span></font></strong></p><p><span>其中有“干系人对项目的主要需求和期望”及“哪些干系人能提供需求方面的信息”等内容。</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-2'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>访谈</span></font></strong></p><p><span>与干系人</span><font color="red"><span>直接交谈</span></font><span>，向其提出预设和即兴的问题，记录他们的回答。</span></p></li><li><p><strong><font color="red"><span>焦点小组</span></font></strong></p><p><span>由一位受过训练的主持人引导预先选定的干系人和主题专家进行</span><font color="red"><span>互动式的讨论</span></font><span>。这些</span><font color="red"><span>参加者往往是同职能、同一领域或有相似背景条件的人</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>引导式研讨会</span></font></strong></p><p><span>把主要干系人召集在一起，通过</span><font color="red"><span>集中讨论</span></font><span>来定义产品需求。这些</span><font color="red"><span>参与者是跨职能、不同部门的干系人</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>群体创新技术</span></font></strong></p><ul><li><font color="red"><span>头脑风暴</span></font><span>：单纯地收集创意，不进行质疑、分析、批判和反对。</span></li><li><font color="red"><span>名义小组</span></font><span>：通过投票对创意进行优先排序，便于进一步头脑风暴。</span></li><li><font color="red"><span>思维导图（脑图）</span></font></li><li><font color="red"><span>亲和图</span></font><span>：对创意进行相似性分组。</span></li><li><font color="red"><span>多标准决策分析（如优先矩阵）</span></font><span>：建立多种标准，对备选方案进行评估和排序。</span></li></ul></li><li><p><strong><font color="red"><span>群体决策技术</span></font></strong></p><ul><li><font color="red"><span>一致同意</span></font></li><li><font color="red"><span>大多数原则</span></font></li><li><font color="red"><span>相对多数原则</span></font></li><li><font color="red"><span>独裁</span></font></li><li><font color="red"><span>德尔菲技术</span></font><span>：一组专家就某一主题达成一致意见的过程。通过问卷，专家匿名提交自己的意见，往往要经过多轮问卷才能达成一致意见。</span></li></ul></li><li><p><strong><font color="red"><span>问卷调查</span></font></strong></p><p><span>设计一系列书面问题，向众多受访者快速收集信息。</span></p></li></ol><p>&nbsp;</p><h2 id='输出-2'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：描述各种单一需求将如何满足与项目相关的业务需求。</span></p></li><li><p><strong><font color="red"><span>需求跟踪矩阵</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把</span><font color="red"><span>产品（项目）需求</span></font><span>从其</span><font color="red"><span>来源</span></font><span>连接到能满足需求的</span><font color="red"><span>可交付成果</span></font><span>的一种表格。</span></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><span>提供了在整个项目生命周期中</span><font color="red"><span>跟踪需求</span></font><span>的一种方法。</span></li><li><span>把每个</span><font color="red"><span>需求</span></font><span>与</span><font color="red"><span>业务目标</span></font><span>或</span><font color="red"><span>项目目标</span></font><span>联系起来。</span></li></ul><p><strong><span>注意</span></strong><span>：收集需求时产生的</span><font color="red"><span>需求文件和需求跟踪矩阵并不代表项目的真实范围</span></font><span>。</span></p><p><img src="./resources/4.2.jpeg" referrerpolicy="no-referrer"></p></li></ol><p>&nbsp;</p><h1 id='3-定义范围'><span>3 定义范围</span></h1><p><strong><span>是什么？</span></strong><span>：制定项目和产品详细描述的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><font color="red"><span>明确</span></font><span>所收集的需求</span><font color="red"><span>哪些将包含在项目范围内</span></font><span>，</span><font color="red"><span>哪些将排除在项目范围外</span></font><span>。</span></li><li><font color="red"><span>明确</span></font><span>项目、服务或成果的</span><font color="red"><span>边界</span></font><span>。</span></li></ul><p>&nbsp;</p><h2 id='输入-3'><span>输入</span></h2><ol start='' ><li><p><span>范围管理计划</span></p></li><li><p><strong><font color="red"><span>项目章程</span></font></strong></p><p><span>包含对项目和产品特征的高层级描述，还包括项目审批要求。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><span>使用需求文件来选择哪些需求将包含在项目中。</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2 id='工具与方法-1'><span>工具与方法</span></h2><ol start='' ><li><p><span>专家判断</span></p></li><li><p><strong><font color="red"><span>产品分析</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把高层级的产品描述转变为有形的可交付成果。</span></p><p><strong><span>有哪些技术？</span></strong><span>：系统工程、价值工程、价值分析等。</span></p></li><li><p><strong><font color="red"><span>备选方案生成</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：制定尽可能多的潜在可选方案的技术，用于识别执行项目的不同方法。</span></p><p><strong><span>有哪些技术？</span></strong><span>：备选方案分析、横向思维。</span></p></li><li><p><span>引导式研讨会</span></p></li></ol><p>&nbsp;</p><h2 id='输出-3'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目范围说明书</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：对项目范围、主要可交付成果、假设条件和制约因素的描述。记录了整个范围，</span><font color="red"><span>包括项目和产品范围</span></font><span>，也代表项目</span><font color="red"><span>干系人之间就项目范围所达成的共识</span></font><span>。为了便于管理干系人的期望，项目范围说明书</span><font color="red"><span>可明确指出哪些工作不属于本项目范围</span></font><span>。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><p><strong><font color="red"><span>产品范围描述</span></font></strong></p><p><span>逐步细化在项目章程和需求文件中所属的产品、服务或成果的特征。</span></p></li><li><p><strong><font color="red"><span>验收标准</span></font></strong></p><p><span>可交付成果通过验收前必须满足的一系列条件。</span></p></li><li><p><strong><font color="red"><span>可交付成果</span></font></strong></p><p><span>必须产出的任何独特并可核实的产品、成果或服务能力。也包括辅助成果，如项目管理报告和文件。</span></p></li><li><p><strong><font color="red"><span>除外责任</span></font></strong></p><p><span>明确说明哪些内容不属于项目范围，有助于管理干系人的期望。</span></p></li><li><p><strong><font color="red"><span>制约因素</span></font></strong></p><p><span>对项目或过程的执行有影响的限制性因素（如预算、里程碑、合同条款等）。</span></p></li><li><p><strong><font color="red"><span>假设条件</span></font></strong></p><p><span>不需验证即可视为正确、真实的因素。还应描述若这些因素不成立，可能造成的潜在影响。</span></p></li></ul></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1 id='4-创建wbs'><span>4 创建WBS</span></h1><p><strong><span>是什么？</span></strong><span>：把项目</span><font color="red"><span>可交付成果</span></font><span>和</span><font color="red"><span>项目工作</span></font><span>分解成较小的、更易于管理的</span><font color="red"><span>组件</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：对所要交付的内容提供一个</span><font color="red"><span>结构化</span></font><span>的视图。</span></p><p><strong><span>注意</span></strong><span>：WBS中的“工作“并不是</span><font color="red"><span>指工作本身，而是指工作所导致的产品或可交付成果</span></font><span>。</span></p><p>&nbsp;</p><p><img src="./resources/4.3.jpeg" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='输入-4'><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围管理计划</span></font></strong></p><p><span>定义了应该</span><font color="red"><span>如何</span></font><span>根据详细项目范围说明书</span><font color="red"><span>创建WBS</span></font><span>，以及应该</span><font color="red"><span>如何维护和批准WBS</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>项目范围说明书</span></font></strong></p><p><span>描述了</span><font color="red"><span>需要实施的工作</span></font><span>及</span><font color="red"><span>不包含在项目中的工作</span></font><span>，同时也列举和描述了会影响项目执行的各种</span><font color="red"><span>内外部制约或限制条件</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><span>对理解</span><font color="red"><span>需要产出什么项目结果，需要做什么来交付项目及其最终产品</span></font><span>，都非常重要。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2 id='工具与方法-2'><span>工具与方法</span></h2><ol start='' ><li><p><strong><font color="red"><span>分解</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把项目范围和项目可交付成果</span><font color="red"><span>逐步划分</span></font><span>为更小、更便于管理的组成部分的技术。创建WBS，就是要将整个项目工作分解为工作包。</span></p><p><strong><span>什么是工作包？</span></strong><span>：位于WBS每条分支</span><font color="red"><span>最底层的可交付成果或项目工作组成部分</span></font><span>，可对其</span><font color="red"><span>成本</span></font><span>和</span><font color="red"><span>持续时间</span></font><span>进行估算和管理。工作包</span><font color="red"><span>大小在8~80小时</span></font><span>之间。</span></p><p><strong><span>分解的步骤？</span></strong><span>：</span></p><ul><li><font color="red"><span>识别和分析</span></font><span>可交付成果及相关工作。</span></li><li><font color="red"><span>确定</span></font><span>WBS的</span><font color="red"><span>结构和编排方法</span></font><span>。</span></li><li><font color="red"><span>自上而下</span></font><span>逐层细化</span><font color="red"><span>分解</span></font><span>。</span></li><li><span>为WBS组件</span><font color="red"><span>定制和分配标识编码</span></font><span>。</span></li><li><font color="red"><span>核实</span></font><span>可交付成果的分解程度是否恰当。</span></li></ul><p><strong><span>分解的方式？</span></strong><span>：</span></p><ul><li><span>把</span><font color="red"><span>项目生命周期的各个阶段</span></font><span>放在第</span><font color="red"><span>二</span></font><span>层。</span></li><li><span>把</span><font color="red"><span>可交付成果</span></font><span>放在第</span><font color="red"><span>二</span></font><span>层。</span></li><li><span>整合可能由项目团队以外的组织来实施的各种子组件（如</span><font color="red"><span>外包工作</span></font><span>）。</span></li></ul><p><strong><span>分解的原则？</span></strong><span>：</span></p><ul><li><p><font color="red"><span>100%原则（包含原则）</span></font>
+<span>仅包含所有可交付成果，所有下一级的元素之和必须100%地代表上一级元素。</span></p></li><li><p><font color="red"><span>独立责任原则</span></font></p><p><span>每个元素有且只有一个人负责。</span></p></li><li><p><font color="red"><span>80小时原则</span></font></p><p><span>工作包大小在8~80小时之间。</span></p></li><li><p><font color="red"><span>4~6层指导</span></font></p><p><span>不宜分解过细，每层建议4</span><span>~</span><span>7个元素，总层数建议在4~6层。</span></p></li><li><p><font color="red"><span>滚动分解原则</span></font></p><p><span>渐进明细。</span></p></li><li><p><font color="red"><span>功能或技术原则</span></font></p><p><span>分解时需要考虑将不同人员的工作分开。</span></p></li></ul></li><li><p><span>专家判断</span></p></li></ol><p>&nbsp;</p><h2 id='输出-4'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>范围基准</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：经过</span><font color="red"><span>批准</span></font><span>的</span><font color="red"><span>项目范围说明书、WBS、WBS词典</span></font><span>，只有</span><font color="red"><span>通过正式的变更控制程序才能进行变更</span></font><span>，它被用作比较的基础。</span></p><ul><li><span>项目范围说明书：是对项目范围、可交付成果、假设条件和制约因素的描述。记录了整个范围，包括项目和产品范围。</span></li><li><span>WBS：全部工作范围的层级分解。</span></li><li><span>WBS词典：针对每个WBS组件，详细描述可交付成果、活动和进度信息的文件。</span></li></ul></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1 id='5-确认范围'><span>5 确认范围</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>”客户“或”发起人“正式验收</span></font><span>已完成的项目</span><font color="red"><span>可交付成果</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：使验收过程具有客观性，通过验收每个可交付成果，提高最终产品、服务或成果验收的可能性。</span></p><p>&nbsp;</p><h2 id='输入-5'><span>输入</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目管理计划</span></font></strong></p><p><span>定义了</span><font color="red"><span>如何正式验收</span></font><span>已完成的可交付成果。</span></p></li><li><p><strong><font color="red"><span>需求文件</span></font></strong></p><p><font color="red"><span>将需求与实际结果比较</span></font><span>，以决定是否有必要进行变更、采取纠正措施或预防措施。</span></p></li><li><p><strong><font color="red"><span>需求跟踪矩阵</span></font></strong></p><p><span>含有</span><font color="red"><span>与需求相关的信息</span></font><span>，包括如何确认需求。</span></p></li><li><p><strong><font color="red"><span>核实的可交付成果</span></font></strong></p><p><font color="red"><span>已完成的</span></font><span>，并由</span><font color="red"><span>控制质量过程核实为正确的</span></font><span>可交付成果。</span></p></li><li><p><span>工作绩效数据</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-3'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>检查</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：开展测量、审查与确认等活动，来</span><font color="red"><span>判断工作和可交付成果是否符合需求和产品验收标准</span></font><span>。</span></p><p><strong><span>包含哪些方式？</span></strong><span>：审查、走查、评审、巡检、测试等。</span></p><p><strong><span>注意</span></strong><span>：检查与审计不同，</span><font color="red"><span>检查</span></font><span>的是</span><font color="red"><span>结果</span></font><span>，</span><font color="red"><span>审计</span></font><span>的是</span><font color="red"><span>过程</span></font><span>。</span></p></li><li><p><span>群体决策技术</span></p></li></ol><p>&nbsp;</p><h2 id='输出-5'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>验收的可交付成果</span></font></strong></p><p><span>符合验收标准的可交付成果应</span><font color="red"><span>由客户或发起人正式签字批准</span></font><span>。</span></p><p><span>应该从客户或发起人那里获得</span><font color="red"><span>正式文件</span></font><span>，证明干系人对项目可交付成果的正式验收。</span></p></li><li><p><strong><font color="red"><span>变更请求</span></font></strong></p><p><span>针对未通过验收的情况，处理步骤为：</span><font color="red"><span>记录原因</span></font><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-3-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-3-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow </script><span> </span><font color="red"><span>提交变更请求</span></font><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-4-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-4-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> </span><font color="red"><span>进行缺陷补救</span></font><span>。</span></p></li><li><p><span>工作绩效信息</span></p></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1 id='6-控制范围'><span>6 控制范围</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>监督</span></font><span>项目和产品的范围</span><font color="red"><span>状态</span></font><span>，</span><font color="red"><span>管理</span></font><span>范围基准</span><font color="red"><span>变更</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：在整个项目期间</span><font color="red"><span>保持对范围基准的维护</span></font><span>，</span><font color="red"><span>确认所有变更请求、纠正措施、预防措施都通过实施整体变更控制过程进行处理</span></font><span>。</span></p><p>&nbsp;</p><h2 id='输入-6'><span>输入</span></h2><ol start='' ><li><strong><font color="red"><span>项目管理计划</span></font></strong></li><li><span>需求文件</span></li><li><span>需求跟踪矩阵</span></li><li><strong><font color="red"><span>工作绩效数据</span></font></strong></li><li><span>组织过程资产</span></li></ol><p>&nbsp;</p><h2 id='工具与技术-4'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>偏差分析</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：一种</span><font color="red"><span>确定实际绩效与基准的差异程度及原因</span></font><span>的技术。</span></p></li></ol><p>&nbsp;</p><h2 id='输出-6'><span>输出</span></h2><ol start='' ><li><strong><font color="red"><span>工作绩效信息</span></font></strong></li><li><strong><font color="red"><span>变更请求</span></font></strong></li><li><span>项目管理计划更新</span></li><li><span>项目文件更新</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p></div></div>
 </body>
 </html>
