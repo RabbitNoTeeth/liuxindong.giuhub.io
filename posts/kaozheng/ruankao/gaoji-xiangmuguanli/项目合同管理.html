@@ -1,0 +1,749 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc {
+    left: 20px;
+    top: 10px;
+    bottom: 10px;
+    max-width: 300px;
+    overflow-y: auto;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+</style><title>项目合同管理</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n312"><a class="md-toc-inner" href="#1-合同分类">1 合同分类</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n395"><a class="md-toc-inner" href="#2-合同选择标准">2 合同选择标准</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n418"><a class="md-toc-inner" href="#3-合同的内容">3 合同的内容</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n447"><a class="md-toc-inner" href="#4-合同管理过程">4 合同管理过程</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n473"><a class="md-toc-inner" href="#5-合同索赔分类">5 合同索赔分类</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n482"><a class="md-toc-inner" href="#6-合同索赔流程">6 合同索赔流程</a></span></p></div><h1 id='1-合同分类'><font color="red"><span>1 合同分类</span></font></h1><ul><li><p><strong><span>按照项目范围划分</span></strong></p><ol start='' ><li><p><strong><font color="red"><span>总承包合同</span></font></strong></p><p><strong><span>定义</span></strong><span>：买方将项目的全过程作为一个整体发包给同一个卖方的合同。</span></p><p><strong><span>理解</span></strong><span>：对于某一项目来说，只与一个乙方订立合同，但是可能不止一份合同。</span></p></li><li><p><strong><font color="red"><span>单项承包合同</span></font></strong></p><p><strong><span>定义</span></strong><span>：一个卖方只承包某一项或某几项内容，买方分别于不同卖方订立合同。</span></p><p><strong><span>理解</span></strong><span>：对于某一份合同来说，可以有多个乙方。</span></p></li><li><p><strong><font color="red"><span>分包合同</span></font></strong></p><p><strong><span>定义</span></strong><span>：经合同约定和卖方认可，卖方将其承包项目的某一部分或某几个部分（非项目的主体结构）再发包给具有相应资质条件的分包方而订立的合同。若分包的项目出现问题，买方即可要求卖方、也可直接要求分包方承担责任。</span></p><p><strong><span>理解</span></strong><span>：① 买方认可。② 分包部分必须非主体。③ 不能转包整个项目。④ 分包方必须具备相应资质。⑤ 不能再次分包。</span></p></li></ol></li><li><p><strong><span>按项目付款方式划分</span></strong></p><ol start='' ><li><p><strong><font color="red"><span>总价合同</span></font></strong></p><p><span>为既定产品、服务或成果的采购设定一个总价。适用于已明确定义需求，且不会出现重大范围变更的情况下使用。</span></p><p><span>其又细分为以下三种：</span></p><ul><li><p><strong><font color="red"><span>固定总价合同（FFP）</span></font></strong></p><p><strong><span>定义</span></strong><span>：采购价格在一开始就确定，并且不允许改变（</span><strong><font color="red"><span>除非工作范围发生变更</span></font></strong><span>）。</span></p><p><strong><span>理解</span></strong><span>：最常用，大多数买方都喜欢。但是买方应该准确定义拟采购的产品和服务，对采购规范的任何变更都会增加买方的成本。</span></p><p><font color="red"><span>卖方</span></font><span>有义务完成工作，并且</span><font color="red"><span>承担因不良绩效导致的任何成本增加</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>总价加经理价格调整合同（FPEPA）</span></font></strong></p><p><strong><span>定义</span></strong><span>：允许根据条件变化（如通货膨胀、某些特殊商品的成本增降），以</span><font color="red"><span>事先确定</span></font><span>的方式对合同价格进行最终调整。</span></p><p><strong><span>理解</span></strong><span>：虽然合同价格可调整，但是要事先确定好调整的规则，</span><font color="red"><span>适用于卖方履约期跨越几年、买方以不同货币支付价款</span></font><span>等情况。</span></p></li><li><p><strong><font color="red"><span>总价加激励费用合同（FPIF）</span></font></strong></p><p><strong><span>定义</span></strong><span>：允许一定的</span><font color="red"><span>绩效偏离</span></font><span>，并对实现既定目标给与相关的</span><font color="red"><span>财务奖励</span></font><span>（通常取决于卖方的成本、进度或技术绩效）。但是，要</span><font color="red"><span>设置价格上限</span></font><span>，</span><font color="red"><span>卖方</span></font><span>必须完成工作并且</span><font color="red"><span>承担高于上限的全部成本</span></font><span>。</span></p><p><strong><span>计算</span></strong><span>：</span></p><ul><li><p><span>涉及要素</span></p><p><span>目标成本（估算成本）、目标利润（目标费用）、实际成本、实际利润、分摊比例（买方/卖方，如 80/20 表示买方承担80%，卖方承担20%）</span></p></li><li><p><span>公式</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n356" cid="n356" mdtype="math_block" data-math-tag-before="0" data-math-tag-after="0" data-math-labels="[]"><div class="md-rawblock-container md-math-container" tabindex="-1"><mjx-container class="MathJax" jax="SVG" display="true" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="67.782ex" height="12.215ex" role="img" focusable="false" viewBox="0 -2949.5 29959.7 5399" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -5.542ex;"><defs><path id="MJX-10-TEX-B-3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"></path><path id="MJX-10-TEX-B-2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"></path><path id="MJX-10-TEX-B-5B" d="M128 -250V750H293V689H189V-189H293V-250H128Z"></path><path id="MJX-10-TEX-B-28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"></path><path id="MJX-10-TEX-B-2212" d="M119 221Q96 230 96 251T116 279Q121 281 448 281H775Q776 280 779 278T785 274T791 269T795 262T797 251Q797 230 775 221H119Z"></path><path id="MJX-10-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-10-TEX-B-2217" d="M236 431Q237 447 251 459T287 472T323 459T338 431Q338 423 328 363L317 300Q318 300 340 317T392 356T435 387Q442 390 450 390Q470 390 485 374T501 335Q501 326 500 320T494 309T486 300T473 293T458 287T438 280T414 272L353 250L414 228Q422 225 436 221T457 214T472 208T485 201T493 192T499 181T501 166Q501 141 484 126T450 111Q447 111 445 111T441 111T437 112T433 114T428 117T422 121T414 127T404 135T391 145T374 158L317 200L328 137Q338 77 338 69Q336 52 321 40T287 28T253 40T236 69Q236 77 246 137L257 200Q256 200 234 183T182 144T139 113Q132 110 124 110Q104 110 89 126T73 165Q73 174 74 180T80 191T88 200T101 207T116 213T136 220T160 228L221 250L160 272Q152 275 138 279T117 286T102 292T89 299T81 308T75 319T73 334Q73 359 90 374T124 389Q127 389 129 389T133 389T137 388T141 386T146 383T152 379T160 373T170 365T183 355T200 342L257 300L246 363Q236 423 236 431Z"></path><path id="MJX-10-TEX-N-5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path><path id="MJX-10-TEX-S3-7B" d="M618 -943L612 -949H582L568 -943Q472 -903 411 -841T332 -703Q327 -682 327 -653T325 -350Q324 -28 323 -18Q317 24 301 61T264 124T221 171T179 205T147 225T132 234Q130 238 130 250Q130 255 130 258T131 264T132 267T134 269T139 272T144 275Q207 308 256 367Q310 436 323 519Q324 529 325 851Q326 1124 326 1154T332 1205Q369 1358 566 1443L582 1450H612L618 1444V1429Q618 1413 616 1411L608 1406Q599 1402 585 1393T552 1372T515 1343T479 1305T449 1257T429 1200Q425 1180 425 1152T423 851Q422 579 422 549T416 498Q407 459 388 424T346 364T297 318T250 284T214 264T197 254L188 251L205 242Q290 200 345 138T416 3Q421 -18 421 -48T423 -349Q423 -397 423 -472Q424 -677 428 -694Q429 -697 429 -699Q434 -722 443 -743T465 -782T491 -816T519 -845T548 -868T574 -886T595 -899T610 -908L616 -910Q618 -912 618 -928V-943Z"></path><path id="MJX-10-TEX-N-A0" d=""></path><path id="MJX-10-TEX-B-3E" d="M127 -85Q110 -85 103 -75T96 -55Q96 -41 106 -34Q119 -24 308 65Q361 90 411 114L696 250L427 379Q106 533 103 537Q96 545 96 557Q96 568 104 577T128 587Q137 586 460 431T788 272Q797 263 797 250Q797 238 788 229Q785 226 459 70L135 -85H127Z"></path><path id="MJX-10-TEX-B-3C" d="M797 -56Q797 -68 790 -76T767 -85H759L434 70Q108 226 105 229Q96 238 96 250Q96 263 105 272Q109 276 271 354T595 508T757 585Q763 587 766 587Q780 587 788 578T797 556Q797 544 788 535Q784 531 490 391L197 251Q213 242 359 173T644 37T788 -34Q797 -43 797 -56Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtable"><g data-mml-node="mtr" transform="translate(0,2199.5)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(2136.2,0)"><use data-c="3D" xlink:href="#MJX-10-TEX-B-3D"></use></g><g data-mml-node="mi" transform="translate(3307.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(4237.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(5114.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(6043.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g><g data-mml-node="mo" transform="translate(7195.3,0)"><use data-c="2B" xlink:href="#MJX-10-TEX-B-2B"></use></g><g data-mml-node="mo" transform="translate(8311.5,0)"><use data-c="5B" xlink:href="#MJX-10-TEX-B-5B"></use></g><g data-mml-node="mi" transform="translate(8630.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">目</text></g><g data-mml-node="mi" transform="translate(9508.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">标</text></g><g data-mml-node="mi" transform="translate(10437.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(11366.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(12517.8,0)"><use data-c="2B" xlink:href="#MJX-10-TEX-B-2B"></use></g><g data-mml-node="mo" transform="translate(13634.1,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-10-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(14081.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">目</text></g><g data-mml-node="mi" transform="translate(14958.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">标</text></g><g data-mml-node="mi" transform="translate(15887.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(16817,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g><g data-mml-node="mo" transform="translate(17968.4,0)"><use data-c="2212" xlink:href="#MJX-10-TEX-B-2212"></use></g><g data-mml-node="mi" transform="translate(19084.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(20013.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(20891.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(21820.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g><g data-mml-node="mo" transform="translate(22749.8,0)"><use data-c="29" xlink:href="#MJX-10-TEX-N-29"></use></g><g data-mml-node="mo" transform="translate(23361,0)"><use data-c="2217" xlink:href="#MJX-10-TEX-B-2217"></use></g><g data-mml-node="mi" transform="translate(24158.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">卖</text></g><g data-mml-node="mi" transform="translate(25087.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">方</text></g><g data-mml-node="mi" transform="translate(26016.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">分</text></g><g data-mml-node="mi" transform="translate(26945.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">摊</text></g><g data-mml-node="mi" transform="translate(27875,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">比</text></g><g data-mml-node="mi" transform="translate(28752.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">例</text></g><g data-mml-node="mo" transform="translate(29681.7,0)"><use data-c="5D" xlink:href="#MJX-10-TEX-N-5D"></use></g></g></g></g><g data-mml-node="mtr"><g data-mml-node="mtd" transform="translate(5462.6,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">终</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(2787.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(3994.5,0)"><use data-c="3D" xlink:href="#MJX-10-TEX-B-3D"></use></g><g data-mml-node="mrow" transform="translate(5166.3,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><use data-c="7B" xlink:href="#MJX-10-TEX-S3-7B"></use></g><g data-mml-node="mtable" transform="translate(750,0)"><g data-mml-node="mtr" transform="translate(0,600)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">高</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mi" transform="translate(2735.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mtext" transform="translate(3665.1,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3915.1,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(4165.1,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mo" transform="translate(4415.1,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-10-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(4862.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(5791.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(6998.3,0)"><use data-c="3E" xlink:href="#MJX-10-TEX-B-3E"></use><use data-c="3D" xlink:href="#MJX-10-TEX-B-3D" transform="translate(894,0)"></use></g><g data-mml-node="mi" transform="translate(9064.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(9993.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">高</text></g><g data-mml-node="mi" transform="translate(10922.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mi" transform="translate(11800,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(12729.2,0)"><use data-c="29" xlink:href="#MJX-10-TEX-N-29"></use></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-600)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mtext" transform="translate(1858.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2108.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2358.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2608.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2858.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3108.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3358.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3608.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3858.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(4108.4,0)"><use data-c="A0" xlink:href="#MJX-10-TEX-N-A0"></use></g><g data-mml-node="mo" transform="translate(4358.4,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-10-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(4805.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(5734.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(6941.5,0)"><use data-c="3C" xlink:href="#MJX-10-TEX-B-3C"></use></g><g data-mml-node="mi" transform="translate(8113.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(9042.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">高</text></g><g data-mml-node="mi" transform="translate(9971.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mi" transform="translate(10849.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(11778.4,0)"><use data-c="29" xlink:href="#MJX-10-TEX-N-29"></use></g></g></g></g></g><g data-mml-node="mo" transform="translate(13868.2,0) translate(0 250)"></g></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-2199.5)"><g data-mml-node="mtd" transform="translate(8062.4,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(1806.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(2735.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(3942.9,0)"><use data-c="3D" xlink:href="#MJX-10-TEX-B-3D"></use></g><g data-mml-node="mi" transform="translate(5114.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(6043.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">终</text></g><g data-mml-node="mi" transform="translate(6973.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(7902.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(9053.7,0)"><use data-c="2212" xlink:href="#MJX-10-TEX-B-2212"></use></g><g data-mml-node="mi" transform="translate(10169.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(11099.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(11976.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(12905.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing=".5em" columnspacing="1em" displaystyle="true"><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">=</mo><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi><mo mathvariant="bold">+</mo><mo mathvariant="bold" stretchy="false">[</mo><mi mathvariant="bold">目</mi><mi mathvariant="bold">标</mi><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">+</mo><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">目</mi><mi mathvariant="bold">标</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi><mo mathvariant="bold">−</mo><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi><mo stretchy="false">)</mo><mo mathvariant="bold">∗</mo><mi mathvariant="bold">卖</mi><mi mathvariant="bold">方</mi><mi mathvariant="bold">分</mi><mi mathvariant="bold">摊</mi><mi mathvariant="bold">比</mi><mi mathvariant="bold">例</mi><mo stretchy="false">]</mo></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">最</mi><mi mathvariant="bold">终</mi><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">=</mo><mrow data-mjx-texclass="INNER"><mo data-mjx-texclass="OPEN">{</mo><mtable columnalign="left left" columnspacing="1em" rowspacing=".2em"><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">最</mi><mi mathvariant="bold">高</mi><mi mathvariant="bold">限</mi><mi mathvariant="bold">价</mi><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">&gt;=</mo><mi mathvariant="bold">最</mi><mi mathvariant="bold">高</mi><mi mathvariant="bold">限</mi><mi mathvariant="bold">价</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">&lt;</mo><mi mathvariant="bold">最</mi><mi mathvariant="bold">高</mi><mi mathvariant="bold">限</mi><mi mathvariant="bold">价</mi><mo stretchy="false">)</mo></mrow></mtd></mtr></mtable><mo data-mjx-texclass="CLOSE" fence="true" stretchy="true" symmetric="true"></mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">=</mo><mi mathvariant="bold">最</mi><mi mathvariant="bold">终</mi><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">−</mo><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi></mrow></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div></div></li></ul></li></ul></li><li><p><strong><font color="red"><span>成本补偿合同</span></font></strong></p><p><span>向卖方支付为完成工作而发生的</span><font color="red"><span>全部合法实际成本</span></font><span>（可报销成本），</span><font color="red"><span>外加一笔费用</span></font><span>作为卖方的利润。适用于工作范围预计会在合同执行期间发生重大变更的情况。</span></p><p><span>其又细分为以下两种：</span></p><ul><li><p><strong><font color="red"><span>成本加固定费用合同（CPFF）</span></font></strong></p><p><strong><span>定义</span></strong><span>：为卖方</span><font color="red"><span>报销</span></font><span>履行合同工作缩放生的</span><font color="red"><span>一切可列支成本</span></font><span>，并向卖方</span><font color="red"><span>支付一笔固定费用</span></font><span>，该费用以项目</span><font color="red"><span>初始成本估算</span></font><span>的某一百分比计算。</span></p><p><strong><span>理解</span></strong><span>：A公司为B公司提供产品，他们签订了成本加固定费用合同，合同规定了130万的目标成本，利润10%，项目实际成本为140万，那么B公司应支付多少钱？</span><strong><span>140 + （130 x 10%）= 153</span></strong><span> 万</span></p></li><li><p><strong><font color="red"><span>成本加奖励费用（CPAF）</span></font></strong></p><p><strong><span>定义</span></strong><span>：为卖方报销一切合法成本，但只有卖方满足合同规定的、某些笼统主管的绩效标准下，才向卖方支付大部分费用。</span></p><p><strong><span>理解</span></strong><span>：完全由买方根据自己对卖方绩效的</span><font color="red"><span>主管判断来决定奖励费用</span></font><span>，并且</span><font color="red"><span>通常不允许申诉</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>成本加激励费用（CPIF）</span></font></strong></p><p><strong><span>定义</span></strong><span>：为卖方</span><font color="red"><span>报销</span></font><span>履行合同工作缩放生的</span><font color="red"><span>一切可列支成本</span></font><span>，并在卖方</span><font color="red"><span>达到</span></font><span>合同规定的</span><font color="red"><span>绩效目标</span></font><span>时，向卖方支付预先确定的</span><font color="red"><span>激励费用</span></font><span>。</span></p><p><span>与总价加激励费用相比，</span><font color="red"><span>不存在总价上的最高限价，但是有时会出现利润的最高限价或最低限价</span></font><span>。</span></p><p><strong><span>计算</span></strong><span>：</span></p><ul><li><p><span>涉及要素</span></p><p><span>目标成本（估算成本）、目标利润（目标费用）、实际成本、实际利润、分摊比例（买方/卖方，如 80/20 表示买方承担80%，卖方承担20%）</span></p></li><li><p><span>公式</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n381" cid="n381" mdtype="math_block" data-math-tag-before="0" data-math-tag-after="0" data-math-labels="[]"><div class="md-rawblock-container md-math-container" tabindex="-1"><mjx-container class="MathJax" jax="SVG" display="true" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="55.111ex" height="14.48ex" role="img" focusable="false" viewBox="0 -3450 24359.1 6400" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -6.674ex;"><defs><path id="MJX-11-TEX-B-3D" d="M87 333Q64 343 64 362Q64 383 84 391Q89 393 448 393H807Q808 392 811 390T817 386T823 381T827 374T829 363Q829 345 807 333H87ZM87 109Q64 118 64 139Q64 159 86 168Q89 169 448 169H807L812 166Q816 163 818 162T823 157T827 149T829 139Q829 118 807 109H87Z"></path><path id="MJX-11-TEX-B-2B" d="M64 232T64 250T87 281H416V444Q416 608 418 612Q426 633 446 633T475 613Q477 608 477 444V281H807Q808 280 811 278T817 274T823 269T827 262T829 251Q829 230 807 221L642 220H477V57Q477 -107 475 -112Q468 -131 446 -131Q425 -131 418 -112Q416 -107 416 57V220H251L87 221Q64 232 64 250Z"></path><path id="MJX-11-TEX-B-28" d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"></path><path id="MJX-11-TEX-B-2212" d="M119 221Q96 230 96 251T116 279Q121 281 448 281H775Q776 280 779 278T785 274T791 269T795 262T797 251Q797 230 775 221H119Z"></path><path id="MJX-11-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-11-TEX-B-2217" d="M236 431Q237 447 251 459T287 472T323 459T338 431Q338 423 328 363L317 300Q318 300 340 317T392 356T435 387Q442 390 450 390Q470 390 485 374T501 335Q501 326 500 320T494 309T486 300T473 293T458 287T438 280T414 272L353 250L414 228Q422 225 436 221T457 214T472 208T485 201T493 192T499 181T501 166Q501 141 484 126T450 111Q447 111 445 111T441 111T437 112T433 114T428 117T422 121T414 127T404 135T391 145T374 158L317 200L328 137Q338 77 338 69Q336 52 321 40T287 28T253 40T236 69Q236 77 246 137L257 200Q256 200 234 183T182 144T139 113Q132 110 124 110Q104 110 89 126T73 165Q73 174 74 180T80 191T88 200T101 207T116 213T136 220T160 228L221 250L160 272Q152 275 138 279T117 286T102 292T89 299T81 308T75 319T73 334Q73 359 90 374T124 389Q127 389 129 389T133 389T137 388T141 386T146 383T152 379T160 373T170 365T183 355T200 342L257 300L246 363Q236 423 236 431Z"></path><path id="MJX-11-TEX-S4-23A7" d="M712 899L718 893V876V865Q718 854 704 846Q627 793 577 710T510 525Q510 524 509 521Q505 493 504 349Q504 345 504 334Q504 277 504 240Q504 -2 503 -4Q502 -8 494 -9T444 -10Q392 -10 390 -9Q387 -8 386 -5Q384 5 384 230Q384 262 384 312T383 382Q383 481 392 535T434 656Q510 806 664 892L677 899H712Z"></path><path id="MJX-11-TEX-S4-23A9" d="M718 -893L712 -899H677L666 -893Q542 -825 468 -714T385 -476Q384 -466 384 -282Q384 3 385 5L389 9Q392 10 444 10Q486 10 494 9T503 4Q504 2 504 -239V-310V-366Q504 -470 508 -513T530 -609Q546 -657 569 -698T617 -767T661 -812T699 -843T717 -856T718 -876V-893Z"></path><path id="MJX-11-TEX-S4-23A8" d="M389 1159Q391 1160 455 1160Q496 1160 498 1159Q501 1158 502 1155Q504 1145 504 924Q504 691 503 682Q494 549 425 439T243 259L229 250L243 241Q349 175 421 66T503 -182Q504 -191 504 -424Q504 -600 504 -629T499 -659H498Q496 -660 444 -660T390 -659Q387 -658 386 -655Q384 -645 384 -425V-282Q384 -176 377 -116T342 10Q325 54 301 92T255 155T214 196T183 222T171 232Q170 233 170 250T171 268Q171 269 191 284T240 331T300 407T354 524T383 679Q384 691 384 925Q384 1152 385 1155L389 1159Z"></path><path id="MJX-11-TEX-S4-23AA" d="M384 150V266Q384 304 389 309Q391 310 455 310Q496 310 498 309Q502 308 503 298Q504 283 504 150Q504 32 504 12T499 -9H498Q496 -10 444 -10T390 -9Q386 -8 385 2Q384 17 384 150Z"></path><path id="MJX-11-TEX-N-A0" d=""></path><path id="MJX-11-TEX-B-3E" d="M127 -85Q110 -85 103 -75T96 -55Q96 -41 106 -34Q119 -24 308 65Q361 90 411 114L696 250L427 379Q106 533 103 537Q96 545 96 557Q96 568 104 577T128 587Q137 586 460 431T788 272Q797 263 797 250Q797 238 788 229Q785 226 459 70L135 -85H127Z"></path><path id="MJX-11-TEX-B-3C" d="M797 -56Q797 -68 790 -76T767 -85H759L434 70Q108 226 105 229Q96 238 96 250Q96 263 105 272Q109 276 271 354T595 508T757 585Q763 587 766 587Q780 587 788 578T797 556Q797 544 788 535Q784 531 490 391L197 251Q213 242 359 173T644 37T788 -34Q797 -43 797 -56Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtable"><g data-mml-node="mtr" transform="translate(0,2700)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(2136.2,0)"><use data-c="3D" xlink:href="#MJX-11-TEX-B-3D"></use></g><g data-mml-node="mi" transform="translate(3307.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">目</text></g><g data-mml-node="mi" transform="translate(4185.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">标</text></g><g data-mml-node="mi" transform="translate(5114.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(6043.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(7195.3,0)"><use data-c="2B" xlink:href="#MJX-11-TEX-B-2B"></use></g><g data-mml-node="mo" transform="translate(8311.5,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-11-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(8758.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">目</text></g><g data-mml-node="mi" transform="translate(9636.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">标</text></g><g data-mml-node="mi" transform="translate(10565.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(11494.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g><g data-mml-node="mo" transform="translate(12645.8,0)"><use data-c="2212" xlink:href="#MJX-11-TEX-B-2212"></use></g><g data-mml-node="mi" transform="translate(13762.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(14691.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(15568.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(16498,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g><g data-mml-node="mo" transform="translate(17427.2,0)"><use data-c="29" xlink:href="#MJX-11-TEX-N-29"></use></g><g data-mml-node="mo" transform="translate(18038.4,0)"><use data-c="2217" xlink:href="#MJX-11-TEX-B-2217"></use></g><g data-mml-node="mi" transform="translate(18835.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">卖</text></g><g data-mml-node="mi" transform="translate(19764.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">方</text></g><g data-mml-node="mi" transform="translate(20694,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">分</text></g><g data-mml-node="mi" transform="translate(21623.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">摊</text></g><g data-mml-node="mi" transform="translate(22552.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">比</text></g><g data-mml-node="mi" transform="translate(23430,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">例</text></g></g></g></g><g data-mml-node="mtr"><g data-mml-node="mtd" transform="translate(510.9,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">终</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(2787.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(3994.5,0)"><use data-c="3D" xlink:href="#MJX-11-TEX-B-3D"></use></g><g data-mml-node="mrow" transform="translate(5166.3,0)"><g data-mml-node="mo"><use data-c="23A7" xlink:href="#MJX-11-TEX-S4-23A7" transform="translate(0,1051)"></use><use data-c="23A9" xlink:href="#MJX-11-TEX-S4-23A9" transform="translate(0,-551)"></use><use data-c="23A8" xlink:href="#MJX-11-TEX-S4-23A8" transform="translate(0,0)"></use><svg width="889" height="81" y="1060" x="0" viewBox="0 14.3 889 81"><use data-c="23AA" xlink:href="#MJX-11-TEX-S4-23AA" transform="scale(1,0.398)"></use></svg><svg width="889" height="81" y="-641" x="0" viewBox="0 14.3 889 81"><use data-c="23AA" xlink:href="#MJX-11-TEX-S4-23AA" transform="scale(1,0.398)"></use></svg></g><g data-mml-node="mtable" transform="translate(889,0)"><g data-mml-node="mtr" transform="translate(0,1200)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">上</text></g><g data-mml-node="mi" transform="translate(2787.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mtext" transform="translate(3665.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3915.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(4165.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mo" transform="translate(4415.1,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-11-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(4862.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(5791.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(6998.3,0)"><use data-c="3E" xlink:href="#MJX-11-TEX-B-3E"></use><use data-c="3D" xlink:href="#MJX-11-TEX-B-3D" transform="translate(894,0)"></use></g><g data-mml-node="mi" transform="translate(9064.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(9993.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(10922.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">上</text></g><g data-mml-node="mi" transform="translate(11851.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mo" transform="translate(12729.2,0)"><use data-c="29" xlink:href="#MJX-11-TEX-N-29"></use></g></g></g></g><g data-mml-node="mtr" transform="translate(0,0)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mtext" transform="translate(1858.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2108.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2358.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2608.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(2858.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3108.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3358.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3608.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3858.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(4108.4,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mo" transform="translate(4358.4,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-11-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(4805.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(5734.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(6663.8,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">下</text></g><g data-mml-node="mi" transform="translate(7592.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mo" transform="translate(8748.3,0)"><use data-c="3C" xlink:href="#MJX-11-TEX-B-3C"></use></g><g data-mml-node="mi" transform="translate(9920.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(10849.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(12056.2,0)"><use data-c="3C" xlink:href="#MJX-11-TEX-B-3C"></use></g><g data-mml-node="mi" transform="translate(13228,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(14157.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(15086.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">下</text></g><g data-mml-node="mi" transform="translate(16015.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mo" transform="translate(16893.1,0)"><use data-c="29" xlink:href="#MJX-11-TEX-N-29"></use></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-1200)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">下</text></g><g data-mml-node="mi" transform="translate(2787.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mtext" transform="translate(3665.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(3915.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mtext" transform="translate(4165.1,0)"><use data-c="A0" xlink:href="#MJX-11-TEX-N-A0"></use></g><g data-mml-node="mo" transform="translate(4415.1,0) translate(0 -0.5)"><use data-c="28" xlink:href="#MJX-11-TEX-B-28"></use></g><g data-mml-node="mi" transform="translate(4862.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(5791.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(6998.3,0)"><use data-c="3C" xlink:href="#MJX-11-TEX-B-3C"></use><use data-c="3D" xlink:href="#MJX-11-TEX-B-3D" transform="translate(894,0)"></use></g><g data-mml-node="mi" transform="translate(9064.1,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(9993.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mi" transform="translate(10922.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">下</text></g><g data-mml-node="mi" transform="translate(11851.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">限</text></g><g data-mml-node="mo" transform="translate(12729.2,0)"><use data-c="29" xlink:href="#MJX-11-TEX-N-29"></use></g></g></g></g></g><g data-mml-node="mo" transform="translate(18171.1,0) translate(0 250)"></g></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-2700)"><g data-mml-node="mtd" transform="translate(5236.3,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(929.2,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">终</text></g><g data-mml-node="mi" transform="translate(1858.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">总</text></g><g data-mml-node="mi" transform="translate(2787.6,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">价</text></g><g data-mml-node="mo" transform="translate(3994.5,0)"><use data-c="3D" xlink:href="#MJX-11-TEX-B-3D"></use></g><g data-mml-node="mi" transform="translate(5166.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">最</text></g><g data-mml-node="mi" transform="translate(6095.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">终</text></g><g data-mml-node="mi" transform="translate(7024.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">利</text></g><g data-mml-node="mi" transform="translate(7953.9,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">润</text></g><g data-mml-node="mo" transform="translate(9105.3,0)"><use data-c="2B" xlink:href="#MJX-11-TEX-B-2B"></use></g><g data-mml-node="mi" transform="translate(10221.5,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">实</text></g><g data-mml-node="mi" transform="translate(11150.7,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">际</text></g><g data-mml-node="mi" transform="translate(12028.3,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">成</text></g><g data-mml-node="mi" transform="translate(12957.4,0)"><text data-variant="bold" transform="scale(1,-1)" font-size="825.5px" font-family="serif" font-weight="bold">本</text></g></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable rowspacing=".5em" columnspacing="1em" displaystyle="true"><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">=</mo><mi mathvariant="bold">目</mi><mi mathvariant="bold">标</mi><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">+</mo><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">目</mi><mi mathvariant="bold">标</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi><mo mathvariant="bold">−</mo><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi><mo stretchy="false">)</mo><mo mathvariant="bold">∗</mo><mi mathvariant="bold">卖</mi><mi mathvariant="bold">方</mi><mi mathvariant="bold">分</mi><mi mathvariant="bold">摊</mi><mi mathvariant="bold">比</mi><mi mathvariant="bold">例</mi></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">最</mi><mi mathvariant="bold">终</mi><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">=</mo><mrow data-mjx-texclass="INNER"><mo data-mjx-texclass="OPEN">{</mo><mtable columnalign="left left" columnspacing="1em" rowspacing=".2em"><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">上</mi><mi mathvariant="bold">限</mi><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">&gt;=</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">上</mi><mi mathvariant="bold">限</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">下</mi><mi mathvariant="bold">限</mi><mo mathvariant="bold">&lt;</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">&lt;</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">下</mi><mi mathvariant="bold">限</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">下</mi><mi mathvariant="bold">限</mi><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mtext>&nbsp;</mtext><mo mathvariant="bold" stretchy="false">(</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">&lt;=</mo><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mi mathvariant="bold">下</mi><mi mathvariant="bold">限</mi><mo stretchy="false">)</mo></mrow></mtd></mtr></mtable><mo data-mjx-texclass="CLOSE" fence="true" stretchy="true" symmetric="true"></mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow data-mjx-texclass="ORD"><mi mathvariant="bold">最</mi><mi mathvariant="bold">终</mi><mi mathvariant="bold">总</mi><mi mathvariant="bold">价</mi><mo mathvariant="bold">=</mo><mi mathvariant="bold">最</mi><mi mathvariant="bold">终</mi><mi mathvariant="bold">利</mi><mi mathvariant="bold">润</mi><mo mathvariant="bold">+</mo><mi mathvariant="bold">实</mi><mi mathvariant="bold">际</mi><mi mathvariant="bold">成</mi><mi mathvariant="bold">本</mi></mrow></mtd></mtr></mtable></math></mjx-assistive-mml></mjx-container></div></div></li></ul></li></ul></li><li><p><strong><font color="red"><span>工料合同（T&amp;M）</span></font></strong></p><p><span>兼具成本补偿合同和总价合同的某些特点的混合型合同。</span><font color="red"><span>适用于无法快速编制出准确的工作说明书、金额小、工期短、不复杂的项目</span></font><span>。</span></p><p><span>这类合同与成本补偿合同的相似之处在于，它们都是开口合同，合同价因成本增加而变化。</span></p><p><span>在授予合同时，买房可能并未确定合同的总价值和采购的准确数量。</span></p><p><span>很多组织要求在工料合同中</span><font color="red"><span>规定最高价值和时间限制，以防止成本无限增加</span></font><span>。</span></p><p><span>由于合同中确定了一些参数，工料合同又与固定单价合同相似。</span></p><p><span>预先设定了单位人力或材料费率（</span><font color="red"><span>包含卖方利润</span></font><span>）。</span></p><p><font color="red"><span>买方承担工作量变动的风险，卖方承担单价风险</span></font><span>。</span></p></li></ol></li></ul><p>&nbsp;</p><p><strong><span>合同汇总</span></strong></p><p><img src="./resources/12.2.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h1 id='2-合同选择标准'><span>2 合同选择标准</span></h1><ul><li><p><span>看范围</span></p><ul><li><strong><span>初始范围明确，不会重大改变</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span>​ 总价合同</span></li><li><strong><span>初始范围明确，会变化</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 成本补偿合同</span></li><li><strong><span>初始范围不明确</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 工料合同</span></li><li><strong><span>购买标准产品、数量不大</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 订购单</span></li></ul></li><li><p><span>风险承担</span></p><ul><li><strong><span>甲方承担</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 成本补偿合同</span></li><li><strong><span>双方承担</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 工料合同</span></li><li><strong><span>乙方承担</span></strong><span> </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.242ex" role="img" focusable="false" viewBox="0 -525 1000 549" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.054ex;"><defs><path id="MJX-18-TEX-N-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="21D2" xlink:href="#MJX-18-TEX-N-21D2"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">⇒</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\Rightarrow</script><span> 总价合同</span></li></ul></li></ul><p>&nbsp;</p><h1 id='3-合同的内容'><span>3 合同的内容</span></h1><ul><li><span>项目名称</span></li><li><font color="red"><span>标的内容和范围</span></font></li><li><span>计划、进度、地点、方式</span></li><li><span>各种期限</span></li><li><span>价款、报酬及支付方式</span></li><li><span>质量要求</span></li><li><span>风险承担方式</span></li><li><font color="red"><span>验收的标准和方法</span></font></li><li><font color="red"><span>技术成果的归属</span></font></li><li><span>保密协议</span></li><li><span>违约条款</span></li><li><span>解决争议的方法</span></li><li><span>名词术语解释</span></li></ul><p>&nbsp;</p><h1 id='4-合同管理过程'><span>4 合同管理过程</span></h1><ol start='' ><li><p><strong><span>合同</span><font color="red"><span>变更</span></font><span>管理</span></strong></p><p><span>当事人一方要求修改合同时，应首先向另一方用书面的方式提出。</span></p><p><span>另一方当事人在收到有关变更项目合同的申请后，应及时做出书面答复。</span></p></li><li><p><strong><span>合同</span><font color="red"><span>签订</span></font><span>管理</span></strong></p><p><span>签订合同前要做好以下工作：</span></p><ul><li><span>最好市场调查</span></li><li><span>进行潜在合作伙伴或竞争对手的资信调查。</span></li><li><span>了解相关环境，做出正确的风险分析判断。</span></li></ul></li><li><p><strong><span>合同</span><font color="red"><span>履行</span></font><span>管理</span></strong></p><p><span>合同争议、合同违约、合同索赔等处理。</span></p><p><span>解决争议的办法：谈判（协商）、替代争议解决（调节、仲裁）、诉讼。</span></p><p><span>如果约定了仲裁且约定了仲裁裁决的终局性，就不能向法院提起诉讼。</span></p></li><li><p><strong><span>合同</span><font color="red"><span>档案</span></font><span>管理</span></strong></p><p><span>是整个合同管理的基础。</span></p><p><span>可以使用合同档案管理系统对合同文件和记录进行管理。</span></p></li></ol><p>&nbsp;</p><h1 id='5-合同索赔分类'><span>5 合同索赔分类</span></h1><ul><li><p><strong><span>工期索赔</span></strong></p><p><span>不可抗力、买方造成延期。</span></p></li><li><p><strong><span>费用索赔</span></strong></p><p><span>买方造成延期</span></p></li></ul><p>&nbsp;</p><h1 id='6-合同索赔流程'><span>6 合同索赔流程</span></h1><ol start='' ><li><p><strong><span>提出索赔要求</span></strong></p><p><span>索赔事项发生后的</span><font color="red"><span>28天内</span></font><span>，由监理工程师正式提出。</span></p></li><li><p><strong><span>报送索赔资料</span></strong></p><p><span>索赔通知书发出后的</span><font color="red"><span>28天内</span></font><span>，向监理工程师</span><font color="red"><span>提交索赔报告及有关资料</span></font><span>。</span></p></li><li><p><strong><span>监理工程师回复</span></strong></p><p><span>监理工程师在收到索赔报告后的</span><font color="red"><span>28天内</span></font><span>给予答复。</span><font color="red"><span>如果逾期未回复，则视为已认可</span></font><span>。</span></p></li><li><p><strong><span>持续索赔</span></strong></p><p><span>索赔事件持续进行时，索赔方应</span><font color="red"><span>阶段性</span></font><span>发出索赔意向。在索赔事件终了后的</span><font color="red"><span>28天内</span></font><span>，向监理工程师提交</span><font color="red"><span>最终索赔报告</span></font><span>。</span></p></li><li><p><strong><span>总裁与诉讼</span></strong></p><p><span>对于监理工程师对索赔的答复不能接收的话，可由</span><font color="red"><span>政府建设主管机构</span></font><span>进行调解。如果仍调解不成，则由</span><font color="red"><span>经济合同仲裁委员会</span></font><span>进行</span><font color="red"><span>仲裁或</span></font><span>直接提起</span><font color="red"><span>诉讼</span></font><span>。</span></p></li></ol><p>&nbsp;</p></div></div>
+</body>
+</html>

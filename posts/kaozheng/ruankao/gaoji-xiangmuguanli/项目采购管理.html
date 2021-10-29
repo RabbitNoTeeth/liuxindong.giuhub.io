@@ -1,0 +1,749 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc {
+    left: 20px;
+    top: 10px;
+    bottom: 10px;
+    max-width: 300px;
+    overflow-y: auto;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+</style><title>项目采购管理</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n88"><a class="md-toc-inner" href="#1-规划采购管理">1 规划采购管理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n93"><a class="md-toc-inner" href="#输入-1">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n114"><a class="md-toc-inner" href="#工具与技术-1">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n125"><a class="md-toc-inner" href="#输出-1">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n170"><a class="md-toc-inner" href="#2-实施采购">2 实施采购</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n174"><a class="md-toc-inner" href="#输入-2">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n193"><a class="md-toc-inner" href="#工具与技术-2">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n218"><a class="md-toc-inner" href="#输出-2">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n234"><a class="md-toc-inner" href="#3-控制采购">3 控制采购</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n238"><a class="md-toc-inner" href="#输入-3">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n253"><a class="md-toc-inner" href="#工具与技术-3">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n270"><a class="md-toc-inner" href="#输出-3">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n283"><a class="md-toc-inner" href="#4-结束采购">4 结束采购</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n287"><a class="md-toc-inner" href="#输入-4">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n294"><a class="md-toc-inner" href="#工具与技术-4">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n303"><a class="md-toc-inner" href="#输出-4">输出</a></span></p></div><p><strong><span>项目采购管理</span></strong></p><p><img src="./resources/12.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><font color="red"><span>项目采购管理8个细化步骤</span></font></strong><span>：</span></p><ol start='' ><li><span>需求确定与采购计划的制订。</span></li><li><span>供应商的搜寻与分析。</span></li><li><span>定价。</span></li><li><span>拟定并发出订单。</span></li><li><span>订单的跟踪和跟催。</span></li><li><span>验货和收货。</span></li><li><span>开票和支付货款。</span></li><li><span>记录管理</span></li></ol><p>&nbsp;</p><p><strong><span>战略合作伙伴关系</span></strong><span>：</span></p><ul><li><p><strong><span>是什么？</span></strong></p><p><span>企业与供应商之间达成的最高层次的合作关系，它是指在</span><font color="red"><span>相互信任</span></font><span>的基础上，供需双方为了</span><font color="red"><span>实现共同的目标</span></font><span>而采取的</span><font color="red"><span>共担风险、共享利益</span></font><span>的长期合作关系。</span></p></li><li><p><strong><span>对双方有什么好处？</span></strong></p><ul><li><span>缩短供应周期</span></li><li><span>降低管理费用</span></li><li><span>提高采购设备的质量</span></li><li><span>加强沟通、改善过程、提高需求精准度</span></li><li><span>共享技术，缩短开发周期</span></li><li><span>共享管理经验，提高管理水平</span></li></ul></li><li><p><strong><span>如何构建这种关系？</span></strong></p><ol start='' ><li><span>分析市场竞争环境。</span></li><li><span>合作伙伴的主因素分析。</span></li><li><span>建立合作伙伴关系的标准。</span></li><li><span>评价和选择合作伙伴。</span></li><li><span>建立和实施合作伙伴关系。</span></li></ol></li><li><p><strong><span>如何避免关系失败？</span></strong></p><p><span>高层承诺、严选供应商、持续改进、目标一致、支持体系和文件、关注双赢、广泛沟通和分享信息、建立信任、资源让步、内部教育、人员变动时保持合作关系的能力。</span></p></li></ul><p>&nbsp;</p><p><strong><span>供应商选择的三大主要考虑因素</span></strong><span>：</span></p><ul><li><span>产品价格</span></li><li><span>质量</span></li><li><span>服务</span></li></ul><p>&nbsp;</p><p><strong><span>供应商评估的三个方法</span></strong><span>：</span></p><ul><li><span>供应商走访</span></li><li><span>招标法</span></li><li><span>协商法（适用情况：时间紧、单价少、竞争少、技术复杂）</span></li></ul><p>&nbsp;</p><p><strong><span>采购计划的作用</span></strong><span>：</span></p><ul><li><span>有效地规避风险、减少损失。</span></li><li><span>为采购提供依据。</span></li><li><span>有利于资源合理配置以取得最佳经济效益。</span></li></ul><p>&nbsp;</p><h1 id='1-规划采购管理'><span>1 规划采购管理</span></h1><p><strong><span>是什么？</span></strong><span>：记录项目采购决策、明确采购方法、识别潜在卖家的过程。</span></p><p><span>如果项目需要</span><font color="red"><span>从执行组织外部取得</span></font><span>所需的产品、服务或成果，则</span><font color="red"><span>每次采购都要经历</span></font><span>从规划采购管理到结束采购的</span><font color="red"><span>各个过程</span></font><span>。</span></p><p><strong><span>有什么作用？</span></strong><span>：确定是否需要外部支持。如果需要，还要决定采购什么、如何采购、采购多少、何时采购。</span></p><p>&nbsp;</p><h2 id='输入-1'><span>输入</span></h2><ol start='' ><li><p><span>项目管理计划</span></p></li><li><p><strong><font color="red"><span>需求文档</span></font></strong></p><p><span>包括“与采购规划有关的、关于项目需求的重要信息”，以及“带有合同和法律含义的需求”。</span></p></li><li><p><span>风险登记册</span></p></li><li><p><strong><font color="red"><span>活动资源需求</span></font></strong></p><p><span>包含“人员、设备或地点的具体需求的信息”，可用于成本估算，进而判断是自制还是外购。</span></p></li><li><p><strong><font color="red"><span>活动成本估算</span></font></strong></p><p><span>可用于得出这次采购的底价，来评价潜在卖方提交的投标书或建议书的合理性。</span></p></li><li><p><span>项目进度计划</span></p></li><li><p><strong><font color="red"><span>组织过程资产</span></font></strong></p><p><span>正式的采购政策、程序和指南；预先批准的卖方清单；合同类型。</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-1'><span>工具与技术</span></h2><ol start='' ><li><strong><font color="red"><span>自制或外购分析</span></font></strong></li><li><span>专家判断</span></li><li><strong><font color="red"><span>市场调研</span></font></strong></li><li><span>会议</span></li></ol><p>&nbsp;</p><h2 id='输出-1'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>采购管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：说明项目团队将如何从执行组织外部获取货物和服务，以及如何管理从编制采购文件到合同收尾的各个采购过程。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><font color="red"><span>拟采用的合同类型</span></font><span>。</span></li><li><font color="red"><span>风险管理事项</span></font><span>。</span></li><li><span>是否需要编制独立估算，以及是否应把独立估算作为评价标准。</span></li><li><span>如果执行组织没有采购、发包或采办部门，项目管理团队可独自采取行动。</span></li><li><span>标准化的采购文件（如果需要）。</span></li><li><font color="red"><span>如何管理多个供应商</span></font><span>。</span></li><li><font color="red"><span>如何协调采购工作与项目的其他工作</span></font><span>。</span></li><li><font color="red"><span>可能影响采购工作的制约因素和假设条件</span></font><span>。</span></li></ul></li><li><p><strong><font color="red"><span>采购工作说明书（SOW）</span></font></strong></p><p><span>SOW应该详细描述拟采购的产品、服务或成果，以便潜在卖方确定是否有能力提供。</span></p><p><span>SOW中可包括规格、数量、质量、性能参数、履约期限、工作地点和其他需求。</span></p><p><span>在采购过程中，应根据需要对SOW进行修订和改进，知道成为所签协议的一部分。</span></p></li><li><p><strong><font color="red"><span>采购文件</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：用于征求潜在卖方的建议书。</span></p><p><span>如果主要</span><font color="red"><span>依据价格</span></font><span>来选择卖方，通常使用</span><font color="red"><span>标书、投标或报价</span></font><span>等术语。</span></p><p><span>如果主要依据其他考虑来选择卖方，通常使用诸如建议书的术语。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：应答格式要求、相关的采购工作说明书、所需的合同条款。</span></p></li><li><p><strong><font color="red"><span>供方选择标准</span></font></strong></p><p><span>通常是采购文件的一部分，用于对卖方建议书进行评级或打分，从而挑选出符合要求的卖方。</span></p><p><span>标准可以是主管的，也可以是客观的。</span></p></li><li><p><strong><font color="red"><span>自制或外购决策</span></font></strong></p></li><li><p><span>变更请求</span></p></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1 id='2-实施采购'><span>2 实施采购</span></h1><p><strong><span>是什么？</span></strong><span>：获取卖方应答、选择卖方并授予合同的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：通过达成协议，使内部和外部干系人的期望协调一致。</span></p><p>&nbsp;</p><h2 id='输入-2'><span>输入</span></h2><ol start='' ><li><span>项目管理计划</span></li><li><strong><font color="red"><span>采购文件</span></font></strong></li><li><strong><font color="red"><span>供方选择标准</span></font></strong></li><li><strong><font color="red"><span>卖方建议书</span></font></strong></li><li><span>项目文件</span></li><li><span>自制或外购决策</span></li><li><span>采购工作说明书</span></li><li><span>组织过程资产</span></li></ol><p>&nbsp;</p><h2 id='工具与技术-2'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>投标人会议</span></font></strong></p><p><span>在投标书或建议书提交之前，在买方和所有潜在卖方之间召开的会议。如：发包会、承包商会议、供应商会议、投标前会议、竞标会议等。</span></p><p><span>目的是保证所有潜在卖方对采购要求都有清楚且一致的理解，保证没有任何投标人会得到特别优待。</span></p><p><span>买方必须尽力确保每个潜在卖方都能听到任何其他卖方所提出的问题，以及买方所作出的每个回答。</span></p><p><span>可以运用相关技术来促进公平。</span></p><p><span>要把对问题的回答，以修正案的形式纳入到采购文件中。</span></p></li><li><p><strong><font color="red"><span>建议书评价技术</span></font></strong></p><p><span>对于复杂的采购，如果要基于卖方对既定加权标准的相应情况来选择卖方，则应该根据买方的采购政策，规定一个正式的建议书评审流程。</span></p><p><img src="./resources/12.3.png" referrerpolicy="no-referrer"></p></li><li><p><strong><font color="red"><span>独立估算</span></font></strong></p></li><li><p><span>专家判断</span></p></li><li><p><strong><font color="red"><span>广告</span></font></strong></p></li><li><p><span>分析技术</span></p></li><li><p><strong><font color="red"><span>采购谈判</span></font></strong></p><p><span>在合同签署之前，对各同的结构、要求及其他条款加以澄清，以取得一致意见。</span></p></li></ol><p>&nbsp;</p><h2 id='输出-2'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>选定的卖方</span></font></strong></p></li><li><p><strong><font color="red"><span>协议</span></font></strong></p><p><span>因应用领域不同，协议也可以称作</span><font color="red"><span>谅解、合同、分包合同或订购单</span></font><span>。</span></p></li><li><p><span>资源日历</span></p></li><li><p><span>变更请求</span></p></li><li><p><span>项目管理计划更新</span></p></li><li><p><span>项目文件更新</span></p></li></ol><p>&nbsp;</p><h1 id='3-控制采购'><span>3 控制采购</span></h1><p><strong><span>是什么？</span></strong><span>：管理采购关系、监督合同执行情况，并根据需要实施变更和采取纠正措施的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：确保买卖双方履行法律协议，满足采购需求。</span></p><p>&nbsp;</p><h2 id='输入-3'><span>输入</span></h2><ol start='' ><li><span>项目管理计划</span></li><li><strong><font color="red"><span>采购文件</span></font></strong></li><li><strong><font color="red"><span>协议</span></font></strong></li><li><span>批准的变更请求</span></li><li><span>工作绩效报告</span></li><li><span>工作绩效数据</span></li></ol><p>&nbsp;</p><h2 id='工具与技术-3'><span>工具与技术</span></h2><ol start='' ><li><strong><font color="red"><span>合同变更控制系统</span></font></strong></li><li><strong><font color="red"><span>采购绩效审查</span></font></strong></li><li><strong><font color="red"><span>检查</span></font></strong></li><li><strong><font color="red"><span>报告绩效</span></font></strong></li><li><strong><font color="red"><span>支付系统</span></font></strong></li><li><strong><font color="red"><span>索赔管理</span></font></strong></li><li><strong><font color="red"><span>记录管理系统</span></font></strong></li></ol><p>&nbsp;</p><h2 id='输出-3'><span>输出</span></h2><ol start='' ><li><span>工作绩效信息</span></li><li><span>变更请求</span></li><li><span>项目管理计划更新</span></li><li><span>项目文件更新</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p><h1 id='4-结束采购'><span>4 结束采购</span></h1><p><strong><span>是什么？</span></strong><span>：完结单次项目采购的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：把合同和相关文件归档以备将来使用。</span></p><p>&nbsp;</p><h2 id='输入-4'><span>输入</span></h2><ol start='' ><li><span>项目管理计划</span></li><li><strong><font color="red"><span>采购文件</span></font></strong></li></ol><p>&nbsp;</p><h2 id='工具与技术-4'><span>工具与技术</span></h2><ol start='' ><li><strong><font color="red"><span>采购审计</span></font></strong></li><li><strong><font color="red"><span>采购谈判</span></font></strong></li><li><strong><font color="red"><span>记录管理系统</span></font></strong></li></ol><p>&nbsp;</p><h2 id='输出-4'><span>输出</span></h2><ol start='' ><li><span>结束的采购</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p><p>&nbsp;</p></div></div>
+</body>
+</html>
