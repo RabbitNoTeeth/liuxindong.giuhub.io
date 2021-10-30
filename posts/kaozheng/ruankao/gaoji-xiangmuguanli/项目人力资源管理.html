@@ -2,24 +2,21 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-
-<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
-.mac-os-11 { --title-bar-height: 28px; }
+<title>项目人力资源管理</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-.typora-export .task-list-item input { pointer-events: none; }
-@media screen and (max-width: 500px) { 
+@media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
   .CodeMirror-sizer { margin-left: 0px !important; }
@@ -27,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -46,17 +43,17 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px; }
+figure > table { margin: 0px !important; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
-.CodeMirror-linenumber { }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -66,8 +63,8 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
-.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -75,41 +72,37 @@ div.hr:focus { cursor: none; }
 .CodeMirror-line, twitterwidget { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
-li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
-@media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  .typora-export #write { break-after: avoid; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
-  .is-mac table { break-inside: avoid; }
-  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
-#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-.MathJax_ref { fill: currentcolor; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
 .math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc { min-height: 3.58rem; position: fixed; font-size: 0.9rem; border-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
 .md-toc-content::after, .md-toc::after { display: none; }
 .md-toc-item { display: block; color: rgb(65, 131, 196); }
@@ -122,7 +115,7 @@ p > .md-image:only-child { display: inline-block; width: 100%; }
 .md-toc-h4 .md-toc-inner { margin-left: 6em; }
 .md-toc-h5 .md-toc-inner { margin-left: 8em; }
 .md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) { 
+@media screen and (max-width: 48em) {
   .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
   .md-toc-h4 .md-toc-inner { margin-left: 5em; }
   .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
@@ -133,72 +126,31 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
-code { text-align: left; }
-a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom-width: 0px; }
+table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-.md-expand mark .md-meta { opacity: 0.3 !important; }
-mark .md-meta { color: rgb(0, 0, 0); }
-@media print { 
-  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
-}
-.md-diagram-panel .messageText { stroke: none !important; }
-.md-diagram-panel .start-state { fill: var(--node-fill); }
-.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
-.md-fences.md-fences-math { font-size: 1em; }
-.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
-.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
-.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
-.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
-.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
-@media screen and (max-width: 1024px) { 
-  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
-}
-@media screen and (max-width: 800px) { 
-  .typora-export-sidebar { display: none; }
-}
-.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
-.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
-.outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
-.outline-expander::before { content: ''; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
-.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
-.outline-expander:hover::before { content: ''; }
-.outline-h1 > .outline-item { padding-left: 0px; }
-.outline-h2 > .outline-item { padding-left: 1em; }
-.outline-h3 > .outline-item { padding-left: 2em; }
-.outline-h4 > .outline-item { padding-left: 3em; }
-.outline-h5 > .outline-item { padding-left: 4em; }
-.outline-h6 > .outline-item { padding-left: 5em; }
-.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
-.outline-label:hover { text-decoration: underline; }
-.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
-.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
-.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
-.outline-item-open > .outline-item > .outline-expander::before { content: ''; }
-.outline-children { display: none; }
-.info-panel-tab-wrapper { display: none; }
-.outline-item-open > .outline-children { display: block; }
-.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
-.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
-.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
-.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: '−'; }
-.typora-export-collapse-outline .outline-children { display: none; }
-.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
-.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
-.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
-.md-inline-math-container mjx-container { zoom: 0.95; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 
 :root {
@@ -208,17 +160,12 @@ mark .md-meta { color: rgb(0, 0, 0); }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
+html {
     font-size: 16px;
-    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -229,19 +176,6 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
-
-@media only screen and (min-width: 1400px) {
-	#write {
-		max-width: 1024px;
-	}
-}
-
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
-}
-
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -296,33 +230,17 @@ h6 code {
     font-size: inherit;
 }
 h1 {
+    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
+   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
-
-/*@media print {
-    .typora-export h1,
-    .typora-export h2 {
-        border-bottom: none;
-        padding-bottom: initial;
-    }
-
-    .typora-export h1::after,
-    .typora-export h2::after {
-        content: "";
-        display: block;
-        height: 100px;
-        margin-top: -96px;
-        border-top: 1px solid #eee;
-    }
-}*/
-
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -387,7 +305,7 @@ table {
     word-break: initial;
 }
 table tr {
-    border: 1px solid #dfe2e5;
+    border-top: 1px solid #dfe2e5;
     margin: 0;
     padding: 0;
 }
@@ -395,24 +313,24 @@ table tr:nth-child(2n),
 thead {
     background-color: #f8f8f8;
 }
-table th {
+table tr th {
     font-weight: bold;
     border: 1px solid #dfe2e5;
     border-bottom: 0;
     margin: 0;
     padding: 6px 13px;
 }
-table td {
+table tr td {
     border: 1px solid #dfe2e5;
     margin: 0;
     padding: 6px 13px;
 }
-table th:first-child,
-table td:first-child {
+table tr th:first-child,
+table tr td:first-child {
     margin-top: 0;
 }
-table th:last-child,
-table td:last-child {
+table tr th:last-child,
+table tr td:last-child {
     margin-bottom: 0;
 }
 
@@ -564,9 +482,9 @@ header, .context-menu, .megamenu-content, footer{
     color: #b4654d;
 }
 
-/*.html-for-mac {
+.html-for-mac .context-menu {
     --item-hover-bg-color: #E6F0FE;
-}*/
+}
 
 #md-notification .btn {
     border: 0;
@@ -574,7 +492,6 @@ header, .context-menu, .megamenu-content, footer{
 
 .dropdown-menu .divider {
     border-color: #e5e5e5;
-    opacity: 0.4;
 }
 
 .ty-preferences .window-content {
@@ -586,17 +503,11 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
-.menu-item-container a.menu-style-btn {
-    background-color: #f5f8fa;
-    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
-}
 
-
- @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
-</style><title>项目人力资源管理</title>
+</style>
 </head>
-<body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n26"><a class="md-toc-inner" style="" href="#1-规划人力资源管理">1 规划人力资源管理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n30"><a class="md-toc-inner" style="" href="#输入-1">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n42"><a class="md-toc-inner" style="" href="#工具与技术-1">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n65"><a class="md-toc-inner" style="" href="#输出-1">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n102"><a class="md-toc-inner" style="" href="#2-组建项目团队">2 组建项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n114"><a class="md-toc-inner" style="" href="#输入-2">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n123"><a class="md-toc-inner" style="" href="#工具与技术-2">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n158"><a class="md-toc-inner" style="" href="#输出-2">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n170"><a class="md-toc-inner" style="" href="#3-建设项目团队">3 建设项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n175"><a class="md-toc-inner" style="" href="#输入-3">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n184"><a class="md-toc-inner" style="" href="#工具与技术-3">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n215"><a class="md-toc-inner" style="" href="#输出-3">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n222"><a class="md-toc-inner" style="" href="#4-管理项目团队">4 管理项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n394"><a class="md-toc-inner" style="" href="#输入-4">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n399"><a class="md-toc-inner" style="" href="#工具与技术-4">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n402"><a class="md-toc-inner" style="" href="#输出-4">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n225"><a class="md-toc-inner" style="" href="#补充知识点">补充知识点</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n227"><a class="md-toc-inner" style="" href="#塔可曼---阶梯理论">塔可曼 - 阶梯理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n249"><a class="md-toc-inner" style="" href="#马斯洛---需求层次理论">马斯洛 - 需求层次理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n300"><a class="md-toc-inner" style="" href="#赫兹伯格---双因素理论">赫兹伯格 - 双因素理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n334"><a class="md-toc-inner" style="" href="#麦格雷戈---x理论和y理论">麦格雷戈 - X理论和Y理论</a></span></p></div><p><strong><span>项目人力资源管理</span></strong></p><p><img src="./resources/8.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>项目人力资源管理是什么</span></strong><span>？：根据项目需要规划并组建项目团队，对团队进行有效的指导和管理，以保证他们可以完成项目任务，实现项目目标。</span></p><p>&nbsp;</p><p><strong><span>冲突和竞争：</span></strong></p><ul><li><p><span>冲突</span></p><p><span>双方在</span><font color="red"><span>目标上互不相容和互相排斥</span></font><span>，从而产生心理或行为上的矛盾。</span></p><p><span>冲突不一定有害，要解决和减少有害冲突，利用有益冲突。</span></p></li><li><p><span>竞争</span></p><p><span>双方</span><font color="red"><span>目标相同</span></font><span>，不会发生势不两立的争夺。</span></p></li></ul><p>&nbsp;</p><p><strong><span>领导者和管理者：</span></strong></p><ul><li><p><span>领导者</span></p><p><span>确定方向、统一思想、激励和鼓舞。</span></p></li><li><p><span>管理者</span></p><p><span>负责某件事情的管理或实现某个目标。</span></p></li></ul><p>&nbsp;</p><h1 id='1-规划人力资源管理'><span>1 规划人力资源管理</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>识别和记录</span></font><span>项目角色、职责、所需技能、报告关系，并</span><font color="red"><span>编制人员配备管理计划</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：建立项目角色与职责、项目组织图、人员配备管理计划（包含人员招募和遣散时间表）。</span></p><p>&nbsp;</p><h2 id='输入-1'><span>输入</span></h2><ol start='' ><li><p><span>项目管理计划</span></p></li><li><p><strong><font color="red"><span>活动资源需求</span></font></strong></p><p><span>根据活动资源需求来确定项目所需的人力资源，明确对项目团队成员及其能力的初步需求，并不断渐进明细。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-1'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>组织图和职位描述</span></font></strong></p><p><span>可采用多种格式（</span><font color="red"><span>层级型、矩阵型、文本型</span></font><span>）来记录团队成员的角色与职责。要</span><font color="red"><span>确保每个工作包都有明确的责任人</span></font><span>，</span><font color="red"><span>确保全体团队成员都清楚地理解其角色和职责</span></font><span>。</span></p><ul><li><p><strong><span>层级型</span></strong></p><p><font color="red"><span>组织分解结构（OBS）</span></font><span>，对项目组织层级分解，用于查看每个部门的项目职责、活动和负责的工作包。</span></p></li><li><p><strong><span>矩阵型</span></strong></p><p><font color="red"><span>责任分配矩阵（RAM）</span></font><span>是用来显示分配个每个工作包的项目资源的表格。</span></p><p><span>在大型项目中，</span><font color="red"><span>可以指定多个层次的RAM</span></font><span>：</span><font color="red"><span>高层次RAM</span></font><span>可定义项目团队中的</span><font color="red"><span>各小组分别负责</span></font><span>WBS中的哪部分工作；</span><font color="red"><span>低层级RAM</span></font><span>可在各小组内为</span><font color="red"><span>具体活动分配</span></font><span>角色、职责和职权。</span></p><p><font color="red"><span>RACI矩阵</span></font><span>（R：执行，A：负责，C：咨询，I：知情）是一种RAM矩阵，如下图所示，它对明确划分角色和期望特别有用。在RACI中，每个活动只可能有一个“A”。</span></p><p><img src="./resources/8.2.png" style="zoom: 33%;" /></p></li><li><p><strong><span>文本型</span></strong></p><p><span>通常以概述的形式，提供诸如职责、权职、能力和资格等方面的详细信息。</span></p></li></ul></li><li><p><span>人际交往</span></p></li><li><p><span>组织理论</span></p></li></ol><p>&nbsp;</p><h2 id='输出-1'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>人力资源管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：提供了关于如何定义、配备、管理及最终遣散项目人力资源的指南。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><p><strong><font color="red"><span>项目组织图</span></font></strong></p><p><span>以图形方式展示项目团队成员及其报告关系。</span></p></li><li><p><strong><font color="red"><span>角色和职责</span></font></strong></p><p><span>角色：在项目中，某人承担的职务。</span></p><p><span>职权：使用项目资源、做出决策、签字批准、验收可交付成果等可影响他人开展项目工作的权利。</span></p><p><span>职责：必须履行的职责和工作。</span></p><p><span>能力：需要具备的技能和才干。</span></p><p><span>项目经理的几种权利：</span></p><p><img src="./resources/8.3.png" style="zoom: 33%;" /></p></li><li><p><strong><font color="red"><span>人员配备管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：人力资源管理计划的组成部分，说明将</span><font color="red"><span>在何时、以何种方式获得项目团队成员</span></font><span>，以及他们</span><font color="red"><span>需要在项目中工作多久</span></font><span>。它描述了</span><font color="red"><span>如何满足项目对人力资源的需求</span></font><span>。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><span>人员招募</span></li><li><span>资源日历</span></li><li><span>人员遣散计划</span></li><li><span>培训需要</span></li><li><span>认可和奖励</span></li><li><span>合规性</span></li><li><span>安全</span></li></ul></li></ul></li></ol><h1 id='2-组建项目团队'><span>2 组建项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：确认人力资源的可用情况，并未开展项目活动而创建团队的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：指导团队选择和职责分配，组件一个成功的团队。</span></p><p><strong><span>注意事项</span></strong><span>：</span></p><ul><li><span>应该进行有效谈判，影响那些能为项目提供所需人力资源的人员。</span></li><li><span>不能获得项目所需的人力资源或人员能力不足会降低项目成功的概率，甚至可能导致项目取消。</span></li><li><span>无法获得所需人力资源，项目经理或项目团队可能不得不使用替代资源（也许能力较低）。</span></li></ul><p>&nbsp;</p><h2 id='输入-2'><span>输入</span></h2><ol start='' ><li><span>人力资源管理计划</span></li><li><span>事业环境因素</span></li><li><span>组织过程资产</span></li></ol><p>&nbsp;</p><h2 id='工具与技术-2'><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>预分派</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：如果项目团队成员是</span><font color="red"><span>事先选定</span></font><span>的，那么他们就是预分派的。</span></p><p><strong><span>什么情况下可能使用？</span></strong><span>：</span></p><ul><li><span>竞标过程中承诺分派。</span></li><li><span>项目取决于特定人员的专有技能。</span></li><li><span>项目章程中指定。</span></li></ul></li><li><p><strong><font color="red"><span>谈判</span></font></strong></p><p><strong><span>有哪些谈判对象？</span></strong><span>：</span></p><ul><li><p><span>职能经理</span></p><p><span>获得</span><font color="red"><span>具备适当能力</span></font><span>的人员。</span></p></li><li><p><span>组织中其他项目管理团队</span></p><p><span>获得</span><font color="red"><span>稀缺或特殊</span></font><span>人力资源。</span></p></li><li><p><span>外部组织</span></p><p><span>获取</span><font color="red"><span>执行组织不能提供的</span></font><span>人力资源，可能是稀缺的，也可能是普通的。</span></p></li></ul></li><li><p><strong><font color="red"><span>招募</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：执行组织不能提供，需从</span><font color="red"><span>外部</span></font><span>获取，包括雇佣或工作分包（一般是获取具备适当能力的人员）。</span></p></li><li><p><strong><font color="red"><span>虚拟团队</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>具有共同目标</span></font><span>、在完成角色任务的过程中</span><font color="red"><span>很少或者没有时间面对面工作</span></font><span>的一群人。</span></p><p><strong><span>优点</span></strong><span>：可以将不同地理位置、有特殊技能、在家办公、行动不便者或残疾人、工作时间不同的员工纳入项目团队，另外可以节约差旅费等成本。</span></p><p><strong><span>缺点</span></strong><span>：可能产生误解，有孤立感，团队成员之间难以分享知识和经验，所以团队的沟通规划非常重要。</span></p></li></ol><p>&nbsp;</p><h2 id='输出-2'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目人员分配</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把合适的人员分派到团队，把人员姓名插入项目组织图和进度计划等。其实它就是</span><font color="red"><span>具体的人员清单</span></font><span>。</span></p><p><span>与之相关的文件是</span><font color="red"><span>项目团队名录</span></font><span>和</span><font color="red"><span>通讯录</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>资源日历</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>记录</span></font><span>每个项目团队成员在项目上的</span><font color="red"><span>工作时间段</span></font><span>与</span><font color="red"><span>休假时间</span></font><span>。</span></p></li><li><p><span>项目管理计划更新</span></p></li></ol><p>&nbsp;</p><h1 id='3-建设项目团队'><span>3 建设项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：是</span><font color="red"><span>提高工作能力，促进团队成员互动，改善团队整体氛围，以提高项目绩效</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：改进团队协作，增强人际技能，激励团队成员，降低人员离职率，提升整体项目绩效。</span></p><p><strong><span>注意事项</span></strong><span>：项目经理应请求管理层提供支持，并（或）对相关干系人施加影响，以获得建设高效项目团队所需的资源。</span></p><p>&nbsp;</p><h2 id='输入-3'><span>输入</span></h2><ol start='' ><li><span>人力资源管理计划</span></li><li><span>项目人员分派</span></li><li><span>资源日历</span></li></ol><p>&nbsp;</p><h2 id='工具与技术-3'><span>工具与技术</span></h2><ol start='' ><li><p><span>人际关系技能</span></p><p><strong><span>是什么？</span></strong><span>：因富有情商，并熟练掌握沟通技巧、冲突解决方法、谈判技巧、影响技能、团队建设技能和团队引导技能，而具备的行为能力。</span></p></li><li><p><strong><font color="red"><span>培训</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：包括旨在</span><font color="red"><span>提高</span></font><span>项目团队成员</span><font color="red"><span>能力</span></font><span>、</span><font color="red"><span>减少</span></font><span>成员之间</span><font color="red"><span>差异</span></font><span>的全部活动。</span></p><p><span>如果项目团队成员</span><font color="red"><span>缺乏必要的</span></font><span>管理或技术技能，可以将相关的培训</span><font color="red"><span>作为项目工作的一部分</span></font><span>。</span></p><p><font color="red"><span>培训成本</span></font><span>通常要包含在</span><font color="red"><span>项目预算</span></font><span>中。</span></p></li><li><p><strong><font color="red"><span>团队建设活动</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：旨在帮助各团队成员更加有效地促进协同工作、有助于建立信任和良好的工作关系。</span></p><p><span>如果团队成员的</span><font color="red"><span>工作地点相隔甚远</span></font><span>，无法进行面对面接触，就</span><font color="red"><span>特别需要有效的团队建设策略</span></font><span>。</span></p><p><span>团队建设是一个</span><font color="red"><span>持续性过程</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>基本规则</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：对项目团队成员的</span><font color="red"><span>可接受行为</span></font><span>做出</span><font color="red"><span>明确规定</span></font><span>，有利于</span><font color="red"><span>减少误解、提高生产力、形成一致的价值观</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>集中办公</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：将大部分或者全部项目团队成员安排在</span><font color="red"><span>同一个物理地点办公</span></font><span>，有助于</span><font color="red"><span>增进沟通、加强集体感</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>认可与奖励</span></font></strong></p><p><span>最初的</span><font color="red"><span>奖励计划</span></font><span>是在</span><font color="red"><span>规划人力资源管理过程</span></font><span>中编制的。</span></p><p><span>当人们感受到自己在组织中的价值，并且可以通过</span><font color="red"><span>获得奖励</span></font><span>来体现这种价值，他们就会</span><font color="red"><span>受到激励</span></font><span>。</span></p><p><span>只有能满足被奖励者的</span><font color="red"><span>某个重要需求的奖励</span></font><span>，才是有效的奖励。决定认可与奖励时，应</span><font color="red"><span>考虑文化差异</span></font><span>。</span></p><p><span>可以</span><font color="red"><span>正式或非正式</span></font><span>的方式做出奖励决定，但</span><font color="red"><span>不要授权别人颁发奖励</span></font><span>，以免被人误以为不重视。</span></p><p><span>通常，金钱是奖励制度中的有形奖励，然而</span><font color="red"><span>也存在各种同样有效、设置更加有效的无形奖励</span></font><span>。</span></p><p><span>应该</span><font color="red"><span>在整个项目生命周期中</span></font><span>尽可能地给予表彰，而不是等到项目完成时。</span></p><p><span>认可与奖励</span><font color="red"><span>应针对每个人能做到的行为</span></font><span>。</span></p></li><li><p><span>期望理论</span></p><p><span>弗鲁姆的期望理论：一种行为倾向的强度取决于个人对于这种行为可能带来的结果的期望度，以及这种结果对个人的吸引力。</span></p></li><li><p><span>人事测评工具</span></p><p><span>能让项目经理洞察团队成员的优势和劣势，评估他们的偏好和愿望。如</span><font color="red"><span>360度反馈（360度绩效考核法、全方位考核法）</span></font></p></li></ol><p>&nbsp;</p><h2 id='输出-3'><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>团队绩效评价</span></font></strong></p><p><strong><span>如何做？</span></strong><span>：基于</span><font color="red"><span>项目技术成功度</span></font><span>、</span><font color="red"><span>项目进度绩效</span></font><span>和</span><font color="red"><span>成本绩效</span></font><span>来评价团队绩效。</span></p><p><strong><span>包含哪些指标？</span></strong><span>：</span></p><ul><li><span>个人技能的改进</span></li><li><span>团队能力的改进</span></li><li><span>团队成员离职率的降低</span></li><li><span>团队凝聚力的加强</span></li></ul></li><li><p><span>事业环境因素更新</span></p></li></ol><p>&nbsp;</p><h1 id='4-管理项目团队'><span>4 管理项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：是</span><font color="red"><span>跟踪团队成员工作表现，提供反馈，解决问题</span></font><span>并</span><font color="red"><span>管理团队变更</span></font><span>，以</span><font color="red"><span>优化项目绩效</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：影响团队行为，</span><font color="red"><span>管理冲突，解决问题</span></font><span>，并评估团队成员的绩效。</span></p><p>&nbsp;</p><h2 id='输入-4'><span>输入</span></h2><ol><li><p><span>人力资源管理计划</span></p></li><li><p><span>项目人员分派</span></p></li><li><p><strong><font color="red"><span>团队绩效评价</span></font></strong></p><p><span>不断地评价项目团队绩效，有助于采取措施解决问题，调整沟通方式，解决冲突和改进团队互动。</span></p></li><li><p><strong><font color="red"><span>问题日志</span></font></strong></p><p><span>可用问题日志记录：问题、负责人、解决时间等，并监督解决情况。</span></p></li><li><p><strong><font color="red"><span>工作绩效报告</span></font></strong></p><p><span>绩效报告中的信息，有助于确定未来的人力资源需求，开展认可与奖励，以及更新人员配置管理计划。</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2 id='工具与技术-4'><span>工具与技术</span></h2><ol><li><p><strong><font color="red"><span>观察和交谈</span></font></strong></p><p><span>通过观察和交谈，随时了解项目团队成员的工作和态度。</span></p></li><li><p><strong><font color="red"><span>项目绩效评估</span></font></strong></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><span>澄清角色与职责</span></li><li><span>提供建设性反馈</span></li><li><span>发现未知或未决问题</span></li><li><span>制定个人培训计划</span></li><li><span>确立未来目标</span></li></ul></li><li><p><strong><font color="red"><span>冲突管理</span></font></strong></p><p><strong><span>产生冲突的原因？</span></strong><span>：</span><font color="red"><span>进度计划、项目优先级、资源</span></font><span>、技术意见及绩效的权衡、行政管理程序、成本估算、</span><font color="red"><span>个性</span></font><span>。</span></p><p><strong><span>解决步骤？</span></strong><span>：</span></p><ul><li><span>首先由项目团队成员负责解决。</span></li><li><span>冲突升级，项目经理应该协助解决（私下处理）。</span></li><li><span>如果破坏性冲突仍然存在，则可以使用正式程序，包括采取惩戒措施。</span></li></ul><p><strong><span>解决方法？</span></strong><span>：</span></p><ul><li><p><font color="red"><span>撤退/回避</span></font></p><p><span>推出冲突、将问题推迟或者推给他人解决。</span></p></li><li><p><font color="red"><span>缓和/包容</span></font></p><p><span>强调一致而非差异。</span></p></li><li><p><font color="red"><span>妥协/调解</span></font></p><p><span>各退一步，各方在一定程度上满意。</span></p></li><li><p><font color="red"><span>强迫/命令</span></font></p><p><span>推行某一方的观点，通常用来强行解决紧急问题。</span></p></li><li><p><font color="red"><span>合作/解决问题</span></font></p><p><span>合作的态度和开放式对话引导各方达成共识和承诺，是能够真正解决问题的最佳方式。</span></p></li></ul></li><li><p><span>人际关系技能</span></p></li></ol><p>&nbsp;</p><h2 id='输出-4'><span>输出</span></h2><ol><li><span>变更请求</span></li><li><span>项目管理计划更新</span></li><li><span>项目文件更新</span></li><li><span>事业环境因素更新</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p><h1 id='补充知识点'><span>补充知识点</span></h1><p>&nbsp;</p><h2 id='塔可曼---阶梯理论'><span>塔可曼 - 阶梯理论</span></h2><p><img src="./resources/8.4.png" referrerpolicy="no-referrer"></p><p><span>塔可曼阶梯理论将团队建设分为5个阶段：</span></p><ul><li><p><strong><font color="red"><span>形成阶段</span></font></strong></p><p><span>相互认识、相互独立、不一定开诚布公。</span></p></li><li><p><strong><font color="red"><span>震荡阶段</span></font></strong></p><p><span>冲突、矛盾、不同的观点和意见。</span></p></li><li><p><strong><font color="red"><span>规范阶段</span></font></strong></p><p><span>开始协同工作、开始相互信任。</span></p></li><li><p><strong><font color="red"><span>发挥阶段（成熟阶段）</span></font></strong></p><p><span>组织有序、相互依靠、平稳高效。</span></p></li><li><p><strong><font color="red"><span>解散阶段</span></font></strong></p><p><span>释放人员、释放团队。</span></p></li></ul><p>&nbsp;</p><p><span>尽管这些阶段通常按顺序进行，但是团队也</span><font color="red"><span>可能停滞在某个阶段</span></font><span>或者</span><font color="red"><span>退回到之前的阶段</span></font><span>（在软考中，如果新增加团队成员，一律按照退回到形成阶段处理）；如果团队成员曾经共同工作过，也</span><font color="red"><span>可能直接跳过某个阶段</span></font><span>。</span></p><p>&nbsp;</p><h2 id='马斯洛---需求层次理论'><span>马斯洛 - 需求层次理论</span></h2><p><span>人有五个层次的需求，从低到高分别是：</span></p><ul><li><p><strong><font color="red"><span>生理需求</span></font></strong>
-<span>相应的激励措施：工作餐、工作服、员工宿舍、班车、工资...</span></p></li><li><p><strong><font color="red"><span>安全需求</span></font></strong></p><p><span>相应的激励措施：长期劳动合同、社保...</span></p></li><li><p><strong><font color="red"><span>社交需求</span></font></strong></p><p><span>相应的激励措施：定期员工活动、聚餐、比赛、俱乐部...</span></p></li><li><p><strong><font color="red"><span>尊重需求</span></font></strong></p><p><span>相应的激励措施：形象、地位提升、奖章、荣誉性奖励...</span></p></li><li><p><strong><font color="red"><span>自我实现需求</span></font></strong></p><p><span>相应的激励措施：参与决策、管理、成为智囊团...</span></p></li></ul><p>&nbsp;</p><h2 id='赫兹伯格---双因素理论'><span>赫兹伯格 - 双因素理论</span></h2><p><span>有两类因素会决定人的行为：</span></p><ul><li><p><strong><font color="red"><span>保健因素</span></font></strong></p><p><span>是导致不满足感的因素，这些因素做得好不会提高激励，做得不好就会损害激励。相当于马斯洛需求层次中较低层次的需求（生理需求、安全需求、社交需求）。</span></p><p><span>比如：工作环境或条件、工资、同事或上下级关系、个人生活、安全、职务等。</span></p></li><li><p><strong><font color="red"><span>激励因素</span></font></strong></p><p><span>是导致满足感的因素，能够真正起激励作用。相当于马斯洛需求层次中较高层次的需求（尊重需求、自我实现需求）。</span></p><p><span>比如：成就感、责任感、得到认可和赞赏、挑战性和兴趣、发展前途、个人成长等。</span></p></li></ul><p>&nbsp;</p><h2 id='麦格雷戈---x理论和y理论'><span>麦格雷戈 - X理论和Y理论</span></h2><ul><li><p><strong><font color="red"><span>X理论</span></font></strong></p><p><span>认为人是消极懒惰的，缺乏进取心，总是逃避责任。</span></p><p><span>X理论认为总能用低层次的需求进行激励。</span></p></li><li><p><strong><font color="red"><span>Y理论</span></font></strong></p><p><span>认为人是积极的，愿意进步，愿意承担责任。</span></p><p><span>Y理论认为人更应该收到高层次需求的激励。</span></p></li></ul></div></div>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n26"><a class="md-toc-inner" href="#1-规划人力资源管理">1 规划人力资源管理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n30"><a class="md-toc-inner" href="#输入">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n42"><a class="md-toc-inner" href="#工具与技术">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n65"><a class="md-toc-inner" href="#输出">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n102"><a class="md-toc-inner" href="#2-组建项目团队">2 组建项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n114"><a class="md-toc-inner" href="#输入-n114">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n123"><a class="md-toc-inner" href="#工具与技术-n123">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n158"><a class="md-toc-inner" href="#输出-n158">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n170"><a class="md-toc-inner" href="#3-建设项目团队">3 建设项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n175"><a class="md-toc-inner" href="#输入-n175">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n184"><a class="md-toc-inner" href="#工具与技术-n184">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n221"><a class="md-toc-inner" href="#输出-n221">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n239"><a class="md-toc-inner" href="#4-管理项目团队">4 管理项目团队</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n243"><a class="md-toc-inner" href="#输入-n243">输入</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n261"><a class="md-toc-inner" href="#工具与技术-n261">工具与技术</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n311"><a class="md-toc-inner" href="#输出-n311">输出</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n324"><a class="md-toc-inner" href="#补充知识点">补充知识点</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n326"><a class="md-toc-inner" href="#塔可曼---阶梯理论">塔可曼 - 阶梯理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n348"><a class="md-toc-inner" href="#马斯洛---需求层次理论">马斯洛 - 需求层次理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n366"><a class="md-toc-inner" href="#赫兹伯格---双因素理论">赫兹伯格 - 双因素理论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n378"><a class="md-toc-inner" href="#麦格雷戈---x理论和y理论">麦格雷戈 - X理论和Y理论</a></span></p></div><p><strong><span>项目人力资源管理</span></strong></p><p><img src="./resources/8.1.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><strong><span>项目人力资源管理是什么</span></strong><span>？：根据项目需要规划并组建项目团队，对团队进行有效的指导和管理，以保证他们可以完成项目任务，实现项目目标。</span></p><p>&nbsp;</p><p><strong><span>冲突和竞争：</span></strong></p><ul><li><p><span>冲突</span></p><p><span>双方在</span><font color="red"><span>目标上互不相容和互相排斥</span></font><span>，从而产生心理或行为上的矛盾。</span></p><p><span>冲突不一定有害，要解决和减少有害冲突，利用有益冲突。</span></p></li><li><p><span>竞争</span></p><p><span>双方</span><font color="red"><span>目标相同</span></font><span>，不会发生势不两立的争夺。</span></p></li></ul><p>&nbsp;</p><p><strong><span>领导者和管理者：</span></strong></p><ul><li><p><span>领导者</span></p><p><span>确定方向、统一思想、激励和鼓舞。</span></p></li><li><p><span>管理者</span></p><p><span>负责某件事情的管理或实现某个目标。</span></p></li></ul><p>&nbsp;</p><h1><a name="1-规划人力资源管理" class="md-header-anchor"></a><span>1 规划人力资源管理</span></h1><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>识别和记录</span></font><span>项目角色、职责、所需技能、报告关系，并</span><font color="red"><span>编制人员配备管理计划</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：建立项目角色与职责、项目组织图、人员配备管理计划（包含人员招募和遣散时间表）。</span></p><p>&nbsp;</p><h2><a name="输入" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><span>项目管理计划</span></p></li><li><p><strong><font color="red"><span>活动资源需求</span></font></strong></p><p><span>根据活动资源需求来确定项目所需的人力资源，明确对项目团队成员及其能力的初步需求，并不断渐进明细。</span></p></li><li><p><span>事业环境因素</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与技术" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>组织图和职位描述</span></font></strong></p><p><span>可采用多种格式（</span><font color="red"><span>层级型、矩阵型、文本型</span></font><span>）来记录团队成员的角色与职责。要</span><font color="red"><span>确保每个工作包都有明确的责任人</span></font><span>，</span><font color="red"><span>确保全体团队成员都清楚地理解其角色和职责</span></font><span>。</span></p><ul><li><p><strong><span>层级型</span></strong></p><p><font color="red"><span>组织分解结构（OBS）</span></font><span>，对项目组织层级分解，用于查看每个部门的项目职责、活动和负责的工作包。</span></p></li><li><p><strong><span>矩阵型</span></strong></p><p><font color="red"><span>责任分配矩阵（RAM）</span></font><span>是用来显示分配给每个工作包的项目资源的表格。</span></p><p><span>在大型项目中，</span><font color="red"><span>可以指定多个层次的RAM</span></font><span>：</span><font color="red"><span>高层次RAM</span></font><span>可定义项目团队中的</span><font color="red"><span>各小组分别负责</span></font><span>WBS中的哪部分工作；</span><font color="red"><span>低层级RAM</span></font><span>可在各小组内为</span><font color="red"><span>具体活动分配</span></font><span>角色、职责和职权。</span></p><p><font color="red"><span>RACI矩阵</span></font><span>（R：执行，A：负责，C：咨询，I：知情）是一种RAM矩阵，如下图所示，它对明确划分角色和期望特别有用。在RACI中，每个活动只可能有一个“A”。</span></p><p><img src="./resources/8.2.png" style="zoom: 33%;" /></p></li><li><p><strong><span>文本型</span></strong></p><p><span>通常以概述的形式，提供诸如职责、权职、能力和资格等方面的详细信息。</span></p></li></ul></li><li><p><span>人际交往</span></p></li><li><p><span>组织理论</span></p></li></ol><p>&nbsp;</p><h2><a name="输出" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>人力资源管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：提供了关于如何定义、配备、管理及最终遣散项目人力资源的指南。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><p><strong><font color="red"><span>项目组织图</span></font></strong></p><p><span>以图形方式展示项目团队成员及其报告关系。</span></p></li><li><p><strong><font color="red"><span>角色和职责</span></font></strong></p><p><span>角色：在项目中，某人承担的职务。</span></p><p><span>职权：使用项目资源、做出决策、签字批准、验收可交付成果等可影响他人开展项目工作的权利。</span></p><p><span>职责：必须履行的职责和工作。</span></p><p><span>能力：需要具备的技能和才干。</span></p><p><strong><span>项目经理5种权利</span></strong><span>：</span></p><p><img src="./resources/8.3.png" style="zoom: 33%;" /></p></li><li><p><strong><font color="red"><span>人员配备管理计划</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：人力资源管理计划的组成部分，说明将</span><font color="red"><span>在何时、以何种方式获得项目团队成员</span></font><span>，以及他们</span><font color="red"><span>需要在项目中工作多久</span></font><span>。它描述了</span><font color="red"><span>如何满足项目对人力资源的需求</span></font><span>。</span></p><p><strong><span>包含哪些内容？</span></strong><span>：</span></p><ul><li><span>人员招募</span></li><li><span>资源日历</span></li><li><span>人员遣散计划</span></li><li><span>培训需要</span></li><li><span>认可和奖励</span></li><li><span>合规性</span></li><li><span>安全</span></li></ul></li></ul></li></ol><p>&nbsp;</p><h1><a name="2-组建项目团队" class="md-header-anchor"></a><span>2 组建项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：确认人力资源的可用情况，并为开展项目活动而创建团队的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：指导团队选择和职责分配，组件一个成功的团队。</span></p><p><strong><span>注意事项</span></strong><span>：</span></p><ul><li><span>应该进行有效谈判，影响那些能为项目提供所需人力资源的人员。</span></li><li><span>不能获得项目所需的人力资源或人员能力不足会降低项目成功的概率，甚至可能导致项目取消。</span></li><li><span>无法获得所需人力资源，项目经理或项目团队可能不得不使用替代资源（也许能力较低）。</span></li></ul><p>&nbsp;</p><h2><a name="输入-n114" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><span>人力资源管理计划</span></li><li><span>事业环境因素</span></li><li><span>组织过程资产</span></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n123" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>预分派</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：如果项目团队成员是</span><font color="red"><span>事先选定</span></font><span>的，那么他们就是预分派的。</span></p><p><strong><span>什么情况下可能使用？</span></strong><span>：</span></p><ul><li><span>竞标过程中承诺分派。</span></li><li><span>项目取决于特定人员的专有技能。</span></li><li><span>项目章程中指定。</span></li></ul></li><li><p><strong><font color="red"><span>谈判</span></font></strong></p><p><strong><span>有哪些谈判对象？</span></strong><span>：</span></p><ul><li><p><span>职能经理</span></p><p><span>获得</span><font color="red"><span>具备适当能力</span></font><span>的人员。</span></p></li><li><p><span>组织中其他项目管理团队</span></p><p><span>获得</span><font color="red"><span>稀缺或特殊</span></font><span>人力资源。</span></p></li><li><p><span>外部组织</span></p><p><span>获取</span><font color="red"><span>执行组织不能提供的</span></font><span>人力资源，可能是稀缺的，也可能是普通的。</span></p></li></ul></li><li><p><strong><font color="red"><span>招募</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：执行组织不能提供，需从</span><font color="red"><span>外部</span></font><span>获取，包括雇佣或工作分包（一般是获取具备适当能力的人员）。</span></p></li><li><p><strong><font color="red"><span>虚拟团队</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>具有共同目标</span></font><span>、在完成角色任务的过程中</span><font color="red"><span>很少或者没有时间面对面工作</span></font><span>的一群人。</span></p><p><strong><span>优点</span></strong><span>：可以将不同地理位置、有特殊技能、在家办公、行动不便者或残疾人、工作时间不同的员工纳入项目团队，另外可以节约差旅费等成本。</span></p><p><strong><span>缺点</span></strong><span>：可能产生误解，有孤立感，团队成员之间难以分享知识和经验，所以团队的沟通规划非常重要。</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n158" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>项目人员分配</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：把合适的人员分派到团队，把人员姓名插入项目组织图和进度计划等。其实它就是</span><font color="red"><span>具体的人员清单</span></font><span>。</span></p><p><span>与之相关的文件是</span><font color="red"><span>项目团队名录</span></font><span>和</span><font color="red"><span>通讯录</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>资源日历</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：</span><font color="red"><span>记录</span></font><span>每个项目团队成员在项目上的</span><font color="red"><span>工作时间段</span></font><span>与</span><font color="red"><span>休假时间</span></font><span>。</span></p></li><li><p><span>项目管理计划更新</span></p></li></ol><p>&nbsp;</p><h1><a name="3-建设项目团队" class="md-header-anchor"></a><span>3 建设项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：是</span><font color="red"><span>提高工作能力，促进团队成员互动，改善团队整体氛围，以提高项目绩效</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：改进团队协作，增强人际技能，激励团队成员，降低人员离职率，提升整体项目绩效。</span></p><p><strong><span>注意事项</span></strong><span>：项目经理应请求管理层提供支持，并（或）对相关干系人施加影响，以获得建设高效项目团队所需的资源。</span></p><p>&nbsp;</p><h2><a name="输入-n175" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><strong><font color="red"><span>人力资源管理计划</span></font></strong></li><li><strong><font color="red"><span>项目人员分派</span></font></strong></li><li><strong><font color="red"><span>资源日历</span></font></strong></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n184" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><span>人际关系技能</span></p><p><strong><span>是什么？</span></strong><span>：因富有情商，并熟练掌握沟通技巧、冲突解决方法、谈判技巧、影响技能、团队建设技能和团队引导技能，而具备的行为能力。</span></p></li><li><p><strong><font color="red"><span>培训</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：包括旨在</span><font color="red"><span>提高</span></font><span>项目团队成员</span><font color="red"><span>能力</span></font><span>、</span><font color="red"><span>减少</span></font><span>成员之间</span><font color="red"><span>差异</span></font><span>的全部活动。</span></p><p><span>如果项目团队成员</span><font color="red"><span>缺乏必要的</span></font><span>管理或技术技能，可以将相关的培训</span><font color="red"><span>作为项目工作的一部分</span></font><span>。</span></p><p><font color="red"><span>培训成本</span></font><span>通常要包含在</span><font color="red"><span>项目预算</span></font><span>中。</span></p></li><li><p><strong><font color="red"><span>团队建设活动</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：旨在帮助各团队成员更加有效地促进协同工作、有助于建立信任和良好的工作关系。</span></p><p><span>如果团队成员的</span><font color="red"><span>工作地点相隔甚远</span></font><span>，无法进行面对面接触，就</span><font color="red"><span>特别需要有效的团队建设策略</span></font><span>。</span></p><p><span>团队建设是一个</span><font color="red"><span>持续性过程</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>基本规则</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：对项目团队成员的</span><font color="red"><span>可接受行为</span></font><span>做出</span><font color="red"><span>明确规定</span></font><span>，有利于</span><font color="red"><span>减少误解、提高生产力、形成一致的价值观</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>集中办公</span></font></strong></p><p><strong><span>是什么？</span></strong><span>：将大部分或者全部项目团队成员安排在</span><font color="red"><span>同一个物理地点办公</span></font><span>，有助于</span><font color="red"><span>增进沟通、加强集体感</span></font><span>。</span></p></li><li><p><strong><font color="red"><span>认可与奖励</span></font></strong></p><p><span>最初的</span><font color="red"><span>奖励计划</span></font><span>是在</span><font color="red"><span>规划人力资源管理过程</span></font><span>中编制的。</span></p><p><span>当人们感受到自己在组织中的价值，并且可以通过</span><font color="red"><span>获得奖励</span></font><span>来体现这种价值，他们就会</span><font color="red"><span>受到激励</span></font><span>。</span></p><p><span>只有能满足被奖励者的</span><font color="red"><span>某个重要需求的奖励</span></font><span>，才是有效的奖励。决定认可与奖励时，应</span><font color="red"><span>考虑文化差异</span></font><span>。</span></p><p><span>可以</span><font color="red"><span>正式或非正式</span></font><span>的方式做出奖励决定，但</span><font color="red"><span>不要授权别人颁发奖励</span></font><span>，以免被人误以为不重视。</span></p><p><span>通常，金钱是奖励制度中的有形奖励，然而</span><font color="red"><span>也存在各种同样有效、甚至更加有效的无形奖励</span></font><span>。</span></p><p><span>应该</span><font color="red"><span>在整个项目生命周期中</span></font><span>尽可能地给予表彰，而不是等到项目完成时。</span></p><p><span>认可与奖励</span><font color="red"><span>应针对每个人能做到的行为</span></font><span>。</span></p></li><li><p><span>期望理论</span></p><p><span>弗鲁姆的期望理论：一种行为倾向的强度取决于个人对于这种行为可能带来的结果的期望度，以及这种结果对个人的吸引力。</span></p></li><li><p><span>人事测评工具</span></p><p><span>能让项目经理洞察团队成员的优势和劣势，评估他们的偏好和愿望。如</span><font color="red"><span>360度反馈（360度绩效考核法、全方位考核法）</span></font></p></li></ol><p>&nbsp;</p><h2><a name="输出-n221" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><p><strong><font color="red"><span>团队绩效评价</span></font></strong></p><p><strong><span>如何做？</span></strong><span>：基于</span><font color="red"><span>项目技术成功度</span></font><span>、</span><font color="red"><span>项目进度绩效</span></font><span>和</span><font color="red"><span>成本绩效</span></font><span>来评价团队绩效。</span></p><p><strong><span>包含哪些指标？</span></strong><span>：</span></p><ul><li><span>个人技能的改进</span></li><li><span>团队能力的改进</span></li><li><span>团队成员离职率的降低</span></li><li><span>团队凝聚力的加强</span></li></ul></li><li><p><span>事业环境因素更新</span></p></li></ol><p>&nbsp;</p><h1><a name="4-管理项目团队" class="md-header-anchor"></a><span>4 管理项目团队</span></h1><p><strong><span>是什么？</span></strong><span>：是</span><font color="red"><span>跟踪团队成员工作表现，提供反馈，解决问题</span></font><span>并</span><font color="red"><span>管理团队变更</span></font><span>，以</span><font color="red"><span>优化项目绩效</span></font><span>的过程。</span></p><p><strong><span>有什么作用？</span></strong><span>：影响团队行为，</span><font color="red"><span>管理冲突，解决问题</span></font><span>，并评估团队成员的绩效。</span></p><p>&nbsp;</p><h2><a name="输入-n243" class="md-header-anchor"></a><span>输入</span></h2><ol start='' ><li><p><span>人力资源管理计划</span></p></li><li><p><span>项目人员分派</span></p></li><li><p><strong><font color="red"><span>团队绩效评价</span></font></strong></p><p><span>不断地评价项目团队绩效，有助于采取措施解决问题，调整沟通方式，解决冲突和改进团队互动。</span></p></li><li><p><strong><font color="red"><span>问题日志</span></font></strong></p><p><span>记录问题、负责人、解决时间等，并监督解决情况。</span></p></li><li><p><strong><font color="red"><span>工作绩效报告</span></font></strong></p><p><span>绩效报告中的信息，有助于确定未来的人力资源需求，开展认可与奖励，以及更新人员配置管理计划。</span></p></li><li><p><span>组织过程资产</span></p></li></ol><p>&nbsp;</p><h2><a name="工具与技术-n261" class="md-header-anchor"></a><span>工具与技术</span></h2><ol start='' ><li><p><strong><font color="red"><span>观察和交谈</span></font></strong></p><p><span>通过观察和交谈，随时了解项目团队成员的工作和态度。</span></p></li><li><p><strong><font color="red"><span>项目绩效评估</span></font></strong></p><p><strong><span>有什么作用？</span></strong><span>：</span></p><ul><li><span>澄清角色与职责</span></li><li><span>提供建设性反馈</span></li><li><span>发现未知或未决问题</span></li><li><span>制定个人培训计划</span></li><li><span>确立未来目标</span></li></ul></li><li><p><strong><font color="red"><span>冲突管理</span></font></strong></p><p><strong><span>产生冲突的原因？</span></strong><span>：</span><font color="red"><span>进度计划、项目优先级、资源</span></font><span>、技术意见及绩效的权衡、行政管理程序、成本估算、</span><font color="red"><span>个性</span></font><span>。</span></p><p><strong><span>解决步骤？</span></strong><span>：</span></p><ul><li><span>首先由项目团队成员负责解决。</span></li><li><span>冲突升级，项目经理应该协助解决（私下处理）。</span></li><li><span>如果破坏性冲突仍然存在，则可以使用正式程序，包括采取惩戒措施。</span></li></ul><p><strong><span>解决方法？</span></strong><span>：</span></p><ul><li><p><font color="red"><span>撤退/回避</span></font></p><p><span>退出冲突、将问题推迟或者推给他人解决。</span></p></li><li><p><font color="red"><span>缓和/包容</span></font></p><p><span>强调一致而非差异。</span></p></li><li><p><font color="red"><span>妥协/调解</span></font></p><p><span>各退一步，各方在一定程度上满意。</span></p></li><li><p><font color="red"><span>强迫/命令</span></font></p><p><span>推行某一方的观点，通常用来强行解决紧急问题。</span></p></li><li><p><font color="red"><span>合作/解决问题</span></font></p><p><span>合作的态度和开放式对话引导各方达成共识和承诺，是能够真正解决问题的最佳方式。</span></p></li></ul></li><li><p><span>人际关系技能</span></p></li></ol><p>&nbsp;</p><h2><a name="输出-n311" class="md-header-anchor"></a><span>输出</span></h2><ol start='' ><li><span>变更请求</span></li><li><span>项目管理计划更新</span></li><li><span>项目文件更新</span></li><li><span>事业环境因素更新</span></li><li><span>组织过程资产更新</span></li></ol><p>&nbsp;</p><h1><a name="补充知识点" class="md-header-anchor"></a><span>补充知识点</span></h1><p>&nbsp;</p><h2><a name="塔可曼---阶梯理论" class="md-header-anchor"></a><span>塔可曼 - 阶梯理论</span></h2><p><img src="./resources/8.4.png" referrerpolicy="no-referrer"></p><p><span>塔可曼阶梯理论将团队建设分为5个阶段：</span></p><ul><li><p><strong><font color="red"><span>形成阶段</span></font></strong></p><p><span>相互认识、相互独立、不一定开诚布公。</span></p></li><li><p><strong><font color="red"><span>震荡阶段</span></font></strong></p><p><span>冲突、矛盾、不同的观点和意见。</span></p></li><li><p><strong><font color="red"><span>规范阶段</span></font></strong></p><p><span>开始协同工作、开始相互信任。</span></p></li><li><p><strong><font color="red"><span>发挥阶段（成熟阶段）</span></font></strong></p><p><span>组织有序、相互依靠、平稳高效。</span></p></li><li><p><strong><font color="red"><span>解散阶段</span></font></strong></p><p><span>释放人员、释放团队。</span></p></li></ul><p>&nbsp;</p><p><span>尽管这些阶段通常按顺序进行，但是团队也</span><font color="red"><span>可能停滞在某个阶段</span></font><span>或者</span><font color="red"><span>退回到之前的阶段</span></font><span>（在软考中，如果新增加团队成员，一律按照退回到形成阶段处理）；如果团队成员曾经共同工作过，也</span><font color="red"><span>可能直接跳过某个阶段</span></font><span>。</span></p><p>&nbsp;</p><h2><a name="马斯洛---需求层次理论" class="md-header-anchor"></a><span>马斯洛 - 需求层次理论</span></h2><p><span>人有五个层次的需求，从低到高分别是：</span></p><ul><li><p><strong><font color="red"><span>生理需求</span></font></strong>
+<span>相应的激励措施：工作餐、工作服、员工宿舍、班车、工资...</span></p></li><li><p><strong><font color="red"><span>安全需求</span></font></strong></p><p><span>相应的激励措施：长期劳动合同、社保...</span></p></li><li><p><strong><font color="red"><span>社交需求</span></font></strong></p><p><span>相应的激励措施：定期员工活动、聚餐、比赛、俱乐部...</span></p></li><li><p><strong><font color="red"><span>尊重需求</span></font></strong></p><p><span>相应的激励措施：形象、地位提升、奖章、荣誉性奖励...</span></p></li><li><p><strong><font color="red"><span>自我实现需求</span></font></strong></p><p><span>相应的激励措施：参与决策、管理、成为智囊团...</span></p></li></ul><p>&nbsp;</p><h2><a name="赫兹伯格---双因素理论" class="md-header-anchor"></a><span>赫兹伯格 - 双因素理论</span></h2><p><span>有两类因素会决定人的行为：</span></p><ul><li><p><strong><font color="red"><span>保健因素</span></font></strong></p><p><span>是导致不满足感的因素，这些因素做得好不会提高激励，做得不好就会损害激励。</span></p><p><span>相当于马斯洛需求层次中较低层次的需求（生理需求、安全需求、社交需求）。</span></p><p><span>比如：工作环境或条件、工资、同事或上下级关系、个人生活、安全、职务等。</span></p></li><li><p><strong><font color="red"><span>激励因素</span></font></strong></p><p><span>是导致满足感的因素，能够真正起激励作用。</span></p><p><span>相当于马斯洛需求层次中较高层次的需求（尊重需求、自我实现需求）。</span></p><p><span>比如：成就感、责任感、得到认可和赞赏、挑战性和兴趣、发展前途、个人成长等。</span></p></li></ul><p>&nbsp;</p><h2><a name="麦格雷戈---x理论和y理论" class="md-header-anchor"></a><span>麦格雷戈 - X理论和Y理论</span></h2><ul><li><p><strong><font color="red"><span>X理论</span></font></strong></p><p><span>认为人是消极懒惰的，缺乏进取心，总是逃避责任。</span></p><p><span>X理论认为总能用低层次的需求进行激励。</span></p></li><li><p><strong><font color="red"><span>Y理论</span></font></strong></p><p><span>认为人是积极的，愿意进步，愿意承担责任。</span></p><p><span>Y理论认为人更应该受到高层次需求的激励。</span></p></li></ul></div>
 </body>
 </html>
