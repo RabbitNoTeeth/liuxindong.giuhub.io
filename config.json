@@ -714,6 +714,16 @@
                 "url": "./posts/database/mysql/设置root远程登录.html"
               }
             ]
+          },
+          {
+            "id": "postgresql",
+            "label": "PostgreSQL",
+            "articles": [
+              {
+                "name": "Ubuntu安装PostgreSQL",
+                "url": "./posts/database/postgresql/Ubuntu安装PostgreSQL.html"
+              }
+            ]
           }
         ]
       },
