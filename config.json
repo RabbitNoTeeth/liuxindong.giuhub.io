@@ -722,6 +722,10 @@
               {
                 "name": "Ubuntu安装PostgreSQL",
                 "url": "./posts/database/postgresql/Ubuntu安装PostgreSQL.html"
+              },
+              {
+                "name": "PostgreSQL备份与恢复",
+                "url": "./posts/database/postgresql/PostgreSQL备份与恢复.html"
               }
             ]
           }
