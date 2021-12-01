@@ -909,6 +909,10 @@
               {
                 "name": "binsh^M：损坏的解释器 没有那个文件或目录",
                 "url": "./posts/os/linux/binsh^M：损坏的解释器 没有那个文件或目录.html"
+              },
+              {
+                "name": "ubuntu启用root账户并允许登录",
+                "url": "./posts/os/linux/ubuntu启用root账户并允许登录.html"
               }
             ]
           },
