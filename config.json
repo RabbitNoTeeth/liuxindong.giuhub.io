@@ -726,6 +726,14 @@
               {
                 "name": "PostgreSQL备份与恢复",
                 "url": "./posts/database/postgresql/PostgreSQL备份与恢复.html"
+              },
+              {
+                "name": "PostgreSQL远程连接中断问题",
+                "url": "./posts/database/postgresql/PostgreSQL远程连接中断问题.html"
+              },
+              {
+                "name": "PostgreSQL中like查询优化",
+                "url": "./posts/database/postgresql/PostgreSQL中like查询优化.html"
               }
             ]
           }
