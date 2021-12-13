@@ -732,7 +732,7 @@
                 "url": "./posts/database/postgresql/远程连接中断问题.html"
               },
               {
-                "name": "中like查询优化",
+                "name": "like查询优化",
                 "url": "./posts/database/postgresql/like查询优化.html"
               },
               {
