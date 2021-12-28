@@ -738,6 +738,10 @@
               {
                 "name": "自增变量导致插入失败问题",
                 "url": "./posts/database/postgresql/自增变量导致插入失败问题.html"
+              },
+              {
+                "name": "垂直分表",
+                "url": "./posts/database/postgresql/垂直分表.html"
               }
             ]
           }
