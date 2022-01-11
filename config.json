@@ -742,6 +742,14 @@
               {
                 "name": "垂直分表",
                 "url": "./posts/database/postgresql/垂直分表.html"
+              },
+              {
+                "name": "两表关联更新",
+                "url": "./posts/database/postgresql/两表关联更新.html"
+              },
+              {
+                "name": "常用函数",
+                "url": "./posts/database/postgresql/常用函数.html"
               }
             ]
           }
