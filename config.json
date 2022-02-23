@@ -844,7 +844,7 @@
       },
       {
         "id": "communication",
-        "label": "通讯",
+        "label": "通讯协议",
         "children": [
           {
             "id": "communication_webrtc",
@@ -853,6 +853,16 @@
               {
                 "name": "简介及基础环境搭建",
                 "url": "./posts/communication/webrtc/简介及基础环境搭建.html"
+              }
+            ]
+          },
+          {
+            "id": "communication_snmp",
+            "label": "SNMP",
+            "articles": [
+              {
+                "name": "SNMP协议简介",
+                "url": "./posts/communication/snmp/SNMP协议简介.html"
               }
             ]
           }
