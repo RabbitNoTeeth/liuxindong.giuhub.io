@@ -834,9 +834,14 @@
               {
                 "name": "下载源码及javadoc",
                 "url": "./posts/cicd/maven/下载源码及javadoc.html"
-              },{
+              },
+              {
                 "name": "构建可执行的fat jar",
                 "url": "./posts/cicd/maven/构建可执行的fat jar.html"
+              },
+              {
+                "name": "发布jar到maven中央仓库",
+                "url": "./posts/cicd/maven/发布jar到maven中央仓库.html"
               }
             ]
           }
@@ -1011,7 +1016,8 @@
                   {
                     "name": "WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等",
                     "url": "./posts/gis/webgis/basic/WebGIS常见地图服务：WMS、WFS、WCS、TMS、WMTS等.html"
-                  },{
+                  },
+                  {
                     "name": "WebGIS - XYZ",
                     "url": "./posts/gis/webgis/basic/WebGIS - XYZ.html"
                   }
@@ -1026,8 +1032,8 @@
                     "url": "./posts/gis/webgis/geoserver/GeoServer环境搭建.html"
                   },
                   {
-                    "name": "GeoServer发布mbtiles瓦片数据",
-                    "url": "./posts/gis/webgis/geoserver/GeoServer发布mbtiles瓦片数据.html"
+                    "name": "GeoServer发布MBTiles瓦片数据",
+                    "url": "./posts/gis/webgis/geoserver/GeoServer发布MBTiles瓦片数据.html"
                   },
                   {
                     "name": "GeoServer对地图进行切片",
