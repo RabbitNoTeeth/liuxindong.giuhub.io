@@ -111,52 +111,6 @@
 
 
 
-**注意：**
-
-上面的操作是针对第一次发布jar到maven中央仓库，如果已经发布过，但是更换了电脑，那么是不需要重新生成密钥对的，只需要从PGP密钥服务器下载即可，具体操作如下：
-
-① 打开浏览器，进入PGP密钥服务器 http://keyserver.ubuntu.com/
-
-② 通过名称搜索之前创建的密钥对，如我的密钥对名称为 RabbitNoTeeth
-
-![](./resources/1.9.png)
-
-
-
-搜索结果如下：
-
-![](./resources/1.10.png)
-
-注意上图中红色圈出的【2f6214e116ead6c3】，需要用这个来下载密钥。
-
-③ 打开命令行，执行命令
-
-```
-$ gpg --keyserver hkp://keyserver.ubuntu.com/ --recv-keys 2f6214e116ead6c3
-```
-
-④ 密钥对下载完成后，可以打开 Kleopatra 软件查看（该软件就是在安装 Gpg4win 时安装的），可以看到，密钥状态为未认证
-
-![](./resources/1.11.png)
-
-双击打开该密钥，点击认证按钮
-
-![](./resources/1.12.png)
-
-创建一个新的证书来进行认证，选择【是】
-
-![](./resources/1.13.png)
-
-按照指引创建新证书，然后进行认证
-
-![](./resources/1.14.png)
-
-认证成功后，密钥状态为【认证的】
-
-![](./resources/1.15.png)
-
-
-
 # 4 修改 maven 配置文件
 
 打开文件 `maven安装目录/conf/settings.xml`，在标签 `<servers>...</servers>` 中添加
@@ -315,3 +269,9 @@ $ mvn clean deploy
 jar包发布成功后，先到 https://s01.oss.sonatype.org/ 仓库中，如果项目pom文件中 `autoReleaseAfterClose` 属性为 true，那么将自动release。否则，项目将先进入 staging 状态，此时需要使用第1步中注册的账号登录到 https://s01.oss.sonatype.org/ 仓库，找到 **Staging Repositories** 并点击进入，在列表中找到要 release 的项目，手动进行 release。
 
 ![](./resources/1.4.png)
+
+
+
+**注意：**
+
+如果后续需要对项目进行新版本的发布，但是更换了其他的电脑，那么只需要在新电脑上执行一次第3步生成密钥对，然后再次执行发布命令即可。
