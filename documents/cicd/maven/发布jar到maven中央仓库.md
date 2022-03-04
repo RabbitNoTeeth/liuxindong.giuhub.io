@@ -53,7 +53,27 @@
 - Username(s)
   可以不用填,这是能辅助你提交项目的合作人的帐号,前提是他也得在这个Jira注册
 
-④ issue 创建后，等待一段时间，将收到 sonatype 发送的邮件，邮件中明确说明了后续应该如何操作，按照邮件内容操作即可。
+
+
+下面是我使用gitee项目bedrock-snmp来创建issue填写的表单，仅作参考：
+
+![](./resources/1.5.png)
+
+
+
+④ issue 创建成功后，找到新创建的issue并进入
+
+![](./resources/1.6.png)
+
+进入issue后，发现当前issue处于开放状态，等待管理员处理
+
+![](./resources/1.7.png)
+
+注意上图中红色圈出的【OSSRH-78682】，这个是issue的ID，如果通过github或者gitee来申请，那么需要在github或者gitee上创建名称为 OSSRH-78682 的项目，并且保证项目为public公开状态，以便管理员确认提交issue的用户是否具有对应github或者gitee账号的管理权限。
+
+⑤ 等待一段时间，一般在一小时以内，管理员验证完后，在issue下将收到如下回复（邮件会通知），说明申请成功。
+
+![](./resources/1.8.png)
 
 
 
@@ -83,11 +103,57 @@
 
   3F97A47E90BCEA6059B9281D8B125471433FD829 就是公钥的指纹。
 
-- 将公钥发布到PGP 密钥服务器
+- 将公钥发布到PGP密钥服务器
 
   ```
   $ gpg --keyserver hkp://keyserver.ubuntu.com/ --send-keys 3F97A47E90BCEA6059B9281D8B125471433FD829 
   ```
+
+
+
+**注意：**
+
+上面的操作是针对第一次发布jar到maven中央仓库，如果已经发布过，但是更换了电脑，那么是不需要重新生成密钥对的，只需要从PGP密钥服务器下载即可，具体操作如下：
+
+① 打开浏览器，进入PGP密钥服务器 http://keyserver.ubuntu.com/
+
+② 通过名称搜索之前创建的密钥对，如我的密钥对名称为 RabbitNoTeeth
+
+![](./resources/1.9.png)
+
+
+
+搜索结果如下：
+
+![](./resources/1.10.png)
+
+注意上图中红色圈出的【2f6214e116ead6c3】，需要用这个来下载密钥。
+
+③ 打开命令行，执行命令
+
+```
+$ gpg --keyserver hkp://keyserver.ubuntu.com/ --recv-keys 2f6214e116ead6c3
+```
+
+④ 密钥对下载完成后，可以打开 Kleopatra 软件查看（该软件就是在安装 Gpg4win 时安装的），可以看到，密钥状态为未认证
+
+![](./resources/1.11.png)
+
+双击打开该密钥，点击认证按钮
+
+![](./resources/1.12.png)
+
+创建一个新的证书来进行认证，选择【是】
+
+![](./resources/1.13.png)
+
+按照指引创建新证书，然后进行认证
+
+![](./resources/1.14.png)
+
+认证成功后，密钥状态为【认证的】
+
+![](./resources/1.15.png)
 
 
 
@@ -113,45 +179,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging> <!-- 如果是单模块项目，那么需要设置为 jar -->
+    <packaging>jar</packaging>
 
     <groupId>com.gitee.rabbitnoteeth</groupId>
-    <artifactId>bedrock</artifactId>
-    <version>${project.deploy.version}</version>
+    <artifactId>bedrock-snmp</artifactId>
+    <version>0.0.1</version>
 
-    <name>bedrock</name>
-    <description>development toolkit</description>
-    <url>https://gitee.com/RabbitNoTeeth/bedrock</url>
-
-    <modules>
-        <module>bedrock-core</module>
-        <module>bedrock-http</module>
-        <module>bedrock-mqtt</module>
-        <module>bedrock-snmp</module>
-    </modules>
-
-    <properties>
-        <java.version>11</java.version>
-        <vertx.version>4.1.2</vertx.version>
-        <springboot.version>2.4.5</springboot.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.deploy.version>1.0.0</project.deploy.version>
-    </properties>
-
-    <profiles>
-        <profile>
-            <id>snapshot</id>
-            <properties>
-                <project.release.version>1.0.0-SNAPSHOT</project.release.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>release</id>
-            <properties>
-                <project.release.version>1.0.0</project.release.version>
-            </properties>
-        </profile>
-    </profiles>
+    <name>bedrock-snmp</name>
+    <description>the snmp module for the bedrock(toolkit for quick development)</description>
+    <url>https://gitee.com/RabbitNoTeeth/bedrock-snmp</url>
 
     <licenses>
         <license>
@@ -168,14 +204,10 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@gitee.com:RabbitNoTeeth/bedrock.git</connection>
-        <developerConnection>scm:git:git@gitee.com:RabbitNoTeeth/bedrock.git</developerConnection>
-        <url>git@gitee.com:RabbitNoTeeth/bedrock.git</url>
+        <connection>scm:git:git@gitee.com:RabbitNoTeeth/bedrock-snmp.git</connection>
+        <developerConnection>scm:git:git@gitee.com:RabbitNoTeeth/bedrock-snmp.git</developerConnection>
+        <url>git@gitee.com:RabbitNoTeeth/bedrock-snmp.git</url>
     </scm>
-
-    <dependencies>
-        ...
-    </dependencies>
 
     <distributionManagement>
         <snapshotRepository>
@@ -187,6 +219,19 @@
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
+    <properties>
+        <java.version>11</java.version>
+        <snmp4j.version>2.8.8</snmp4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.snmp4j</groupId>
+            <artifactId>snmp4j</artifactId>
+            <version>${snmp4j.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -261,22 +306,12 @@
 
 # 6 发布
 
-- 发布 snapshot 版本
+```
+$ mvn clean deploy
+```
 
-  ```
-  $ mvn clean deploy -P snapshot
-  ```
 
-- 发布 release 版本
 
-  ```
-  $ mvn clean deploy -P release
-  ```
-
-jar包发布成功后，先到 https://s01.oss.sonatype.org/ 仓库中，如果项目pom文件中 `autoReleaseAfterClose` 属性为 true，那么将自动release。否则，项目将先进入 staging 状态，此时需要使用第1步中注册的账号登录到 https://s01.oss.sonatype.org/ 仓库，找到 **Staging Repositories** 并点击进入
+jar包发布成功后，先到 https://s01.oss.sonatype.org/ 仓库中，如果项目pom文件中 `autoReleaseAfterClose` 属性为 true，那么将自动release。否则，项目将先进入 staging 状态，此时需要使用第1步中注册的账号登录到 https://s01.oss.sonatype.org/ 仓库，找到 **Staging Repositories** 并点击进入，在列表中找到要 release 的项目，手动进行 release。
 
 ![](./resources/1.4.png)
-
-
-
-在列表中找到要 release 的项目，手动进行 release。
