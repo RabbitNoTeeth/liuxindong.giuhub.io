@@ -736,6 +736,10 @@
                 "url": "./posts/database/postgresql/like查询优化.html"
               },
               {
+                "name": "创建自增序列",
+                "url": "./posts/database/postgresql/创建自增序列.html"
+              },
+              {
                 "name": "自增变量导致插入失败问题",
                 "url": "./posts/database/postgresql/自增变量导致插入失败问题.html"
               },
