@@ -846,6 +846,10 @@
               {
                 "name": "发布jar到maven中央仓库",
                 "url": "./posts/cicd/maven/发布jar到maven中央仓库.html"
+              },
+              {
+                "name": "发布jar到maven中央仓库失败汇总",
+                "url": "./posts/cicd/maven/发布jar到maven中央仓库失败汇总.html"
               }
             ]
           }

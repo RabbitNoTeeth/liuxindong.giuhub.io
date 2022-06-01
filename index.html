@@ -18,8 +18,8 @@
       <el-input placeholder="请输入搜索内容" v-model="searchParam" placeholder="搜索" size="mini" style="width: 300px;margin-left: 530px" clearable></el-input>
     </div>
   </div>
-  <div style="width: 1060px;margin-left: auto;margin-right: auto;text-align: left;padding-top: 60px;display: flex;height: 95%;box-sizing:border-box;">
-    <div style="width: 250px;position: fixed">
+  <div style="width: 1060px;margin-left: auto;margin-right: auto;text-align: left;padding-top: 60px;display: flex;display: -webkit-flex;flex-direction: row;height: 95%;box-sizing:border-box;">
+    <div style="width: 300px;">
       <el-tree
               :data="treeData"
               highlight-current
@@ -37,7 +37,7 @@
         // 放上github
       </div>-->
     </div>
-    <div style="flex: 1;height: 100%;padding-left: 270px">
+    <div style="flex: 1;height: 100%;padding-left: 20px">
       <div class="center_main_right_num">
         <span>共&nbsp;<b>{{articles.length}}</b>&nbsp;条</span>
       </div>
