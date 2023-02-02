@@ -828,6 +828,10 @@
               {
                 "name": "参数化构建，让构建任务更加灵活",
                 "url": "./posts/cicd/jenkins/参数化构建，让构建任务更加灵活.html"
+              },
+              {
+                "name": "构建NodeJS项目",
+                "url": "./posts/cicd/jenkins/构建NodeJS项目.html"
               }
             ]
           },
@@ -928,6 +932,22 @@
               {
                 "name": "Git操作大全",
                 "url": "./posts/versioncontrol/git/Git操作大全.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "server",
+        "label": "服务器",
+        "children": [
+          {
+            "id": "server_nginx",
+            "label": "Nginx",
+            "articles": [
+              {
+                "name": "解决nginx反向代理导致无法获取客户端真实ip的问题",
+                "url": "./posts/server/nginx/解决nginx反向代理导致无法获取客户端真实ip的问题.html"
               }
             ]
           }
