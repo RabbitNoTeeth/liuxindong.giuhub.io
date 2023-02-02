@@ -2,32 +2,34 @@
 
 
 
-# 1 安装插件
+# 1 安装NodeJS
 
-![img](./resources/4.1.png)
+在“系统管理 - 全局工具配置”中安装NodeJS
 
-
-
-# 2 配置SSH远程主机
-
-进入 **系统管理-系统设置**
-
-![img](./resources/4.2.png)
+![img](./resources/8.1.png)
 
 
 
-配置SSH远程上传
+# 2 添加NodeJS构建步骤
 
-![img](./resources/4.3.png)
+进入构建任务的配置页面，添加 **Execute NodeJS script** 构建步骤
 
-
-
-# 3 构建任务中配置远程上传
-
-![img](./resources/4.4.png)
+![img](./resources/8.2.png)
 
 
 
-# 4 构建任务中执行远程Shell命令
 
-![img](./resources/4.5.png)
+
+# 3 添加shell命令进行打包
+
+添加shell命令，对应用进行打包
+
+![img](./resources/8.3.png)
+
+
+
+# 4 上传应用包到服务器
+
+添加 ssh 上传任务，将打包后的应用文件上传至服务器
+
+![img](./resources/8.4.png)
